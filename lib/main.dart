@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'MatchingQuizz/question.dart';
+import 'MatchingQuizz/quizzPage.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async {
+//  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -74,40 +80,38 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
+        child: QuizzPage(),
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
+        // child: Column(
+        //   // Column is also a layout widget. It takes a list of children and
+        //   // arranges them vertically. By default, it sizes itself to fit its
+        //   // children horizontally, and tries to be as tall as its parent.
+        //   //
+        //   // Invoke "debug painting" (press "p" in the console, choose the
+        //   // "Toggle Debug Paint" action from the Flutter Inspector in Android
+        //   // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
+        //   // to see the wireframe for each widget.
+        //   //
+        //   // Column has various properties to control how it sizes itself and
+        //   // how it positions its children. Here we use mainAxisAlignment to
+        //   // center the children vertically; the main axis here is the vertical
+        //   // axis because Columns are vertical (the cross axis would be
+        //   // horizontal).
+        //   mainAxisAlignment: MainAxisAlignment.center,
+        //   children: <Widget>[
+        //     Question(color: Colors.transparent),
+        //     Question(
+        //       title:
+        //           "If you got free time, which activity would you like to do?",
+        //       a1: "Relaxing at home, eating & watching movies",
+        //       a2: "Reading a book",
+        //       a3: "Going out to party / KTV",
+        //       a4: "Volunteering",
+        //       color: Colors.transparent,
+        //     ),
+        //   ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
