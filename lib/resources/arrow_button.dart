@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
+import 'package:matched_app/ui_resources/custom_colors.dart';
 
 class ArrowButtom extends StatelessWidget {
 
@@ -20,7 +21,7 @@ class ArrowButtom extends StatelessWidget {
           Container(
             height: scaler.getWidth(15),
             decoration: BoxDecoration(
-              color: Color(0xCC6747CD)
+              gradient: turkish
             ),
 
           ),
@@ -46,7 +47,11 @@ class ArrowButtom extends StatelessWidget {
               height: scaler.getWidth(15),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
-                color: Color(0xff5534C1),
+                border: Border.all(
+                  color: deepBlue,
+                  width: 2
+                ),
+                color: mainColor,
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black38,

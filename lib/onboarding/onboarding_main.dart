@@ -1,4 +1,5 @@
-//import 'package:cuhkszapp/Login/sign_in_page.dart';
+//import 'package:cuhkszapp/Login/sign_page.dart';
+import 'package:matched_app/login/sign_page.dart';
 import 'package:matched_app/resources/page_index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -67,7 +68,7 @@ class _OnboardingMainState extends State<OnboardingMain> {
                     GestureDetector(
                       onTap: () {
                         if ( currentIndex == slides.length - 1){
-                          //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SignInPage()),);
+                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SignPage()),);
                         }
                         else{
                         pageController.animateToPage(currentIndex + 1,

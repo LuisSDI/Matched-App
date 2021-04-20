@@ -1,4 +1,5 @@
-//import 'package:cuhkszapp/Login/sign_in_page.dart';
+//import 'package:cuhkszapp/Login/sign_page.dart';
+import 'package:matched_app/login/sign_page.dart';
 import 'package:matched_app/main.dart';
 import 'package:matched_app/resources/size_config.dart';
 import 'package:matched_app/ui_resources/custom_colors.dart';
@@ -25,10 +26,10 @@ class OnboardingScreen extends StatelessWidget {
             children: <Widget>[
               GestureDetector(
                 onTap: () {
-                  // Navigator.pushReplacement(
-                  //   context,
-                  //   MaterialPageRoute(builder: (context) => SignInPage()),
-                  // );
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => SignPage()),
+                  );
                 },
                 child: Container(
                     height: scaler.getWidth(10),
