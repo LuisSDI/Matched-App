@@ -177,6 +177,10 @@ class SignPageState extends State<SignPage> {
                     duration: Duration(milliseconds: 1600),
                   ),
                 ),
+
+                Padding(
+                  padding: EdgeInsets.all(scaler.getHeight(1)),
+                ),
                 ArrowButtom(
                   key: Key('1234'),
                   onTap: () {

@@ -4,6 +4,8 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:matched_app/resources/arrow_button.dart';
+import 'package:matched_app/ui_resources/custom_colors.dart';
+import 'package:matched_app/ui_resources/textfield_styles.dart';
 
 class CreateProfilePage extends StatefulWidget {
   //UserBloc userBloc;
@@ -25,15 +27,14 @@ class CreateProfilePage extends StatefulWidget {
 
 class _CreateProfilePageState extends State<CreateProfilePage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  String dropdownValue = 'Student';
-  String name, phone, description;
-  String country_code = '+86';
-  String country = 'China';
+  String dropdownCollege = 'Shaw';
+  String name, studentID, description;
 
   @override
   Widget build(BuildContext context) {
     ScreenScaler scaler = ScreenScaler()..init(context);
     return Scaffold(
+      backgroundColor: dark,
         body: Form(
             key: _formKey,
             child: SingleChildScrollView(
@@ -55,7 +56,7 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                               fit: BoxFit.contain,
                               child: Icon(
                                 AntDesign.left,
-                                color: Color(0xff6747cd),
+                                color: mainColor ,
                                 size: 30,
                               )),
                           width: scaler.getWidth(6),
@@ -72,7 +73,9 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                               style: GoogleFonts.lato(
                                   textStyle: TextStyle(
                                       fontSize: 31,
-                                      fontWeight: FontWeight.bold)),
+                                      fontWeight: FontWeight.bold,
+                                  color: white)
+                              ),
                             )),
                       ),
                       // Dont worry... Text
@@ -90,7 +93,7 @@ you can change this info later"""
                               style: GoogleFonts.lato(
                                   textStyle: TextStyle(
                                       fontSize: 20,
-                                      color: Color(0xff62626C))),
+                                      color: whiteish)),
                             )),
                       ),
                       // Full Name Text
@@ -106,6 +109,7 @@ you can change this info later"""
                               style: GoogleFonts.lato(
                                   textStyle: TextStyle(
                                       fontSize: 20,
+                                      color: white,
                                       fontWeight: FontWeight.bold)),
                             )),
                       ),
@@ -123,7 +127,8 @@ you can change this info later"""
                             name = input;
                           },
                           style: GoogleFonts.lato(
-                              textStyle: TextStyle(fontSize: 18)),
+                              textStyle: TextStyle(fontSize: 18,
+                              color: white)),
                           decoration: InputDecoration(
                             contentPadding:
                                 EdgeInsets.only(left: scaler.getWidth(0.8)),
@@ -131,24 +136,19 @@ you can change this info later"""
                             hintStyle: GoogleFonts.lato(
                                 textStyle: TextStyle(
                               fontSize: 18,
+                                  color: white
                             )),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
                                 borderSide:
-                                    BorderSide(color: Color(0xff6747CD))),
-                            focusColor: Color(0xff6747CD),
-                            focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide: BorderSide(
-                                    color: Color(0xff6747CD), width: 2)),
-                            enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide: BorderSide(
-                                    color: Color(0xff6747CD), width: 2)),
+                                    BorderSide(color:mainColor)),
+                            focusColor: mainColor,
+                            focusedBorder: textfieldBorder,
+                            enabledBorder: textfieldBorder,
                           ),
                         ),
                       ),
-                      // Phone Number Text
+                      // Student ID Text
                       Container(
                         height: scaler.getWidth(5),
                         margin: EdgeInsets.only(
@@ -157,165 +157,58 @@ you can change this info later"""
                         child: FittedBox(
                             fit: BoxFit.contain,
                             child: Text(
-                              "Phone Number",
+                              "Student ID",
                               style: GoogleFonts.lato(
                                   textStyle: TextStyle(
                                       fontSize: 20,
+                                      color: white,
                                       fontWeight: FontWeight.bold)),
                             )),
                       ),
-                      Row(
-                        children: <Widget>[
-                          // Country Code Container
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              // Country Text
-                              Container(
-                                height: scaler.getWidth(5),
-                                margin: EdgeInsets.only(
-                                    top: scaler.getWidth(1),
-                                    bottom: scaler.getWidth(1)),
-                                child: FittedBox(
-                                    fit: BoxFit.contain,
-                                    child: Text(
-                                      "Country",
-                                      style: GoogleFonts.lato(
-                                          textStyle: TextStyle(
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.bold)),
-                                    )),
-                              ),
-                              // Country Code Field
-                              Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  border: Border.all(
-                                      color: Color(0xff6747CD), width: 2),
-                                ),
-                              ),
-                            ],
+                      // Full Name TextField
+                      Container(
+                        width: scaler.getWidth(80),
+                        height: scaler.getWidth(12),
+                        child: TextFormField(
+                          validator: (input) {
+                            if (input.isEmpty) {
+                              return 'Please type a name';
+                            }
+                          },
+                          onSaved: (input) {
+                            studentID = input;
+                          },
+                          style: GoogleFonts.lato(
+                              textStyle: TextStyle(fontSize: 18,
+                                  color: white)),
+                          decoration: InputDecoration(
+                            contentPadding:
+                            EdgeInsets.only(left: scaler.getWidth(0.8)),
+                            hintText: 'Aa',
+                            hintStyle: GoogleFonts.lato(
+                                textStyle: TextStyle(
+                                    fontSize: 18,
+                                    color: white
+                                )),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide:
+                                BorderSide(color:mainColor)),
+                            focusColor: mainColor,
+                            focusedBorder: textfieldBorder,
+                            enabledBorder: textfieldBorder,
                           ),
-                          // Number Container
-                          Container(
-                            margin: EdgeInsets.only(left: scaler.getWidth(4)),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                // Number Text
-                                Container(
-                                  height: scaler.getWidth(5),
-                                  margin: EdgeInsets.only(
-                                      top: scaler.getWidth(1),
-                                      bottom: scaler.getWidth(1)),
-                                  child: FittedBox(
-                                      fit: BoxFit.contain,
-                                      child: Text(
-                                        "Number",
-                                        style: GoogleFonts.lato(
-                                            textStyle: TextStyle(
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.bold)),
-                                      )),
-                                ),
-                                //  Number Field
-                                Container(
-                                  width: scaler.getWidth(35),
-                                  height: scaler.getWidth(12),
-                                  child: TextFormField(
-                                    validator: (input) {
-                                      if (input.length < 8) {
-                                        return 'Invalid number';
-                                      }
-                                    },
-                                    onSaved: (input) {
-                                      phone = input;
-                                    },
-                                    keyboardType: TextInputType.number,
-                                    style: GoogleFonts.lato(
-                                        textStyle: TextStyle(fontSize: 16)),
-                                    decoration: InputDecoration(
-                                      contentPadding: EdgeInsets.only(
-                                          left: scaler.getWidth(1)),
-                                      hintText: '123456789',
-                                      hintStyle: GoogleFonts.lato(
-                                          textStyle: TextStyle(
-                                        fontSize: 18,
-                                      )),
-                                      border: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          borderSide: BorderSide(
-                                              color: Color(0xff6747CD))),
-                                      focusColor: Color(0xff6747CD),
-                                      focusedBorder: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          borderSide: BorderSide(
-                                              color: Color(0xff6747CD),
-                                              width: 2)),
-                                      enabledBorder: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          borderSide: BorderSide(
-                                              color: Color(0xff6747CD),
-                                              width: 2)),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                      // Nationality Container
-                      Row(
-                        children: <Widget>[
-                          // Country Code Container
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              // Country Text
-                              Container(
-                                height: scaler.getWidth(5),
-                                margin: EdgeInsets.only(
-                                    top: scaler.getWidth(1),
-                                    bottom: scaler.getWidth(1)),
-                                child: FittedBox(
-                                    fit: BoxFit.contain,
-                                    child: Text(
-                                      "Nationality",
-                                      style: GoogleFonts.lato(
-                                          textStyle: TextStyle(
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.bold)),
-                                    )),
-                              ),
-                              // Country Code Field
-                              Container(
-                                alignment: Alignment.centerLeft,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  border: Border.all(
-                                      color: Color(0xff6747CD), width: 2),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
+                        ),
                       ),
                       // I am ... Container
                       Row(
                         children: <Widget>[
-                          // Country Code Container
+                          // College Container
                           Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              // Country Text
+                              // College Text
                               Container(
                                 height: scaler.getWidth(5),
                                 margin: EdgeInsets.only(
@@ -324,67 +217,60 @@ you can change this info later"""
                                 child: FittedBox(
                                     fit: BoxFit.contain,
                                     child: Text(
-                                      "I am a...",
+                                      "College",
                                       style: GoogleFonts.lato(
                                           textStyle: TextStyle(
                                               fontSize: 20,
-                                              fontWeight: FontWeight.bold)),
+                                              fontWeight: FontWeight.bold),
+                                       color: Colors.white),
                                     )),
                               ),
                               // I am a ... Field
                               Container(
-                                width: scaler.getWidth(25),
-                                height: scaler.getWidth(10),
-                                child: DropdownButtonFormField(
-                                  decoration: InputDecoration(
-                                    contentPadding: EdgeInsets.only(
-                                        left: scaler.getWidth(3)),
-                                    border: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10),
-                                        borderSide: BorderSide(
-                                            color: Color(0xff6747CD))),
-                                    focusColor: Color(0xff6747CD),
-                                    focusedBorder: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10),
-                                        borderSide: BorderSide(
-                                            color: Color(0xff6747CD),
-                                            width: 2)),
-                                    enabledBorder: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10),
-                                        borderSide: BorderSide(
-                                            color: Color(0xff6747CD),
-                                            width: 2)),
+                                width: scaler.getWidth(27),
+                                //height: scaler.getWidth(10),
+                                child: Theme(
+                                  data: Theme.of(context).copyWith(
+                                    canvasColor: dark,
                                   ),
-                                  value: dropdownValue,
-                                  icon: Icon(Icons.keyboard_arrow_down),
-                                  iconSize: 24,
-                                  elevation: 16,
-                                  onChanged: (String newValue) {
-                                    setState(() {
-                                      print(newValue);
-                                      dropdownValue = newValue;
-                                    });
-                                  },
-                                  items: <String>[
-                                    'Student',
-                                    'Parent',
-                                    'Other'
-                                  ].map<DropdownMenuItem<String>>(
-                                      (String value) {
-                                    return DropdownMenuItem<String>(
-                                      value: value,
-                                      child: Text(
-                                        value,
-                                        style: GoogleFonts.lato(
-                                            textStyle: TextStyle(
-                                                fontSize: 16,
-                                                color: Colors.black)),
-                                      ),
-                                    );
-                                  }).toList(),
+                                  child: DropdownButtonFormField(
+                                    decoration: InputDecoration(
+                                      contentPadding: EdgeInsets.only(
+                                          left: scaler.getWidth(3)),
+                                      border: textfieldBorder,
+                                      focusColor: mainColor,
+                                      focusedBorder: textfieldBorder,
+                                      enabledBorder:textfieldBorder,
+                                    ),
+                                    value: dropdownCollege,
+                                    icon: Icon(Icons.keyboard_arrow_down,color: mainColor,),
+                                    iconSize: 24,
+                                    elevation: 16,
+                                    onChanged: (String newValue) {
+                                      setState(() {
+                                        print(newValue);
+                                        dropdownCollege = newValue;
+                                      });
+                                    },
+                                    items: <String>[
+                                      'Shaw',
+                                      'Muse',
+                                      'Diligentia',
+                                      'Harmonia'
+                                    ].map<DropdownMenuItem<String>>(
+                                        (String value) {
+                                      return DropdownMenuItem<String>(
+                                        value: value,
+                                        child: Text(
+                                          value,
+                                          style: GoogleFonts.lato(
+                                              textStyle: TextStyle(
+                                                  fontSize: 16,
+                                                  color: white),
+                                        ),
+                                      ));
+                                    }).toList(),
+                                  ),
                                 ),
                               ),
                             ],
@@ -397,7 +283,7 @@ you can change this info later"""
                         height: scaler.getWidth(5),
                         margin: EdgeInsets.only(
                             top: scaler.getWidth(1),
-                            bottom: scaler.getWidth(0)),
+                            bottom: scaler.getWidth(1)),
                         child: FittedBox(
                             fit: BoxFit.contain,
                             child: Text(
@@ -405,7 +291,8 @@ you can change this info later"""
                               style: GoogleFonts.lato(
                                   textStyle: TextStyle(
                                       fontSize: 20,
-                                      fontWeight: FontWeight.bold)),
+                                      fontWeight: FontWeight.bold),
+                              color: white),
                             )),
                       ),
                       // Personal Description TextField
@@ -425,7 +312,8 @@ you can change this info later"""
                           maxLines: 5,
                           keyboardType: TextInputType.multiline,
                           style: GoogleFonts.lato(
-                              textStyle: TextStyle(fontSize: 18)),
+                              textStyle: TextStyle(fontSize: 18,
+                              color: white)),
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.only(
                                 left: scaler.getWidth(1),
@@ -434,20 +322,12 @@ you can change this info later"""
                             hintStyle: GoogleFonts.lato(
                                 textStyle: TextStyle(
                               fontSize: 18,
+                                  color: white
                             )),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide:
-                                    BorderSide(color: Color(0xff6747CD))),
-                            focusColor: Color(0xff6747CD),
-                            focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide: BorderSide(
-                                    color: Color(0xff6747CD), width: 2)),
-                            enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide: BorderSide(
-                                    color: Color(0xff6747CD), width: 2)),
+                            border: textfieldBorder,
+                            focusColor: mainColor,
+                            focusedBorder:textfieldBorder,
+                            enabledBorder: textfieldBorder,
                           ),
                         ),
                       ),
