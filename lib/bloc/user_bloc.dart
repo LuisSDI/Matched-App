@@ -141,89 +141,23 @@ class UserBloc implements Bloc {
   // Get contact details
   Stream<DocumentSnapshot> getContactDetails(String userID) => cloudFirestoreRepository.getContactDetails(userID);
 
-  // Save user's answer of roommate matching question
-  Future<void> roommateMatchingQuestion(
-          String userID,
-          String LGBTQSelf,
-          String LGBTQMate,
-          String school,
-          String major,
-          String musicalPreference,
-          String playMusicFreq,
-          String instrumentPlayed,
-          String hobby,
-          String considerMyself,
-          String otherViewOnMe,
-          String smokerSelf,
-          String smokerMate,
-          String privateTime,
-          String roomPreference,
-          String overnightGuestPref,
-          String roommateSignificant,
-          String socializingInRoom,
-          String timeSpendInRoom,
-          String myRoomAtHome,
-          String cleanFreqAtHome,
-          String idealRoomTemp,
-          String goHomeFreq,
-          String sleepTime,
-          String getUpTime,
-          String sleeperType,
-          String whenISleep,
-          String studyPlace,
-          String studyTime,
-          String whenIStudy,
-          String roommateRelationship,
-          String dealingWithConflict,
-          String roommateBorrow,
-          String fourImportantCategories,
-          String concernAboutRoommate) =>
-      cloudFirestoreRepository.roommateMatchingQuestion(
-          userID,
-          LGBTQSelf,
-          LGBTQMate,
-          school,
-          major,
-          musicalPreference,
-          playMusicFreq,
-          instrumentPlayed,
-          hobby,
-          considerMyself,
-          otherViewOnMe,
-          smokerSelf,
-          smokerMate,
-          privateTime,
-          roomPreference,
-          overnightGuestPref,
-          roommateSignificant,
-          socializingInRoom,
-          timeSpendInRoom,
-          myRoomAtHome,
-          cleanFreqAtHome,
-          idealRoomTemp,
-          goHomeFreq,
-          sleepTime,
-          getUpTime,
-          sleeperType,
-          whenISleep,
-          studyPlace,
-          studyTime,
-          whenIStudy,
-          roommateRelationship,
-          dealingWithConflict,
-          roommateBorrow,
-          fourImportantCategories,
-          concernAboutRoommate);
+  // Save roommate matching result
+  Future<void> saveMatchingResult(String userID, String roommateOneUID, String roommateTwoUID, String roommateThreeUID) =>
+      cloudFirestoreRepository.saveMatchingResult(userID, roommateOneUID, roommateTwoUID, roommateThreeUID);
 
-  // Get user's answer of roommate matching questions
-  Stream<DocumentSnapshot> getRoommateMatchingQuestion(String userID) => cloudFirestoreRepository.getRoommateMatchingQuestion(userID);
-
-  // Save matching result
-  Future<void> saveMatchingResult(String userID, String roommateOne, String roommateTwo, String roommateThree) =>
-      cloudFirestoreRepository.saveMatchingResult(userID, roommateOne, roommateTwo, roommateThree);
-
-  // Get matching result
+  // Get roommate matching result
   Stream<DocumentSnapshot> getMatchingResult(String userID) => cloudFirestoreRepository.getMatchingResult(userID);
+
+  // Save personality test result
+  Future<void> savePersonalityTestResult(String userID, String personality) =>
+      cloudFirestoreRepository.savePersonalityTestResult(userID, personality);
+
+  // Get personality test result
+  Stream<DocumentSnapshot> getPersonalityTestResult(String userID) => cloudFirestoreRepository.getPersonalityTestResult(userID);
+
+  // Save "Do We Match?" result
+
+  // Get "Do We Match?" result
 
   @override
   void dispose() {}

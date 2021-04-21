@@ -213,101 +213,15 @@ class CloudFireStoreAPI {
         .snapshots();
   }
 
-  Future<void> roommateMatchingQuestion(
-      String userID,
-      String LGBTQSelf,
-      String LGBTQMate,
-      String school,
-      String major,
-      String musicalPreference,
-      String playMusicFreq,
-      String instrumentPlayed,
-      String hobby,
-      String considerMyself,
-      String otherViewOnMe,
-      String smokerSelf,
-      String smokerMate,
-      String privateTime,
-      String roomPreference,
-      String overnightGuestPref,
-      String roommateSignificant,
-      String socializingInRoom,
-      String timeSpendInRoom,
-      String myRoomAtHome,
-      String cleanFreqAtHome,
-      String idealRoomTemp,
-      String goHomeFreq,
-      String sleepTime,
-      String getUpTime,
-      String sleeperType,
-      String whenISleep,
-      String studyPlace,
-      String studyTime,
-      String whenIStudy,
-      String roommateRelationship,
-      String dealingWithConflict,
-      String roommateBorrow,
-      String fourImportantCategories,
-      String concernAboutRoommate) async {
-    return await applications
-        .document(userID)
-        .collection('Roommate Matching Questions')
-        .document(userID)
-        .setData({
-          'LGBTQ Self': LGBTQSelf,
-          'LGBTQ Ally': LGBTQMate,
-          'School': school,
-          'Major': major,
-          'Musical Preference': musicalPreference,
-          'Playing Music Frequency': playMusicFreq,
-          'Instrument Played': instrumentPlayed,
-          'Hobby': hobby,
-          'View On Myself': considerMyself,
-          'Other View On Me': otherViewOnMe,
-          'Am I Smoking': smokerSelf,
-          'Roommate Smoker': smokerMate,
-          'Private Time': privateTime,
-          'Room Preference': roomPreference,
-          'Overnight Guest Preference': overnightGuestPref,
-          'Roommate Significant': roommateSignificant,
-          'Socializing In Room': socializingInRoom,
-          'Time Spend In Room': timeSpendInRoom,
-          'My Room At Home': myRoomAtHome,
-          'Cleaning Frequency At Home': cleanFreqAtHome,
-          'Ideal Room Temperature': idealRoomTemp,
-          'Go Home Frequency': goHomeFreq,
-          'Sleeping Time': sleepTime,
-          'Get Up Time': getUpTime,
-          'Sleeper Type': sleeperType,
-          'When I Sleep': whenISleep,
-          'Study Place': studyPlace,
-          'Study Time': studyTime,
-          'When I Study': whenIStudy,
-          'Roommate Relationship': roommateRelationship,
-          'Dealing With Conflict': dealingWithConflict,
-          'Roommate Borrowing Me': roommateBorrow,
-          'Four Important Categories': fourImportantCategories,
-          'Concern About Roommate': concernAboutRoommate,
-        }, merge: true);
-  }
-
-  Stream<DocumentSnapshot> getRoommateMatchingQuestion(String userID) {
-      return applications
-          .document(userID)
-          .collection('Roommate Matching Questions')
-          .document(userID)
-          .snapshots();
-  }
-
-  Future<void> saveMatchingResult(String userID, String roommateOne, String roommateTwo, String roommateThree) async {
+  Future<void> saveMatchingResult(String userID, String roommateOneUID, String roommateTwoUID, String roommateThreeUID) async {
       return await applications
           .document(userID)
           .collection('Roommate Matching Result')
           .document(userID)
           .setData({
-            'First Roommate': roommateOne,
-            'Second Roommate': roommateTwo,
-            'Third Roommate': roommateThree,
+            'First Roommate': roommateOneUID,
+            'Second Roommate': roommateTwoUID,
+            'Third Roommate': roommateThreeUID,
           }, merge: true);
   }
 
@@ -315,6 +229,24 @@ class CloudFireStoreAPI {
     return applications
         .document(userID)
         .collection('Roommate Matching Result')
+        .document(userID)
+        .snapshots();
+  }
+
+  Future<void> savePersonalityTestResult(String userID, String personality) async {
+    return await applications
+        .document(userID)
+        .collection('Personality Test Result')
+        .document(userID)
+        .setData({
+      'First Roommate': personality,
+    }, merge: true);
+  }
+
+  Stream<DocumentSnapshot> getPersonalityTestResult(String userID) {
+    return applications
+        .document(userID)
+        .collection('Personality Test Result')
         .document(userID)
         .snapshots();
   }
