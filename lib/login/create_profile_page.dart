@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:matched_app/main_pages/home_page.dart';
 import 'package:matched_app/resources/arrow_button.dart';
 import 'package:matched_app/ui_resources/custom_colors.dart';
 import 'package:matched_app/ui_resources/textfield_styles.dart';
@@ -338,6 +339,12 @@ you can change this info later"""
                   key: Key('1234'),
                   onTap: () async {
                     //registerUser();
+                           Navigator.pushReplacement(
+                        context,
+           MaterialPageRoute(
+               builder: (context) => HomePage(
+                     //user: user.user,
+                   )));
                   },
                 )
               ],
