@@ -4,21 +4,25 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:matched_app/resources/arrow_button.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:matched_app/bloc/user_bloc.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:matched_app/Model/user.dart';
 import 'package:matched_app/ui_resources/custom_colors.dart';
 import 'package:matched_app/ui_resources/textfield_styles.dart';
 
 class CreateProfilePage extends StatefulWidget {
-  //UserBloc userBloc;
-  //FirebaseAuth auth;
-  //AuthCredential credential;
+  UserBloc userBloc;
+  FirebaseAuth auth;
+  AuthCredential credential;
   String email;
   String password;
   final GlobalKey<State> keyLoader = new GlobalKey<State>();
 
   CreateProfilePage(
       {Key key, this.email, this.password,
-        //this.credential,
-        //this.auth
+        this.credential,
+        this.auth
       })
       : super(key: key);
   @override
@@ -28,7 +32,9 @@ class CreateProfilePage extends StatefulWidget {
 class _CreateProfilePageState extends State<CreateProfilePage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String dropdownCollege = 'Shaw';
-  String name, studentID, description;
+  String name, studentID, description, phone;
+  String country = 'China';
+  String country_code = '86';
 
   @override
   Widget build(BuildContext context) {
@@ -337,49 +343,49 @@ you can change this info later"""
                 ArrowButtom(
                   key: Key('1234'),
                   onTap: () async {
-                    //registerUser();
+                    registerUser();
                   },
                 )
               ],
             ))));
   }
 
-  // Future<void> registerUser() async {
-  //   {
-  //     final formState = _formKey.currentState;
-  //     widget.userBloc = BlocProvider.of(context);
-  //     AuthResult authResult;
-  //     FirebaseUser firebaseUser;
-  //     if (formState.validate()) {
-  //       formState.save();
-  //       try {
-  //         print(widget.credential);
-  //         if (widget.credential != null) {
-  //           authResult =
-  //               await widget.userBloc.signInCredential(widget.credential);
-  //           firebaseUser = authResult.user;
-  //         } else {
-  //           firebaseUser =
-  //               await widget.userBloc.signUp(widget.email, widget.password);
-  //         }
-  //         User user = User(
-  //             email: firebaseUser.email,
-  //             name: name,
-  //             photoUrL: (firebaseUser.photoUrl == null)
-  //                 ? 'https://firebasestorage.googleapis.com/v0/b/cuhk-shenzhen-app.appspot.com/o/no_photo.png?alt=media&token=f444bdb5-4857-4c54-9268-2c7cf3970ca2'
-  //                 : firebaseUser.photoUrl,
-  //             uid: firebaseUser.uid,
-  //             country: country,
-  //             description: description,
-  //             phone: '$country_code $phone',
-  //             type: dropdownValue);
-  //         widget.userBloc.setUserData(user);
-  //       } catch (e) {
-  //         print(e.message);
-  //         Navigator.of(context).pop();
-  //       }
-  //     }
-  //   }
-  // }
+  Future<void> registerUser() async {
+    {
+      final formState = _formKey.currentState;
+      widget.userBloc = BlocProvider.of(context);
+      AuthResult authResult;
+      FirebaseUser firebaseUser;
+      if (formState.validate()) {
+        formState.save();
+        try {
+          print(widget.credential);
+          if (widget.credential != null) {
+            authResult =
+                await widget.userBloc.signInCredential(widget.credential);
+            firebaseUser = authResult.user;
+          } else {
+            firebaseUser =
+                await widget.userBloc.signUp(widget.email, widget.password);
+          }
+          User user = User(
+              email: firebaseUser.email,
+              name: name,
+              photoUrL: (firebaseUser.photoUrl == null)
+                  ? 'https://firebasestorage.googleapis.com/v0/b/cuhk-shenzhen-app.appspot.com/o/no_photo.png?alt=media&token=f444bdb5-4857-4c54-9268-2c7cf3970ca2'
+                  : firebaseUser.photoUrl,
+              uid: firebaseUser.uid,
+              country: country,
+              description: description,
+              phone: '$country_code $phone',
+              type: dropdownCollege);
+          widget.userBloc.setUserData(user);
+        } catch (e) {
+          print(e.message);
+          Navigator.of(context).pop();
+        }
+      }
+    }
+  }
 }
 
