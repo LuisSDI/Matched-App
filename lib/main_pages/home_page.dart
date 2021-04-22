@@ -6,6 +6,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:matched_app/main_pages/chat_tab.dart';
 import 'package:matched_app/main_pages/discover_tab.dart';
 import 'package:matched_app/main_pages/profile_tab.dart';
+import 'package:matched_app/ui_resources/custom_colors.dart';
+import 'package:matched_app/ui_resources/icons/dorm_icon_icons.dart';
+import 'package:matched_app/ui_resources/icons/fix_icons_icons.dart';
 import 'apply_tab.dart';
 import 'explore_tab.dart';
 
@@ -31,52 +34,41 @@ class _HomePageState extends State<HomePage> {
       body: _children[_currentIndex],
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [Color(0xff6747CD), Color(0x8C3300D6)])),
+            gradient: turkish),
         child: BottomNavigationBar(
             onTap: onTabTapped,
             currentIndex: _currentIndex,
             iconSize: 18,
             backgroundColor: Colors.transparent,
+            selectedLabelStyle: GoogleFonts.lato(
+                textStyle:
+                TextStyle(fontSize: 12, color: Colors.white)) ,
             items: [
               //Explore
               BottomNavigationBarItem(
                   icon: Padding(
                     padding: EdgeInsets.all(paddingBottombar),
                     child: Icon(
-                      FontAwesome.university,
+                      DormIcon.noun_dormitory_2125386_1,
                       color: Colors.white,
-                      size: 30,
+                      size: 35,
                     ),
                   ),
-                  title: Text(
-                    "Explore",
-                    style: GoogleFonts.lato(
-                        textStyle:
-                            TextStyle(fontSize: 12, color: Colors.white)),
-                  ),
+                  label: "Explore",
+
+
                   backgroundColor: Colors.transparent),
               //Majors
               BottomNavigationBarItem(
                   icon: Padding(
                     padding: EdgeInsets.all(paddingBottombar),
                     child: Icon(
-                      FontAwesome.graduation_cap,
+                      FixIcons.mind_fix,
                       color: Colors.white,
-                      size: 30,
+                      size: 40,
                     ),
                   ),
-                  title: FittedBox(
-                    fit: BoxFit.contain,
-                    child: Text(
-                      "Majors",
-                      style: GoogleFonts.lato(
-                          textStyle:
-                              TextStyle(fontSize: 12, color: Colors.white)),
-                    ),
-                  ),
+                  label: "Personality",
                   backgroundColor: Colors.transparent),
               //Messages
               BottomNavigationBarItem(
@@ -88,12 +80,7 @@ class _HomePageState extends State<HomePage> {
                       size: 30,
                     ),
                   ),
-                  title: Text(
-                    "Messages",
-                    style: GoogleFonts.lato(
-                        textStyle:
-                            TextStyle(fontSize: 12, color: Colors.white)),
-                  ),
+                  label: "Clubs",
                   backgroundColor: Colors.transparent),
               //Apply
               BottomNavigationBarItem(
@@ -105,12 +92,7 @@ class _HomePageState extends State<HomePage> {
                       size: 30,
                     ),
                   ),
-                  title: Text(
-                    "Apply",
-                    style: GoogleFonts.lato(
-                        textStyle:
-                            TextStyle(fontSize: 12, color: Colors.white)),
-                  ),
+                  label: "Matched!",
                   backgroundColor: Colors.transparent),
               //Profile
               BottomNavigationBarItem(
@@ -122,13 +104,8 @@ class _HomePageState extends State<HomePage> {
                       size: 30,
                     ),
                   ),
-                  title: Text(
-                    "Profile",
-                    style: GoogleFonts.lato(
-                        textStyle:
-                            TextStyle(fontSize: 12, color: Colors.white)),
-                  ),
-                  backgroundColor: Colors.transparent),
+                  label:"Profile",
+              )
             ]),
       ),
     );

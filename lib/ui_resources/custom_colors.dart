@@ -14,7 +14,7 @@ const greyish = Color(0xffE5E5E5);
 const black = Colors.black;
 //Gradients
 const turkish = LinearGradient(
-  begin: Alignment.topCenter,
+  begin: Alignment.center,
   colors: [
     cianGradient,
     blueGradient
