@@ -32,9 +32,7 @@ class CreateProfilePage extends StatefulWidget {
 class _CreateProfilePageState extends State<CreateProfilePage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String dropdownCollege = 'Shaw';
-  String name, studentID, description, phone;
-  String country = 'China';
-  String country_code = '86';
+  String name, studentID, description;
 
   @override
   Widget build(BuildContext context) {
@@ -375,9 +373,7 @@ you can change this info later"""
                   ? 'https://firebasestorage.googleapis.com/v0/b/cuhk-shenzhen-app.appspot.com/o/no_photo.png?alt=media&token=f444bdb5-4857-4c54-9268-2c7cf3970ca2'
                   : firebaseUser.photoUrl,
               uid: firebaseUser.uid,
-              country: country,
               description: description,
-              phone: '$country_code $phone',
               type: dropdownCollege);
           widget.userBloc.setUserData(user);
         } catch (e) {

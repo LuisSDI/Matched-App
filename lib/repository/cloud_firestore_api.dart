@@ -32,8 +32,6 @@ class CloudFireStoreAPI {
         'full name': user.name,
         'email': user.email,
         'photoURL': user.photoUrL,
-        'phone': user.phone,
-        'country': user.country,
         'type': user.type,
         'description': user.description,
         'lastSignIn': DateTime.now()
@@ -56,8 +54,6 @@ class CloudFireStoreAPI {
       'full name': user.name,
       'email': user.email,
       'photoURL': user.photoUrL,
-      'phone': user.phone,
-      'country': user.country,
       'type': user.type,
       'description': user.description,
       'lastSignIn': DateTime.now()
@@ -71,9 +67,7 @@ class CloudFireStoreAPI {
       user = User(
         name: value.data['full name'],
         type: value.data['type'],
-        phone: value.data['phone'],
         description: value.data['description'],
-        country: value.data['country'],
         uid: value.data['uid'],
         photoUrL: value.data['photoURL'],
         email: value.data['email'],
@@ -93,9 +87,7 @@ class CloudFireStoreAPI {
       User user = User(
         name: value.data['full name'],
         type: value.data['type'],
-        phone: value.data['phone'],
         description: value.data['description'],
-        country: value.data['country'],
         uid: value.data['uid'],
         photoUrL: value.data['photoURL'],
         email: value.data['email'],
