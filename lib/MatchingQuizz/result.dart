@@ -1,9 +1,15 @@
 class Result {
   List<int> allResults = List<int>.filled(18, 0, growable: false);
   String res = "";
-  Result() {
+  Result(String res) {
+    this.res = res;
+
     initRes();
+    if (res.compareTo("") != 0) {
+      this.res = res;
+    }
   }
+
   void initRes() {
     res = "";
     allResults.forEach((element) => res += element.toString());
