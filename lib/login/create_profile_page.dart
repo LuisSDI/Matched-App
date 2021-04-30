@@ -228,7 +228,7 @@ you can change this info later"""
                               ),
                               // I am a ... Field
                               Container(
-                                width: scaler.getWidth(27),
+                                width: scaler.getWidth(30),
                                 //height: scaler.getWidth(10),
                                 child: Theme(
                                   data: Theme.of(context).copyWith(

@@ -20,4 +20,8 @@ class FixIcons {
   static const  _kFontPkg = null;
 
   static const IconData mind_fix = IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData analyst = IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData sentinel = IconData(0xe802, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData explorer = IconData(0xe803, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData diplomats = IconData(0xe804, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }

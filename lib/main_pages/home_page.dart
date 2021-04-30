@@ -32,6 +32,7 @@ class _HomePageState extends State<HomePage> {
     double paddingBottombar = scaler.getHeight(0.5);
     return Scaffold(
       body: _children[_currentIndex],
+      backgroundColor: dark,
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
             gradient: turkish),
