@@ -85,6 +85,9 @@ flutter:
     - family: DormIcon
       fonts:
         - asset: fonts/DormIcon.ttf
+    - family:  FixIcons
+      fonts:
+        - asset: fonts/FixIcons.ttf
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf

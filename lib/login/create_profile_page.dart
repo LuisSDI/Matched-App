@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:matched_app/main_pages/home_page.dart';
 import 'package:matched_app/resources/arrow_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:matched_app/bloc/user_bloc.dart';
@@ -231,7 +232,7 @@ you can change this info later"""
                               ),
                               // I am a ... Field
                               Container(
-                                width: scaler.getWidth(27),
+                                width: scaler.getWidth(30),
                                 //height: scaler.getWidth(10),
                                 child: Theme(
                                   data: Theme.of(context).copyWith(
@@ -342,6 +343,12 @@ you can change this info later"""
                   key: Key('1234'),
                   onTap: () async {
                     registerUser();
+                           Navigator.pushReplacement(
+                        context,
+           MaterialPageRoute(
+               builder: (context) => HomePage(
+                     //user: user.user,
+                   )));
                   },
                 )
               ],

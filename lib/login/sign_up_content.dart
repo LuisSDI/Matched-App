@@ -254,5 +254,4 @@ or login with a social account"""
   }
 }
 
-class BlocProvider {
-}
+
