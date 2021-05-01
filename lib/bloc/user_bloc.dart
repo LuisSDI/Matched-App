@@ -1,10 +1,7 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:matched_app/repository/firebase_auth_api.dart';
 import 'package:matched_app/repository/cloud_firestore_api.dart';
@@ -17,10 +14,9 @@ class UserBloc implements Bloc {
 
   //Stream - Firebase
   //StreamController
-  Stream<FirebaseUser> streamFirebase =
-      FirebaseAuth.instance.onAuthStateChanged;
-  Stream<FirebaseUser> get authStatus => streamFirebase;
-  Future<FirebaseUser> get currentUser => FirebaseAuth.instance.currentUser();
+  Stream<User> streamFirebase = FirebaseAuth.instance.authStateChanges();
+  Stream<User> get authStatus => streamFirebase;
+  User get currentUser => FirebaseAuth.instance.currentUser;
 
   //Firebase Auth
 
@@ -31,15 +27,15 @@ class UserBloc implements Bloc {
   //Delete User
   void deleteUser() => authRepository.deleteUser();
   //1.SignIn
-  Future<FirebaseUser> signIn(String email, String password) => authRepository.signIn(email, password);
+  Future<User> signIn(String email, String password) => authRepository.signIn(email, password);
   //2.SignIn Credential
-  Future<AuthResult> signInCredential(AuthCredential credential) => authRepository.signInUsingCredential(credential);
+  Future<UserCredential> signInCredential(AuthCredential credential) => authRepository.signInUsingCredential(credential);
   //Google
   Future<AuthCredential> credentialGoogle() => authRepository.credentialGoogle();
   //Facebook
   Future<AuthCredential> credentialFacebook() => authRepository.credentialFacebook();
   //3.Sign Up
-  Future<FirebaseUser> signUp(String email, String password) => authRepository.signUp(email, password);
+  Future<User> signUp(String email, String password) => authRepository.signUp(email, password);
 
   Future sendRecoveryPassword(String email) => authRepository.sendRecoveryPassword(email);
 
@@ -50,20 +46,20 @@ class UserBloc implements Bloc {
   void resetErrorCloud() => cloudFirestoreRepository.resetErrorCloud();
 
   // Register New User
-  Future<void> setUserData(User user) => cloudFirestoreRepository.setUserData(user);
+  Future<void> setUserData(UserModel user) => cloudFirestoreRepository.setUserData(user);
   // Update User Data
-  void updateUserData(User user) => cloudFirestoreRepository.updateUserData(user);
+  void updateUserData(UserModel user) => cloudFirestoreRepository.updateUserData(user);
   // Get User Data
-  Future<User> getUserData(String userUid) async => cloudFirestoreRepository.getUserData(userUid);
+  Future<UserModel> getUserData(String userUid) async => cloudFirestoreRepository.getUserData(userUid);
   // Check if user exists
   Stream<DocumentSnapshot> listenUserData(String userUid) {
     return cloudFirestoreRepository.listenUserData(userUid);
   }
   // Get a list of users
-  Future<List<User>> getListUsers(String userUid) => cloudFirestoreRepository.getListUsers(userUid);
+  Future<List<UserModel>> getListUsers(String userUid) => cloudFirestoreRepository.getListUsers(userUid);
 
   // Chat Feature
-  Future<void> addMessage(Message message, User sender, User receiver) => cloudFirestoreRepository.addMessage(message, sender, receiver);
+  Future<void> addMessage(Message message, UserModel sender, UserModel receiver) => cloudFirestoreRepository.addMessage(message, sender, receiver);
 
   // Save personal details
   Future<void> registerPersonalDetails(
@@ -156,9 +152,18 @@ class UserBloc implements Bloc {
   Stream<DocumentSnapshot> getPersonalityTestResult(String userID) => cloudFirestoreRepository.getPersonalityTestResult(userID);
 
   // Save "Do We Match?" result
+  Future<void> saveDoWeMatchResult(String userID, String partner, String result) =>
+      cloudFirestoreRepository.saveDoWeMatchResult(userID, partner, result);
 
   // Get "Do We Match?" result
+  Stream<DocumentSnapshot> getDoWeMatchResult(String userID, String partner) => cloudFirestoreRepository.getDoWeMatchResult(userID, partner);
+
+  signOut() {
+    authRepository.signOut();
+  }
 
   @override
-  void dispose() {}
+  void dispose() {
+
+  }
 }

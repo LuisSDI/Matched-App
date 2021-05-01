@@ -10,6 +10,9 @@ import 'package:matched_app/ui_resources/custom_colors.dart';
 import 'package:matched_app/ui_resources/icons/dorm_icon_icons.dart';
 import 'package:matched_app/bloc/user_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:matched_app/main_pages/home_page.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:matched_app/resources/async_loader.dart';
 
 
 class SignPage extends StatefulWidget {
@@ -211,16 +214,14 @@ class SignPageState extends State<SignPage> {
     if (formState.validate()) {
       formState.save();
       try {
-        //Async_Loader.showLoadingDialog(context, keyLoader);
-//        userBloc = BlocProvider.of(context);
-//        userBloc.signIn(email, password);
-        //Navigator.of(context).pop();
-//        Navigator.pushReplacement(
-//            context,
-//            MaterialPageRoute(
-//                builder: (context) => HomePage(
-//                      user: user.user,
-//                    )));
+        Async_Loader.showLoadingDialog(context, keyLoader);
+       userBloc = BlocProvider.of(context);
+       userBloc.signIn(email, password);
+        Navigator.of(context).pop();
+       Navigator.pushReplacement(
+           context,
+           MaterialPageRoute(
+               builder: (context) => HomePage()));
       } catch (e) {
         print(e.message);
       }

@@ -5,15 +5,16 @@ import 'package:flutter/services.dart';
 import 'package:matched_app/Model/user.dart';
 import 'package:matched_app/Model/messages.dart';
 
+
 class CloudFireStoreAPI {
   final CollectionReference userInfo =
-  Firestore.instance.collection('userInfo');
+  FirebaseFirestore.instance.collection('userInfo');
 
   final CollectionReference messages =
-  Firestore.instance.collection('messages');
+  FirebaseFirestore.instance.collection('messages');
 
   final CollectionReference applications =
-  Firestore.instance.collection('applications');
+  FirebaseFirestore.instance.collection('applications');
 
   String errorMessage;
 
@@ -25,9 +26,9 @@ class CloudFireStoreAPI {
     errorMessage = null;
   }
 
-  Future<void> setUserData(User user) async {
+  Future<void> setUserData(UserModel user) async {
     try {
-      return await userInfo.document(user.uid).setData({
+      return await userInfo.doc(user.uid).set({
         'uid': user.uid,
         'full name': user.name,
         'email': user.email,
@@ -35,7 +36,7 @@ class CloudFireStoreAPI {
         'type': user.type,
         'description': user.description,
         'lastSignIn': DateTime.now()
-      }, merge: true);
+      }, SetOptions(merge: true));
     } catch (error) {
       print(error.code);
       switch (error.code) {
@@ -48,8 +49,8 @@ class CloudFireStoreAPI {
     }
   }
 
-  void updateUserData(User user) async {
-    return await userInfo.document(user.uid).updateData({
+  void updateUserData(UserModel user) async {
+    return await userInfo.doc(user.uid).update({
       'uid': user.uid,
       'full name': user.name,
       'email': user.email,
@@ -60,53 +61,53 @@ class CloudFireStoreAPI {
     });
   }
 
-  Future<User> getUserData(String userUid) async {
-    User user;
-    Future<DocumentSnapshot> document = userInfo.document(userUid).get();
+  Future<UserModel> getUserData(String userUid) async {
+    UserModel user;
+    Future<DocumentSnapshot> document = userInfo.doc(userUid).get();
     await document.then<dynamic>((DocumentSnapshot value) async {
-      user = User(
-        name: value.data['full name'],
-        type: value.data['type'],
-        description: value.data['description'],
-        uid: value.data['uid'],
-        photoUrL: value.data['photoURL'],
-        email: value.data['email'],
+      user = UserModel(
+        name: value.get('full name'),
+        type: value.get('type'),
+        description: value.get('description'),
+        uid: value.get('uid'),
+        photoUrL: value.get('photoURL'),
+        email: value.get('email'),
       );
     });
     return user;
   }
 
   Stream<DocumentSnapshot> listenUserData(String userUid) {
-    return userInfo.document(userUid).snapshots();
+    return userInfo.doc(userUid).snapshots();
   }
 
-  Future<List<User>> getListUsers(String userUid) async {
-    List<User> users = List<User>();
-    var querySnapshot = await userInfo.getDocuments();
-    querySnapshot.documents.forEach((value) {
-      User user = User(
-        name: value.data['full name'],
-        type: value.data['type'],
-        description: value.data['description'],
-        uid: value.data['uid'],
-        photoUrL: value.data['photoURL'],
-        email: value.data['email'],
+  Future<List<UserModel>> getListUsers(String userUid) async {
+    List<UserModel> users = List<UserModel>();
+    var querySnapshot = await userInfo.get();
+    querySnapshot.docs.forEach((value) {
+      UserModel user = UserModel(
+        name: value.get('full name'),
+        type: value.get('type'),
+        description: value.get('description'),
+        uid: value.get('uid'),
+        photoUrL: value.get('photoURL'),
+        email: value.get('email'),
       );
       users.add(user);
     });
     return users;
   }
 
-  Future<void> addMessage(Message message, User sender, User receiver) async {
+  Future<void> addMessage(Message message, UserModel sender, UserModel receiver) async {
     Map map = message.toMap();
 
     await messages
-        .document(message.senderId)
+        .doc(message.senderId)
         .collection(message.receiverId)
         .add(map);
 
     return await messages
-        .document(message.receiverId)
+        .doc(message.receiverId)
         .collection(message.senderId)
         .add(map);
   }
@@ -126,10 +127,10 @@ class CloudFireStoreAPI {
       String placeIssue,
       String religion) async {
     return await applications
-        .document(userID)
+        .doc(userID)
         .collection('Personal Details')
-        .document(userID)
-        .setData({
+        .doc(userID)
+        .set({
       'title': title,
       'given name': givenName,
       'middle name': middleName,
@@ -142,14 +143,14 @@ class CloudFireStoreAPI {
       'place of issue': placeIssue,
       'religion': religion,
       'nationality': nationality
-    }, merge: true);
+    }, SetOptions(merge: true));
   }
 
   Stream<DocumentSnapshot> getPersonalDetails(String userID) {
     return applications
-        .document(userID)
+        .doc(userID)
         .collection('Personal Details')
-        .document(userID)
+        .doc(userID)
         .snapshots();
   }
 
@@ -173,10 +174,10 @@ class CloudFireStoreAPI {
       String emergencyRel,
       String mobileInt) async {
     return await applications
-        .document(userID)
+        .doc(userID)
         .collection('Contact Details')
-        .document(userID)
-        .setData({
+        .doc(userID)
+        .set({
       'email': email,
       'other email': otherEmail,
       'phone': phone,
@@ -194,52 +195,71 @@ class CloudFireStoreAPI {
       'emergency contact name': emergencyContact,
       'emergency relationship': emergencyRel,
       'mobile for interview': mobileInt,
-    }, merge: true);
+    }, SetOptions(merge: true));
   }
 
   Stream<DocumentSnapshot> getContactDetails(String userID) {
     return applications
-        .document(userID)
+        .doc(userID)
         .collection('Contact Details')
-        .document(userID)
+        .doc(userID)
         .snapshots();
   }
 
   Future<void> saveMatchingResult(String userID, String roommateOneUID, String roommateTwoUID, String roommateThreeUID) async {
       return await applications
-          .document(userID)
+          .doc(userID)
           .collection('Roommate Matching Result')
-          .document(userID)
-          .setData({
+          .doc(userID)
+          .set({
             'First Roommate': roommateOneUID,
             'Second Roommate': roommateTwoUID,
             'Third Roommate': roommateThreeUID,
-          }, merge: true);
+          }, SetOptions(merge: true));
   }
 
   Stream<DocumentSnapshot> getMatchingResult(String userID) {
     return applications
-        .document(userID)
+        .doc(userID)
         .collection('Roommate Matching Result')
-        .document(userID)
+        .doc(userID)
         .snapshots();
   }
 
   Future<void> savePersonalityTestResult(String userID, String personality) async {
     return await applications
-        .document(userID)
+        .doc(userID)
         .collection('Personality Test Result')
-        .document(userID)
-        .setData({
-      'First Roommate': personality,
-    }, merge: true);
+        .doc(userID)
+        .set({
+      'Personality': personality,
+    }, SetOptions(merge: true));
   }
 
   Stream<DocumentSnapshot> getPersonalityTestResult(String userID) {
     return applications
-        .document(userID)
+        .doc(userID)
         .collection('Personality Test Result')
-        .document(userID)
+        .doc(userID)
+        .snapshots();
+  }
+
+  Future<void> saveDoWeMatchResult(String userID, String partner, String result) async {
+    return await applications
+        .doc(userID)
+        .collection('Do We Match Result')
+        .doc(userID)
+        .set({
+      'Partner': partner,
+      'Result': result,
+    }, SetOptions(merge: true));
+  }
+
+  Stream<DocumentSnapshot> getDoWeMatchResult(String userID, String partner) {
+    return applications
+        .doc(userID)
+        .collection('Do We Match Result')
+        .doc(userID)
         .snapshots();
   }
 
