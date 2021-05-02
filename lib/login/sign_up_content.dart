@@ -1,14 +1,15 @@
 
-//import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
-//import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:matched_app/login/sign_page.dart';
 import 'package:matched_app/ui_resources/custom_colors.dart';
-
+import 'package:matched_app/bloc/user_bloc.dart';
 import 'create_profile_page.dart';
+import 'package:matched_app/main_pages/home_page.dart';
 
 class SignUpContent extends StatefulWidget {
   SignPageState parent;
@@ -19,7 +20,7 @@ class SignUpContent extends StatefulWidget {
 
 class _SignUpContentState extends State<SignUpContent> {
   final myController = TextEditingController();
-  //UserBloc userBloc;
+  UserBloc userBloc;
   @override
   Widget build(BuildContext context) {
     ScreenScaler scaler = ScreenScaler()..init(context);
@@ -160,30 +161,30 @@ or login with a social account"""
               children: <Widget>[
                 GestureDetector(
                   onTap: () async {
-                    // userBloc = BlocProvider.of(context);
-                    // AuthCredential credential =
-                    //     await userBloc.credentialFacebook();
-                    // AuthResult authResult =
-                    //     await userBloc.signInCredential(credential);
-                    // if (authResult.additionalUserInfo.isNewUser) {
-                    //   authResult.user.delete();
-                    //   Navigator.push(
-                    //       context,
-                    //       MaterialPageRoute(
-                    //           builder: (context) => CreateProfilePage(
-                    //                 auth: FirebaseAuth.instance,
-                    //                 credential: credential,
-                    //               )));
-                    // } else {
-                    //   Navigator.pushReplacement(context,
-                    //       MaterialPageRoute(builder: (context) => HomePage()));
- //                   }
+                    userBloc = BlocProvider.of(context);
+                    AuthCredential credential =
+                        await userBloc.credentialFacebook();
+                    UserCredential authResult =
+                        await userBloc.signInCredential(credential);
+                    if (authResult.additionalUserInfo.isNewUser) {
+                      authResult.user.delete();
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => CreateProfilePage(
+                                    auth: FirebaseAuth.instance,
+                                    credential: credential,
+                                  )));
+                    } else {
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (context) => HomePage()));
+                   }
                     Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => CreateProfilePage(
-                              //auth: FirebaseAuth.instance,
-                              //credential: credential,
+                              auth: FirebaseAuth.instance,
+                              credential: credential,
                             )));
                   },
                   child: Container(
@@ -204,30 +205,30 @@ or login with a social account"""
                 ), // GOOGLE
                 GestureDetector(
                   onTap: () async {
-                    // userBloc = BlocProvider.of(context);
-                    // AuthCredential credential =
-                    //     await userBloc.credentialGoogle();
-                    // AuthResult authResult =
-                    //     await userBloc.signInCredential(credential);
-                    // if (authResult.additionalUserInfo.isNewUser) {
-                    //   authResult.user.delete();
-                    //   Navigator.push(
-                    //       context,
-                    //       MaterialPageRoute(
-                    //           builder: (context) => CreateProfilePage(
-                    //                 auth: FirebaseAuth.instance,
-                    //                 credential: credential,
-                    //               )));
-                    // } else {
-                    //   Navigator.pushReplacement(context,
-                    //       MaterialPageRoute(builder: (context) => HomePage()));
-                    // }
+                    userBloc = BlocProvider.of(context);
+                    AuthCredential credential =
+                        await userBloc.credentialGoogle();
+                    UserCredential authResult =
+                        await userBloc.signInCredential(credential);
+                    if (authResult.additionalUserInfo.isNewUser) {
+                      authResult.user.delete();
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => CreateProfilePage(
+                                    auth: FirebaseAuth.instance,
+                                    credential: credential,
+                                  )));
+                    } else {
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (context) => HomePage()));
+                    }
                     Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => CreateProfilePage(
-                              //auth: FirebaseAuth.instance,
-                              //credential: credential,
+                              auth: FirebaseAuth.instance,
+                              credential: credential,
                             )));
                   },
                   child: Container(

@@ -8,6 +8,12 @@ import 'package:matched_app/login/sign_up_content.dart';
 import 'package:matched_app/resources/arrow_button.dart';
 import 'package:matched_app/ui_resources/custom_colors.dart';
 import 'package:matched_app/ui_resources/icons/dorm_icon_icons.dart';
+import 'package:matched_app/bloc/user_bloc.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:matched_app/main_pages/home_page.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:matched_app/resources/async_loader.dart';
+
 
 class SignPage extends StatefulWidget {
   @override
@@ -16,7 +22,7 @@ class SignPage extends StatefulWidget {
 
 class SignPageState extends State<SignPage> {
   String email, password;
-  //UserBloc userBloc;
+  UserBloc userBloc;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   Widget _myAnimatedWidget;
   bool isSignIn = true;
@@ -184,14 +190,14 @@ class SignPageState extends State<SignPage> {
                 ArrowButtom(
                   key: Key('1234'),
                   onTap: () {
-                    // isSignIn ? signIn() : signUp();
+                    isSignIn ? signIn() : signUp();
                     Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => CreateProfilePage(
                                   email: email,
                                   password: password,
-                                  //auth: FirebaseAuth.instance,
+                                  auth: FirebaseAuth.instance,
                                 )));
                   },
                 ),
@@ -203,43 +209,41 @@ class SignPageState extends State<SignPage> {
     );
   }
 
-//   Future<void> signIn() async {
-//     final formState = _formKey.currentState;
-//     if (formState.validate()) {
-//       formState.save();
-//       try {
-//         //Async_Loader.showLoadingDialog(context, keyLoader);
-//         userBloc = BlocProvider.of(context);
-//         userBloc.signIn(email, password);
-//         //Navigator.of(context).pop();
-// //        Navigator.pushReplacement(
-// //            context,
-// //            MaterialPageRoute(
-// //                builder: (context) => HomePage(
-// //                      user: user.user,
-// //                    )));
-//       } catch (e) {
-//         print(e.message);
-//       }
-//     }
+  Future<void> signIn() async {
+    final formState = _formKey.currentState;
+    if (formState.validate()) {
+      formState.save();
+      try {
+        Async_Loader.showLoadingDialog(context, keyLoader);
+       userBloc = BlocProvider.of(context);
+       userBloc.signIn(email, password);
+        Navigator.of(context).pop();
+       Navigator.pushReplacement(
+           context,
+           MaterialPageRoute(
+               builder: (context) => HomePage()));
+      } catch (e) {
+        print(e.message);
+      }
+    }
 
   //TODO login to firebase
 }
 
-//   Future<void> signUp() async {
-//     final formState = _formKey.currentState;
-//     if (formState.validate()) {
-//       formState.save();
-//       Navigator.push(
-//           context,
-//           MaterialPageRoute(
-//               builder: (context) => CreateProfilePage(
-//                     email: email,
-//                     password: password,
-//                     auth: FirebaseAuth.instance,
-//                   )));
-//
-//       //TODO login to firebase
-//     }
-//   }
-// }
+  Future<void> signUp() async {
+    final formState = _formKey.currentState;
+    if (formState.validate()) {
+      formState.save();
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => CreateProfilePage(
+                    email: email,
+                    password: password,
+                    auth: FirebaseAuth.instance,
+                  )));
+
+      //TODO login to firebase
+    }
+  }
+}
