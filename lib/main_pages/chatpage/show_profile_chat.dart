@@ -111,7 +111,7 @@ class ShowProfileScreen extends StatelessWidget {
                           gradient: LinearGradient(
                               begin: Alignment.topCenter,
                               end: Alignment.bottomCenter,
-                              colors: [Color(0xff1DD3B0), Color.fromRGBO(29, 211, 176, 0.8053)]),
+                              colors: [Color(0xff1DD3B0), Color(0xff1D7CD3)]),
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Center(
@@ -163,7 +163,7 @@ class ShowProfileScreen extends StatelessWidget {
                           gradient: LinearGradient(
                               begin: Alignment.topCenter,
                               end: Alignment.bottomCenter,
-                              colors: [Color(0xff1DD3B0), Color.fromRGBO(29, 211, 176, 0.8053)]),
+                              colors: [Color(0xff1DD3B0), Color(0xff1D7CD3)]),
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Center(
@@ -203,7 +203,7 @@ class ShowProfileScreen extends StatelessWidget {
                           gradient: LinearGradient(
                               begin: Alignment.topCenter,
                               end: Alignment.bottomCenter,
-                              colors: [Color(0xff1DD3B0), Color.fromRGBO(29, 211, 176, 0.8053)]),
+                              colors: [Color(0xff1DD3B0), Color(0xff1D7CD3)]),
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Center(
@@ -256,7 +256,7 @@ class ShowProfileScreen extends StatelessWidget {
                             gradient: LinearGradient(
                                 begin: Alignment.topCenter,
                                 end: Alignment.bottomCenter,
-                                colors: [Color(0xff1DD3B0), Color.fromRGBO(29, 211, 176, 0.8053)]),
+                                colors: [Color(0xff1DD3B0), Color(0xff1D7CD3)]),
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: Center(
@@ -312,7 +312,7 @@ class ShowProfileScreen extends StatelessWidget {
               gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: [Color(0xff1DD3B0), Color.fromRGBO(29, 211, 176, 0.8053)])),
+                  colors: [Color(0xff1DD3B0), Color(0xff1D7CD3)])),
         ),
       ),
     );

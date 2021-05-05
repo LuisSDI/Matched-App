@@ -7,6 +7,7 @@ import 'package:matched_app/repository/firebase_auth_api.dart';
 import 'package:matched_app/repository/cloud_firestore_api.dart';
 import 'package:matched_app/Model/user.dart';
 import 'package:matched_app/Model/messages.dart';
+import 'package:matched_app/repository/firebase_storage_api.dart';
 
 
 class UserBloc implements Bloc {
@@ -161,6 +162,11 @@ class UserBloc implements Bloc {
   signOut() {
     authRepository.signOut();
   }
+
+  // Firebase Storage
+  final _firebaseStorageRepository = FirebaseStorageAPI();
+
+  Future<String> getImageUrl(String imageId) => _firebaseStorageRepository.getImageUrl(imageId);
 
   @override
   void dispose() {
