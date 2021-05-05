@@ -23,6 +23,7 @@ class _ChatTabState extends State<ChatTab> {
       const Duration(seconds: 2),
           () => 'Data Loaded',
     );
+
     return BlocProvider(
       bloc: UserBloc(),
       child: FutureBuilder(
@@ -67,12 +68,12 @@ class _ChatTabState extends State<ChatTab> {
                                 vertical: scaler.getHeight(.5),
                               ),
                               child: ChatButton(
-                                user: users[index],
+                                user: users[index + 1],
                                 currentUserUid: firebaseUser.uid,
                               ),
                             );
                           },
-                          itemCount: users.length,
+                          itemCount: users.length - 1,
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
                           padding: EdgeInsets.zero,
