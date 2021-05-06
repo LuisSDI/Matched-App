@@ -1,4 +1,7 @@
+import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:matched_app/ui_resources/custom_colors.dart';
 import 'page_index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
@@ -17,7 +20,7 @@ class _ImageSliderState extends State<ImageSlider> {
   @override
   Widget build(BuildContext context) {
     ScreenScaler scaler = ScreenScaler()..init(context);
-    return Column(children: [
+    return Stack(children: [
       Container(
         child: CarouselSlider(
           items: widget.imgList
@@ -25,16 +28,18 @@ class _ImageSliderState extends State<ImageSlider> {
                     child: Image(
                       image: AssetImage(item),
                       fit: BoxFit.cover,
-                      width: scaler.getWidth(100),
+                      //width: scaler.getWidth(110),
                     ),
                   ))
               .toList(),
           options: CarouselOptions(
-              height: scaler.getHeight(30),
+              height: scaler.getHeight(32),
               autoPlay: true,
-              enlargeCenterPage: true,
+              enlargeCenterPage: false,
               enableInfiniteScroll: true,
-              aspectRatio: 1,
+              //aspectRatio: ,
+              //enlargeStrategy: CenterPageEnlargeStrategy.height,
+              viewportFraction: 1,
               onPageChanged: (index, reason) {
                 setState(() {
                   _current = index;
@@ -42,16 +47,22 @@ class _ImageSliderState extends State<ImageSlider> {
               }),
         ),
       ),
-      Padding(
-        padding: EdgeInsets.all(scaler.getHeight(1)),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            for (int i = 0; i < widget.imgList.length; i++)
-              _current == i
-                  ? pageIndexIndicator(true)
-                  : pageIndexIndicator(false)
-          ],
+      Positioned.fill(
+        child: Align(
+          alignment: Alignment.bottomCenter,
+          
+          child: Padding(
+            padding: EdgeInsets.only(bottom: scaler.getHeight(1)),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                for (int i = 0; i < widget.imgList.length; i++)
+                  _current == i
+                      ? pageIndexIndicator(true)
+                      : pageIndexIndicator(false)
+              ],
+            ),
+          ),
         ),
       ),
     ]);
@@ -63,10 +74,10 @@ Widget pageIndexIndicator(bool isCurrentPage) {
 
   return Container(
     margin: EdgeInsets.symmetric(horizontal: scaler.getWidth(.1)),
-    height: scaler.getWidth(.4),
-    width: scaler.getWidth(.4),
+    height: scaler.getWidth(.35),
+    width: scaler.getWidth(.35),
     decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: isCurrentPage ? Color(0xff6747CD) : Color(0xffE5E5E5)),
+        color: isCurrentPage ? mainColor : greyish),
   );
 }
