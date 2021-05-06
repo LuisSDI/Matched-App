@@ -44,8 +44,11 @@ class ProfileTab extends StatelessWidget {
                       context);
                 } else {
                   return Scaffold(
+                    backgroundColor: dark,
                     body: Center(
-                      child: CircularProgressIndicator(),
+                      child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(mainColor),
+                      ),
                     ),
                   );
                 }

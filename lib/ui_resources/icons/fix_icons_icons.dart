@@ -24,4 +24,6 @@ class FixIcons {
   static const IconData sentinel = IconData(0xe802, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData explorer = IconData(0xe803, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData diplomats = IconData(0xe804, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData shaw = IconData(0xe805, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData diligentia = IconData(0xe808, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }

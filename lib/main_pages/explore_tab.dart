@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:matched_app/main_pages/explore_pages/colleges_screen.dart';
+import 'package:matched_app/main_pages/explore_pages/facilities_screen.dart';
+import 'package:matched_app/main_pages/explore_pages/faq_screen.dart';
+import 'package:matched_app/main_pages/explore_pages/services_screen.dart';
 import 'package:matched_app/resources/image_slider.dart';
 import 'package:matched_app/resources/screen_buttom.dart';
 
@@ -39,24 +43,24 @@ class ExploreTab extends StatelessWidget {
               ScreenButtom(
                 detail: 'Colleges',
                 iconData: Ionicons.ios_bed,
-                screen: Scaffold(),
+                screen: CollegeScreen(),
                 //WhyScreen(),
               ),ScreenButtom(
                 detail: 'Facilities',
                 iconData: FontAwesome5.building,
-                screen: Scaffold(),
+                screen: FacilitiesScreen(),
                 //WhyScreen(),
               ),
               ScreenButtom(
                 detail: 'FAQs',
                 iconData: Icons.question_answer,
-                screen: Scaffold(),
+                screen: FaqScreen(),
                 //WhyScreen(),
               ),
               ScreenButtom(
                 detail: 'Services',
                 iconData: Icons.local_mall,
-                screen: Scaffold(),
+                screen: ServiceScreen(),
                 //WhyScreen(),
               ),
             ],),

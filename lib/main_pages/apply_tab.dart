@@ -8,6 +8,7 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 
 import 'package:google_fonts/google_fonts.dart';
+import 'package:matched_app/ui_resources/custom_colors.dart';
 
 class ApplyTab extends StatelessWidget {
   @override
@@ -204,8 +205,11 @@ all the entry requirements
             );
           } else {
             return Scaffold(
+              backgroundColor: dark,
               body: Center(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(mainColor),
+                ),
               ),
             );
           }

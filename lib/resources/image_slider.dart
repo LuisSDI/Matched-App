@@ -9,7 +9,7 @@ import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 class ImageSlider extends StatefulWidget {
   List<String> imgList;
 
-  ImageSlider({@required Key key, @required this.imgList});
+  ImageSlider({ Key key, @required this.imgList});
   @override
   _ImageSliderState createState() => _ImageSliderState();
 }
