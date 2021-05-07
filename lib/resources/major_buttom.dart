@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:matched_app/ui_resources/custom_colors.dart';
 
 class MajorButtom extends StatefulWidget {
   String detail = 'Test';
@@ -31,10 +32,7 @@ class _MajorButtomState extends State<MajorButtom> {
         height: scaler.getHeight(16),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [Color(0xff6747CD), Color(0x8C3300D6)]),
+            gradient: turkish,
             boxShadow: [
               BoxShadow(
                 color: Color(0x80000000),
@@ -49,16 +47,23 @@ class _MajorButtomState extends State<MajorButtom> {
         child: Row(
           children: <Widget>[
             Expanded(
-              flex: 7,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Image(
-                  image: AssetImage(
-                    widget.image,
+              flex: 4,
+              child: Container(
+                alignment:Alignment.centerLeft ,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(10),
+                    bottomLeft: Radius.circular(10)
                   ),
-                  fit: BoxFit.fitHeight,
-                  alignment: widget.alignment,
-                  height: scaler.getHeight(16),
+                  child: Image(
+                    image: AssetImage(
+                      //widget.image
+                      'assets/images/image_2.png',
+                    ),
+                    fit: BoxFit.cover,
+                    alignment: widget.alignment,
+                    height: scaler.getHeight(16),
+                  ),
                 ),
               ),
             ),
@@ -74,8 +79,8 @@ class _MajorButtomState extends State<MajorButtom> {
                     style: GoogleFonts.lato(
                         textStyle: TextStyle(
                             //height: .5,
-                            fontSize: 18,
-                            color: Colors.white,
+                            fontSize: 20,
+                            color: white,
                             fontWeight: FontWeight.bold)),
                   ),
                 ),

@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:matched_app/main_pages/discover_pages/analysts_screen.dart';
+import 'package:matched_app/main_pages/explore_pages/colleges_pages/college_template.dart';
+import 'package:matched_app/main_pages/explore_pages/colleges_pages/colleges_info.dart';
 import 'package:matched_app/resources/main_page_buttom.dart';
 import 'package:matched_app/ui_resources/custom_colors.dart';
 import 'package:matched_app/ui_resources/icons/fix_icons_icons.dart';
@@ -64,10 +67,14 @@ class DiscoverTab extends StatelessWidget {
                           EdgeInsets.symmetric(vertical: scaler.getHeight(2.5)),
                       child: GestureDetector(
                         onTap: () {
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) => FoundationScreen()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => CollegeTemplate(
+                                    title: 'How does it work?',
+                                    desc: CollegesInfo().shawDesc,
+                                    imagesList: CollegesInfo().defaultList,
+                                  )));
                         },
                         child: Container(
                           decoration: BoxDecoration(
@@ -114,10 +121,12 @@ class DiscoverTab extends StatelessWidget {
                           MainPageButton(
                             iconData: FixIcons.analyst,
                             text: "Analysts",
+                            screen: AnalystsScreen(),
                           ),
                           //SME Button
                           MainPageButton(text: "Diplomats",
                           iconData: FixIcons.diplomats,
+                            screen: AnalystsScreen(),
                           )
                         ],
                       ),
@@ -136,11 +145,13 @@ class DiscoverTab extends StatelessWidget {
                           MainPageButton(
                             iconData: FixIcons.sentinel,
                             text: "Sentinels",
+                            screen: AnalystsScreen(),
                           ),
                           //LHS Button
                           MainPageButton(
                             iconData: FixIcons.explorer,
                             text: 'Explorers',
+                            screen: AnalystsScreen(),
                           ),
                         ],
                       ),

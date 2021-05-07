@@ -8,16 +8,17 @@ class MainPageButton extends StatelessWidget {
 
   final String text;
   final IconData iconData;
-  const MainPageButton({Key key, this.text, this.iconData}) : super(key: key);
+  final Widget screen;
+  const MainPageButton({Key key, this.text, this.iconData, this.screen}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     ScreenScaler scaler = ScreenScaler()..init(context);
     return GestureDetector(
       onTap: () {
-        // Navigator.push(
-        //     context,
-        //     MaterialPageRoute(
-        //         builder: (context) => SSEScreen()));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => screen));
       },
       child: Container(
         height: scaler.getHeight(18),

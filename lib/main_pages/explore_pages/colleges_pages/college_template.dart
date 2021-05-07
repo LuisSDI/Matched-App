@@ -41,6 +41,7 @@ class CollegeTemplate extends StatelessWidget {
                   //Title Text
                   Container(
                     height: scaler.getHeight(5),
+                    width: scaler.getWidth(80),
                     alignment: Alignment.centerLeft,
                     child: FittedBox(
                       fit: BoxFit.contain,
