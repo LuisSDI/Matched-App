@@ -274,4 +274,22 @@ class CloudFireStoreAPI {
         .snapshots();
   }
 
+  Future<void> save20AnswersResult(String userID, String answer) async {
+    return await applications
+        .doc(userID)
+        .collection('20 Answers Result')
+        .doc(userID)
+        .set({
+      'Answer': answer,
+    }, SetOptions(merge: true));
+}
+
+  Stream<DocumentSnapshot> get20AnswerResult(String userID) {
+    return applications
+        .doc(userID)
+        .collection('20 Answer Result')
+        .doc(userID)
+        .snapshots();
+  }
+
 }

@@ -62,26 +62,34 @@ class UserBloc implements Bloc {
   // Chat Feature
   Future<void> addMessage(Message message, UserModel sender, UserModel receiver) => cloudFirestoreRepository.addMessage(message, sender, receiver);
 
-  // Save roommate matching result
+  // Save roommate matching result (for jevon part)
   Future<void> saveMatchingResult(String userID, String roommateOneUID, String roommateTwoUID, String roommateThreeUID) =>
       cloudFirestoreRepository.saveMatchingResult(userID, roommateOneUID, roommateTwoUID, roommateThreeUID);
 
-  // Get roommate matching result
+  // Get roommate matching result (for jevon part)
   Stream<DocumentSnapshot> getMatchingResult(String userID) => cloudFirestoreRepository.getMatchingResult(userID);
 
-  // Save personality test result
+  // Save personality test result (for axel part)
   Future<void> savePersonalityTestResult(String userID, String personality) =>
       cloudFirestoreRepository.savePersonalityTestResult(userID, personality);
 
-  // Get personality test result
+  // Get personality test result (for axel part)
   Stream<DocumentSnapshot> getPersonalityTestResult(String userID) => cloudFirestoreRepository.getPersonalityTestResult(userID);
 
-  // Save "Do We Match?" result
+  // Save "Do We Match?" result (for yas part)
   Future<void> saveDoWeMatchResult(String userID, String partner, String result) =>
       cloudFirestoreRepository.saveDoWeMatchResult(userID, partner, result);
 
-  // Get "Do We Match?" result
+  // Get "Do We Match?" result (for yas part)
   Stream<DocumentSnapshot> getDoWeMatchResult(String userID, String partner) => cloudFirestoreRepository.getDoWeMatchResult(userID, partner);
+
+  // Save 20 Answers from Axel's Part
+  Future<void> save20AnswersResult(String userID, String answer) =>
+      cloudFirestoreRepository.save20AnswersResult(userID, answer);
+
+  // Get 20 Answers from Axel's Part
+  Stream<DocumentSnapshot> get20AnswersResult(String userID) => cloudFirestoreRepository.get20AnswerResult(userID);
+
 
   signOut() {
     authRepository.signOut();
