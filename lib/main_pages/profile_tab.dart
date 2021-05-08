@@ -22,8 +22,6 @@ class ProfileTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ScreenScaler scaler = ScreenScaler()..init(context);
-    //User firebaseUser = FirebaseAuth.instance.currentUser;
-    //userBloc = BlocProvider.of(context);
     final Stream<int> _dummy = (() async* {
       await Future<void>.delayed(const Duration(seconds: 1));
       yield 1;
@@ -131,35 +129,7 @@ class ProfileTab extends StatelessWidget {
                       child: FittedBox(
                         fit: BoxFit.cover,
                         child: Container(color: mainColor,
-                        child: Image(
-                          image: AssetImage(
-                            //widget.image
-                            'assets/images/image_2.png',
-                          ),
-                          fit: BoxFit.cover,
-                        ))
-
-                        // Image(
-                        //   image: NetworkImage(user.photoUrL),
-                        //   loadingBuilder: (BuildContext context, Widget child,
-                        //       ImageChunkEvent loadingProgress) {
-                        //     if (loadingProgress == null) return child;
-                        //     return Container(
-                        //       height: scaler.getWidth(40),
-                        //       width: scaler.getWidth(40),
-                        //       child: Center(
-                        //         child: CircularProgressIndicator(
-                        //           value: loadingProgress.expectedTotalBytes !=
-                        //                   null
-                        //               ? loadingProgress.cumulativeBytesLoaded /
-                        //                   loadingProgress.expectedTotalBytes
-                        //               : null,
-                        //         ),
-                        //       ),
-                        //     );
-                        //   },
-                        // ),
-                        child: Image(
+                        child:   Image(
                           image: NetworkImage(users.photoUrL),
                           loadingBuilder: (BuildContext context, Widget child,
                               ImageChunkEvent loadingProgress) {
@@ -170,15 +140,18 @@ class ProfileTab extends StatelessWidget {
                               child: Center(
                                 child: CircularProgressIndicator(
                                   value: loadingProgress.expectedTotalBytes !=
-                                          null
+                                      null
                                       ? loadingProgress.cumulativeBytesLoaded /
-                                          loadingProgress.expectedTotalBytes
+                                      loadingProgress.expectedTotalBytes
                                       : null,
                                 ),
                               ),
                             );
                           },
-                        ),
+                        ),)
+
+
+
                       ),
                     ),
                   ),
@@ -200,9 +173,7 @@ class ProfileTab extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10)),
                       child: FittedBox(
                         fit: BoxFit.contain,
-                        child: Text(
-                          "Dummy",
-                          //user.name,
+                        child: Text(users.name,
                           textAlign: TextAlign.right,
                           style: GoogleFonts.lato(
                               textStyle: TextStyle(
@@ -252,8 +223,7 @@ class ProfileTab extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10)),
                       child: FittedBox(
                         fit: BoxFit.contain,
-                        child: Text("Dummy",
-                          //user.type,
+                        child: Text(users.type,
                           textAlign: TextAlign.right,
                           style: GoogleFonts.lato(
                               textStyle: TextStyle(
@@ -310,8 +280,7 @@ class ProfileTab extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10)),
                       child: FittedBox(
                         fit: BoxFit.contain,
-                        child: Text("Dummy",
-                          //user.type,
+                        child: Text(users.type,
                           textAlign: TextAlign.right,
                           style: GoogleFonts.lato(
                               textStyle: TextStyle(
@@ -362,9 +331,7 @@ class ProfileTab extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10)),
                         child: Padding(
                           padding: EdgeInsets.only(top: scaler.getHeight(5)),
-                          child: Text(
-                            "Dummy",
-                            //user.description,
+                          child: Text(users.description,
                             textAlign: TextAlign.left,
                             style: GoogleFonts.lato(
                                 textStyle: TextStyle(
