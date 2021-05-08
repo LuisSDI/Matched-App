@@ -1,3 +1,4 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -21,10 +22,12 @@ class ProfileTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ScreenScaler scaler = ScreenScaler()..init(context);
+    //User firebaseUser = FirebaseAuth.instance.currentUser;
+    //userBloc = BlocProvider.of(context);
     final Stream<int> _dummy = (() async* {
       await Future<void>.delayed(const Duration(seconds: 1));
       yield 1;
-      await Future<void>.delayed(const Duration(seconds: 1));
+      await Future<void>.delayed(const Duration(seconds: 120));
     })();
     return BlocProvider(
       bloc: UserBloc(),
@@ -65,10 +68,10 @@ class ProfileTab extends StatelessWidget {
     return SafeArea(
       top: false,
       child: Container(
-        child: Padding(
-          padding: EdgeInsets.only(
-              left: scaler.getHeight(2), right: scaler.getHeight(2)),
-          child: SingleChildScrollView(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.only(
+                left: scaler.getHeight(2), right: scaler.getHeight(2)),
             child: Column(
               children: <Widget>[
                 //Profile Text
@@ -90,7 +93,7 @@ class ProfileTab extends StatelessWidget {
                             style: GoogleFonts.lato(
                                 textStyle: TextStyle(
                                     fontSize: 36,
-                                    color: Colors.black,
+                                    color: white,
                                     fontWeight: FontWeight.bold)),
                           ),
                         ),
@@ -108,7 +111,7 @@ class ProfileTab extends StatelessWidget {
                           },
                           icon: Icon(
                             MaterialCommunityIcons.account_edit,
-                            color: Color(0xff1DD3B0),
+                            color: mainColor,
                             size: 36,
                           ),
                         ),
@@ -127,6 +130,35 @@ class ProfileTab extends StatelessWidget {
                           Radius.circular(scaler.getWidth(20))),
                       child: FittedBox(
                         fit: BoxFit.cover,
+                        child: Container(color: mainColor,
+                        child: Image(
+                          image: AssetImage(
+                            //widget.image
+                            'assets/images/image_2.png',
+                          ),
+                          fit: BoxFit.cover,
+                        ))
+
+                        // Image(
+                        //   image: NetworkImage(user.photoUrL),
+                        //   loadingBuilder: (BuildContext context, Widget child,
+                        //       ImageChunkEvent loadingProgress) {
+                        //     if (loadingProgress == null) return child;
+                        //     return Container(
+                        //       height: scaler.getWidth(40),
+                        //       width: scaler.getWidth(40),
+                        //       child: Center(
+                        //         child: CircularProgressIndicator(
+                        //           value: loadingProgress.expectedTotalBytes !=
+                        //                   null
+                        //               ? loadingProgress.cumulativeBytesLoaded /
+                        //                   loadingProgress.expectedTotalBytes
+                        //               : null,
+                        //         ),
+                        //       ),
+                        //     );
+                        //   },
+                        // ),
                         child: Image(
                           image: NetworkImage(users.photoUrL),
                           loadingBuilder: (BuildContext context, Widget child,
@@ -155,14 +187,36 @@ class ProfileTab extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(top: scaler.getHeight(2)),
                   child: Stack(children: [
+
+                    Container(
+                      padding: EdgeInsets.only(right: scaler.getHeight(.5)),
+                      alignment: Alignment.centerRight,
+                      height: scaler.getHeight(5),
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                            color: mainColor,
+                          ),
+                          color: white,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: FittedBox(
+                        fit: BoxFit.contain,
+                        child: Text(
+                          "Dummy",
+                          //user.name,
+                          textAlign: TextAlign.right,
+                          style: GoogleFonts.lato(
+                              textStyle: TextStyle(
+                                  fontSize: 16,
+                                  color: black,
+                                  fontWeight: FontWeight.bold)),
+                        ),
+                      ),
+                    ),
                     Container(
                       height: scaler.getHeight(5),
-                      width: scaler.getHeight(10),
+                      width: scaler.getHeight(12),
                       decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                            colors: [Color(0xff1DD3B0), Color(0xff1D7CD3)]),
+                        gradient: turkish,
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Center(
@@ -173,30 +227,38 @@ class ProfileTab extends StatelessWidget {
                             style: GoogleFonts.lato(
                                 textStyle: TextStyle(
                                     fontSize: 18,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold)),
+                                    color: white,
+                                    )),
                           ),
                         ),
                       ),
                     ),
+                  ]),
+                ),
+                // I am a ... Field
+                Padding(
+                  padding: EdgeInsets.only(top: scaler.getHeight(2)),
+                  child: Stack(children: [
+
                     Container(
                       padding: EdgeInsets.only(right: scaler.getHeight(.5)),
                       alignment: Alignment.centerRight,
                       height: scaler.getHeight(5),
                       decoration: BoxDecoration(
                           border: Border.all(
-                            color: Color(0xff1DD3B0),
+                            color: mainColor,
                           ),
+                          color: white,
                           borderRadius: BorderRadius.circular(10)),
                       child: FittedBox(
                         fit: BoxFit.contain,
-                        child: Text(
-                          users.name,
+                        child: Text("Dummy",
+                          //user.type,
                           textAlign: TextAlign.right,
                           style: GoogleFonts.lato(
                               textStyle: TextStyle(
                                   fontSize: 16,
-                                  color: Colors.black,
+                                  color: black,
                                   fontWeight: FontWeight.bold)),
                         ),
                       ),
@@ -209,12 +271,61 @@ class ProfileTab extends StatelessWidget {
                   child: Stack(children: [
                     Container(
                       height: scaler.getHeight(5),
-                      width: scaler.getHeight(10),
+                      width: scaler.getHeight(12),
                       decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                            colors: [Color(0xff1DD3B0), Color(0xff1D7CD3)]),
+                        gradient: turkish,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Center(
+                        child: FittedBox(
+                          fit: BoxFit.cover,
+                          child: Text(
+                            'Personality',
+                            style: GoogleFonts.lato(
+                                textStyle: TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.white,
+                                )),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ]),
+                ),
+
+                // College Field
+                Padding(
+                  padding: EdgeInsets.only(top: scaler.getHeight(2)),
+                  child: Stack(children: [
+
+                    Container(
+                      padding: EdgeInsets.only(right: scaler.getHeight(.5)),
+                      alignment: Alignment.centerRight,
+                      height: scaler.getHeight(5),
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                            color: mainColor,
+                          ),
+                          color: white,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: FittedBox(
+                        fit: BoxFit.contain,
+                        child: Text("Dummy",
+                          //user.type,
+                          textAlign: TextAlign.right,
+                          style: GoogleFonts.lato(
+                              textStyle: TextStyle(
+                                  fontSize: 16,
+                                  color: black,
+                                  fontWeight: FontWeight.bold)),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: scaler.getHeight(5),
+                      width: scaler.getHeight(12),
+                      decoration: BoxDecoration(
+                        gradient: turkish,
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Center(
@@ -224,32 +335,10 @@ class ProfileTab extends StatelessWidget {
                             'College',
                             style: GoogleFonts.lato(
                                 textStyle: TextStyle(
-                                    fontSize: 18,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold)),
+                                  fontSize: 18,
+                                  color: Colors.white,
+                                )),
                           ),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.only(right: scaler.getHeight(.5)),
-                      alignment: Alignment.centerRight,
-                      height: scaler.getHeight(5),
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Color(0xff1DD3B0),
-                          ),
-                          borderRadius: BorderRadius.circular(10)),
-                      child: FittedBox(
-                        fit: BoxFit.contain,
-                        child: Text(
-                          users.type,
-                          textAlign: TextAlign.right,
-                          style: GoogleFonts.lato(
-                              textStyle: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold)),
                         ),
                       ),
                     ),
@@ -260,14 +349,36 @@ class ProfileTab extends StatelessWidget {
                   padding: EdgeInsets.only(top: scaler.getHeight(2)),
                   child: Container(
                     child: Stack(children: [
+
+                      Container(
+                        padding: EdgeInsets.only(left: scaler.getHeight(.5)),
+                        alignment: Alignment.topLeft,
+                        height: scaler.getHeight(20),
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                              color: mainColor,
+                            ),
+                            color: white,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Padding(
+                          padding: EdgeInsets.only(top: scaler.getHeight(5)),
+                          child: Text(
+                            "Dummy",
+                            //user.description,
+                            textAlign: TextAlign.left,
+                            style: GoogleFonts.lato(
+                                textStyle: TextStyle(
+                              fontSize: 16,
+                              color: Colors.black,
+                            )),
+                          ),
+                        ),
+                      ),
                       Container(
                         height: scaler.getHeight(5),
                         alignment: Alignment(0, .5),
                         decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                              colors: [Color(0xff1DD3B0), Color(0xff1D7CD3)]),
+                          gradient: turkish,
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Center(
@@ -284,28 +395,6 @@ class ProfileTab extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Container(
-                        padding: EdgeInsets.only(left: scaler.getHeight(.5)),
-                        alignment: Alignment.topLeft,
-                        height: scaler.getHeight(20),
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Color(0xff1DD3B0),
-                            ),
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Padding(
-                          padding: EdgeInsets.only(top: scaler.getHeight(5)),
-                          child: Text(
-                            users.description,
-                            textAlign: TextAlign.left,
-                            style: GoogleFonts.lato(
-                                textStyle: TextStyle(
-                              fontSize: 16,
-                              color: Colors.black,
-                            )),
-                          ),
-                        ),
-                      ),
                     ]),
                   ),
                 ),
@@ -317,10 +406,7 @@ class ProfileTab extends StatelessWidget {
                     padding: EdgeInsets.all(scaler.getHeight(.5)),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: [Color(0xff1DD3B0), Color(0xff1D7CD3)]),
+                      gradient: turkish,
                     ),
                     child: IconButton(
                       onPressed: () async {

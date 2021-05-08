@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:matched_app/ui_resources/custom_colors.dart';
 
 class ExpansionItem extends StatelessWidget {
   final String title;
@@ -16,7 +17,7 @@ class ExpansionItem extends StatelessWidget {
   Widget build(BuildContext context) {
     ScreenScaler scaler = ScreenScaler()..init(context);
     final theme = Theme.of(context).copyWith(
-      dividerColor: Color(0xff6747CD),
+      dividerColor: mainColor,
     );
     return Padding(
       padding: EdgeInsets.only(bottom: scaler.getHeight(1)),
@@ -25,7 +26,8 @@ class ExpansionItem extends StatelessWidget {
           data: theme,
           child: Container(
             decoration: BoxDecoration(
-              border: Border.all(color: Color(0xff6747CD), width: 2),
+              color: mainColor,
+              border: Border.all(color: mainColor, width: 2),
               borderRadius: BorderRadius.circular(0),
             ),
             child: ExpansionTile(
@@ -36,7 +38,7 @@ class ExpansionItem extends StatelessWidget {
                 ),
                 child: Icon(
                   Entypo.chevron_down,
-                  color: Color(0xff6747CD),
+                  color: white,
                 ),
               ),
               title: Container(
@@ -45,7 +47,9 @@ class ExpansionItem extends StatelessWidget {
                   title,
                   style: GoogleFonts.lato(
                       textStyle:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                          TextStyle(color: white,fontSize: 18,
+                              //fontWeight: FontWeight.bold
+                          )),
                 ),
               ),
               children: <Widget>[
@@ -53,14 +57,14 @@ class ExpansionItem extends StatelessWidget {
                     ? special
                     : Container(
                         width: double.infinity,
-                        color: Color(0xff6747CD),
+                        color: deepBlue,
                         child: (data == null)
                             ? richText
                             : Text(
                                 data,
                                 style: GoogleFonts.lato(
                                     textStyle: TextStyle(
-                                        fontSize: 14, color: Colors.white)),
+                                        fontSize: 14, color: white)),
                               ),
                       ),
               ],

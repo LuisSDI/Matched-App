@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:matched_app/main_pages/chat_tab.dart';
 import 'package:matched_app/main_pages/discover_tab.dart';
 import 'package:matched_app/main_pages/profile_tab.dart';
+import 'package:matched_app/main_pages/test_tab.dart';
 import 'package:matched_app/ui_resources/custom_colors.dart';
 import 'package:matched_app/ui_resources/icons/dorm_icon_icons.dart';
 import 'package:matched_app/ui_resources/icons/fix_icons_icons.dart';
@@ -24,7 +25,7 @@ class _HomePageState extends State<HomePage> {
     ExploreTab(),
     DiscoverTab(),
     ChatTab(),
-    ApplyTab(),
+    TestTab(),
     ProfileTab(),
   ];
   Widget build(BuildContext context) {

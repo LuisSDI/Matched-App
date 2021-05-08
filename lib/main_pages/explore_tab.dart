@@ -3,6 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:matched_app/main_pages/explore_pages/colleges_screen.dart';
+import 'package:matched_app/main_pages/explore_pages/facilities_screen.dart';
+import 'package:matched_app/main_pages/explore_pages/faq_screen.dart';
+import 'package:matched_app/main_pages/explore_pages/services_screen.dart';
+import 'package:matched_app/resources/image_slider.dart';
 import 'package:matched_app/resources/screen_buttom.dart';
 
 
@@ -12,151 +17,55 @@ class ExploreTab extends StatelessWidget {
     ScreenScaler scaler = ScreenScaler()..init(context);
     return SafeArea(
       top: false,
+
       child: Container(
-        child: Padding(
-          padding: EdgeInsets.only(
-              left: scaler.getWidth(7), right: scaler.getWidth(7)),
-          child: SingleChildScrollView(
-            child: Column(
-              children: <Widget>[
-                //Discover Text
-                Padding(
-                  padding: EdgeInsets.only(top: scaler.getWidth(7)),
-                  child: Container(
-                    height: scaler.getHeight(5),
-                    alignment: Alignment.centerLeft,
-                    child: FittedBox(
-                      fit: BoxFit.contain,
-                      child: Text(
-                        "Discover,",
-                        style: GoogleFonts.lato(
-                            textStyle: TextStyle(
-                                fontSize: 36,
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold)),
-                      ),
-                    ),
-                  ),
-                ),
-                //CUHK SZ Text
-                Container(
-                  height: scaler.getHeight(3),
-                  alignment: Alignment.centerLeft,
-                  child: FittedBox(
-                    fit: BoxFit.contain,
-                    child: Text(
-                      "CUHK Shenzhen",
-                      style: GoogleFonts.lato(
-                          textStyle: TextStyle(
-                        fontSize: 23,
-                        color: Colors.black,
-                      )),
-                    ),
-                  ),
-                ),
-                Column(
-                  children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.only(
-                          top: scaler.getHeight(1),
-                          bottom: scaler.getHeight(1)),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: <Widget>[
-                          ScreenButtom(
-                            detail: 'Why?',
-                            iconData: AntDesign.questioncircleo,
-                            screen: Scaffold(),
-                            //WhyScreen(),
-                          ),
-                          SizedBox(
-                            width: scaler.getHeight(2),
-                          ),
-                          ScreenButtom(
-                            detail: '''Entry
-Requirements'''
-                                .trim(),
-                            iconData: Ionicons.ios_list_box,
-                            screen: Scaffold(),
-                            //EntryReqScreen(),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(
-                          top: scaler.getHeight(1),
-                          bottom: scaler.getHeight(1)),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: <Widget>[
-                          ScreenButtom(
-                            detail: '''Fees &
-Finance'''
-                                .trim(),
-                            iconData: Icons.monetization_on,
-                            screen: Scaffold(),
-                            //FeeFinanceScreen(),
-                          ),
-                          SizedBox(
-                            width: scaler.getHeight(2),
-                          ),
-                          ScreenButtom(
-                            detail: 'Facilities',
-                            iconData: FontAwesome5.building,
-                            screen: Scaffold(),
-                            //FacilitiesScreen(),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(
-                          top: scaler.getHeight(1),
-                          bottom: scaler.getHeight(1)),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: <Widget>[
-                          ScreenButtom(
-                            detail: 'Services',
-                            iconData: Icons.local_mall,
-                            screen: Scaffold(),
-                            //ServicesScreen(),
-                          ),
-                          SizedBox(
-                            width: scaler.getHeight(2),
-                          ),
-                          ScreenButtom(
-                            detail: 'FAQs',
-                            iconData: Icons.question_answer,
-                            screen: Scaffold()
-                            //FaqScreen(),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(
-                          top: scaler.getHeight(1),
-                          bottom: scaler.getHeight(1)),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          ScreenButtom(
-                            detail: '''Steps to
-CUHK'''
-                                .trim(),
-                            iconData: Ionicons.md_walk,
-                            screen: Scaffold(),
-                            //StepsToScreen(),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              ImageSlider(key: key, imgList: ['assets/images/image_2.png','assets/images/image_2.png'
+              ,'assets/images/image_2.png']),
+            Container(
+              child: Image(
+                image: AssetImage('assets/images/image_1.png'),
+                fit: BoxFit.cover,
+                //width: scaler.getWidth(110),
+              ),
             ),
+            GridView.count(crossAxisCount: 2,
+              shrinkWrap: true,
+              childAspectRatio: 2/2,
+              crossAxisSpacing: scaler.getWidth(8),
+              mainAxisSpacing: scaler.getWidth(8),
+              padding: EdgeInsets.all(scaler.getWidth(5)),
+
+              physics: NeverScrollableScrollPhysics(),
+            children: [
+              ScreenButtom(
+                detail: 'Colleges',
+                iconData: Ionicons.ios_bed,
+                screen: CollegeScreen(),
+                //WhyScreen(),
+              ),ScreenButtom(
+                detail: 'Facilities',
+                iconData: FontAwesome5.building,
+                screen: FacilitiesScreen(),
+                //WhyScreen(),
+              ),
+              ScreenButtom(
+                detail: 'FAQs',
+                iconData: Icons.question_answer,
+                screen: FaqScreen(),
+                //WhyScreen(),
+              ),
+              ScreenButtom(
+                detail: 'Services',
+                iconData: Icons.local_mall,
+                screen: ServiceScreen(),
+                //WhyScreen(),
+              ),
+            ],),
+
+            ],
           ),
         ),
       ),
