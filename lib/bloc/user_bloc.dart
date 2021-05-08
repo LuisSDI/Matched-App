@@ -7,6 +7,7 @@ import 'package:matched_app/repository/firebase_auth_api.dart';
 import 'package:matched_app/repository/cloud_firestore_api.dart';
 import 'package:matched_app/Model/user.dart';
 import 'package:matched_app/Model/messages.dart';
+import 'package:matched_app/repository/firebase_storage_api.dart';
 
 
 class UserBloc implements Bloc {
@@ -61,106 +62,43 @@ class UserBloc implements Bloc {
   // Chat Feature
   Future<void> addMessage(Message message, UserModel sender, UserModel receiver) => cloudFirestoreRepository.addMessage(message, sender, receiver);
 
-  // Save personal details
-  Future<void> registerPersonalDetails(
-      String userID,
-      String title,
-      String givenName,
-      String middleName,
-      String familyName,
-      String gender,
-      String dateBirth,
-      String placeBirth,
-      String nationality,
-      String passport,
-      String dateExpire,
-      String placeIssue,
-      String religion) =>
-      cloudFirestoreRepository.registerPersonalDetails(
-          userID,
-          title,
-          givenName,
-          middleName,
-          familyName,
-          gender,
-          dateBirth,
-          placeBirth,
-          nationality,
-          passport,
-          dateExpire,
-          placeIssue,
-          religion);
-
-  // Get personal details
-  Stream<DocumentSnapshot> getPersonalDetails(String userID) => cloudFirestoreRepository.getPersonalDetails(userID);
-
-  // Save contact details
-  Future<void> registerContactDetails(
-      String userID,
-      String email,
-      String otherEmail,
-      String phone,
-      String mobile,
-      String residentialAddress,
-      String residentialCity,
-      String residentialState,
-      String residentialCountry,
-      String residentialPostcode,
-      String postalAddress,
-      String postalCity,
-      String postalState,
-      String postalCountry,
-      String postalPostcode,
-      String emergencyContact,
-      String emergencyRel,
-      String mobileInt) =>
-      cloudFirestoreRepository.registerContactDetails(
-          userID,
-          email,
-          otherEmail,
-          phone,
-          mobile,
-          residentialAddress,
-          residentialCity,
-          residentialState,
-          residentialCountry,
-          residentialPostcode,
-          postalAddress,
-          postalCity,
-          postalState,
-          postalCountry,
-          postalPostcode,
-          emergencyContact,
-          emergencyRel,
-          mobileInt);
-
-  // Get contact details
-  Stream<DocumentSnapshot> getContactDetails(String userID) => cloudFirestoreRepository.getContactDetails(userID);
-
-  // Save roommate matching result
+  // Save roommate matching result (for jevon part)
   Future<void> saveMatchingResult(String userID, String roommateOneUID, String roommateTwoUID, String roommateThreeUID) =>
       cloudFirestoreRepository.saveMatchingResult(userID, roommateOneUID, roommateTwoUID, roommateThreeUID);
 
-  // Get roommate matching result
+  // Get roommate matching result (for jevon part)
   Stream<DocumentSnapshot> getMatchingResult(String userID) => cloudFirestoreRepository.getMatchingResult(userID);
 
-  // Save personality test result
+  // Save personality test result (for axel part)
   Future<void> savePersonalityTestResult(String userID, String personality) =>
       cloudFirestoreRepository.savePersonalityTestResult(userID, personality);
 
-  // Get personality test result
+  // Get personality test result (for axel part)
   Stream<DocumentSnapshot> getPersonalityTestResult(String userID) => cloudFirestoreRepository.getPersonalityTestResult(userID);
 
-  // Save "Do We Match?" result
+  // Save "Do We Match?" result (for yas part)
   Future<void> saveDoWeMatchResult(String userID, String partner, String result) =>
       cloudFirestoreRepository.saveDoWeMatchResult(userID, partner, result);
 
-  // Get "Do We Match?" result
+  // Get "Do We Match?" result (for yas part)
   Stream<DocumentSnapshot> getDoWeMatchResult(String userID, String partner) => cloudFirestoreRepository.getDoWeMatchResult(userID, partner);
+
+  // Save 20 Answers from Axel's Part
+  Future<void> save20AnswersResult(String userID, String answer) =>
+      cloudFirestoreRepository.save20AnswersResult(userID, answer);
+
+  // Get 20 Answers from Axel's Part
+  Stream<DocumentSnapshot> get20AnswersResult(String userID) => cloudFirestoreRepository.get20AnswerResult(userID);
+
 
   signOut() {
     authRepository.signOut();
   }
+
+  // Firebase Storage
+  final _firebaseStorageRepository = FirebaseStorageAPI();
+
+  Future<String> getImageUrl(String imageId) => _firebaseStorageRepository.getImageUrl(imageId);
 
   @override
   void dispose() {

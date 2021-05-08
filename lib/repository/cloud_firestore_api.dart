@@ -28,8 +28,13 @@ class CloudFireStoreAPI {
 
   Future<void> setUserData(UserModel user) async {
     try {
+      List<String> substring = List<String>();
+      for(int i=0; i<user.name.length; i++){
+        substring.add(user.name.substring(0,i+1));
+      }
       return await userInfo.doc(user.uid).set({
         'uid': user.uid,
+        'caseSearch': substring,
         'full name': user.name,
         'email': user.email,
         'photoURL': user.photoUrL,
@@ -50,8 +55,13 @@ class CloudFireStoreAPI {
   }
 
   void updateUserData(UserModel user) async {
+    List<String> substring = List<String>();
+    for(int i=0; i<user.name.length; i++){
+      substring.add(user.name.substring(0,i+1));
+    }
     return await userInfo.doc(user.uid).update({
       'uid': user.uid,
+      'caseSearch': substring,
       'full name': user.name,
       'email': user.email,
       'photoURL': user.photoUrL,
@@ -72,6 +82,7 @@ class CloudFireStoreAPI {
         uid: value.get('uid'),
         photoUrL: value.get('photoURL'),
         email: value.get('email'),
+        caseSearch: value.get('caseSearch'),
       );
     });
     return user;
@@ -259,6 +270,24 @@ class CloudFireStoreAPI {
     return applications
         .doc(userID)
         .collection('Do We Match Result')
+        .doc(userID)
+        .snapshots();
+  }
+
+  Future<void> save20AnswersResult(String userID, String answer) async {
+    return await applications
+        .doc(userID)
+        .collection('20 Answers Result')
+        .doc(userID)
+        .set({
+      'Answer': answer,
+    }, SetOptions(merge: true));
+}
+
+  Stream<DocumentSnapshot> get20AnswerResult(String userID) {
+    return applications
+        .doc(userID)
+        .collection('20 Answer Result')
         .doc(userID)
         .snapshots();
   }

@@ -2,8 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:matched_app/ui_resources/custom_colors.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:matched_app/bloc/user_bloc.dart';
+import 'package:matched_app/Model/user.dart';
+import 'package:matched_app/resources/chat_button.dart';
 
-import 'apply_tab.dart';
+// import 'apply_tab.dart';
 
 class ChatTab extends StatefulWidget {
   @override
@@ -14,75 +19,81 @@ class _ChatTabState extends State<ChatTab> {
   @override
   Widget build(BuildContext context) {
     ScreenScaler scaler = ScreenScaler()..init(context);
-    // User firebaseUser = FirebaseAuth.instance.currentUser;
-    // UserBloc userBloc = BlocProvider.of(context);
     final Future<String> _dummy = Future<String>.delayed(
       const Duration(seconds: 2),
           () => 'Data Loaded',
     );
-    return FutureBuilder(
-        future: _dummy,
-        builder: (context, snapshot) {
-          print(snapshot);
-          if (snapshot.connectionState == ConnectionState.done) {
-            //List<UserApp> users = snapshot.data;
-            //print(users);
-            return SingleChildScrollView(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(
-                        left: scaler.getWidth(7), top: scaler.getWidth(7)),
-                    child: Container(
-                      height: scaler.getHeight(5),
-                      alignment: Alignment.centerLeft,
-                      child: FittedBox(
-                        fit: BoxFit.contain,
-                        child: Text(
-                          "Chats,",
-                          style: GoogleFonts.lato(
-                              textStyle: TextStyle(
-                                  fontSize: 36,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold)),
+
+    return BlocProvider(
+      bloc: UserBloc(),
+      child: FutureBuilder(
+          future: _dummy,
+          builder: (context, snapshot) {
+            User firebaseUser = FirebaseAuth.instance.currentUser;
+            UserBloc userBloc = BlocProvider.of(context);
+              return FutureBuilder(
+                  future: userBloc.getListUsers(firebaseUser.uid),
+                  builder: (context, snapshot){
+              if (snapshot.connectionState == ConnectionState.done) {
+                List<UserModel> users = snapshot.data;
+                return SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: scaler.getWidth(7), top: scaler.getWidth(7)),
+                        child: Container(
+                          height: scaler.getHeight(5),
+                          alignment: Alignment.centerLeft,
+                          child: FittedBox(
+                            fit: BoxFit.contain,
+                            child: Text(
+                              "Chats,",
+                              style: GoogleFonts.lato(
+                                  textStyle: TextStyle(
+                                      fontSize: 36,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold)),
+                            ),
+                          ),
                         ),
                       ),
+                      Padding(
+                        padding: EdgeInsets.only(top: scaler.getHeight(1)),
+                        child: ListView.builder(
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: scaler.getHeight(2),
+                                vertical: scaler.getHeight(.5),
+                              ),
+                              child: ChatButton(
+                                user: users[index + 1],
+                                currentUserUid: firebaseUser.uid,
+                              ),
+                            );
+                          },
+                          itemCount: users.length - 1,
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          padding: EdgeInsets.zero,
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              } else {
+                return Scaffold(
+                  backgroundColor: dark,
+                  body: Center(
+                    child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(mainColor),
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(top: scaler.getHeight(1)),
-                    child: ListView.builder(
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: scaler.getHeight(2),
-                            vertical: scaler.getHeight(.5),
-                          ),
-                          child: Container(
-                            color: mainColor,
-                          )
-                        );
-                      },
-                      itemCount: 8,
-                      //users.length,
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      padding: EdgeInsets.zero,
-                    ),
-                  ),
-                ],
-              ),
-            );
-          } else {
-            return Scaffold(
-              backgroundColor: dark,
-              body: Center(
-                child: CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(mainColor),
-                ),
-              ),
-            );
+                );
+              }
+            });
           }
-        });
+    ),);
   }
 }

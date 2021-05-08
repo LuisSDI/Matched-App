@@ -24,6 +24,7 @@ class SignPageState extends State<SignPage> {
   String email, password;
   UserBloc userBloc;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  GlobalKey<ScaffoldState> scaffkey = GlobalKey();
   Widget _myAnimatedWidget;
   bool isSignIn = true;
   final GlobalKey<State> keyLoader = new GlobalKey<State>();
@@ -39,6 +40,7 @@ class SignPageState extends State<SignPage> {
       _myAnimatedWidget = SignInContent(this);
     }
     return Scaffold(
+      key: scaffkey,
       backgroundColor: dark,
       body: Form(
         key: _formKey,
@@ -191,14 +193,6 @@ class SignPageState extends State<SignPage> {
                   key: Key('1234'),
                   onTap: () {
                     isSignIn ? signIn() : signUp();
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => CreateProfilePage(
-                                  email: email,
-                                  password: password,
-                                  auth: FirebaseAuth.instance,
-                                )));
                   },
                 ),
               ],
@@ -216,12 +210,33 @@ class SignPageState extends State<SignPage> {
       try {
         Async_Loader.showLoadingDialog(context, keyLoader);
        userBloc = BlocProvider.of(context);
-       userBloc.signIn(email, password);
-        Navigator.of(context).pop();
-       Navigator.pushReplacement(
-           context,
-           MaterialPageRoute(
-               builder: (context) => HomePage()));
+        Navigator.pop(context);
+       userBloc.signIn(email, password).then((value){
+         if (value == null) {
+           scaffkey.currentState.showSnackBar(SnackBar(
+             duration: Duration(seconds: 3),
+             content: Container(
+               alignment: Alignment.center,
+               height: MediaQuery.of(context).size.height * 0.05,
+               child: Text(
+                 userBloc.getError(),
+                 style: GoogleFonts.lato(
+                     textStyle: TextStyle(
+                       fontSize: 14,
+                     )),
+               ),
+             ),
+           ));
+           userBloc.resetError();
+           Navigator.pop(context);
+         }
+         else{
+           Navigator.pushReplacement(
+               context,
+               MaterialPageRoute(
+                   builder: (context) => HomePage()));
+         }
+       });
       } catch (e) {
         print(e.message);
       }

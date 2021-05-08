@@ -7,6 +7,7 @@ class UserModel {
   final String photoUrL;
   final String type;
   final String description;
+  final List<String> caseSearch;
 
   UserModel({
     Key key,
@@ -16,5 +17,6 @@ class UserModel {
     @required this.photoUrL,
     @required this.type,
     @required this.description,
+    @required this.caseSearch
   });
 }
