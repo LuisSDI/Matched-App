@@ -3,20 +3,25 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:matched_app/MatchingQuizz/router.dart';
 
 class ProfilePage extends StatelessWidget {
-  ProfilePage({Key key, this.username = "", this.image = "", this.email = ""})
+  ProfilePage(
+      {Key key,
+      this.username = "",
+      this.image = "",
+      this.email = "",
+      this.identifier = "not known yet"})
       : super(key: key);
   final String username, image, email;
-  String docID = "";
+  String docID = "", identifier;
 
   Future<String> addInvitation() async {
     FirebaseFirestore databaseReference = FirebaseFirestore.instance;
-    DocumentReference ref = await databaseReference
-        .collection("Invitation")
-        .add({
-      'from': 'not known yet',
+    DocumentReference ref =
+        await databaseReference.collection("Invitation").add({
+      'from': identifier,
       'status': 0,
       'to': email,
-      'valueOfFrom': '0'
+      'valueOfFrom': '0',
+      'valueOfTo': '0'
     });
     docID = ref.id;
     return ref.id;
@@ -49,6 +54,9 @@ class ProfilePage extends StatelessWidget {
           ),
           Text('email : ' + email),
           ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              primary: Colors.purple,
+            ),
             child: Text("send invitation"),
             onPressed: () async {
               await addInvitation();

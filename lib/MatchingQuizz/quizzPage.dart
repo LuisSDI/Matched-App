@@ -46,6 +46,12 @@ class _QuizzPageState extends State<QuizzPage> {
         .catchError((error) => print("Failed to update invitation: $error"));
   }
 
+  void addResult() async {
+    DocumentReference ref = await databaseReference
+        .collection("MatchingTest")
+        .add({'user': widget.identifier, 'result': widget.myResult.res});
+  }
+
   @override
   Widget build(BuildContext context) {
     if (widget.gotInvitation != 0) {
@@ -216,7 +222,7 @@ class _QuizzPageState extends State<QuizzPage> {
                               createRecord();
                               RouterCustom route = RouterCustom();
                               Navigator.of(context)
-                                  .push(route.quizzToResult(widget.myResult));
+                                  .push(route.quizzToInvitation());
                             }
                             if (widget.gotInvitation == 2) {
                               RouterCustom route = RouterCustom();
@@ -386,6 +392,7 @@ class _QuizzPageState extends State<QuizzPage> {
 
                 ElevatedButton(
                     child: Text('Validate'),
+                    style: ButtonStyle(),
                     onPressed: () {
                       createRecord();
                       RouterCustom route = RouterCustom();

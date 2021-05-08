@@ -4,8 +4,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:matched_app/MatchingQuizz/router.dart';
 
 class ListUsers extends StatefulWidget {
-  ListUsers({Key key}) : super(key: key);
-
+  ListUsers({Key key, @required this.identifier}) : super(key: key);
+  String identifier;
   @override
   _ListUsersState createState() => _ListUsersState();
 }
@@ -40,7 +40,7 @@ class _ListUsersState extends State<ListUsers> {
   @override
   Widget build(BuildContext context) {
     CollectionReference profiles =
-        FirebaseFirestore.instance.collection('Profile');
+        FirebaseFirestore.instance.collection('userInfo');
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -73,17 +73,21 @@ class _ListUsersState extends State<ListUsers> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Image.network(document['image']),
-                            Text("" + document['username']),
+                            Image.network(document['photoURL']),
+                            Text("" + document['full name']),
                             ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  primary: Colors.purple,
+                                ),
                                 child: Text('see'),
                                 onPressed: () {
                                   RouterCustom route = RouterCustom();
                                   Navigator.of(context).push(
                                       route.listToProfile(
-                                          document['username'],
-                                          document['image'],
-                                          document['identifier']));
+                                          document['full name'],
+                                          document['photoURL'],
+                                          document['email'],
+                                          widget.identifier));
                                 }),
                           ],
                         ),
