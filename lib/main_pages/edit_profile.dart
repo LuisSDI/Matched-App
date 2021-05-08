@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 
 import 'package:google_fonts/google_fonts.dart';
+import 'package:matched_app/ui_resources/custom_colors.dart';
 
 import 'apply_tab.dart';
 
@@ -37,13 +38,14 @@ class _EditProfileState extends State<EditProfile> {
     //country = CountryPickerUtils.getCountryByName(countryField);
     return Scaffold(
       key: _scaffkey,
+      backgroundColor: dark,
       body: Form(
         key: _formKey,
         child: Container(
-          child: Padding(
-            padding: EdgeInsets.only(
-                left: scaler.getHeight(2), right: scaler.getHeight(2)),
-            child: SingleChildScrollView(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.only(
+                  left: scaler.getHeight(2), right: scaler.getHeight(2)),
               child: Column(
                 children: <Widget>[
                   Padding(
@@ -58,13 +60,7 @@ class _EditProfileState extends State<EditProfile> {
                           width: scaler.getHeight(5),
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            gradient: LinearGradient(
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
-                                colors: [
-                                  Color(0xff6747CD),
-                                  Color(0x8C3300D6)
-                                ]),
+                            gradient:turkish,
                           ),
                           child: IconButton(
                             onPressed: () {
@@ -88,7 +84,7 @@ class _EditProfileState extends State<EditProfile> {
                               style: GoogleFonts.lato(
                                   textStyle: TextStyle(
                                       fontSize: 36,
-                                      color: Colors.black,
+                                      color: white,
                                       fontWeight: FontWeight.bold)),
                             ),
                           ),
@@ -98,13 +94,7 @@ class _EditProfileState extends State<EditProfile> {
                           width: scaler.getHeight(5),
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            gradient: LinearGradient(
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
-                                colors: [
-                                  Color(0xff6747CD),
-                                  Color(0x8C3300D6)
-                                ]),
+                            gradient: turkish,
                           ),
                           child: IconButton(
                             onPressed: () {
@@ -134,32 +124,40 @@ class _EditProfileState extends State<EditProfile> {
                             child: FittedBox(
                               fit: BoxFit.cover,
                               child: Image(
-                                image: NetworkImage(photoUrL),
-                                loadingBuilder: (BuildContext context,
-                                    Widget child,
-                                    ImageChunkEvent loadingProgress) {
-                                  if (loadingProgress == null) return child;
-                                  return Container(
-                                    height: scaler.getWidth(40),
-                                    width: scaler.getWidth(40),
-                                    child: Center(
-                                      child: CircularProgressIndicator(
-                                        value: loadingProgress
-                                                    .expectedTotalBytes !=
-                                                null
-                                            ? loadingProgress
-                                                    .cumulativeBytesLoaded /
-                                                loadingProgress
-                                                    .expectedTotalBytes
-                                            : null,
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ),
+                                image: AssetImage(
+                                  //widget.image
+                                  'assets/images/image_2.png',
+                                ),
+                                fit: BoxFit.cover,
+                              ))
+
+                              // Image(
+                              //   image: NetworkImage(photoUrL),
+                              //   loadingBuilder: (BuildContext context,
+                              //       Widget child,
+                              //       ImageChunkEvent loadingProgress) {
+                              //     if (loadingProgress == null) return child;
+                              //     return Container(
+                              //       height: scaler.getWidth(40),
+                              //       width: scaler.getWidth(40),
+                              //       child: Center(
+                              //         child: CircularProgressIndicator(
+                              //           value: loadingProgress
+                              //                       .expectedTotalBytes !=
+                              //                   null
+                              //               ? loadingProgress
+                              //                       .cumulativeBytesLoaded /
+                              //                   loadingProgress
+                              //                       .expectedTotalBytes
+                              //               : null,
+                              //         ),
+                              //       ),
+                              //     );
+                              //   },
+                              // ),
                             ),
                           ),
-                        ),
+
                         Positioned(
                           top: scaler.getWidth(28),
                           left: scaler.getWidth(29),
@@ -167,14 +165,8 @@ class _EditProfileState extends State<EditProfile> {
                             width: scaler.getHeight(4),
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: Color(0xff6747CD),
-                              gradient: LinearGradient(
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter,
-                                  colors: [
-                                    Color(0xff6747CD),
-                                    Color(0x8C3300D6)
-                                  ]),
+                              color: mainColor,
+                              gradient: turkish,
                             ),
                             child: IconButton(
                               onPressed: () async {
@@ -203,37 +195,14 @@ class _EditProfileState extends State<EditProfile> {
                     padding: EdgeInsets.only(top: scaler.getHeight(2)),
                     child: Stack(children: [
                       Container(
-                        height: scaler.getHeight(5),
-                        width: scaler.getHeight(10),
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                              colors: [Color(0xff6747CD), Color(0x8C3300D6)]),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Center(
-                          child: FittedBox(
-                            fit: BoxFit.cover,
-                            child: Text(
-                              'Name',
-                              style: GoogleFonts.lato(
-                                  textStyle: TextStyle(
-                                      fontSize: 18,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold)),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Container(
                         padding: EdgeInsets.only(right: scaler.getHeight(.5)),
                         alignment: Alignment.centerRight,
                         height: scaler.getHeight(5),
                         decoration: BoxDecoration(
                             border: Border.all(
-                              color: Color(0xff6747CD),
+                              color: mainColor,
                             ),
+                            color: white,
                             borderRadius: BorderRadius.circular(10)),
                         child: SizedBox(
                           height: scaler.getHeight(5),
@@ -250,8 +219,8 @@ class _EditProfileState extends State<EditProfile> {
                                       "Please dont leave any field empty",
                                       style: GoogleFonts.lato(
                                           textStyle: TextStyle(
-                                        fontSize: 14,
-                                      )),
+                                            fontSize: 14,
+                                          )),
                                     ),
                                   ),
                                 ));
@@ -273,8 +242,8 @@ class _EditProfileState extends State<EditProfile> {
                               focusedErrorBorder: InputBorder.none,
                               hintStyle: GoogleFonts.lato(
                                   textStyle: TextStyle(
-                                fontSize: 18,
-                              )),
+                                    fontSize: 18,
+                                  )),
                               counterText: '',
                               border: InputBorder.none,
                               focusedBorder: InputBorder.none,
@@ -285,86 +254,133 @@ class _EditProfileState extends State<EditProfile> {
                           ),
                         ),
                       ),
-                    ]),
-                  ),
-
-                  // I am Text Field
-                  Padding(
-                    padding: EdgeInsets.only(top: scaler.getHeight(2)),
-                    child: Stack(children: [
                       Container(
                         height: scaler.getHeight(5),
-                        width: scaler.getHeight(10),
+                        width: scaler.getHeight(12),
                         decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                              colors: [Color(0xff6747CD), Color(0x8C3300D6)]),
+                          gradient: turkish,
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Center(
                           child: FittedBox(
                             fit: BoxFit.cover,
                             child: Text(
-                              'I am a ...',
+                              'Name',
                               style: GoogleFonts.lato(
                                   textStyle: TextStyle(
                                       fontSize: 18,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold)),
+                                      color: white,
+                                      )),
                             ),
                           ),
                         ),
                       ),
+
+                    ]),
+                  ),
+                  //Personality
+                  Padding(
+                    padding: EdgeInsets.only(top: scaler.getHeight(2)),
+                    child: Stack(children: [
+
                       Container(
-                        //padding: EdgeInsets.only(right: scaler.getHeight(.5)),
+                        padding: EdgeInsets.only(right: scaler.getHeight(.5)),
                         alignment: Alignment.centerRight,
                         height: scaler.getHeight(5),
                         decoration: BoxDecoration(
                             border: Border.all(
-                              color: Color(0xff6747CD),
+                              color: mainColor,
                             ),
+                            color: white,
                             borderRadius: BorderRadius.circular(10)),
-                        child: Container(
-                          width: scaler.getHeight(14),
-                          child: ButtonTheme(
-                            alignedDropdown: true,
-                            child: DropdownButton(
-                              isExpanded: true,
-                              value: dropdownValue,
-                              icon: Icon(
-                                Icons.keyboard_arrow_down,
-                                color: Color(0xff6747CD),
-                              ),
-                              iconSize: 24,
-                              onChanged: (String newValue) {
-                                setState(() {
-                                  dropdownValue = newValue;
-                                });
-                              },
-                              items: <String>[
-                                'Student',
-                                'Parent',
-                                'Other'
-                              ].map<DropdownMenuItem<String>>((String value) {
-                                return DropdownMenuItem<String>(
-                                  value: value,
-                                  child: Text(
-                                    value,
-                                    style: GoogleFonts.lato(
-                                        textStyle: TextStyle(
-                                            fontSize: 16,
-                                            color: Colors.black),
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                );
-                              }).toList(),
+                        child: FittedBox(
+                          fit: BoxFit.contain,
+                          child: Text("Dummy",
+                            //user.type,
+                            textAlign: TextAlign.right,
+                            style: GoogleFonts.lato(
+                                textStyle: TextStyle(
+                                    fontSize: 16,
+                                    color: black,
+                                    fontWeight: FontWeight.bold)),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        height: scaler.getHeight(5),
+                        width: scaler.getHeight(12),
+                        decoration: BoxDecoration(
+                          gradient: turkish,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Center(
+                          child: FittedBox(
+                            fit: BoxFit.cover,
+                            child: Text(
+                              'Personality',
+                              style: GoogleFonts.lato(
+                                  textStyle: TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.white,
+                                  )),
                             ),
                           ),
                         ),
                       ),
                     ]),
                   ),
+                  //College
+                  Padding(
+                    padding: EdgeInsets.only(top: scaler.getHeight(2)),
+                    child: Stack(children: [
+
+                      Container(
+                        padding: EdgeInsets.only(right: scaler.getHeight(.5)),
+                        alignment: Alignment.centerRight,
+                        height: scaler.getHeight(5),
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                              color: mainColor,
+                            ),
+                            color: white,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: FittedBox(
+                          fit: BoxFit.contain,
+                          child: Text("College",
+                            //user.type,
+                            textAlign: TextAlign.right,
+                            style: GoogleFonts.lato(
+                                textStyle: TextStyle(
+                                    fontSize: 16,
+                                    color: black,
+                                    fontWeight: FontWeight.bold)),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        height: scaler.getHeight(5),
+                        width: scaler.getHeight(12),
+                        decoration: BoxDecoration(
+                          gradient: turkish,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Center(
+                          child: FittedBox(
+                            fit: BoxFit.cover,
+                            child: Text(
+                              'College',
+                              style: GoogleFonts.lato(
+                                  textStyle: TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.white,
+                                  )),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ]),
+                  ),
+
                   // Description Text Field
                   Padding(
                     padding: EdgeInsets.only(
@@ -372,33 +388,7 @@ class _EditProfileState extends State<EditProfile> {
                         bottom: scaler.getHeight(2)),
                     child: Container(
                       child: Stack(children: [
-                        Container(
-                          height: scaler.getHeight(5),
-                          alignment: Alignment(0, .5),
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
-                                colors: [
-                                  Color(0xff6747CD),
-                                  Color(0x8C3300D6)
-                                ]),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Center(
-                            child: FittedBox(
-                              fit: BoxFit.cover,
-                              child: Text(
-                                'Description',
-                                style: GoogleFonts.lato(
-                                    textStyle: TextStyle(
-                                        fontSize: 18,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold)),
-                              ),
-                            ),
-                          ),
-                        ),
+
                         Container(
                           padding:
                               EdgeInsets.only(left: scaler.getHeight(.5)),
@@ -406,8 +396,9 @@ class _EditProfileState extends State<EditProfile> {
                           height: scaler.getHeight(20),
                           decoration: BoxDecoration(
                               border: Border.all(
-                                color: Color(0xff6747CD),
+                                color: mainColor,
                               ),
+                              color: white,
                               borderRadius: BorderRadius.circular(10)),
                           child: Padding(
                             padding:
@@ -458,6 +449,27 @@ class _EditProfileState extends State<EditProfile> {
                             ),
                           ),
                         ),
+                        Container(
+                          height: scaler.getHeight(5),
+                          alignment: Alignment(0, .5),
+                          decoration: BoxDecoration(
+                            gradient:turkish,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Center(
+                            child: FittedBox(
+                              fit: BoxFit.cover,
+                              child: Text(
+                                'Description',
+                                style: GoogleFonts.lato(
+                                    textStyle: TextStyle(
+                                        fontSize: 18,
+                                        color: white,
+                                        fontWeight: FontWeight.bold)),
+                              ),
+                            ),
+                          ),
+                        ),
                       ]),
                     ),
                   ),
@@ -470,10 +482,7 @@ class _EditProfileState extends State<EditProfile> {
       bottomNavigationBar: Container(
         height: scaler.getHeight(9),
         decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [Color(0xff6747CD), Color(0x8C3300D6)])),
+            gradient: turkish),
       ),
     );
   }
