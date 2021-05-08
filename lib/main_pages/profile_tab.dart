@@ -210,7 +210,6 @@ class ProfileTab extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(top: scaler.getHeight(2)),
                   child: Stack(children: [
-
                     Container(
                       padding: EdgeInsets.only(right: scaler.getHeight(.5)),
                       alignment: Alignment.centerRight,
@@ -233,12 +232,6 @@ class ProfileTab extends StatelessWidget {
                         ),
                       ),
                     ),
-                  ]),
-                ),
-                // I am a ... Field
-                Padding(
-                  padding: EdgeInsets.only(top: scaler.getHeight(2)),
-                  child: Stack(children: [
                     Container(
                       height: scaler.getHeight(5),
                       width: scaler.getHeight(12),
@@ -253,8 +246,8 @@ class ProfileTab extends StatelessWidget {
                             'Personality',
                             style: GoogleFonts.lato(
                                 textStyle: TextStyle(
-                                    fontSize: 18,
-                                    color: Colors.white,
+                                  fontSize: 18,
+                                  color: Colors.white,
                                 )),
                           ),
                         ),
