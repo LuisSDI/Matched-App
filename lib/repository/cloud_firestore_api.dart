@@ -29,6 +29,7 @@ class CloudFireStoreAPI {
   Future<void> setUserData(UserModel user) async {
     try {
       List<String> substring = List<String>();
+      substring.add(" ");
       for(int i=0; i<user.name.length; i++){
         substring.add(user.name.substring(0,i+1));
       }
