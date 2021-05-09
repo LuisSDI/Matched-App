@@ -7,7 +7,7 @@ class UserModel {
   final String photoUrL;
   final String type;
   final String description;
-  final List<String> caseSearch;
+  final List<dynamic> caseSearch;
 
   UserModel({
     Key key,
