@@ -53,6 +53,7 @@ class _ListUsersState extends State<ListUsers> {
           child: StreamBuilder(
               stream: profiles
                   .where("caseSearch", arrayContains: searchValue)
+                  .where("email", isNotEqualTo: widget.identifier)
                   .snapshots(includeMetadataChanges: true),
               builder: (BuildContext context,
                   AsyncSnapshot<QuerySnapshot> snapshot) {

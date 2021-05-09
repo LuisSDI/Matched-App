@@ -2,10 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:matched_app/MatchingQuizz/router.dart';
+import 'package:matched_app/MatchingQuizz/result.dart';
 
 class InvitationTab extends StatelessWidget {
-  const InvitationTab({Key key, this.gotInvitation = 0}) : super(key: key);
+  const InvitationTab(
+      {Key key, this.gotInvitation = 0, @required this.identifier})
+      : super(key: key);
   final int gotInvitation;
+  final String identifier;
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +19,7 @@ class InvitationTab extends StatelessWidget {
       return StreamBuilder(
           stream: invitations
               .where("status", isEqualTo: 0)
+              .where("to", isEqualTo: identifier)
               .snapshots(includeMetadataChanges: true),
           builder:
               (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -49,8 +54,9 @@ class InvitationTab extends StatelessWidget {
                                   .catchError((error) => print(
                                       "Failed to update invitation: $error"));
                               RouterCustom route = RouterCustom();
-                              Navigator.of(context).push(route
-                                  .invitationToQuizz(document['valueOfFrom']));
+                              Navigator.of(context).push(
+                                  route.invitationToQuizz(
+                                      document['valueOfFrom'], identifier));
                             }),
                       ],
                     ),
@@ -63,12 +69,28 @@ class InvitationTab extends StatelessWidget {
       return Scaffold(
           appBar: AppBar(
             title: Text('Invitations Sent'),
+            bottom: PreferredSize(
+                child: Container(
+                  color: Colors.white,
+                  height: 4.0,
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.purple,
+                      ),
+                      child: Icon(Icons.arrow_back),
+                      onPressed: () async {
+                        int count = 0;
+                        Navigator.of(context).popUntil((_) => count++ >= 2);
+                      }),
+                ),
+                preferredSize: Size.fromHeight(4.0)),
           ),
           body: StreamBuilder(
               stream: invitations
+                  .where("status", isEqualTo: 1)
                   .where("from",
                       isEqualTo:
-                          "not known yet") //need to change this when the login works fine
+                          identifier) //need to change this when the login works fine
                   .snapshots(includeMetadataChanges: true),
               builder: (BuildContext context,
                   AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -94,7 +116,7 @@ class InvitationTab extends StatelessWidget {
                                 style: ElevatedButton.styleFrom(
                                   primary: Colors.purple,
                                 ),
-                                child: Text('See'),
+                                child: Text('See Result'),
                                 onPressed: () async {
                                   // await invitations
                                   //     .doc(document.id)
@@ -102,10 +124,12 @@ class InvitationTab extends StatelessWidget {
                                   //     .then((value) => print("Updated"))
                                   //     .catchError((error) => print(
                                   //         "Failed to update invitation: $error"));
-                                  // RouterCustom route = RouterCustom();
-                                  // Navigator.of(context).push(
-                                  //     route.invitationToQuizz(
-                                  //         document['valueOfFrom']));
+                                  String res1 = document['valueOfFrom'];
+                                  String res2 = document['valueOfTo'];
+                                  Result r1 = Result(res1), r2 = Result(res2);
+                                  RouterCustom route = RouterCustom();
+                                  Navigator.of(context)
+                                      .push(route.invitationToResult(r1, r2));
                                 }),
                           ],
                         ),

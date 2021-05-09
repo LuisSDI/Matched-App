@@ -9,7 +9,7 @@ class QuizzPage extends StatefulWidget {
   QuizzPage(
       {Key key,
       this.docID = "Not known yet",
-      this.identifier = "not known yet",
+      @required this.identifier = "not known yet",
       this.gotInvitation = 0,
       this.otherResult = ""})
       : super(key: key);
@@ -33,15 +33,33 @@ class _QuizzPageState extends State<QuizzPage> {
 
   FirebaseFirestore databaseReference = FirebaseFirestore.instance;
 
-  void createRecord() async {
+  void createRecord(String result) async {
     DocumentReference ref = await databaseReference
         .collection("MatchingTest")
-        .add({'user': widget.identifier, 'result': widget.myResult.res});
+        .add({'user': widget.identifier, 'result': result});
     print('doc id: ' + widget.docID);
     await databaseReference
         .collection("Invitation")
         .doc(widget.docID)
-        .update({'valueOfFrom': widget.myResult.res})
+        .update({'valueOfTo': result})
+        .then((value) => print("Updated"))
+        .catchError((error) => print("Failed to update invitation: $error"));
+  }
+
+  void updateInvitationTo(String to) async {
+    await databaseReference
+        .collection("Invitation")
+        .doc(widget.docID)
+        .update({'valueOfTo': to})
+        .then((value) => print("Updated"))
+        .catchError((error) => print("Failed to update invitation: $error"));
+  }
+
+  void addInvitation(String res) async {
+    await databaseReference
+        .collection("Invitation")
+        .doc(widget.docID)
+        .update({'valueOfFrom': res})
         .then((value) => print("Updated"))
         .catchError((error) => print("Failed to update invitation: $error"));
   }
@@ -54,10 +72,35 @@ class _QuizzPageState extends State<QuizzPage> {
 
   @override
   Widget build(BuildContext context) {
+    FirebaseFirestore.instance
+        .collection('MatchingTest')
+        .where("user", isEqualTo: widget.identifier)
+        .limit(1)
+        .get()
+        .then((QuerySnapshot value) {
+      if (value.docs.isNotEmpty) {
+        String val = value.docs.first.get("result").toString();
+
+        if (widget.gotInvitation == 1) {
+          addInvitation(val);
+          RouterCustom route = RouterCustom();
+          Navigator.of(context)
+              .push(route.quizzToInvitation(widget.identifier));
+        }
+        if (widget.gotInvitation == 2) {
+          Result myRes = Result(val);
+          updateInvitationTo(val);
+          RouterCustom route = RouterCustom();
+          Navigator.of(context)
+              .push(route.quizzToFinalResult(myRes, _otherResult));
+        }
+        if (widget.gotInvitation == 3) {}
+      }
+    });
     if (widget.gotInvitation != 0) {
       return Scaffold(
           appBar: AppBar(
-            title: Text('Test'),
+            title: Text('Matching Quizz'),
           ),
           body: Center(
             child: Container(
@@ -219,12 +262,13 @@ class _QuizzPageState extends State<QuizzPage> {
                           child: Text('Validate'),
                           onPressed: () {
                             if (widget.gotInvitation == 1) {
-                              createRecord();
+                              createRecord(widget.myResult.res);
                               RouterCustom route = RouterCustom();
-                              Navigator.of(context)
-                                  .push(route.quizzToInvitation());
+                              Navigator.of(context).push(
+                                  route.quizzToInvitation(widget.identifier));
                             }
                             if (widget.gotInvitation == 2) {
+                              addResult();
                               RouterCustom route = RouterCustom();
                               Navigator.of(context).push(
                                   route.quizzToFinalResult(
@@ -394,7 +438,7 @@ class _QuizzPageState extends State<QuizzPage> {
                     child: Text('Validate'),
                     style: ButtonStyle(),
                     onPressed: () {
-                      createRecord();
+                      addResult();
                       RouterCustom route = RouterCustom();
                       Navigator.of(context)
                           .push(route.quizzToResult(widget.myResult));

@@ -8,8 +8,12 @@ import 'package:matched_app/resources/major_buttom.dart';
 import 'package:matched_app/resources/major_screen.dart';
 import 'package:matched_app/resources/placeholder_page.dart';
 import 'package:matched_app/ui_resources/custom_colors.dart';
+import 'package:matched_app/PersonalityTest/pages/personalityQuizzPage.dart';
 
 class TestTab extends StatelessWidget {
+  TestTab({Key key, @required this.identifier}) : super(key: key);
+  final String identifier;
+
   @override
   Widget build(BuildContext context) {
     ScreenScaler scaler = ScreenScaler()..init(context);
@@ -46,7 +50,7 @@ class TestTab extends StatelessWidget {
               detail: '''Personality \nTest'''.trim(),
               image: "assets/images_sse_majors/CSE.png",
               alignment: Alignment(-.3, 0),
-              screen: PlaceHolderPage(),
+              screen: PersonnalityQuizzPage(identifier: identifier),
             ),
           ),
           //Roommate Button
@@ -74,7 +78,7 @@ class TestTab extends StatelessWidget {
               image: "assets/images_sse_majors/NES.png",
               alignment: Alignment(.8, 0),
               screen: MatchingScreen(
-                identifier: "email here",
+                identifier: identifier,
                 title: "Do we match?",
               ),
             ),

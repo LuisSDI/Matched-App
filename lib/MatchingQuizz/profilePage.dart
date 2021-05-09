@@ -8,7 +8,7 @@ class ProfilePage extends StatelessWidget {
       this.username = "",
       this.image = "",
       this.email = "",
-      this.identifier = "not known yet"})
+      @required this.identifier = "not known yet"})
       : super(key: key);
   final String username, image, email;
   String docID = "", identifier;
@@ -61,7 +61,8 @@ class ProfilePage extends StatelessWidget {
             onPressed: () async {
               await addInvitation();
               RouterCustom route = RouterCustom();
-              Navigator.of(context).push(route.profileToQuizz(docID));
+              Navigator.of(context)
+                  .push(route.profileToQuizz(docID, identifier));
             },
           )
         ],

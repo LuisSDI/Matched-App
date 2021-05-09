@@ -143,15 +143,18 @@ class _SignInContentState extends State<SignInContent> {
                                   credential: credential,
                                 )));
                   } else {
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) => HomePage()));
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => HomePage(
+                                identifier: userBloc.currentUser.email)));
                   }
                   Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) => CreateProfilePage(
-                              auth: FirebaseAuth.instance,
-                              credential: credential,
+                                auth: FirebaseAuth.instance,
+                                credential: credential,
                               )));
                 },
                 child: Container(
@@ -173,8 +176,7 @@ class _SignInContentState extends State<SignInContent> {
               GestureDetector(
                 onTap: () async {
                   userBloc = BlocProvider.of(context);
-                  AuthCredential credential =
-                      await userBloc.credentialGoogle();
+                  AuthCredential credential = await userBloc.credentialGoogle();
                   UserCredential authResult =
                       await userBloc.signInCredential(credential);
                   if (authResult.additionalUserInfo.isNewUser) {
@@ -187,15 +189,18 @@ class _SignInContentState extends State<SignInContent> {
                                   credential: credential,
                                 )));
                   } else {
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) => HomePage()));
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => HomePage(
+                                identifier: userBloc.currentUser.email)));
                   }
                   Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) => CreateProfilePage(
-                              auth: FirebaseAuth.instance,
-                              credential: credential,
+                                auth: FirebaseAuth.instance,
+                                credential: credential,
                               )));
                 },
                 child: Container(
@@ -229,8 +234,7 @@ class _SignInContentState extends State<SignInContent> {
                 child: Text(
                   'Forgot password?',
                   style: GoogleFonts.lato(
-                      textStyle:
-                          TextStyle(fontSize: 16, color: whiteish)),
+                      textStyle: TextStyle(fontSize: 16, color: whiteish)),
                 )),
           ),
         ],

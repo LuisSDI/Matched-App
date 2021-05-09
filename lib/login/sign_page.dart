@@ -14,7 +14,6 @@ import 'package:matched_app/main_pages/home_page.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:matched_app/resources/async_loader.dart';
 
-
 class SignPage extends StatefulWidget {
   @override
   SignPageState createState() => SignPageState();
@@ -58,8 +57,7 @@ class SignPageState extends State<SignPage> {
                     height: scaler.getWidth(30),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
-                      gradient: turkish
-                    ),
+                        gradient: turkish),
                     child: Container(
                       margin: EdgeInsets.only(
                         bottom: scaler.getWidth(0),
@@ -70,8 +68,10 @@ class SignPageState extends State<SignPage> {
                       color: Colors.transparent,
                       child: FittedBox(
                         fit: BoxFit.contain,
-                        child: Icon(DormIcon.noun_real_estate_network_1874757_1,
-                        color: white,),
+                        child: Icon(
+                          DormIcon.noun_real_estate_network_1874757_1,
+                          color: white,
+                        ),
                       ),
                     )
                     // child: Image(
@@ -99,10 +99,9 @@ class SignPageState extends State<SignPage> {
                           },
                           child: Container(
                             padding: EdgeInsets.symmetric(
-                                vertical:isSignIn
+                                vertical: isSignIn
                                     ? scaler.getWidth(0.5)
-                                    : scaler.getWidth(0.9)
-                                ),
+                                    : scaler.getWidth(0.9)),
                             decoration: BoxDecoration(
                                 border: Border(
                                     bottom: BorderSide(
@@ -117,10 +116,8 @@ class SignPageState extends State<SignPage> {
                                   style: GoogleFonts.lato(
                                       textStyle: TextStyle(
                                           fontSize: 28,
-                                          color: isSignIn
-                                              ? white
-                                              : whiteish,
-                                          fontWeight : isSignIn
+                                          color: isSignIn ? white : whiteish,
+                                          fontWeight: isSignIn
                                               ? FontWeight.bold
                                               : FontWeight.normal)),
                                 )),
@@ -145,8 +142,7 @@ class SignPageState extends State<SignPage> {
                             padding: EdgeInsets.symmetric(
                                 vertical: !isSignIn
                                     ? scaler.getWidth(0.5)
-                                    : scaler.getWidth(0.9)
-                            ),
+                                    : scaler.getWidth(0.9)),
                             decoration: BoxDecoration(
                                 border: Border(
                                     bottom: BorderSide(
@@ -160,13 +156,9 @@ class SignPageState extends State<SignPage> {
                                   "Sign Up",
                                   style: GoogleFonts.lato(
                                       textStyle: TextStyle(
-                                          fontSize:!isSignIn
-                                              ? 28
-                                              : 20,
-                                          color: !isSignIn
-                                              ? white
-                                              : whiteish,
-                                          fontWeight : !isSignIn
+                                          fontSize: !isSignIn ? 28 : 20,
+                                          color: !isSignIn ? white : whiteish,
+                                          fontWeight: !isSignIn
                                               ? FontWeight.bold
                                               : FontWeight.normal)),
                                 )),
@@ -209,41 +201,40 @@ class SignPageState extends State<SignPage> {
       formState.save();
       try {
         Async_Loader.showLoadingDialog(context, keyLoader);
-       userBloc = BlocProvider.of(context);
+        userBloc = BlocProvider.of(context);
         Navigator.pop(context);
-       userBloc.signIn(email, password).then((value){
-         if (value == null) {
-           scaffkey.currentState.showSnackBar(SnackBar(
-             duration: Duration(seconds: 3),
-             content: Container(
-               alignment: Alignment.center,
-               height: MediaQuery.of(context).size.height * 0.05,
-               child: Text(
-                 userBloc.getError(),
-                 style: GoogleFonts.lato(
-                     textStyle: TextStyle(
-                       fontSize: 14,
-                     )),
-               ),
-             ),
-           ));
-           userBloc.resetError();
-           Navigator.pop(context);
-         }
-         else{
-           Navigator.pushReplacement(
-               context,
-               MaterialPageRoute(
-                   builder: (context) => HomePage()));
-         }
-       });
+        userBloc.signIn(email, password).then((value) {
+          if (value == null) {
+            scaffkey.currentState.showSnackBar(SnackBar(
+              duration: Duration(seconds: 3),
+              content: Container(
+                alignment: Alignment.center,
+                height: MediaQuery.of(context).size.height * 0.05,
+                child: Text(
+                  userBloc.getError(),
+                  style: GoogleFonts.lato(
+                      textStyle: TextStyle(
+                    fontSize: 14,
+                  )),
+                ),
+              ),
+            ));
+            userBloc.resetError();
+            Navigator.pop(context);
+          } else {
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => HomePage(identifier: email)));
+          }
+        });
       } catch (e) {
         print(e.message);
       }
     }
 
-  //TODO login to firebase
-}
+    //TODO login to firebase
+  }
 
   Future<void> signUp() async {
     final formState = _formKey.currentState;

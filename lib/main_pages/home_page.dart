@@ -14,37 +14,46 @@ import 'apply_tab.dart';
 import 'explore_tab.dart';
 
 class HomePage extends StatefulWidget {
+  HomePage({Key key, @required this.identifier}) : super(key: key);
+  final String identifier;
+
   @override
-  _HomePageState createState() => _HomePageState();
+  _HomePageState createState() => _HomePageState(this.identifier);
 }
 
 class _HomePageState extends State<HomePage> {
+  String identifier2;
+  Widget testTab;
+
+  _HomePageState(String ident) {
+    this.identifier2 = ident;
+  }
+
   @override
   int _currentIndex = 0;
-  final List<Widget> _children = [
-    ExploreTab(),
-    DiscoverTab(),
-    ChatTab(),
-    TestTab(),
-    ProfileTab(),
-  ];
+
   Widget build(BuildContext context) {
+    List<Widget> _children = [
+      ExploreTab(),
+      DiscoverTab(),
+      ChatTab(),
+      TestTab(identifier: identifier2),
+      ProfileTab(),
+    ];
     ScreenScaler scaler = ScreenScaler()..init(context);
     double paddingBottombar = scaler.getHeight(0.5);
     return Scaffold(
       body: _children[_currentIndex],
       backgroundColor: dark,
       bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-            gradient: turkish),
+        decoration: BoxDecoration(gradient: turkish),
         child: BottomNavigationBar(
             onTap: onTabTapped,
             currentIndex: _currentIndex,
             iconSize: 18,
             backgroundColor: Colors.transparent,
             selectedLabelStyle: GoogleFonts.lato(
-                textStyle:
-                TextStyle(fontSize: 12, color: Colors.white)) ,
+                textStyle: TextStyle(fontSize: 12, color: Colors.white)),
             items: [
               //Explore
               BottomNavigationBarItem(
@@ -57,8 +66,6 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   label: "Explore",
-
-
                   backgroundColor: Colors.transparent),
               //Majors
               BottomNavigationBarItem(
@@ -98,15 +105,15 @@ class _HomePageState extends State<HomePage> {
                   backgroundColor: Colors.transparent),
               //Profile
               BottomNavigationBarItem(
-                  icon: Padding(
-                    padding: EdgeInsets.all(paddingBottombar),
-                    child: Icon(
-                      Icons.account_circle,
-                      color: Colors.white,
-                      size: 30,
-                    ),
+                icon: Padding(
+                  padding: EdgeInsets.all(paddingBottombar),
+                  child: Icon(
+                    Icons.account_circle,
+                    color: Colors.white,
+                    size: 30,
                   ),
-                  label:"Profile",
+                ),
+                label: "Profile",
               )
             ]),
       ),
