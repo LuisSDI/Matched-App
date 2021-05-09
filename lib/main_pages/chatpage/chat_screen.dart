@@ -111,7 +111,7 @@ class ChatScreen extends StatelessWidget {
                         }
                         else{
                           UserBloc userBloc = BlocProvider.of(context);
-                          User currentUser = await userBloc.currentUser;
+                          User currentUser = userBloc.currentUser;
                           UserModel sender = await userBloc.getUserData(currentUser.uid);
                           Message _message = Message(
                             receiverId: user.uid,

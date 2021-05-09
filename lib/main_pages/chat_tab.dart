@@ -68,12 +68,12 @@ class _ChatTabState extends State<ChatTab> {
                                 vertical: scaler.getHeight(.5),
                               ),
                               child: ChatButton(
-                                user: users[index + 1],
+                                user: users[index],
                                 currentUserUid: firebaseUser.uid,
                               ),
                             );
                           },
-                          itemCount: users.length - 1,
+                          itemCount: users.length,
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
                           padding: EdgeInsets.zero,
