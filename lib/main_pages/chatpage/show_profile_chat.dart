@@ -170,7 +170,7 @@ class ShowProfileScreen extends StatelessWidget {
                           child: FittedBox(
                             fit: BoxFit.contain,
                             child: Text(
-                              'Country',
+                              'Personality',
                               style: GoogleFonts.lato(
                                   textStyle: TextStyle(
                                       fontSize: 18,
@@ -210,7 +210,7 @@ class ShowProfileScreen extends StatelessWidget {
                           child: FittedBox(
                             fit: BoxFit.cover,
                             child: Text(
-                              'I am a ...',
+                              'College',
                               style: GoogleFonts.lato(
                                   textStyle: TextStyle(
                                       fontSize: 18,
