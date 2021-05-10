@@ -10,6 +10,7 @@ import 'profilePage.dart';
 import 'listUsers.dart';
 import 'package:matched_app/PersonalityTest/pages/personalityQuizzPage.dart';
 import 'package:matched_app/PersonalityTest/pages/personalityResultPage.dart';
+import 'package:matched_app/RoommateMatching/pages/testDone.dart';
 
 class RouterCustom {
   Route quizzToResult(Result r) {
@@ -180,6 +181,25 @@ class RouterCustom {
     return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) =>
           MatchingScreenPage(identifier: identifier),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        var begin = Offset(0.0, 1.0);
+        var end = Offset.zero;
+        var curve = Curves.ease;
+
+        var tween =
+            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+        return SlideTransition(
+          position: animation.drive(tween),
+          child: child,
+        );
+      },
+    );
+  }
+
+  Route toTestDone() {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => TestDonePage(),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         var begin = Offset(0.0, 1.0);
         var end = Offset.zero;

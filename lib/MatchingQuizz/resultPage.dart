@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:matched_app/MatchingQuizz/result.dart';
+import 'package:matched_app/MatchingQuizz/router.dart';
 
 class ResultPage extends StatefulWidget {
   ResultPage({Key key, @required this.myResult, this.otherResult, this.value})
@@ -39,7 +40,20 @@ class _ResultPageState extends State<ResultPage> {
         children: [
           // Text('Result : ' + widget.myResult.res),
           // Text('Result : ' + res2.res),
-          Text('Percentage :' + pourcentage.toString())
+          Text('Percentage :' + pourcentage.toString()),
+          Container(
+            height: MediaQuery.of(context).size.height / 2,
+          ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              primary: Colors.purple,
+            ),
+            child: Text("return"),
+            onPressed: () async {
+              RouterCustom route = RouterCustom();
+              Navigator.of(context).push(route.toMatchingScreen(""));
+            },
+          )
         ],
       )),
     );

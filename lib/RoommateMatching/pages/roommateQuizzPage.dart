@@ -213,9 +213,7 @@ class _RoommateQuizzPageState extends State<RoommateQuizzPage> {
                         onPressed: () {
                           addResult();
                           RouterCustom route = RouterCustom();
-                          Navigator.of(context).push(
-                              route.personalityQuizzToResult(
-                                  widget.myResult, widget.identifier));
+                          Navigator.of(context).push(route.toTestDone());
                         }),
                   ],
                 ),

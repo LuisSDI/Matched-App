@@ -9,14 +9,12 @@ import 'package:matched_app/resources/main_page_buttom.dart';
 import 'package:matched_app/ui_resources/custom_colors.dart';
 import 'package:matched_app/ui_resources/icons/fix_icons_icons.dart';
 
-
 class DiscoverTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ScreenScaler scaler = ScreenScaler()..init(context);
     return SafeArea(
       top: false,
-
       child: Container(
         child: Padding(
           padding: EdgeInsets.only(
@@ -71,10 +69,10 @@ class DiscoverTab extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => CollegeTemplate(
-                                    title: 'How does it work?',
-                                    desc: CollegesInfo().shawDesc,
-                                    imagesList: CollegesInfo().defaultList,
-                                  )));
+                                        title: 'How does it work?',
+                                        desc: CollegesInfo().shawDesc,
+                                        imagesList: CollegesInfo().defaultList,
+                                      )));
                         },
                         child: Container(
                           decoration: BoxDecoration(
@@ -99,11 +97,10 @@ class DiscoverTab extends StatelessWidget {
                               textAlign: TextAlign.center,
                               style: GoogleFonts.lato(
                                   textStyle: TextStyle(
-                                //height: .5,
-                                fontSize: 23,
-                                color: white,
-                                    fontWeight: FontWeight.bold
-                              )),
+                                      //height: .5,
+                                      fontSize: 23,
+                                      color: white,
+                                      fontWeight: FontWeight.bold)),
                             ),
                           ),
                         ),
@@ -120,13 +117,22 @@ class DiscoverTab extends StatelessWidget {
                           //SSE Button
                           MainPageButton(
                             iconData: FixIcons.analyst,
-                            text: "Analysts",
-                            screen: AnalystsScreen(),
+                            text: "Dominance",
+                            screen: CollegeTemplate(
+                              desc: CollegesInfo().shawDesc,
+                              imagesList: CollegesInfo().defaultList,
+                              title: """Dominance""",
+                            ),
                           ),
                           //SME Button
-                          MainPageButton(text: "Diplomats",
-                          iconData: FixIcons.diplomats,
-                            screen: AnalystsScreen(),
+                          MainPageButton(
+                            text: "Influence",
+                            iconData: FixIcons.diplomats,
+                            screen: CollegeTemplate(
+                              desc: CollegesInfo().shawDesc,
+                              imagesList: CollegesInfo().defaultList,
+                              title: """Influence""",
+                            ),
                           )
                         ],
                       ),
@@ -144,14 +150,22 @@ class DiscoverTab extends StatelessWidget {
                           //HSS Button
                           MainPageButton(
                             iconData: FixIcons.sentinel,
-                            text: "Sentinels",
-                            screen: AnalystsScreen(),
+                            text: "Steadiness",
+                            screen: CollegeTemplate(
+                              desc: CollegesInfo().shawDesc,
+                              imagesList: CollegesInfo().defaultList,
+                              title: """Steadiness""",
+                            ),
                           ),
                           //LHS Button
                           MainPageButton(
                             iconData: FixIcons.explorer,
-                            text: 'Explorers',
-                            screen: AnalystsScreen(),
+                            text: 'Conscientious',
+                            screen: CollegeTemplate(
+                              desc: CollegesInfo().shawDesc,
+                              imagesList: CollegesInfo().defaultList,
+                              title: """Conscientious""",
+                            ),
                           ),
                         ],
                       ),

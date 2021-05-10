@@ -52,8 +52,8 @@ class _ListUsersState extends State<ListUsers> {
           height: MediaQuery.of(context).size.width / 1.5,
           child: StreamBuilder(
               stream: profiles
-                  .where("caseSearch", arrayContains: searchValue)
                   .where("email", isNotEqualTo: widget.identifier)
+                  .where("caseSearch", arrayContains: searchValue)
                   .snapshots(includeMetadataChanges: true),
               builder: (BuildContext context,
                   AsyncSnapshot<QuerySnapshot> snapshot) {

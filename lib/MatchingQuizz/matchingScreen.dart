@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:matched_app/MatchingQuizz/invitationTab.dart';
 import 'package:matched_app/MatchingQuizz/quizzPage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -10,7 +11,7 @@ class MatchingScreens extends StatefulWidget {
   MatchingScreens(
       {Key key,
       @required this.title,
-      this.identifier = "need to be initialized"})
+      @required this.identifier = "need to be initialized"})
       : super(key: key);
   final String title, identifier;
 
@@ -77,6 +78,8 @@ class MatchingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    UserBloc userBloc = BlocProvider.of(context);
+    User currentUser = userBloc.currentUser;
     return DefaultTabController(
         length: 3,
         child: Scaffold(
@@ -87,7 +90,7 @@ class MatchingScreen extends StatelessWidget {
                   text: "search ",
                   icon: Icon(Icons.search),
                 ),
-                Tab(text: "Invitations sent", icon: Icon(Icons.send)),
+                Tab(text: "Results", icon: Icon(Icons.send)),
                 Tab(text: "Requests", icon: Icon(Icons.insert_invitation)),
               ],
               labelColor: Colors.white,
@@ -100,13 +103,13 @@ class MatchingScreen extends StatelessWidget {
             children: [
               Container(
                 height: MediaQuery.of(context).size.height / 1.2,
-                child: ListUsers(identifier: identifier),
+                child: ListUsers(identifier: currentUser.email),
               ),
               // Center(
               //   child: QuizzPage(),
               // ),
-              InvitationTab(gotInvitation: 1, identifier: identifier),
-              InvitationTab(identifier: identifier),
+              InvitationTab(gotInvitation: 1, identifier: currentUser.email),
+              InvitationTab(identifier: currentUser.email),
             ],
           ),
           // body: Center(
