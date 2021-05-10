@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:matched_app/MatchingQuizz/result.dart';
 
-class ResultPage extends StatefulWidget {
-  ResultPage({Key key, @required this.myResult, this.otherResult, this.value})
+class TestDonePage extends StatefulWidget {
+  TestDonePage({Key key, @required this.myResult, this.otherResult, this.value})
       : super(key: key);
 
   final Result myResult;
   final Result otherResult;
   final String value;
   @override
-  _ResultPageState createState() => _ResultPageState();
+  _TestDonePageState createState() => _TestDonePageState();
 }
 
-class _ResultPageState extends State<ResultPage> {
+class _TestDonePageState extends State<TestDonePage> {
   Result res2 = Result("");
 
   double pourcentage = 0;
@@ -32,15 +32,11 @@ class _ResultPageState extends State<ResultPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Result'),
+        title: Text('Test done'),
       ),
       body: Center(
           child: Column(
-        children: [
-          // Text('Result : ' + widget.myResult.res),
-          // Text('Result : ' + res2.res),
-          Text('Percentage :' + pourcentage.toString())
-        ],
+        children: [Text('Roommate matching result will be out soon!')],
       )),
     );
   }
