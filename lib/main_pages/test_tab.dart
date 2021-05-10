@@ -9,6 +9,7 @@ import 'package:matched_app/resources/major_screen.dart';
 import 'package:matched_app/resources/placeholder_page.dart';
 import 'package:matched_app/ui_resources/custom_colors.dart';
 import 'package:matched_app/PersonalityTest/pages/personalityQuizzPage.dart';
+import 'package:matched_app/RoommateMatching/pages/roommateQuizzPage.dart';
 
 class TestTab extends StatelessWidget {
   TestTab({Key key, @required this.identifier}) : super(key: key);
@@ -63,7 +64,7 @@ class TestTab extends StatelessWidget {
             child: MajorButtom(
               detail: '''Roommate \nMatching'''.trim(),
               image: "assets/images_sse_majors/EIE.png",
-              screen: PlaceHolderPage(),
+              screen: RoommateQuizzPage(identifier: identifier),
             ),
           ),
           //Do We Button

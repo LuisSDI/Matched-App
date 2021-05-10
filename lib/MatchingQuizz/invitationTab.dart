@@ -69,21 +69,6 @@ class InvitationTab extends StatelessWidget {
       return Scaffold(
           appBar: AppBar(
             title: Text('Invitations Sent'),
-            bottom: PreferredSize(
-                child: Container(
-                  color: Colors.white,
-                  height: 4.0,
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.purple,
-                      ),
-                      child: Icon(Icons.arrow_back),
-                      onPressed: () async {
-                        int count = 0;
-                        Navigator.of(context).popUntil((_) => count++ >= 2);
-                      }),
-                ),
-                preferredSize: Size.fromHeight(4.0)),
           ),
           body: StreamBuilder(
               stream: invitations

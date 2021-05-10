@@ -38,12 +38,12 @@ class _QuizzPageState extends State<QuizzPage> {
         .collection("MatchingTest")
         .add({'user': widget.identifier, 'result': result});
     print('doc id: ' + widget.docID);
-    await databaseReference
-        .collection("Invitation")
-        .doc(widget.docID)
-        .update({'valueOfTo': result})
-        .then((value) => print("Updated"))
-        .catchError((error) => print("Failed to update invitation: $error"));
+    // await databaseReference
+    //     .collection("Invitation")
+    //     .doc(widget.docID)
+    //     .update({'valueOfTo': result})
+    //     .then((value) => print("Updated"))
+    //     .catchError((error) => print("Failed to update invitation: $error"));
   }
 
   void updateInvitationTo(String to) async {
@@ -82,14 +82,13 @@ class _QuizzPageState extends State<QuizzPage> {
         String val = value.docs.first.get("result").toString();
 
         if (widget.gotInvitation == 1) {
-          addInvitation(val);
+          //addInvitation(val);
           RouterCustom route = RouterCustom();
-          Navigator.of(context)
-              .push(route.quizzToInvitation(widget.identifier));
+          Navigator.of(context).push(route.toMatchingScreen(widget.identifier));
         }
         if (widget.gotInvitation == 2) {
           Result myRes = Result(val);
-          updateInvitationTo(val);
+          //updateInvitationTo(val);
           RouterCustom route = RouterCustom();
           Navigator.of(context)
               .push(route.quizzToFinalResult(myRes, _otherResult));

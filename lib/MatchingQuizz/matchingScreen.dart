@@ -35,8 +35,7 @@ class _MatchingScreensState extends State<MatchingScreens> {
             bottom: TabBar(
               tabs: [
                 Tab(
-                  text: "search, Your email is " + widget.identifier,
-
+                  text: "search",
                   icon: Icon(Icons.search),
                 ),
                 Tab(text: "Invitations sent", icon: Icon(Icons.send)),
@@ -85,7 +84,7 @@ class MatchingScreen extends StatelessWidget {
             bottom: TabBar(
               tabs: [
                 Tab(
-                  text: "search " + identifier,
+                  text: "search ",
                   icon: Icon(Icons.search),
                 ),
                 Tab(text: "Invitations sent", icon: Icon(Icons.send)),

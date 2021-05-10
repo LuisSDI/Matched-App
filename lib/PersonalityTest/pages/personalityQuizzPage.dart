@@ -33,25 +33,6 @@ class _PersonnalityQuizzPageState extends State<PersonnalityQuizzPage> {
 
   FirebaseFirestore databaseReference = FirebaseFirestore.instance;
 
-  void createRecord() async {
-    DocumentReference ref = await databaseReference
-        .collection("MatchingTest")
-        .add({'user': widget.identifier, 'result': widget.myResult.res});
-    print('doc id: ' + widget.docID);
-    await databaseReference
-        .collection("Invitation")
-        .doc(widget.docID)
-        .update({'valueOfFrom': widget.myResult.res})
-        .then((value) => print("Updated"))
-        .catchError((error) => print("Failed to update invitation: $error"));
-  }
-
-  void addResult() async {
-    DocumentReference ref = await databaseReference
-        .collection("MatchingTest")
-        .add({'user': widget.identifier, 'result': widget.myResult.res});
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -312,7 +293,6 @@ class _PersonnalityQuizzPageState extends State<PersonnalityQuizzPage> {
                     ElevatedButton(
                         child: Text('Validate'),
                         onPressed: () {
-                          // createRecord();
                           RouterCustom route = RouterCustom();
                           Navigator.of(context).push(
                               route.personalityQuizzToResult(
