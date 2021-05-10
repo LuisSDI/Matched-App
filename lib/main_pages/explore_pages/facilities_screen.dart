@@ -3,10 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:matched_app/main_pages/explore_pages/facilities_pages/facilities_info.dart';
 import 'package:matched_app/resources/image_slider.dart';
 import 'package:matched_app/resources/placeholder_page.dart';
 import 'package:matched_app/resources/screen_buttom.dart';
 import 'package:matched_app/ui_resources/custom_colors.dart';
+
+import 'colleges_pages/college_template.dart';
 
 class FacilitiesScreen extends StatelessWidget {
   @override
@@ -53,8 +56,7 @@ class FacilitiesScreen extends StatelessWidget {
             ),
             //Image Carousel
             ImageSlider(
-              imgList: ['assets/images/image_2.png','assets/images/image_2.png'
-                ,'assets/images/image_2.png'],
+              imgList: FacilitiesInfo().facilitiesList,
             ),
             Column(
               children: <Widget>[
@@ -68,12 +70,20 @@ class FacilitiesScreen extends StatelessWidget {
                         detail: '''Library'''
                             .trim(),
                         iconData: MaterialCommunityIcons.library,
-                        screen: PlaceHolderPage(),
+                        screen: CollegeTemplate(
+                          title: 'Library',
+                          desc: FacilitiesInfo().libraryDesc,
+                          imagesList: FacilitiesInfo().libraryList,
+                        ),
                       ),
                       ScreenButtom(
                         detail: '''Sports'''.trim(),
                         iconData: FontAwesome.soccer_ball_o,
-                        screen: PlaceHolderPage(),
+                        screen:  CollegeTemplate(
+                          title: 'Sports',
+                          desc: FacilitiesInfo().sportsDesc,
+                          imagesList: FacilitiesInfo().sportsList,
+                        ),
                       ),
                     ],
                   ),
@@ -87,12 +97,20 @@ class FacilitiesScreen extends StatelessWidget {
                       ScreenButtom(
                         detail: '''Stores'''.trim(),
                         iconData: Icons.store,
-                        screen: PlaceHolderPage(),
+                        screen:  CollegeTemplate(
+                          title: 'Stores',
+                          desc: FacilitiesInfo().storesDesc,
+                          imagesList: FacilitiesInfo().storesList,
+                        ),
                       ),
                       ScreenButtom(
                         detail: 'Entertainment',
                         iconData: Icons.local_play,
-                        screen: PlaceHolderPage(),
+                        screen:  CollegeTemplate(
+                          title: 'Entertainment',
+                          desc: FacilitiesInfo().entDesc,
+                          imagesList: FacilitiesInfo().entList,
+                        ),
                       ),
                     ],
                   ),

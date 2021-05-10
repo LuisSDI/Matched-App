@@ -57,8 +57,7 @@ class CollegeScreen extends StatelessWidget {
             ),
             //Image Carousel
             ImageSlider(
-              imgList: ['assets/images/image_2.png','assets/images/image_2.png'
-                ,'assets/images/image_2.png'],
+              imgList: CollegesInfo().collegesList,
             ),
             Column(
               children: <Widget>[
@@ -75,16 +74,16 @@ class CollegeScreen extends StatelessWidget {
                         screen: CollegeTemplate(
                           desc: CollegesInfo().shawDesc,
                           title: 'Shaw',
-                          imagesList: CollegesInfo().defaultList,
+                          imagesList: CollegesInfo().shawList,
                         ),
                       ),
                       ScreenButtom(
                         detail: '''Diligentia'''.trim(),
                         iconData: FixIcons.diligentia,
                         screen: CollegeTemplate(
-                          desc: CollegesInfo().shawDesc,
+                          desc: CollegesInfo().diligentiaDesc,
                           title: 'Diligentia',
-                          imagesList: CollegesInfo().defaultList,
+                          imagesList: CollegesInfo().diligentiaList,
                         ),
                       ),
                     ],
@@ -100,18 +99,18 @@ class CollegeScreen extends StatelessWidget {
                         detail: '''Harmonia'''.trim(),
                         iconData: FixIcons.shaw,
                         screen: CollegeTemplate(
-                          desc: CollegesInfo().shawDesc,
+                          desc: CollegesInfo().harmoniaDesc,
                           title: 'Harmonia',
-                          imagesList: CollegesInfo().defaultList,
+                          imagesList: CollegesInfo().harmoniaList,
                         ),
                       ),
                       ScreenButtom(
                         detail: 'Muse',
                         iconData: FixIcons.shaw,
                         screen: CollegeTemplate(
-                          desc: CollegesInfo().shawDesc,
+                          desc: CollegesInfo().museDesc,
                           title: 'Muse',
-                          imagesList: CollegesInfo().defaultList,
+                          imagesList: CollegesInfo().museList,
                         ),
                       ),
                     ],

@@ -22,9 +22,11 @@ class _ImageSliderState extends State<ImageSlider> {
     ScreenScaler scaler = ScreenScaler()..init(context);
     return Stack(children: [
       Container(
+        color: black,
         child: CarouselSlider(
           items: widget.imgList
               .map((item) => Container(
+
                     child: Image(
                       image: AssetImage(item),
                       fit: BoxFit.cover,

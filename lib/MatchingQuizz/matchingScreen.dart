@@ -36,6 +36,7 @@ class _MatchingScreensState extends State<MatchingScreens> {
               tabs: [
                 Tab(
                   text: "search, Your email is " + widget.identifier,
+
                   icon: Icon(Icons.search),
                 ),
                 Tab(text: "Invitations sent", icon: Icon(Icons.send)),
