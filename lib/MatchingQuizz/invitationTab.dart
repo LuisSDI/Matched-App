@@ -142,7 +142,7 @@ class InvitationTab extends StatelessWidget {
                                     }
                                   }).then((value) async {
                                     String res2 = document['valueOfTo'],
-                                        email = document['from'];
+                                        email = document['to'];
                                     await FirebaseFirestore.instance
                                         .collection('MatchingTest')
                                         .where("user",

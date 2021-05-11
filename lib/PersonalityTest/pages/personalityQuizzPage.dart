@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:matched_app/MatchingQuizz/result.dart';
 import 'package:matched_app/MatchingQuizz/router.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:matched_app/PersonalityTest/pages/personalityResultPage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class PersonnalityQuizzPage extends StatefulWidget {
   PersonnalityQuizzPage(
       {Key key,
       this.docID = "Not known yet",
-      @required this.identifier = "not known yet",
+      @required this.identifier,
       this.gotInvitation = 0,
       this.otherResult = ""})
       : super(key: key);
@@ -35,6 +36,26 @@ class _PersonnalityQuizzPageState extends State<PersonnalityQuizzPage> {
 
   @override
   Widget build(BuildContext context) {
+    FirebaseFirestore.instance
+        .collection('Personality')
+        .where("identifier", isEqualTo: widget.identifier)
+        .limit(1)
+        .get()
+        .then((QuerySnapshot value) {
+      if (value.docs.isNotEmpty) {
+        String val = value.docs.first.get("answer").toString();
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => PersonalityResultPage(
+                    identifier: widget.identifier,
+                    result: val,
+                    hasValue: true,
+                    myResult: Result.reinit(24, val),
+                  )),
+        );
+      }
+    });
     return Scaffold(
         appBar: AppBar(
           title: Text('Personality Test'),
