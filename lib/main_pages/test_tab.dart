@@ -15,8 +15,8 @@ import 'package:matched_app/PersonalityTest/pages/personalityQuizzPage.dart';
 import 'package:matched_app/RoommateMatching/pages/roommateQuizzPage.dart';
 
 class TestTab extends StatelessWidget {
-  TestTab({Key key, @required this.identifier}) : super(key: key);
-  final String identifier;
+  TestTab({Key key, this.identifier}) : super(key: key);
+  String identifier;
 
   @override
   Widget build(BuildContext context) {

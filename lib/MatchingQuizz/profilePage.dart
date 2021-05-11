@@ -13,6 +13,26 @@ class ProfilePage extends StatelessWidget {
   final String username, image, email;
   String docID = "", identifier;
 
+  void _showDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: new Text("Alert!!"),
+          content: new Text("You can't send an invitation to yourself!!"),
+          actions: <Widget>[
+            new FlatButton(
+              child: new Text("OK"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   Future<String> addInvitation() async {
     FirebaseFirestore databaseReference = FirebaseFirestore.instance;
     DocumentReference ref =
@@ -59,10 +79,14 @@ class ProfilePage extends StatelessWidget {
             ),
             child: Text("send invitation"),
             onPressed: () async {
-              await addInvitation();
-              RouterCustom route = RouterCustom();
-              Navigator.of(context)
-                  .push(route.profileToQuizz(docID, identifier));
+              if (identifier.compareTo(email) == 0) {
+                _showDialog(context);
+              } else {
+                await addInvitation();
+                RouterCustom route = RouterCustom();
+                Navigator.of(context)
+                    .push(route.profileToQuizz(docID, identifier));
+              }
             },
           )
         ],

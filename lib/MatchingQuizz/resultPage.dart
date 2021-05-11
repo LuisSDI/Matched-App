@@ -68,7 +68,7 @@ class _ResultPageState extends State<ResultPage> {
           Container(
             margin: EdgeInsets.all(MediaQuery.of(context).size.height / 10),
             child: Center(
-                child: Text(pourcentage.toString().substring(0, 5) + " % ",
+                child: Text(pourcentage.toString().substring(0, 2) + " % ",
                     style: GoogleFonts.lato(
                         textStyle:
                             TextStyle(fontSize: 60, color: Colors.purple)))),
