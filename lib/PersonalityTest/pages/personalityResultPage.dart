@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:matched_app/MatchingQuizz/result.dart';
 import 'package:matched_app/PersonalityTest/personalityCalcul.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:matched_app/main_pages/home_page.dart';
 
 class PersonalityResultPage extends StatefulWidget {
   PersonalityResultPage(
@@ -71,6 +72,7 @@ class _PersonalityResultPageState extends State<PersonalityResultPage> {
       ),
       body: Center(
           child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
             padding: EdgeInsets.all(15),
@@ -123,6 +125,19 @@ class _PersonalityResultPageState extends State<PersonalityResultPage> {
               ),
             ),
           ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              primary: Colors.purple,
+            ),
+            child: Text("return"),
+            onPressed: () async {
+              MaterialPageRoute(
+                builder: (context) => HomePage(
+                  identifier: widget.identifier,
+                ),
+              );
+            },
+          )
         ],
       )),
     );
