@@ -1,8 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:matched_app/MatchingQuizz/result.dart';
+import 'package:matched_app/MatchingQuizz/router.dart';
 import 'package:matched_app/PersonalityTest/personalityCalcul.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:matched_app/bloc/user_bloc.dart';
 import 'package:matched_app/main_pages/home_page.dart';
 
 class PersonalityResultPage extends StatefulWidget {
@@ -127,15 +131,14 @@ class _PersonalityResultPageState extends State<PersonalityResultPage> {
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              primary: Colors.purple,
+              primary: Colors.teal,
             ),
             child: Text("return"),
             onPressed: () async {
-              MaterialPageRoute(
-                builder: (context) => HomePage(
-                  identifier: widget.identifier,
-                ),
-              );
+              UserBloc userBloc = BlocProvider.of(context);
+              User currentUser = userBloc.currentUser;
+              RouterCustom route = RouterCustom();
+              Navigator.of(context).push(route.toHomePage(currentUser.email));
             },
           )
         ],

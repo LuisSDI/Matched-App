@@ -1,3 +1,4 @@
+import 'package:google_fonts/google_fonts.dart';
 import 'package:matched_app/PersonalityTest/questionPersonality.dart';
 import 'package:flutter/material.dart';
 import 'package:matched_app/MatchingQuizz/result.dart';
@@ -68,8 +69,17 @@ class _PersonnalityQuizzPageState extends State<PersonnalityQuizzPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text("Instruction"),
-                    Text(""),
+                    Container(
+                      padding: EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        color: Colors.teal,
+                      ),
+                      child: Text(
+                          "Choose what best describe you from the 24 sets",
+                          style: GoogleFonts.lato(
+                              textStyle: TextStyle(
+                                  fontSize: 18, color: Colors.white))),
+                    ),
                     QuestionPersonality(
                       title: "1. ",
                       a1: "A - Restrained",

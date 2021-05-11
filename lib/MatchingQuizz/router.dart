@@ -4,6 +4,7 @@ import 'package:matched_app/MatchingQuizz/invitationTab.dart';
 import 'package:matched_app/MatchingQuizz/matchingScreen.dart';
 import 'package:matched_app/MatchingQuizz/matchingScreenPage.dart';
 import 'package:matched_app/MatchingQuizz/result.dart';
+import 'package:matched_app/main_pages/home_page.dart';
 import 'quizzPage.dart';
 import 'resultPage.dart';
 import 'profilePage.dart';
@@ -13,6 +14,26 @@ import 'package:matched_app/PersonalityTest/pages/personalityResultPage.dart';
 import 'package:matched_app/RoommateMatching/pages/testDone.dart';
 
 class RouterCustom {
+  Route toHomePage(String identifier) {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) =>
+          HomePage(identifier: identifier),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        var begin = Offset(0.0, 0.1);
+        var end = Offset.zero;
+        var curve = Curves.ease;
+
+        var tween =
+            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+        return SlideTransition(
+          position: animation.drive(tween),
+          child: child,
+        );
+      },
+    );
+  }
+
   Route quizzToResult(Result r) {
     return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) =>
