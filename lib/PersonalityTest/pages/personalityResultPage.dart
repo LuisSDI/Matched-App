@@ -22,12 +22,13 @@ class _PersonalityResultPageState extends State<PersonalityResultPage> {
 
   FirebaseFirestore databaseReference = FirebaseFirestore.instance;
 
-  void createRecord(String personality) async {
+  void createRecord(String personality, String personality2) async {
     DocumentReference ref =
         await databaseReference.collection("Personality").add({
       'identifier': widget.identifier,
       'answer': widget.myResult.res,
-      'personality': personality
+      'personality': personality,
+      'personality2': personality2
     });
     print("");
   }
@@ -39,7 +40,8 @@ class _PersonalityResultPageState extends State<PersonalityResultPage> {
     PersonalityCalcul ca = PersonalityCalcul();
     personalityVal = ca.getPersonnality(widget.myResult.res);
     String personality = personalityVal.split(" ")[0];
-    createRecord(personality);
+    String personality2 = personalityVal.split("|")[1].split(" ")[0];
+    createRecord(personality, personality2);
   }
 
   @override
@@ -50,7 +52,9 @@ class _PersonalityResultPageState extends State<PersonalityResultPage> {
       ),
       body: Center(
           child: Column(
-        children: [Text('Your personality is : ' + personalityVal)],
+        children: [
+          Text('Your personality is : ' + personalityVal.split("|")[0])
+        ],
       )),
     );
   }

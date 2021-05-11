@@ -1,8 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:matched_app/MatchingQuizz/matchingScreen.dart';
+import 'package:matched_app/bloc/user_bloc.dart';
 import 'package:matched_app/main_pages/explore_pages/colleges_pages/college_template.dart';
 import 'package:matched_app/resources/major_buttom.dart';
 import 'package:matched_app/resources/major_screen.dart';
@@ -17,6 +20,8 @@ class TestTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    UserBloc userBloc = BlocProvider.of(context);
+    User currentUser = userBloc.currentUser;
     ScreenScaler scaler = ScreenScaler()..init(context);
     return SingleChildScrollView(
       child: Column(
@@ -51,7 +56,7 @@ class TestTab extends StatelessWidget {
               detail: '''Personality \nTest'''.trim(),
               image: "assets/images_sse_majors/CSE.png",
               alignment: Alignment(-.3, 0),
-              screen: PersonnalityQuizzPage(identifier: identifier),
+              screen: PersonnalityQuizzPage(identifier: currentUser.email),
             ),
           ),
           //Roommate Button
@@ -64,7 +69,7 @@ class TestTab extends StatelessWidget {
             child: MajorButtom(
               detail: '''Roommate \nMatching'''.trim(),
               image: "assets/images_sse_majors/EIE.png",
-              screen: RoommateQuizzPage(identifier: identifier),
+              screen: RoommateQuizzPage(identifier: currentUser.email),
             ),
           ),
           //Do We Button
@@ -79,7 +84,7 @@ class TestTab extends StatelessWidget {
               image: "assets/images_sse_majors/NES.png",
               alignment: Alignment(.8, 0),
               screen: MatchingScreen(
-                identifier: identifier,
+                identifier: currentUser.email,
                 title: "Do we match?",
               ),
             ),

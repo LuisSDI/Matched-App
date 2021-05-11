@@ -19,23 +19,65 @@ class PersonalityCalcul {
         dominantMatch >= steadyMatch &&
         dominantMatch >= conscientiousMatch) {
       val = "dominant - " + dominantMatch.toString() + "% ";
+      if (influencingMatch >= steadyMatch &&
+          influencingMatch >= conscientiousMatch) {
+        val += "|influencing - " + influencingMatch.toString() + "% ";
+      }
+      if (steadyMatch >= influencingMatch &&
+          steadyMatch >= conscientiousMatch) {
+        val += "|steady - " + steadyMatch.toString() + "% ";
+      }
+      if (conscientiousMatch >= steadyMatch &&
+          conscientiousMatch >= influencingMatch) {
+        val += "|conscientious - " + conscientiousMatch.toString() + "% ";
+      }
     }
     if (influencingMatch >= dominantMatch &&
         influencingMatch >= steadyMatch &&
         influencingMatch >= conscientiousMatch) {
       val = "influencing - " + influencingMatch.toString() + "% ";
-      ;
+      if (dominantMatch >= steadyMatch && dominantMatch >= conscientiousMatch) {
+        val += "|dominant - " + dominantMatch.toString() + "% ";
+      }
+      if (steadyMatch >= dominantMatch && steadyMatch >= conscientiousMatch) {
+        val += "|steady - " + steadyMatch.toString() + "% ";
+      }
+      if (conscientiousMatch >= steadyMatch &&
+          conscientiousMatch >= dominantMatch) {
+        val += "|conscientious - " + conscientiousMatch.toString() + "% ";
+      }
     }
     if (steadyMatch >= influencingMatch &&
         steadyMatch >= dominantMatch &&
         steadyMatch >= conscientiousMatch) {
       val = "steady - " + steadyMatch.toString() + "% ";
-      ;
+      if (dominantMatch >= influencingMatch &&
+          dominantMatch >= conscientiousMatch) {
+        val += "|dominant - " + dominantMatch.toString() + "% ";
+      }
+      if (influencingMatch >= dominantMatch &&
+          influencingMatch >= conscientiousMatch) {
+        val += "|influencing - " + influencingMatch.toString() + "% ";
+      }
+      if (conscientiousMatch >= influencingMatch &&
+          conscientiousMatch >= dominantMatch) {
+        val += "|conscientious - " + conscientiousMatch.toString() + "% ";
+      }
     }
     if (conscientiousMatch >= influencingMatch &&
         conscientiousMatch >= steadyMatch &&
         conscientiousMatch >= dominantMatch) {
       val = "conscientious - " + conscientiousMatch.toString() + "% ";
+      if (dominantMatch >= steadyMatch && dominantMatch >= influencingMatch) {
+        val += "|dominant - " + dominantMatch.toString() + "% ";
+      }
+      if (influencingMatch >= steadyMatch &&
+          influencingMatch >= dominantMatch) {
+        val += "|influencing - " + influencingMatch.toString() + "% ";
+      }
+      if (steadyMatch >= dominantMatch && steadyMatch >= influencingMatch) {
+        val += "|steady - " + steadyMatch.toString() + "% ";
+      }
     }
     return val;
   }
