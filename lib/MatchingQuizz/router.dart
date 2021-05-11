@@ -14,6 +14,26 @@ import 'package:matched_app/PersonalityTest/pages/personalityResultPage.dart';
 import 'package:matched_app/RoommateMatching/pages/testDone.dart';
 
 class RouterCustom {
+  Route toPersonalityQuizz(String identifier) {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) =>
+          PersonnalityQuizzPage(identifier: identifier),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        var begin = Offset(0.0, 0.1);
+        var end = Offset.zero;
+        var curve = Curves.ease;
+
+        var tween =
+            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+        return SlideTransition(
+          position: animation.drive(tween),
+          child: child,
+        );
+      },
+    );
+  }
+
   Route toHomePage(String identifier) {
     return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) =>
