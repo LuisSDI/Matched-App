@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:matched_app/MatchingQuizz/router.dart';
 import 'package:matched_app/MatchingQuizz/result.dart';
 
@@ -40,7 +41,10 @@ class InvitationTab extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Text("" + document['from']),
+                        Text("" + document['from'],
+                            style: GoogleFonts.lato(
+                                textStyle: TextStyle(
+                                    fontSize: 16, color: Colors.black))),
                         ElevatedButton(
                             style: ElevatedButton.styleFrom(
                               primary: Colors.purple,
@@ -57,12 +61,14 @@ class InvitationTab extends StatelessWidget {
                                     .then((QuerySnapshot value) {
                                   if (value.docs.isNotEmpty) {
                                     RouterCustom route = RouterCustom();
+
                                     Navigator.of(context).push(
                                         route.invitationToQuizz(
                                             value.docs.first
                                                 .get("result")
                                                 .toString(),
-                                            identifier));
+                                            identifier,
+                                            document['from']));
                                   }
                                 });
                               }).catchError((error) =>
@@ -105,7 +111,10 @@ class InvitationTab extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Text("" + document['to']),
+                            Text("" + document['to'],
+                                style: GoogleFonts.lato(
+                                    textStyle: TextStyle(
+                                        fontSize: 16, color: Colors.black))),
                             ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                   primary: Colors.purple,
@@ -132,7 +141,8 @@ class InvitationTab extends StatelessWidget {
                                           .toString();
                                     }
                                   }).then((value) async {
-                                    String res2 = document['valueOfTo'];
+                                    String res2 = document['valueOfTo'],
+                                        email = document['from'];
                                     await FirebaseFirestore.instance
                                         .collection('MatchingTest')
                                         .where("user",
@@ -149,8 +159,8 @@ class InvitationTab extends StatelessWidget {
                                       Result r1 = Result(res1),
                                           r2 = Result(res2);
                                       RouterCustom route = RouterCustom();
-                                      Navigator.of(context).push(
-                                          route.invitationToResult(r1, r2));
+                                      Navigator.of(context).push(route
+                                          .invitationToResult(r1, r2, email));
                                     });
                                   });
                                 }),

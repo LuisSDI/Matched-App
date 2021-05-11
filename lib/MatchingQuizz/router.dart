@@ -33,10 +33,10 @@ class RouterCustom {
     );
   }
 
-  Route quizzToFinalResult(Result r, Result r2) {
+  Route quizzToFinalResult(Result r, Result r2, String email) {
     return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) =>
-          ResultPage(myResult: r, otherResult: r2),
+          ResultPage(myResult: r, otherResult: r2, otherName: email),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         var begin = Offset(0.0, 0.1);
         var end = Offset.zero;
@@ -97,10 +97,14 @@ class RouterCustom {
     );
   }
 
-  Route invitationToQuizz(String otherResult, String identifier) {
+  Route invitationToQuizz(
+      String otherResult, String identifier, String otherEmail) {
     return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) => QuizzPage(
-          gotInvitation: 2, otherResult: otherResult, identifier: identifier),
+          gotInvitation: 2,
+          otherResult: otherResult,
+          identifier: identifier,
+          otherEmail: otherEmail),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         var begin = Offset(0.0, 1.0);
         var end = Offset.zero;
@@ -117,10 +121,11 @@ class RouterCustom {
     );
   }
 
-  Route invitationToResult(Result myResult, Result otherResult) {
+  Route invitationToResult(
+      Result myResult, Result otherResult, String otherEmail) {
     return PageRouteBuilder(
-      pageBuilder: (context, animation, secondaryAnimation) =>
-          ResultPage(myResult: myResult, otherResult: otherResult),
+      pageBuilder: (context, animation, secondaryAnimation) => ResultPage(
+          myResult: myResult, otherResult: otherResult, otherName: otherEmail),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         var begin = Offset(0.0, 1.0);
         var end = Offset.zero;

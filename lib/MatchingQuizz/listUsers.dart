@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:matched_app/MatchingQuizz/router.dart';
 
 class ListUsers extends StatefulWidget {
@@ -75,7 +76,10 @@ class _ListUsersState extends State<ListUsers> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Image.network(document['photoURL']),
-                            Text("" + document['full name']),
+                            Text("" + document['full name'],
+                                style: GoogleFonts.lato(
+                                    textStyle: TextStyle(
+                                        fontSize: 12, color: Colors.black))),
                             ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                   primary: Colors.purple,

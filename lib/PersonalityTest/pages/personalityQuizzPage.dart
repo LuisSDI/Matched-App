@@ -48,8 +48,7 @@ class _PersonnalityQuizzPageState extends State<PersonnalityQuizzPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text("Instruction"),
-                    Text(
-                        "There are 24 numbers, each number have 4 options. Choose one that describe yourself as you generally are now, not as you wish to be in the future. Describe yourself, as you honestly see yourself. Your spontaneous answer is usually the most accurate."),
+                    Text(""),
                     QuestionPersonality(
                       title: "1. ",
                       a1: "A - Restrained",

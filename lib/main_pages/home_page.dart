@@ -14,8 +14,15 @@ import 'apply_tab.dart';
 import 'explore_tab.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key key, @required this.identifier}) : super(key: key);
+  HomePage(
+      {Key key,
+      @required this.identifier,
+      this.currentIndex = 0,
+      this.hasIndex = false})
+      : super(key: key);
   final String identifier;
+  int currentIndex;
+  bool hasIndex;
 
   @override
   _HomePageState createState() => _HomePageState(this.identifier);
@@ -28,11 +35,19 @@ class _HomePageState extends State<HomePage> {
   _HomePageState(String ident) {
     this.identifier2 = ident;
   }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   int _currentIndex = 0;
 
   Widget build(BuildContext context) {
+    // if (widget.hasIndex) {
+    //   _currentIndex = widget.currentIndex;
+    // }
     List<Widget> _children = [
       ExploreTab(),
       DiscoverTab(),

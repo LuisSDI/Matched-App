@@ -11,10 +11,11 @@ class QuizzPage extends StatefulWidget {
       this.docID = "Not known yet",
       @required this.identifier = "not known yet",
       this.gotInvitation = 0,
-      this.otherResult = ""})
+      this.otherResult = "",
+      this.otherEmail})
       : super(key: key);
   final Result myResult = Result("");
-  String docID, identifier, otherResult;
+  String docID, identifier, otherResult, otherEmail;
   int gotInvitation;
 
   @override
@@ -90,8 +91,8 @@ class _QuizzPageState extends State<QuizzPage> {
           Result myRes = Result(val);
           //updateInvitationTo(val);
           RouterCustom route = RouterCustom();
-          Navigator.of(context)
-              .push(route.quizzToFinalResult(myRes, _otherResult));
+          Navigator.of(context).push(
+              route.quizzToFinalResult(myRes, _otherResult, widget.otherEmail));
         }
         if (widget.gotInvitation == 3) {}
       }
@@ -270,8 +271,8 @@ class _QuizzPageState extends State<QuizzPage> {
                               addResult();
                               RouterCustom route = RouterCustom();
                               Navigator.of(context).push(
-                                  route.quizzToFinalResult(
-                                      widget.myResult, _otherResult));
+                                  route.quizzToFinalResult(widget.myResult,
+                                      _otherResult, widget.otherEmail));
                             }
                           }),
                     ],
