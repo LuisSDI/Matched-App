@@ -25,6 +25,7 @@ class PersonnalityQuizzPage extends StatefulWidget {
 
 class _PersonnalityQuizzPageState extends State<PersonnalityQuizzPage> {
   Result _myResult = Result("");
+  int count = 0;
   Result _otherResult;
   @override
   void initState() {
@@ -33,30 +34,29 @@ class _PersonnalityQuizzPageState extends State<PersonnalityQuizzPage> {
     _otherResult = Result(widget.otherResult);
   }
 
-  FirebaseFirestore databaseReference = FirebaseFirestore.instance;
-
   @override
   Widget build(BuildContext context) {
-    FirebaseFirestore.instance
-        .collection('Personality')
-        .where("identifier", isEqualTo: widget.identifier)
-        .limit(1)
-        .get()
-        .then((QuerySnapshot value) {
-      if (value.docs.isNotEmpty) {
-        String val = value.docs.first.get("answer").toString();
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => PersonalityResultPage(
-                    identifier: widget.identifier,
-                    result: val,
-                    hasValue: true,
-                    myResult: Result.reinit(24, val),
-                  )),
-        );
-      }
-    });
+    // FirebaseFirestore.instance
+    //     .collection('Personality')
+    //     .where("identifier", isEqualTo: widget.identifier)
+    //     .limit(1)
+    //     .get()
+    //     .then((QuerySnapshot value) {
+    //   if (value.docs.isNotEmpty) {
+    //     String val = value.docs.first.get("answer").toString();
+
+    //     Navigator.push(
+    //       context,
+    //       MaterialPageRoute(
+    //           builder: (context) => PersonalityResultPage(
+    //                 identifier: widget.identifier,
+    //                 result: val,
+    //                 hasValue: true,
+    //                 myResult: Result.reinit(24, val),
+    //               )),
+    //     );
+    //   }
+    // });
     return Scaffold(
         appBar: AppBar(
           title: Text('Personality Test'),

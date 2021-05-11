@@ -282,6 +282,31 @@ class RouterCustom {
     );
   }
 
+  Route toPersonalityResult(String identifier, String val) {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) =>
+          PersonalityResultPage(
+        identifier: identifier,
+        result: val,
+        hasValue: true,
+        myResult: Result.reinit(24, val),
+      ),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        var begin = Offset(0.0, 1.0);
+        var end = Offset.zero;
+        var curve = Curves.ease;
+
+        var tween =
+            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+        return SlideTransition(
+          position: animation.drive(tween),
+          child: child,
+        );
+      },
+    );
+  }
+
   Route profileToQuizz(String docID, String identifier) {
     return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) =>
