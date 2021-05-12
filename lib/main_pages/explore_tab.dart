@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:matched_app/main_pages/explore_pages/colleges_pages/colleges_info.dart';
 import 'package:matched_app/main_pages/explore_pages/colleges_screen.dart';
 import 'package:matched_app/main_pages/explore_pages/facilities_screen.dart';
 import 'package:matched_app/main_pages/explore_pages/faq_screen.dart';
@@ -22,8 +23,7 @@ class ExploreTab extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              ImageSlider(key: key, imgList: ['assets/images/image_2.png','assets/images/image_2.png'
-              ,'assets/images/image_2.png']),
+              ImageSlider(key: key, imgList: CollegesInfo().collegesList),
             Container(
               child: Image(
                 image: AssetImage('assets/images/image_1.png'),

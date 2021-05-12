@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:matched_app/main_pages/explore_pages/colleges_pages/college_template.dart';
+import 'package:matched_app/main_pages/explore_pages/service_pages/service_info.dart';
 import 'package:matched_app/resources/image_slider.dart';
 import 'package:matched_app/resources/placeholder_page.dart';
 import 'package:matched_app/resources/screen_buttom.dart';
@@ -53,8 +55,7 @@ class ServiceScreen extends StatelessWidget {
             ),
             //Image Carousel
             ImageSlider(
-              imgList: ['assets/images/image_2.png','assets/images/image_2.png'
-                ,'assets/images/image_2.png'],
+              imgList: ServiceInfo().serviceList,
             ),
             Column(
               children: <Widget>[
@@ -68,13 +69,21 @@ class ServiceScreen extends StatelessWidget {
                         detail: '''Career Service Center'''
                             .trim(),
                         iconData: MaterialCommunityIcons.library,
-                        screen: PlaceHolderPage(),
+                        screen: CollegeTemplate(
+                          desc: ServiceInfo().cscDesc,
+                          title: '''Career Service Center''',
+                          imagesList: ServiceInfo().cscList,
+                        ),
                       ),
                       ScreenButtom(
                         detail: '''SALL 
 Center'''.trim(),
                         iconData: FontAwesome.soccer_ball_o,
-                        screen: PlaceHolderPage(),
+                        screen: CollegeTemplate(
+                          title: '''SALL Center''',
+                          desc: ServiceInfo().sallDesc,
+                          imagesList: ServiceInfo().sallList,
+                        ),
                       ),
                     ],
                   ),
@@ -88,12 +97,20 @@ Center'''.trim(),
                       ScreenButtom(
                         detail: '''CIDE'''.trim(),
                         iconData: Icons.store,
-                        screen: PlaceHolderPage(),
+                        screen: CollegeTemplate(
+                          title: 'CIDE',
+                          desc: ServiceInfo().cideDesc,
+                          imagesList: ServiceInfo().cideList,
+                        ),
                       ),
                       ScreenButtom(
                         detail: 'Health Center',
-                        iconData: Icons.local_play,
-                        screen: PlaceHolderPage(),
+                        iconData: Icons.healing,
+                        screen: CollegeTemplate(
+                          title: 'Health Template',
+                          desc: ServiceInfo().healthDesc,
+                          imagesList: ServiceInfo().healthList,
+                        ),
                       ),
                     ],
                   ),

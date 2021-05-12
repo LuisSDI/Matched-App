@@ -59,7 +59,7 @@ class MainPageButton extends StatelessWidget {
                 style: GoogleFonts.lato(
                     textStyle: TextStyle(
                       //height: .5,
-                        fontSize: 23,
+                        fontSize: 20,
                         color: Colors.white,
                         fontWeight: FontWeight.bold)),
               ),
