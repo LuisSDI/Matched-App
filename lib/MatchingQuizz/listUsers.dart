@@ -87,7 +87,7 @@ class _ListUsersState extends State<ListUsers> {
                                 child: Text('see'),
                                 onPressed: () {
                                   RouterCustom route = RouterCustom();
-                                  dispose();
+
                                   Navigator.of(context).push(
                                       route.listToProfile(
                                           document['full name'],

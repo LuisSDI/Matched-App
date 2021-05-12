@@ -56,9 +56,10 @@ class TestTab extends StatelessWidget {
                   right: scaler.getHeight(1.5)),
               child: MajorButtom(
                 detail: '''Personality \nTest'''.trim(),
-                image: "assets/images_sse_majors/CSE.png",
+                image: "assets/images/disc/Disc2.jpg",
                 alignment: Alignment(-.3, 0),
-                screen: PersonnalityQuizzPage(uid: currentUser.uid, identifier: currentUser.email),
+                screen: PersonnalityQuizzPage(
+                    uid: currentUser.uid, identifier: currentUser.email),
               ),
             ),
             //Roommate Button
@@ -70,8 +71,9 @@ class TestTab extends StatelessWidget {
                   right: scaler.getHeight(1.5)),
               child: MajorButtom(
                 detail: '''Roommate \nMatching'''.trim(),
-                image: "assets/images_sse_majors/EIE.png",
-                screen: RoommateQuizzPage(uid: currentUser.uid, identifier: currentUser.email),
+                image: "assets/images/disc/roommate.jpg",
+                screen: RoommateQuizzPage(
+                    uid: currentUser.uid, identifier: currentUser.email),
               ),
             ),
             //Do We Button
@@ -83,7 +85,7 @@ class TestTab extends StatelessWidget {
                   right: scaler.getHeight(1.5)),
               child: MajorButtom(
                 detail: '''"Do we \nMatch?"'''.trim(),
-                image: "assets/images_sse_majors/NES.png",
+                image: "assets/images/disc/doWeMatch.jpg",
                 alignment: Alignment(.8, 0),
                 screen: MatchingScreen(
                   identifier: currentUser.email,

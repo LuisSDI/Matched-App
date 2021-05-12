@@ -10,10 +10,10 @@ class PersonalityCalcul {
         steady = Result.reinit(24, "141334243431423342333211"),
         conscientious = Result.reinit(24, "324213132122312414124132");
 
-    double dominantMatch = r.calculateMatchWithFour(dominant),
-        influencingMatch = r.calculateMatchWithFour(influencing),
-        steadyMatch = r.calculateMatchWithFour(steady),
-        conscientiousMatch = r.calculateMatchWithFour(conscientious);
+    double dominantMatch = r.calculateMatchWithFourPersonality(dominant),
+        influencingMatch = r.calculateMatchWithFourPersonality(influencing),
+        steadyMatch = r.calculateMatchWithFourPersonality(steady),
+        conscientiousMatch = r.calculateMatchWithFourPersonality(conscientious);
 
     if (dominantMatch >= influencingMatch &&
         dominantMatch >= steadyMatch &&

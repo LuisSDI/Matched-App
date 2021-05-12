@@ -19,7 +19,7 @@ class _TestDonePageState extends State<TestDonePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Test done'),
+          title: Text('Roommate matching test'),
         ),
         body: Center(
             child: Column(
