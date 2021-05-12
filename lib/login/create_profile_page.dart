@@ -378,7 +378,7 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
               email: firebaseUser.email,
               name: name,
               photoUrL: (firebaseUser.photoURL == null)
-                  ? 'https://firebasestorage.googleapis.com/v0/b/cuhk-shenzhen-app.appspot.com/o/no_photo.png?alt=media&token=f444bdb5-4857-4c54-9268-2c7cf3970ca2'
+                  ? 'https://firebasestorage.googleapis.com/v0/b/matched-app-9cb6a.appspot.com/o/default_photo.png?alt=media&token=0fd6fc78-4558-4731-a707-d8068bae2069'
                   : firebaseUser.photoURL,
               uid: firebaseUser.uid,
               description: description,
