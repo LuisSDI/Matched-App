@@ -68,8 +68,7 @@ class CollegeScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
                       ScreenButtom(
-                        detail: '''Shaw'''
-                            .trim(),
+                        detail: '''Shaw'''.trim(),
                         iconData: FixIcons.shaw,
                         screen: CollegeTemplate(
                           desc: CollegesInfo().shawDesc,
@@ -120,8 +119,7 @@ class CollegeScreen extends StatelessWidget {
             ),
             Container(
               height: scaler.getHeight(10),
-              decoration: BoxDecoration(
-                  gradient:turkish),
+              decoration: BoxDecoration(gradient: turkish),
             ),
           ],
         ),
