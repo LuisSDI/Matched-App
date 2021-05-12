@@ -60,6 +60,7 @@ class CloudFireStoreAPI {
 
   void updateUserData(UserModel user) async {
     List<String> substring = List<String>();
+    substring.add(" ");
     for(int i=0; i<user.name.length; i++){
       substring.add(user.name.substring(0,i+1));
     }
@@ -136,6 +137,15 @@ class CloudFireStoreAPI {
     return pTestResult;
   }
 
+  Future<String> getSecondPersonality(String userID) async {
+    String pTestResult;
+    Future<DocumentSnapshot> document = personality.doc(userID).get();
+    await document.then<dynamic>((DocumentSnapshot value) async {
+      pTestResult = value.get("personality2");
+    });
+    return pTestResult;
+  }
+
   Future<String> getRoommateMatchingResult(String userID) async {
     String roommateMatchingResult;
     Future<DocumentSnapshot> document = roommate.doc(userID).get();
@@ -144,5 +154,4 @@ class CloudFireStoreAPI {
     });
     return roommateMatchingResult;
   }
-
 }
