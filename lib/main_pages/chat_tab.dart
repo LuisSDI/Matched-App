@@ -52,7 +52,7 @@ class _ChatTabState extends State<ChatTab> {
                               style: GoogleFonts.lato(
                                   textStyle: TextStyle(
                                       fontSize: 36,
-                                      color: Colors.black,
+                                      color: white,
                                       fontWeight: FontWeight.bold)),
                             ),
                           ),

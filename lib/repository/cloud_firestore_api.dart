@@ -16,6 +16,9 @@ class CloudFireStoreAPI {
   final CollectionReference personality =
   FirebaseFirestore.instance.collection('Personality');
 
+  final CollectionReference roommate =
+  FirebaseFirestore.instance.collection('Roommate');
+
   String errorMessage;
 
   String getErrorCloud() {
@@ -124,26 +127,6 @@ class CloudFireStoreAPI {
         .add(map);
   }
 
-  Stream<DocumentSnapshot> getMatchingResult(String userID) {
-    return personality
-        .doc(userID)
-        .snapshots();
-  }
-
-  Future<void> setPersonalityTestResult(
-      String userID,
-      String answer,
-      String identifier,
-      String p1,
-      String p2) async {
-    return await personality.doc(userID).set({
-      'answer': answer,
-      'identifier': identifier,
-      'personality': p1,
-      'personality2': p2
-    }, SetOptions(merge: true));
-  }
-
   Future<String> getPersonalityTestResult(String userID) async {
     String pTestResult;
     Future<DocumentSnapshot> document = personality.doc(userID).get();
@@ -151,6 +134,15 @@ class CloudFireStoreAPI {
       pTestResult = value.get("personality");
     });
     return pTestResult;
+  }
+
+  Future<String> getRoommateMatchingResult(String userID) async {
+    String roommateMatchingResult;
+    Future<DocumentSnapshot> document = roommate.doc(userID).get();
+    await document.then<dynamic>((DocumentSnapshot value) async {
+      roommateMatchingResult = value.get("result");
+    });
+    return roommateMatchingResult;
   }
 
 }
