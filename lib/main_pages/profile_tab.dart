@@ -18,6 +18,8 @@ import 'package:matched_app/login/sign_page.dart';
 
 class ProfileTab extends StatelessWidget {
   UserBloc userBloc;
+  FirebaseFirestore databaseReference = FirebaseFirestore.instance;
+  String personality;
 
   @override
   Widget build(BuildContext context) {
@@ -27,42 +29,49 @@ class ProfileTab extends StatelessWidget {
       yield 1;
       await Future<void>.delayed(const Duration(seconds: 120));
     })();
+    userBloc = BlocProvider.of(context);
     return BlocProvider(
       bloc: UserBloc(),
       child: FutureBuilder(
-        builder: (context, snapshot){
-          User firebaseUser = FirebaseAuth.instance.currentUser;
-          userBloc = BlocProvider.of(context);
-          return StreamBuilder(
-                    stream: userBloc.listenUserData(firebaseUser.uid),
-                    builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.active) {
-                        DocumentSnapshot value = snapshot.data;
-                        Map<String, dynamic> data =value.data();
-                        UserModel user = UserModel(
-                          name: data['full name'],
-                          type: data['type'],
-                          description: data['description'],
-                          uid: data['uid'],
-                          photoUrL: data['photoURL'],
-                          email: data['email'],
-                        );
-                        return profile(scaler,
-                            user,
-                            context);
-                      } else {
-                        return Scaffold(
-                          body: Center(
-                            child: CircularProgressIndicator(),
-                          ),
-                        );
-                      }
-                    });
-        }),
+          future: userBloc.getPersonalityTestResult(userBloc.currentUser.uid),
+          builder: (context, snapshot){
+            if (snapshot.connectionState == ConnectionState.done){
+              personality = snapshot.data;
+            }
+            User firebaseUser = FirebaseAuth.instance.currentUser;
+            return StreamBuilder(
+                stream: userBloc.listenUserData(firebaseUser.uid),
+                builder: (context, snapshot) {
+                        if (snapshot.connectionState == ConnectionState.active) {
+                          DocumentSnapshot value = snapshot.data;
+                          Map<String, dynamic> data = value.data();
+                          UserModel user = UserModel(
+                            name: data['full name'],
+                            type: data['type'],
+                            description: data['description'],
+                            uid: data['uid'],
+                            photoUrL: data['photoURL'],
+                            email: data['email'],
+                          );
+                          return profile(scaler,
+                              user,
+                              context);
+                        } else {
+                          return Scaffold(
+                            body: Center(
+                              child: CircularProgressIndicator(),
+                            ),
+                          );
+                        }
+                });
+          }),
     );
   }
 
   Widget profile(ScreenScaler scaler, UserModel users, BuildContext context) {
+    if(personality == null){
+      personality = "Not yet set";
+    }
     return SafeArea(
       top: false,
       child: Container(
@@ -104,8 +113,8 @@ class ProfileTab extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => EditProfile(
-                                          user: users,
-                                        )));
+                                      user: users,
+                                    )));
                           },
                           icon: Icon(
                             MaterialCommunityIcons.account_edit,
@@ -127,28 +136,28 @@ class ProfileTab extends StatelessWidget {
                       borderRadius: BorderRadius.all(
                           Radius.circular(scaler.getWidth(20))),
                       child: FittedBox(
-                        fit: BoxFit.cover,
-                        child: Container(color: mainColor,
-                        child:   Image(
-                          image: NetworkImage(users.photoUrL),
-                          loadingBuilder: (BuildContext context, Widget child,
-                              ImageChunkEvent loadingProgress) {
-                            if (loadingProgress == null) return child;
-                            return Container(
-                              height: scaler.getWidth(40),
-                              width: scaler.getWidth(40),
-                              child: Center(
-                                child: CircularProgressIndicator(
-                                  value: loadingProgress.expectedTotalBytes !=
-                                      null
-                                      ? loadingProgress.cumulativeBytesLoaded /
-                                      loadingProgress.expectedTotalBytes
-                                      : null,
-                                ),
-                              ),
-                            );
-                          },
-                        ),)
+                          fit: BoxFit.cover,
+                          child: Container(color: mainColor,
+                            child:   Image(
+                              image: NetworkImage(users.photoUrL),
+                              loadingBuilder: (BuildContext context, Widget child,
+                                  ImageChunkEvent loadingProgress) {
+                                if (loadingProgress == null) return child;
+                                return Container(
+                                  height: scaler.getWidth(40),
+                                  width: scaler.getWidth(40),
+                                  child: Center(
+                                    child: CircularProgressIndicator(
+                                      value: loadingProgress.expectedTotalBytes !=
+                                          null
+                                          ? loadingProgress.cumulativeBytesLoaded /
+                                          loadingProgress.expectedTotalBytes
+                                          : null,
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),)
 
 
 
@@ -197,9 +206,9 @@ class ProfileTab extends StatelessWidget {
                             'Name',
                             style: GoogleFonts.lato(
                                 textStyle: TextStyle(
-                                    fontSize: 18,
-                                    color: white,
-                                    )),
+                                  fontSize: 18,
+                                  color: white,
+                                )),
                           ),
                         ),
                       ),
@@ -222,7 +231,7 @@ class ProfileTab extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10)),
                       child: FittedBox(
                         fit: BoxFit.contain,
-                        child: Text(users.type,
+                        child: Text(personality,
                           textAlign: TextAlign.right,
                           style: GoogleFonts.lato(
                               textStyle: TextStyle(
@@ -328,9 +337,9 @@ class ProfileTab extends StatelessWidget {
                             textAlign: TextAlign.left,
                             style: GoogleFonts.lato(
                                 textStyle: TextStyle(
-                              fontSize: 16,
-                              color: Colors.black,
-                            )),
+                                  fontSize: 16,
+                                  color: Colors.black,
+                                )),
                           ),
                         ),
                       ),

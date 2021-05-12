@@ -203,10 +203,10 @@ class RouterCustom {
     );
   }
 
-  Route personalityQuizzToResult(Result r, String identifier) {
+  Route personalityQuizzToResult(Result r, String identifier, String uid) {
     return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) =>
-          PersonalityResultPage(myResult: r, identifier: identifier),
+          PersonalityResultPage(myResult: r, identifier: identifier, uid: uid),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         var begin = Offset(0.0, 1.0);
         var end = Offset.zero;
