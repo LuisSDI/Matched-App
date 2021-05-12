@@ -62,34 +62,15 @@ class UserBloc implements Bloc {
   // Chat Feature
   Future<void> addMessage(Message message, UserModel sender, UserModel receiver) => cloudFirestoreRepository.addMessage(message, sender, receiver);
 
-  // Save roommate matching result (for jevon part)
-  Future<void> saveMatchingResult(String userID, String roommateOneUID, String roommateTwoUID, String roommateThreeUID) =>
-      cloudFirestoreRepository.saveMatchingResult(userID, roommateOneUID, roommateTwoUID, roommateThreeUID);
-
-  // Get roommate matching result (for jevon part)
+  // Get roommate matching result
   Stream<DocumentSnapshot> getMatchingResult(String userID) => cloudFirestoreRepository.getMatchingResult(userID);
 
-  // Save personality test result (for axel part)
-  Future<void> savePersonalityTestResult(String userID, String personality) =>
-      cloudFirestoreRepository.savePersonalityTestResult(userID, personality);
+  // Set personality test result
+  Future<void> setPersonalityTestResult(String userID, String answer, String identifier, String p1, String p2)
+  => cloudFirestoreRepository.setPersonalityTestResult(userID, answer, identifier, p1, p2);
 
-  // Get personality test result (for axel part)
-  Stream<DocumentSnapshot> getPersonalityTestResult(String userID) => cloudFirestoreRepository.getPersonalityTestResult(userID);
-
-  // Save "Do We Match?" result (for yas part)
-  Future<void> saveDoWeMatchResult(String userID, String partner, String result) =>
-      cloudFirestoreRepository.saveDoWeMatchResult(userID, partner, result);
-
-  // Get "Do We Match?" result (for yas part)
-  Stream<DocumentSnapshot> getDoWeMatchResult(String userID, String partner) => cloudFirestoreRepository.getDoWeMatchResult(userID, partner);
-
-  // Save 20 Answers from Axel's Part
-  Future<void> save20AnswersResult(String userID, String answer) =>
-      cloudFirestoreRepository.save20AnswersResult(userID, answer);
-
-  // Get 20 Answers from Axel's Part
-  Stream<DocumentSnapshot> get20AnswersResult(String userID) => cloudFirestoreRepository.get20AnswerResult(userID);
-
+  // Get personality test result
+  Future<String> getPersonalityTestResult(String userID) => cloudFirestoreRepository.getPersonalityTestResult(userID);
 
   signOut() {
     authRepository.signOut();
