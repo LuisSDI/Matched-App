@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:matched_app/ui_resources/custom_colors.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
@@ -19,10 +20,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return Container(
       alignment: Alignment.bottomLeft,
       decoration: BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [Color(0xff1DD3B0), Color.fromRGBO(29, 211, 176, 0.8053)])),
+          gradient: turkish),
       child: Padding(
         padding: EdgeInsets.only(top: scaler.getHeight(1)),
         child: Padding(

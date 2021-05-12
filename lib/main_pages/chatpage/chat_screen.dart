@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:matched_app/ui_resources/custom_colors.dart';
 
 class ChatScreen extends StatelessWidget {
 
@@ -34,6 +35,7 @@ class ChatScreen extends StatelessWidget {
       child: BlocProvider(
         bloc: UserBloc(),
         child:Scaffold(
+          backgroundColor: dark,
           key: _scaffkey,
           body: Column(
             children: <Widget>[

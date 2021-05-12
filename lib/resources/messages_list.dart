@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:matched_app/ui_resources/custom_colors.dart';
 
 class MessageList extends StatelessWidget {
 
@@ -68,7 +69,7 @@ class MessageList extends StatelessWidget {
         ),
 
         decoration: BoxDecoration(
-            color: Color.fromRGBO(29, 211, 176, 0.8053),
+            color: mainColor,
             borderRadius: BorderRadius.all(Radius.circular(10))
         ),
       ),

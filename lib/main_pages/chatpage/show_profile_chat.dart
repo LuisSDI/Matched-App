@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:matched_app/ui_resources/custom_colors.dart';
 
 class ShowProfileScreen extends StatelessWidget {
 
@@ -16,6 +17,7 @@ class ShowProfileScreen extends StatelessWidget {
     return SafeArea(
       top: false,
       child: Scaffold(
+        backgroundColor: dark,
         body: Container(
           child: Padding(
             padding: EdgeInsets.only(
@@ -36,7 +38,7 @@ class ShowProfileScreen extends StatelessWidget {
                           child: Container(
                             child: Icon(
                               Ionicons.ios_arrow_back,
-                              color: Color.fromRGBO(29, 211, 176, 0.8053),
+                              color: mainColor,
                               size: 36,
                             ),
                           ),
@@ -55,7 +57,7 @@ class ShowProfileScreen extends StatelessWidget {
                               style: GoogleFonts.lato(
                                   textStyle: TextStyle(
                                       fontSize: 36,
-                                      color: Colors.black,
+                                      color: white,
                                       fontWeight: FontWeight.bold)),
                             ),
                           ),
@@ -105,6 +107,29 @@ class ShowProfileScreen extends StatelessWidget {
                     padding: EdgeInsets.only(top: scaler.getHeight(2)),
                     child: Stack(children: [
                       Container(
+                        padding: EdgeInsets.only(right: scaler.getHeight(.5)),
+                        alignment: Alignment.centerRight,
+                        height: scaler.getHeight(5),
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Color.fromRGBO(29, 211, 176, 0.8053),
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                            color: white),
+                        child: FittedBox(
+                          fit: BoxFit.contain,
+                          child: Text(
+                            user.name,
+                            textAlign: TextAlign.right,
+                            style: GoogleFonts.lato(
+                                textStyle: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold)),
+                          ),
+                        ),
+                      ),
+                      Container(
                         height: scaler.getHeight(5),
                         width: scaler.getHeight(10),
                         decoration: BoxDecoration(
@@ -128,34 +153,24 @@ class ShowProfileScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Container(
-                        padding: EdgeInsets.only(right: scaler.getHeight(.5)),
-                        alignment: Alignment.centerRight,
-                        height: scaler.getHeight(5),
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Color.fromRGBO(29, 211, 176, 0.8053),
-                            ),
-                            borderRadius: BorderRadius.circular(10)),
-                        child: FittedBox(
-                          fit: BoxFit.contain,
-                          child: Text(
-                            user.name,
-                            textAlign: TextAlign.right,
-                            style: GoogleFonts.lato(
-                                textStyle: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold)),
-                          ),
-                        ),
-                      ),
+
                     ]),
                   ),
                   //Country Field
                   Padding(
                     padding: EdgeInsets.only(top: scaler.getHeight(2)),
                     child: Stack(children: [
+                      Container(
+                        padding: EdgeInsets.only(right: scaler.getHeight(.5)),
+                        alignment: Alignment.centerRight,
+                        height: scaler.getHeight(5),
+                        decoration: BoxDecoration(
+                            color: white,
+                            border: Border.all(
+                              color: Color.fromRGBO(29, 211, 176, 0.8053),
+                            ),
+                            borderRadius: BorderRadius.circular(10)),
+                      ),
                       Container(
                         height: scaler.getHeight(5),
                         width: scaler.getHeight(10),
@@ -180,22 +195,36 @@ class ShowProfileScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Container(
-                        padding: EdgeInsets.only(right: scaler.getHeight(.5)),
-                        alignment: Alignment.centerRight,
-                        height: scaler.getHeight(5),
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Color.fromRGBO(29, 211, 176, 0.8053),
-                            ),
-                            borderRadius: BorderRadius.circular(10)),
-                      ),
+
                     ]),
                   ),
                   // I am a ... Field
                   Padding(
                     padding: EdgeInsets.only(top: scaler.getHeight(2)),
                     child: Stack(children: [
+                      Container(
+                        padding: EdgeInsets.only(right: scaler.getHeight(.5)),
+                        alignment: Alignment.centerRight,
+                        height: scaler.getHeight(5),
+                        decoration: BoxDecoration(
+                          color: white,
+                            border: Border.all(
+                              color: Color.fromRGBO(29, 211, 176, 0.8053),
+                            ),
+                            borderRadius: BorderRadius.circular(10)),
+                        child: FittedBox(
+                          fit: BoxFit.contain,
+                          child: Text(
+                            user.type,
+                            textAlign: TextAlign.right,
+                            style: GoogleFonts.lato(
+                                textStyle: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold)),
+                          ),
+                        ),
+                      ),
                       Container(
                         height: scaler.getHeight(5),
                         width: scaler.getHeight(10),
@@ -220,28 +249,7 @@ class ShowProfileScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Container(
-                        padding: EdgeInsets.only(right: scaler.getHeight(.5)),
-                        alignment: Alignment.centerRight,
-                        height: scaler.getHeight(5),
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Color.fromRGBO(29, 211, 176, 0.8053),
-                            ),
-                            borderRadius: BorderRadius.circular(10)),
-                        child: FittedBox(
-                          fit: BoxFit.contain,
-                          child: Text(
-                            user.type,
-                            textAlign: TextAlign.right,
-                            style: GoogleFonts.lato(
-                                textStyle: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold)),
-                          ),
-                        ),
-                      ),
+
                     ]),
                   ),
                   // Description Field
@@ -249,6 +257,29 @@ class ShowProfileScreen extends StatelessWidget {
                     padding: EdgeInsets.only(top: scaler.getHeight(2)),
                     child: Container(
                       child: Stack(children: [
+                        Container(
+                          padding: EdgeInsets.only(left: scaler.getHeight(.5)),
+                          alignment: Alignment.topLeft,
+                          height: scaler.getHeight(20),
+                          decoration: BoxDecoration(
+                            color: white,
+                              border: Border.all(
+                                color: Color.fromRGBO(29, 211, 176, 0.8053),
+                              ),
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Padding(
+                            padding: EdgeInsets.only(top: scaler.getHeight(5)),
+                            child: Text(
+                              user.description,
+                              textAlign: TextAlign.left,
+                              style: GoogleFonts.lato(
+                                  textStyle: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.black,
+                                  )),
+                            ),
+                          ),
+                        ),
                         Container(
                           height: scaler.getHeight(5),
                           alignment: Alignment(0, .5),
@@ -273,28 +304,7 @@ class ShowProfileScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        Container(
-                          padding: EdgeInsets.only(left: scaler.getHeight(.5)),
-                          alignment: Alignment.topLeft,
-                          height: scaler.getHeight(20),
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                color: Color.fromRGBO(29, 211, 176, 0.8053),
-                              ),
-                              borderRadius: BorderRadius.circular(10)),
-                          child: Padding(
-                            padding: EdgeInsets.only(top: scaler.getHeight(5)),
-                            child: Text(
-                              user.description,
-                              textAlign: TextAlign.left,
-                              style: GoogleFonts.lato(
-                                  textStyle: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.black,
-                                  )),
-                            ),
-                          ),
-                        ),
+
                       ]),
                     ),
                   ),
