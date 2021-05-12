@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'result.dart';
 
 class Question extends StatefulWidget {
@@ -45,12 +46,17 @@ class _QuestionState extends State<Question> {
             margin: EdgeInsets.all(10),
             child: Text(
               widget.title,
-              style: TextStyle(fontSize: 20),
+              style: GoogleFonts.lato(
+                  textStyle: TextStyle(fontSize: 20, color: Colors.black)),
             )),
         SizedBox(
           height: 50,
           child: CheckboxListTile(
-              title: Text(widget.a1),
+              title: Text(
+                widget.a1,
+                style: GoogleFonts.lato(
+                    textStyle: TextStyle(fontSize: 12, color: Colors.black)),
+              ),
               value: _ch1,
               controlAffinity: ListTileControlAffinity.leading,
               onChanged: (bool value) {
@@ -68,7 +74,11 @@ class _QuestionState extends State<Question> {
         SizedBox(
           height: 50,
           child: CheckboxListTile(
-              title: Text(widget.a2),
+              title: Text(
+                widget.a2,
+                style: GoogleFonts.lato(
+                    textStyle: TextStyle(fontSize: 12, color: Colors.black)),
+              ),
               value: _ch2,
               controlAffinity: ListTileControlAffinity.leading,
               onChanged: (bool value) {
@@ -86,7 +96,11 @@ class _QuestionState extends State<Question> {
         SizedBox(
           height: 50,
           child: CheckboxListTile(
-              title: Text(widget.a3),
+              title: Text(
+                widget.a3,
+                style: GoogleFonts.lato(
+                    textStyle: TextStyle(fontSize: 12, color: Colors.black)),
+              ),
               value: _ch3,
               controlAffinity: ListTileControlAffinity.leading,
               onChanged: (bool value) {
@@ -104,7 +118,11 @@ class _QuestionState extends State<Question> {
         SizedBox(
           height: 50,
           child: CheckboxListTile(
-              title: Text(widget.a4),
+              title: Text(
+                widget.a4,
+                style: GoogleFonts.lato(
+                    textStyle: TextStyle(fontSize: 12, color: Colors.black)),
+              ),
               value: _ch4,
               controlAffinity: ListTileControlAffinity.leading,
               onChanged: (bool value) {
@@ -123,7 +141,11 @@ class _QuestionState extends State<Question> {
         SizedBox(
           height: 50,
           child: CheckboxListTile(
-              title: Text(widget.a5),
+              title: Text(
+                widget.a5,
+                style: GoogleFonts.lato(
+                    textStyle: TextStyle(fontSize: 12, color: Colors.black)),
+              ),
               value: _ch5,
               controlAffinity: ListTileControlAffinity.leading,
               onChanged: (bool value) {

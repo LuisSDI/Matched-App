@@ -9,14 +9,12 @@ import 'package:matched_app/resources/main_page_buttom.dart';
 import 'package:matched_app/ui_resources/custom_colors.dart';
 import 'package:matched_app/ui_resources/icons/fix_icons_icons.dart';
 
-
 class DiscoverTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ScreenScaler scaler = ScreenScaler()..init(context);
     return SafeArea(
       top: false,
-
       child: Container(
         child: Padding(
           padding: EdgeInsets.only(
@@ -71,10 +69,11 @@ class DiscoverTab extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => CollegeTemplate(
-                                    title: 'How does it work?',
-                                    desc: CollegesInfo().shawDesc,
-                                    imagesList: CollegesInfo().defaultList,
-                                  )));
+                                        title: 'How does it work?',
+                                        desc:
+                                            "There are 24 numbers, each number have 4 options. Choose one that describe yourself as you generally are now, not as you wish to be in the future. Describe yourself, as you honestly see yourself. Your spontaneous answer is usually the most accurate.",
+                                        imagesList: CollegesInfo().defaultList,
+                                      )));
                         },
                         child: Container(
                           decoration: BoxDecoration(
@@ -99,11 +98,10 @@ class DiscoverTab extends StatelessWidget {
                               textAlign: TextAlign.center,
                               style: GoogleFonts.lato(
                                   textStyle: TextStyle(
-                                //height: .5,
-                                fontSize: 23,
-                                color: white,
-                                    fontWeight: FontWeight.bold
-                              )),
+                                      //height: .5,
+                                      fontSize: 23,
+                                      color: white,
+                                      fontWeight: FontWeight.bold)),
                             ),
                           ),
                         ),
@@ -120,13 +118,24 @@ class DiscoverTab extends StatelessWidget {
                           //SSE Button
                           MainPageButton(
                             iconData: FixIcons.analyst,
-                            text: "Analysts",
-                            screen: AnalystsScreen(),
+                            text: "Dominance",
+                            screen: CollegeTemplate(
+                              desc:
+                                  "-Strength- \n \n Dominant personality types are task-oriented, decisive and competitive. They care more about task and result rather than their personal relationship with others. They are a great business partner or project team. Dominant personality types also tend to be impatient and controlling. They love to be fast, move fast, think fast, so they can make a decision and move on. Other behaviours that they usually have are direct, innovative, persistent, adventurous, problem-solver, and result-oriented. \n \n -What to Improve- \n \n But dominant personality types are relatively lacking in empathy for others. Others can think that dominant people are arrogant and bossy. The hardest part for people with dominant personality type is for them to care and understand how others’ feel. Others might think they are arrogant, but they cannot understand why others think so. They can improve with start to think about other’s feelings, how to be empathy to others, and how to slow down.",
+                              imagesList: CollegesInfo().defaultList,
+                              title: """Dominance""",
+                            ),
                           ),
                           //SME Button
-                          MainPageButton(text: "Diplomats",
-                          iconData: FixIcons.diplomats,
-                            screen: AnalystsScreen(),
+                          MainPageButton(
+                            text: "Influence",
+                            iconData: FixIcons.diplomats,
+                            screen: CollegeTemplate(
+                              desc:
+                                  "-Strength- \n \n Influential personality types love to be the center of attention. They are active, enthusiastic, charming, optimist, spontaneous, flexible, and creative. They care about the people around them more than their task or job. They like to interact with people and build relationships. They also tend to be direct and open, and they move fast. They are easy to build a relationship with others, they have their charm to attract people around them. \n \n -What to Improve- \n \n Influential personality types are usually emotional, moody, not detailed, selfish, and swift thinker. They will feel depressed doing things the same way over and over again, or having a monotone life because they are very active and they need variation in what they do. They can improve themselves by trying to be more organized in doing things and put focus more on their jobs.",
+                              imagesList: CollegesInfo().defaultList,
+                              title: """Influence""",
+                            ),
                           )
                         ],
                       ),
@@ -143,15 +152,25 @@ class DiscoverTab extends StatelessWidget {
                         children: <Widget>[
                           //HSS Button
                           MainPageButton(
-                            iconData: FixIcons.sentinel,
-                            text: "Sentinels",
-                            screen: AnalystsScreen(),
+                            iconData: Icons.how_to_reg,
+                            text: "Steadiness",
+                            screen: CollegeTemplate(
+                              desc:
+                                  "-Strength- \n \n The main strength of steady personality types are patient, calm, and willingness to help others. We may see them as peace loving and very diplomatic. They are calm and warm-heartedly. They are good listeners, people enjoy talking to them. They are people-oriented, they can understand the feelings of people talking to them. The motto fits with the steady personality type is “One best friend is better than thousands of friends”. \n \n -What to Improve- \n \n Steady personality types are usually passive, pessimistic, shy, possessive, procrastinator, and sluggish. They feel shy easily especially when they are surrounded by new people, the level of shyness decrease as their closeness to the people around them. They can improve themselves by starting to think positive, be grateful of small good things. They can also start their job as soon as they remember, and finish it sooner.",
+                              imagesList: CollegesInfo().defaultList,
+                              title: """Steadiness""",
+                            ),
                           ),
                           //LHS Button
                           MainPageButton(
                             iconData: FixIcons.explorer,
-                            text: 'Explorers',
-                            screen: AnalystsScreen(),
+                            text: 'Conscientious',
+                            screen: CollegeTemplate(
+                              desc:
+                                  "-Strength- \n \n Just as the personality type “conscientious”, they are precise or accurate. They are also detail, systematic, critical, facts-oriented, orderly, and disciplined. They love following procedures in both personal life and work life. They are not easily agreed with people, they will think things through by collecting the facts they had and they tend to do their job perfectly. They are the definition of neat and structured people. \n \n -What to Improve- \n \n Perfectionism is a good thing, but when it reaches the spot where it is “over”, it will affect both themselves and their workmates. They are usually pessimistic, rigid, subjective, hard to believe in people, like to judge others, over-worried, and over-thinking. They can improve themselves by putting their trust in others and be objective. They should also take a short break and relax. ",
+                              imagesList: CollegesInfo().defaultList,
+                              title: """Conscientious""",
+                            ),
                           ),
                         ],
                       ),
