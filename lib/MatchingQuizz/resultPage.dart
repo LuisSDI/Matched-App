@@ -83,7 +83,8 @@ class _ResultPageState extends State<ResultPage> {
             child: Text("return"),
             onPressed: () async {
               RouterCustom route = RouterCustom();
-              Navigator.of(context).push(route.toMatchingScreen(""));
+              Navigator.of(context).pushAndRemoveUntil(
+                  route.toMatchingScreen(""), (route) => false);
             },
           )
         ],
