@@ -10,7 +10,12 @@ class MajorButtom extends StatefulWidget {
   Alignment alignment;
   Widget screen = Scaffold();
 
-  MajorButtom({@required Key key, @required this.detail, @required this.image, @required this.screen, @required this.alignment})
+  MajorButtom(
+      {@required Key key,
+      @required this.detail,
+      @required this.image = "assets/images/image_2.png",
+      @required this.screen,
+      @required this.alignment})
       : super(key: key);
 
   @override
@@ -49,17 +54,15 @@ class _MajorButtomState extends State<MajorButtom> {
             Expanded(
               flex: 4,
               child: Container(
-                alignment:Alignment.centerLeft ,
+                alignment: Alignment.centerLeft,
                 child: ClipRRect(
                   borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    bottomLeft: Radius.circular(10)
-                  ),
+                      topLeft: Radius.circular(10),
+                      bottomLeft: Radius.circular(10)),
                   child: Image(
-                    image: AssetImage(
-                      //widget.image
-                      'assets/images/image_2.png',
-                    ),
+                    image: AssetImage(widget.image
+                        // 'assets/images/image_2.png',
+                        ),
                     fit: BoxFit.cover,
                     alignment: widget.alignment,
                     height: scaler.getHeight(16),
