@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:matched_app/MatchingQuizz/result.dart';
 import 'package:matched_app/MatchingQuizz/router.dart';
 import 'package:matched_app/bloc/user_bloc.dart';
@@ -25,7 +26,20 @@ class _TestDonePageState extends State<TestDonePage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('Roommate matching result will be out soon!'),
+            Container(
+              margin: EdgeInsets.all(10),
+              padding: EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(180),
+                color: Colors.teal,
+              ),
+              child: Center(
+                child: Text('Roommate matching result will be out soon!',
+                    style: GoogleFonts.lato(
+                        textStyle:
+                            TextStyle(fontSize: 30, color: Colors.white))),
+              ),
+            ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 primary: Colors.teal,
