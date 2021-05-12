@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:async';
 
 import 'package:path/path.dart' as path;
 import 'package:image_picker/image_picker.dart';
@@ -13,9 +14,13 @@ class FirebaseStorageAPI{
 
   Future<String> getImageUrl(String imageId) async {
     ImagePicker picker = ImagePicker();
-    PickedFile imagePicked =
-    await picker.getImage(source: ImageSource.gallery, imageQuality: 80);
+    PickedFile imagePicked = await picker.getImage(source: ImageSource.gallery, imageQuality: 80);
     File imageFile = File(imagePicked.path);
+    // List<Media> imagepic = await ImagesPicker.pick(
+    //   count: 1,
+    //   pickType: PickType.image,
+    // );
+    // File imageFile = File(imagepic.first.path);
     UploadTask uploadTask = await uploadProfilePic(imageId, imageFile);
     return await (await uploadTask.snapshot).ref.getDownloadURL();
   }

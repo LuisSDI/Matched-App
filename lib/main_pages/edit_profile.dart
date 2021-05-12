@@ -158,35 +158,35 @@ class _EditProfileState extends State<EditProfile> {
                               ),
                             ),
 
-                          Positioned(
-                            top: scaler.getWidth(28),
-                            left: scaler.getWidth(29),
-                            child: Container(
-                              width: scaler.getHeight(4),
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: mainColor,
-                                gradient: turkish,
-                              ),
-                              child: IconButton(
-                                onPressed: () async {
-                                  widget.userBloc = BlocProvider.of(context);
-                                  Async_Loader.showLoadingDialog(context,keyLoader);
-                                  String photo = await widget.userBloc
-                                      .getImageUrl(widget.user.uid);
-                                  Navigator.of(context).pop();
-                                  setState(() {
-                                    photoUrL = photo;
-                                  });
-                                },
-                                icon: Icon(
-                                  Icons.camera_alt,
-                                  color: Colors.white,
-                                  size: 20,
-                                ),
-                              ),
-                            ),
-                          ),
+                          // Positioned(
+                          //   top: scaler.getWidth(28),
+                          //   left: scaler.getWidth(29),
+                          //   child: Container(
+                          //     width: scaler.getHeight(4),
+                          //     decoration: BoxDecoration(
+                          //       shape: BoxShape.circle,
+                          //       color: mainColor,
+                          //       gradient: turkish,
+                          //     ),
+                          //     child: IconButton(
+                          //       onPressed: () async {
+                          //         widget.userBloc = BlocProvider.of(context);
+                          //         Async_Loader.showLoadingDialog(context,keyLoader);
+                          //         String photo = await widget.userBloc
+                          //             .getImageUrl(widget.user.uid);
+                          //         Navigator.of(context).pop();
+                          //         setState(() {
+                          //           photoUrL = photo;
+                          //         });
+                          //       },
+                          //       icon: Icon(
+                          //         Icons.camera_alt,
+                          //         color: Colors.white,
+                          //         size: 20,
+                          //       ),
+                          //     ),
+                          //   ),
+                          // ),
                         ],
                       ),
                     ),
