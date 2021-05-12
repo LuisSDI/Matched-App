@@ -71,7 +71,7 @@ class TestTab extends StatelessWidget {
               child: MajorButtom(
                 detail: '''Roommate \nMatching'''.trim(),
                 image: "assets/images_sse_majors/EIE.png",
-                screen: RoommateQuizzPage(identifier: currentUser.email),
+                screen: RoommateQuizzPage(uid: currentUser.uid, identifier: currentUser.email),
               ),
             ),
             //Do We Button

@@ -62,15 +62,11 @@ class UserBloc implements Bloc {
   // Chat Feature
   Future<void> addMessage(Message message, UserModel sender, UserModel receiver) => cloudFirestoreRepository.addMessage(message, sender, receiver);
 
-  // Get roommate matching result
-  Stream<DocumentSnapshot> getMatchingResult(String userID) => cloudFirestoreRepository.getMatchingResult(userID);
-
-  // Set personality test result
-  Future<void> setPersonalityTestResult(String userID, String answer, String identifier, String p1, String p2)
-  => cloudFirestoreRepository.setPersonalityTestResult(userID, answer, identifier, p1, p2);
-
   // Get personality test result
   Future<String> getPersonalityTestResult(String userID) => cloudFirestoreRepository.getPersonalityTestResult(userID);
+
+  // Get roommate matching result
+  Future<String> getRoommateMatchingResult(String userID) => cloudFirestoreRepository.getRoommateMatchingResult(userID);
 
   signOut() {
     authRepository.signOut();

@@ -13,11 +13,13 @@ class RoommateQuizzPage extends StatefulWidget {
       this.docID = "Not known yet",
       @required this.identifier = "not known yet",
       this.gotInvitation = 0,
-      this.otherResult = ""})
+      this.otherResult = "",
+      this.uid})
       : super(key: key);
   final Result myResult = Result.reinit(15, "");
   String docID, identifier, otherResult;
   int gotInvitation;
+  String uid;
 
   @override
   _RoommateQuizzPageState createState() => _RoommateQuizzPageState();
@@ -36,9 +38,12 @@ class _RoommateQuizzPageState extends State<RoommateQuizzPage> {
   FirebaseFirestore databaseReference = FirebaseFirestore.instance;
 
   void addResult() async {
-    DocumentReference ref = await databaseReference
-        .collection("Roommate")
-        .add({'identifier': widget.identifier, 'result': widget.myResult.res});
+    databaseReference.collection("Roommate").doc(widget.uid).set({
+      'identifier': widget.identifier,
+      'result': widget.myResult.res
+    }).then((_) {
+      print("success!");
+    });
   }
 
   @override
