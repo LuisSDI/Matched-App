@@ -36,27 +36,27 @@ class _PersonnalityQuizzPageState extends State<PersonnalityQuizzPage> {
 
   @override
   Widget build(BuildContext context) {
-    // FirebaseFirestore.instance
-    //     .collection('Personality')
-    //     .where("identifier", isEqualTo: widget.identifier)
-    //     .limit(1)
-    //     .get()
-    //     .then((QuerySnapshot value) {
-    //   if (value.docs.isNotEmpty) {
-    //     String val = value.docs.first.get("answer").toString();
+    FirebaseFirestore.instance
+        .collection('Personality')
+        .where("identifier", isEqualTo: widget.identifier)
+        .limit(1)
+        .get()
+        .then((QuerySnapshot value) {
+      if (value.docs.isNotEmpty) {
+        String val = value.docs.first.get("answer").toString();
 
-    //     Navigator.push(
-    //       context,
-    //       MaterialPageRoute(
-    //           builder: (context) => PersonalityResultPage(
-    //                 identifier: widget.identifier,
-    //                 result: val,
-    //                 hasValue: true,
-    //                 myResult: Result.reinit(24, val),
-    //               )),
-    //     );
-    //   }
-    // });
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => PersonalityResultPage(
+                    identifier: widget.identifier,
+                    result: val,
+                    hasValue: true,
+                    myResult: Result.reinit(24, val),
+                  )),
+        );
+      }
+    });
     return Scaffold(
         appBar: AppBar(
           title: Text('Personality Test'),

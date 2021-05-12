@@ -138,7 +138,8 @@ class _PersonalityResultPageState extends State<PersonalityResultPage> {
               UserBloc userBloc = BlocProvider.of(context);
               User currentUser = userBloc.currentUser;
               RouterCustom route = RouterCustom();
-              Navigator.of(context).push(route.toHomePage(currentUser.email));
+              Navigator.of(context).pushAndRemoveUntil(
+                  route.toHomePage(currentUser.email), (route) => false);
             },
           )
         ],

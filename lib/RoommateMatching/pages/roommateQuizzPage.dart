@@ -43,31 +43,31 @@ class _RoommateQuizzPageState extends State<RoommateQuizzPage> {
 
   @override
   Widget build(BuildContext context) {
-    // FirebaseFirestore.instance
-    //     .collection('Roommate')
-    //     .where("identifier", isEqualTo: widget.identifier)
-    //     .limit(1)
-    //     .get()
-    //     .then((QuerySnapshot value) {
-    //   if (value.docs.isNotEmpty) {
-    //     //String val = value.docs.first.get("result").toString();
-    //     // RouterCustom route = RouterCustom();
-    //     // Navigator.of(context).push(route.toTestDone());
+    FirebaseFirestore.instance
+        .collection('Roommate')
+        .where("identifier", isEqualTo: widget.identifier)
+        .limit(1)
+        .get()
+        .then((QuerySnapshot value) {
+      if (value.docs.isNotEmpty) {
+        //String val = value.docs.first.get("result").toString();
+        // RouterCustom route = RouterCustom();
+        // Navigator.of(context).push(route.toTestDone());
 
-    //     Navigator.push(
-    //       context,
-    //       MaterialPageRoute(
-    //           builder: (context) => TestDonePage(
-    //                 identifier: widget.identifier,
-    //               )),
-    //     );
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => TestDonePage(
+                    identifier: widget.identifier,
+                  )),
+        );
 
-    //     // Navigator.push(
-    //     //   context,
-    //     //   MaterialPageRoute(builder: (context) => TestDonePage()),
-    //     // );
-    //   }
-    // });
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(builder: (context) => TestDonePage()),
+        // );
+      }
+    });
     return Scaffold(
         appBar: AppBar(
           title: Text(
