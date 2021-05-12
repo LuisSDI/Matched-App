@@ -43,6 +43,7 @@ class MainPageButton extends StatelessWidget {
             Container(
               height: scaler.getHeight(8),
               child: FittedBox(
+                fit: BoxFit.contain,
                 child: Icon(
                   iconData,
                   color: Colors.white,
