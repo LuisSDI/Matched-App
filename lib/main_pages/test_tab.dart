@@ -37,7 +37,7 @@ class TestTab extends StatelessWidget {
                 child: FittedBox(
                   fit: BoxFit.contain,
                   child: Text(
-                    "Test,",
+                    "Test",
                     style: GoogleFonts.lato(
                         textStyle: TextStyle(
                             fontSize: 36,

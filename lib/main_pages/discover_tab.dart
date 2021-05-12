@@ -31,7 +31,7 @@ class DiscoverTab extends StatelessWidget {
                     child: FittedBox(
                       fit: BoxFit.contain,
                       child: Text(
-                        "Personalty",
+                        "Personality",
                         style: GoogleFonts.lato(
                             textStyle: TextStyle(
                                 fontSize: 36,
@@ -122,7 +122,7 @@ class DiscoverTab extends StatelessWidget {
                         children: <Widget>[
                           //SSE Button
                           Container(
-                            width:scaler.getWidth(33),
+                            width: scaler.getWidth(33),
                             child: FittedBox(
                               fit: BoxFit.contain,
                               child: MainPageButton(
@@ -139,7 +139,7 @@ class DiscoverTab extends StatelessWidget {
                           ),
                           //SME Button
                           Container(
-                            width:scaler.getWidth(33),
+                            width: scaler.getWidth(33),
                             child: FittedBox(
                               fit: BoxFit.contain,
                               child: MainPageButton(
@@ -169,7 +169,7 @@ class DiscoverTab extends StatelessWidget {
                         children: <Widget>[
                           //HSS Button
                           Container(
-                            width:scaler.getWidth(33),
+                            width: scaler.getWidth(33),
                             child: FittedBox(
                               fit: BoxFit.contain,
                               child: MainPageButton(
@@ -186,7 +186,7 @@ class DiscoverTab extends StatelessWidget {
                           ),
                           //LHS Button
                           Container(
-                            width:scaler.getWidth(33),
+                            width: scaler.getWidth(33),
                             child: FittedBox(
                               fit: BoxFit.contain,
                               child: MainPageButton(

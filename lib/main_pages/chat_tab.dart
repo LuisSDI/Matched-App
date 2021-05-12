@@ -21,7 +21,7 @@ class _ChatTabState extends State<ChatTab> {
     ScreenScaler scaler = ScreenScaler()..init(context);
     final Future<String> _dummy = Future<String>.delayed(
       const Duration(seconds: 2),
-          () => 'Data Loaded',
+      () => 'Data Loaded',
     );
 
     return BlocProvider(
@@ -31,69 +31,70 @@ class _ChatTabState extends State<ChatTab> {
           builder: (context, snapshot) {
             User firebaseUser = FirebaseAuth.instance.currentUser;
             UserBloc userBloc = BlocProvider.of(context);
-              return FutureBuilder(
-                  future: userBloc.getListUsers(firebaseUser.uid),
-                  builder: (context, snapshot){
-              if (snapshot.connectionState == ConnectionState.done) {
-                List<UserModel> users = snapshot.data;
-                return SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(
-                            left: scaler.getWidth(7), top: scaler.getWidth(7)),
-                        child: Container(
-                          height: scaler.getHeight(5),
-                          alignment: Alignment.centerLeft,
-                          child: FittedBox(
-                            fit: BoxFit.contain,
-                            child: Text(
-                              "Chats,",
-                              style: GoogleFonts.lato(
-                                  textStyle: TextStyle(
-                                      fontSize: 36,
-                                      color: white,
-                                      fontWeight: FontWeight.bold)),
+            return FutureBuilder(
+                future: userBloc.getListUsers(firebaseUser.uid),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    List<UserModel> users = snapshot.data;
+                    return SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(
+                                left: scaler.getWidth(7),
+                                top: scaler.getWidth(7)),
+                            child: Container(
+                              height: scaler.getHeight(5),
+                              alignment: Alignment.centerLeft,
+                              child: FittedBox(
+                                fit: BoxFit.contain,
+                                child: Text(
+                                  "Chats",
+                                  style: GoogleFonts.lato(
+                                      textStyle: TextStyle(
+                                          fontSize: 36,
+                                          color: white,
+                                          fontWeight: FontWeight.bold)),
+                                ),
+                              ),
                             ),
                           ),
+                          Padding(
+                            padding: EdgeInsets.only(top: scaler.getHeight(1)),
+                            child: ListView.builder(
+                              itemBuilder: (context, index) {
+                                return Padding(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: scaler.getHeight(2),
+                                    vertical: scaler.getHeight(.5),
+                                  ),
+                                  child: ChatButton(
+                                    user: users[index],
+                                    currentUserUid: firebaseUser.uid,
+                                  ),
+                                );
+                              },
+                              itemCount: users.length,
+                              shrinkWrap: true,
+                              physics: NeverScrollableScrollPhysics(),
+                              padding: EdgeInsets.zero,
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  } else {
+                    return Scaffold(
+                      backgroundColor: dark,
+                      body: Center(
+                        child: CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(mainColor),
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(top: scaler.getHeight(1)),
-                        child: ListView.builder(
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: scaler.getHeight(2),
-                                vertical: scaler.getHeight(.5),
-                              ),
-                              child: ChatButton(
-                                user: users[index],
-                                currentUserUid: firebaseUser.uid,
-                              ),
-                            );
-                          },
-                          itemCount: users.length,
-                          shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
-                          padding: EdgeInsets.zero,
-                        ),
-                      ),
-                    ],
-                  ),
-                );
-              } else {
-                return Scaffold(
-                  backgroundColor: dark,
-                  body: Center(
-                    child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(mainColor),
-                    ),
-                  ),
-                );
-              }
-            });
-          }
-    ),);
+                    );
+                  }
+                });
+          }),
+    );
   }
 }
