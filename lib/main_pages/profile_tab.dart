@@ -1,3 +1,4 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -13,6 +14,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:matched_app/login/sign_page.dart';
 
 //import 'apply_tab.dart';
+
 
 class ProfileTab extends StatelessWidget {
   UserBloc userBloc;
@@ -40,26 +42,28 @@ class ProfileTab extends StatelessWidget {
             return StreamBuilder(
                 stream: userBloc.listenUserData(firebaseUser.uid),
                 builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.active) {
-                    DocumentSnapshot value = snapshot.data;
-                    Map<String, dynamic> data = value.data();
-                    UserModel user = UserModel(
-                      name: data['full name'],
-                      type: data['type'],
-                      description: data['description'],
-                      uid: data['uid'],
-                      photoUrL: data['photoURL'],
-                      email: data['email'],
-                    );
-                    return profile(scaler, user, context);
-                  } else {
-                    return Scaffold(
-                      backgroundColor: dark,
-                      body: Center(
-                        child: CircularProgressIndicator(),
-                      ),
-                    );
-                  }
+                        if (snapshot.connectionState == ConnectionState.active) {
+                          DocumentSnapshot value = snapshot.data;
+                          Map<String, dynamic> data = value.data();
+                          UserModel user = UserModel(
+                            name: data['full name'],
+                            type: data['type'],
+                            description: data['description'],
+                            uid: data['uid'],
+                            photoUrL: data['photoURL'],
+                            email: data['email'],
+                          );
+                          return profile(scaler,
+                              user,
+                              context);
+                        } else {
+                          return Scaffold(
+                            backgroundColor: dark,
+                            body: Center(
+                              child: CircularProgressIndicator(),
+                            ),
+                          );
+                        }
                 });
           }),
     );
@@ -69,6 +73,19 @@ class ProfileTab extends StatelessWidget {
     if (personality == null) {
       personality = "Not yet set";
     }
+    if (personality == "dominant"){
+      updateUser(users,'https://firebasestorage.googleapis.com/v0/b/matched-app-9cb6a.appspot.com/o/d_photo.png?alt=media&token=bbc6a6e7-14db-4532-8b8f-18172185054b');
+    }
+    else if (personality == "influencing"){
+      updateUser(users,'https://firebasestorage.googleapis.com/v0/b/matched-app-9cb6a.appspot.com/o/i_photo.png?alt=media&token=4de47b10-5c2a-4ec4-af35-9b84dd457073');
+    }
+    else if (personality == "steady"){
+      updateUser(users,'https://firebasestorage.googleapis.com/v0/b/matched-app-9cb6a.appspot.com/o/s_photo.png?alt=media&token=ce4fc924-953b-4f66-a421-28481b558c5c');
+    }
+    else if (personality == "conscientious"){
+      updateUser(users,'https://firebasestorage.googleapis.com/v0/b/matched-app-9cb6a.appspot.com/o/c_photo.png?alt=media&token=87cf199d-3218-4b3b-a62b-d83d86e6a88c');
+    }
+
     return SafeArea(
       top: false,
       child: Container(
@@ -110,8 +127,8 @@ class ProfileTab extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => EditProfile(
-                                          user: users,
-                                        )));
+                                      user: users,
+                                    )));
                           },
                           icon: Icon(
                             MaterialCommunityIcons.account_edit,
@@ -134,12 +151,10 @@ class ProfileTab extends StatelessWidget {
                           Radius.circular(scaler.getWidth(20))),
                       child: FittedBox(
                           fit: BoxFit.cover,
-                          child: Container(
-                            color: mainColor,
-                            child: Image(
+                          child: Container(color: mainColor,
+                            child:   Image(
                               image: NetworkImage(users.photoUrL),
-                              loadingBuilder: (BuildContext context,
-                                  Widget child,
+                              loadingBuilder: (BuildContext context, Widget child,
                                   ImageChunkEvent loadingProgress) {
                                 if (loadingProgress == null) return child;
                                 return Container(
@@ -147,19 +162,20 @@ class ProfileTab extends StatelessWidget {
                                   width: scaler.getWidth(40),
                                   child: Center(
                                     child: CircularProgressIndicator(
-                                      value: loadingProgress
-                                                  .expectedTotalBytes !=
-                                              null
-                                          ? loadingProgress
-                                                  .cumulativeBytesLoaded /
-                                              loadingProgress.expectedTotalBytes
+                                      value: loadingProgress.expectedTotalBytes !=
+                                          null
+                                          ? loadingProgress.cumulativeBytesLoaded /
+                                          loadingProgress.expectedTotalBytes
                                           : null,
                                     ),
                                   ),
                                 );
                               },
-                            ),
-                          )),
+                            ),)
+
+
+
+                      ),
                     ),
                   ),
                 ),
@@ -167,6 +183,7 @@ class ProfileTab extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(top: scaler.getHeight(2)),
                   child: Stack(children: [
+
                     Container(
                       padding: EdgeInsets.only(right: scaler.getHeight(.5)),
                       alignment: Alignment.centerRight,
@@ -179,8 +196,7 @@ class ProfileTab extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10)),
                       child: FittedBox(
                         fit: BoxFit.contain,
-                        child: Text(
-                          users.name,
+                        child: Text(users.name,
                           textAlign: TextAlign.right,
                           style: GoogleFonts.lato(
                               textStyle: TextStyle(
@@ -204,9 +220,9 @@ class ProfileTab extends StatelessWidget {
                             'Name',
                             style: GoogleFonts.lato(
                                 textStyle: TextStyle(
-                              fontSize: 18,
-                              color: white,
-                            )),
+                                  fontSize: 18,
+                                  color: white,
+                                )),
                           ),
                         ),
                       ),
@@ -229,8 +245,7 @@ class ProfileTab extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10)),
                       child: FittedBox(
                         fit: BoxFit.contain,
-                        child: Text(
-                          personality,
+                        child: Text(personality,
                           textAlign: TextAlign.right,
                           style: GoogleFonts.lato(
                               textStyle: TextStyle(
@@ -254,9 +269,9 @@ class ProfileTab extends StatelessWidget {
                             'Personality',
                             style: GoogleFonts.lato(
                                 textStyle: TextStyle(
-                              fontSize: 18,
-                              color: Colors.white,
-                            )),
+                                  fontSize: 18,
+                                  color: Colors.white,
+                                )),
                           ),
                         ),
                       ),
@@ -268,6 +283,7 @@ class ProfileTab extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(top: scaler.getHeight(2)),
                   child: Stack(children: [
+
                     Container(
                       padding: EdgeInsets.only(right: scaler.getHeight(.5)),
                       alignment: Alignment.centerRight,
@@ -280,8 +296,7 @@ class ProfileTab extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10)),
                       child: FittedBox(
                         fit: BoxFit.contain,
-                        child: Text(
-                          users.type,
+                        child: Text(users.type,
                           textAlign: TextAlign.right,
                           style: GoogleFonts.lato(
                               textStyle: TextStyle(
@@ -305,9 +320,9 @@ class ProfileTab extends StatelessWidget {
                             'College',
                             style: GoogleFonts.lato(
                                 textStyle: TextStyle(
-                              fontSize: 18,
-                              color: Colors.white,
-                            )),
+                                  fontSize: 18,
+                                  color: Colors.white,
+                                )),
                           ),
                         ),
                       ),
@@ -319,6 +334,7 @@ class ProfileTab extends StatelessWidget {
                   padding: EdgeInsets.only(top: scaler.getHeight(2)),
                   child: Container(
                     child: Stack(children: [
+
                       Container(
                         padding: EdgeInsets.only(left: scaler.getHeight(.5)),
                         alignment: Alignment.topLeft,
@@ -331,14 +347,13 @@ class ProfileTab extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10)),
                         child: Padding(
                           padding: EdgeInsets.only(top: scaler.getHeight(5)),
-                          child: Text(
-                            users.description,
+                          child: Text(users.description,
                             textAlign: TextAlign.left,
                             style: GoogleFonts.lato(
                                 textStyle: TextStyle(
-                              fontSize: 16,
-                              color: Colors.black,
-                            )),
+                                  fontSize: 16,
+                                  color: Colors.black,
+                                )),
                           ),
                         ),
                       ),
@@ -401,5 +416,27 @@ class ProfileTab extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  updateUser(UserModel users, String photoURL){
+    List<String> substring = List<String>();
+    substring.add(" ");
+    for(int i=0; i<users.name.length; i++){
+      substring.add(users.name.substring(0,i+1));
+    }
+    DocumentReference ref = FirebaseFirestore.instance.collection("userInfo").doc(users.uid);
+    Map<String,dynamic> data = {
+      "caseSearch": substring,
+      "description": users.description,
+        "email": users.email,
+        "full name": users.name,
+        "lastSignIn": DateTime.now(),
+      "photoURL": photoURL,
+      "type": users.type,
+        "uid": users.uid
+    };
+    ref.set(data).whenComplete((){
+      print("success");
+    });
   }
 }
