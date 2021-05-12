@@ -6,6 +6,7 @@ import 'package:matched_app/MatchingQuizz/router.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:matched_app/PersonalityTest/pages/personalityResultPage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:matched_app/bloc/user_bloc.dart';
 
 class PersonnalityQuizzPage extends StatefulWidget {
   PersonnalityQuizzPage(
@@ -13,11 +14,14 @@ class PersonnalityQuizzPage extends StatefulWidget {
       this.docID = "Not known yet",
       @required this.identifier,
       this.gotInvitation = 0,
-      this.otherResult = ""})
+      this.otherResult = "",
+      this.uid})
       : super(key: key);
   final Result myResult = Result.reinit(24, "");
+  UserBloc userBloc;
   String docID, identifier, otherResult;
   int gotInvitation;
+  String uid;
 
   @override
   _PersonnalityQuizzPageState createState() => _PersonnalityQuizzPageState();
@@ -326,7 +330,7 @@ class _PersonnalityQuizzPageState extends State<PersonnalityQuizzPage> {
                           RouterCustom route = RouterCustom();
                           Navigator.of(context).push(
                               route.personalityQuizzToResult(
-                                  widget.myResult, widget.identifier));
+                                  widget.myResult, widget.identifier, widget.uid));
                         }),
                   ],
                 ),

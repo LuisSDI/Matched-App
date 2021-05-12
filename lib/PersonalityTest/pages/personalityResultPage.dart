@@ -15,7 +15,7 @@ class PersonalityResultPage extends StatefulWidget {
       @required this.myResult,
       this.hasValue = false,
       this.result,
-      this.value,
+      this.value, this.uid,
       @required this.identifier})
       : super(key: key);
 
@@ -23,6 +23,8 @@ class PersonalityResultPage extends StatefulWidget {
   final String value, identifier;
   String result;
   bool hasValue;
+  String uid;
+  UserBloc userBloc;
 
   @override
   _PersonalityResultPageState createState() => _PersonalityResultPageState();
@@ -36,14 +38,14 @@ class _PersonalityResultPageState extends State<PersonalityResultPage> {
   FirebaseFirestore databaseReference = FirebaseFirestore.instance;
 
   void createRecord(String personality, String personality2) async {
-    DocumentReference ref =
-        await databaseReference.collection("Personality").add({
+    databaseReference.collection("Personality").doc(widget.uid).set({
       'identifier': widget.identifier,
       'answer': widget.myResult.res,
       'personality': personality,
       'personality2': personality2
+    }).then((_){
+      print("success!");
     });
-    print("");
   }
 
   @override

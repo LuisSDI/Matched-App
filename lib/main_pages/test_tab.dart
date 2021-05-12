@@ -23,74 +23,76 @@ class TestTab extends StatelessWidget {
     UserBloc userBloc = BlocProvider.of(context);
     User currentUser = userBloc.currentUser;
     ScreenScaler scaler = ScreenScaler()..init(context);
-    return SingleChildScrollView(
-      child: Column(
-        children: <Widget>[
-          Padding(
-            padding: EdgeInsets.only(
-                top: scaler.getWidth(7), left: scaler.getHeight(1.5)),
-            child: Container(
-              height: scaler.getHeight(5),
-              alignment: Alignment.centerLeft,
-              child: FittedBox(
-                fit: BoxFit.contain,
-                child: Text(
-                  "Test,",
-                  style: GoogleFonts.lato(
-                      textStyle: TextStyle(
-                          fontSize: 36,
-                          color: white,
-                          fontWeight: FontWeight.bold)),
+    return BlocProvider(
+      bloc: UserBloc(),
+      child: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.only(
+                  top: scaler.getWidth(7), left: scaler.getHeight(1.5)),
+              child: Container(
+                height: scaler.getHeight(5),
+                alignment: Alignment.centerLeft,
+                child: FittedBox(
+                  fit: BoxFit.contain,
+                  child: Text(
+                    "Test,",
+                    style: GoogleFonts.lato(
+                        textStyle: TextStyle(
+                            fontSize: 36,
+                            color: white,
+                            fontWeight: FontWeight.bold)),
+                  ),
                 ),
               ),
             ),
-          ),
-          //Personality Button
-          Padding(
-            padding: EdgeInsets.only(
-                top: scaler.getHeight(1),
-                bottom: scaler.getHeight(1),
-                left: scaler.getHeight(1.5),
-                right: scaler.getHeight(1.5)),
-            child: MajorButtom(
-              detail: '''Personality \nTest'''.trim(),
-              image: "assets/images_sse_majors/CSE.png",
-              alignment: Alignment(-.3, 0),
-              screen: PersonnalityQuizzPage(identifier: currentUser.email),
-            ),
-          ),
-          //Roommate Button
-          Padding(
-            padding: EdgeInsets.only(
-                top: scaler.getHeight(1),
-                bottom: scaler.getHeight(1),
-                left: scaler.getHeight(1.5),
-                right: scaler.getHeight(1.5)),
-            child: MajorButtom(
-              detail: '''Roommate \nMatching'''.trim(),
-              image: "assets/images_sse_majors/EIE.png",
-              screen: RoommateQuizzPage(identifier: currentUser.email),
-            ),
-          ),
-          //Do We Button
-          Padding(
-            padding: EdgeInsets.only(
-                top: scaler.getHeight(1),
-                bottom: scaler.getHeight(1),
-                left: scaler.getHeight(1.5),
-                right: scaler.getHeight(1.5)),
-            child: MajorButtom(
-              detail: '''"Do we \nMatch?"'''.trim(),
-              image: "assets/images_sse_majors/NES.png",
-              alignment: Alignment(.8, 0),
-              screen: MatchingScreen(
-                identifier: currentUser.email,
-                title: "Do we match?",
-
+            //Personality Button
+            Padding(
+              padding: EdgeInsets.only(
+                  top: scaler.getHeight(1),
+                  bottom: scaler.getHeight(1),
+                  left: scaler.getHeight(1.5),
+                  right: scaler.getHeight(1.5)),
+              child: MajorButtom(
+                detail: '''Personality \nTest'''.trim(),
+                image: "assets/images_sse_majors/CSE.png",
+                alignment: Alignment(-.3, 0),
+                screen: PersonnalityQuizzPage(uid: currentUser.uid, identifier: currentUser.email),
               ),
             ),
-          ),
-        ],
+            //Roommate Button
+            Padding(
+              padding: EdgeInsets.only(
+                  top: scaler.getHeight(1),
+                  bottom: scaler.getHeight(1),
+                  left: scaler.getHeight(1.5),
+                  right: scaler.getHeight(1.5)),
+              child: MajorButtom(
+                detail: '''Roommate \nMatching'''.trim(),
+                image: "assets/images_sse_majors/EIE.png",
+                screen: RoommateQuizzPage(identifier: currentUser.email),
+              ),
+            ),
+            //Do We Button
+            Padding(
+              padding: EdgeInsets.only(
+                  top: scaler.getHeight(1),
+                  bottom: scaler.getHeight(1),
+                  left: scaler.getHeight(1.5),
+                  right: scaler.getHeight(1.5)),
+              child: MajorButtom(
+                detail: '''"Do we \nMatch?"'''.trim(),
+                image: "assets/images_sse_majors/NES.png",
+                alignment: Alignment(.8, 0),
+                screen: MatchingScreen(
+                  identifier: currentUser.email,
+                  title: "Do we match?",
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
