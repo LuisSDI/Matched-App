@@ -21,7 +21,6 @@ class _ListUsersState extends State<ListUsers> {
     super.initState();
     myController = TextEditingController();
     myController.addListener(_changeSearchVal);
-
     searchValue = "";
   }
 
@@ -50,7 +49,7 @@ class _ListUsersState extends State<ListUsers> {
           decoration: InputDecoration(hintText: 'Please enter a search term'),
         ),
         Container(
-          height: MediaQuery.of(context).size.width / 1.5,
+          height: MediaQuery.of(context).size.height / 2.8,
           child: StreamBuilder(
               stream: profiles
                   //.where("email", isNotEqualTo: widget.identifier)

@@ -5,7 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:matched_app/bloc/user_bloc.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
