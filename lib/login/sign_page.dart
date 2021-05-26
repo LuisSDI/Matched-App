@@ -184,7 +184,7 @@ class SignPageState extends State<SignPage> {
                 ArrowButtom(
                   key: Key('1234'),
                   onTap: () {
-                    isSignIn ? signIn() : signUp();
+                    isSignIn ? signIn(context) : signUp();
                   },
                 ),
               ],
@@ -195,7 +195,7 @@ class SignPageState extends State<SignPage> {
     );
   }
 
-  Future<void> signIn() async {
+  Future<void> signIn(BuildContext context) async {
     final formState = _formKey.currentState;
     if (formState.validate()) {
       formState.save();
@@ -205,7 +205,7 @@ class SignPageState extends State<SignPage> {
         Navigator.pop(context);
         userBloc.signIn(email, password).then((value) {
           if (value == null) {
-            scaffkey.currentState.showSnackBar(SnackBar(
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               duration: Duration(seconds: 3),
               content: Container(
                 alignment: Alignment.center,

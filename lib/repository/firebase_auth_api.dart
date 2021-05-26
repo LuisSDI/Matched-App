@@ -1,13 +1,13 @@
 import 'package:matched_app/resources/async_loader.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_facebook_login/flutter_facebook_login.dart';
+//import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class FirebaseAuthAPI {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn googleSignIn = GoogleSignIn();
-  final FacebookLogin facebookLogin = FacebookLogin();
+  //final FacebookLogin facebookLogin = FacebookLogin();
 
   String errorMessage;
 
@@ -152,35 +152,35 @@ class FirebaseAuthAPI {
     }
   }
 
-  Future<AuthCredential> credentialFacebook() async {
-    AuthCredential credential;
-    try {
-      final FacebookLoginResult facebookLoginResult =
-      await facebookLogin.logIn(['email']);
-      if (facebookLoginResult.status == FacebookLoginStatus.loggedIn) {
-        FacebookAccessToken facebookAccessToken =
-            facebookLoginResult.accessToken;
-        credential = FacebookAuthProvider.credential(
-            facebookAccessToken.token);
-        facebookLogin.logOut();
-      }
-      return credential;
-    } catch (error) {
-      print(error.runtimeType);
-      if (error.runtimeType == NoSuchMethodError) {
-        print(error);
-      } else {
-        print(error.code);
-        switch (error.code) {
-          case "network_error":
-            errorMessage = "Unable to connect. Please check your connection.";
-            break;
-          default:
-            errorMessage = "An undefined Error happened.";
-        }
-      }
-    }
-  }
+  // Future<AuthCredential> credentialFacebook() async {
+  //   AuthCredential credential;
+  //   try {
+  //     final FacebookLoginResult facebookLoginResult =
+  //     await facebookLogin.logIn(['email']);
+  //     if (facebookLoginResult.status == FacebookLoginStatus.loggedIn) {
+  //       FacebookAccessToken facebookAccessToken =
+  //           facebookLoginResult.accessToken;
+  //       credential = FacebookAuthProvider.credential(
+  //           facebookAccessToken.token);
+  //       facebookLogin.logOut();
+  //     }
+  //     return credential;
+  //   } catch (error) {
+  //     print(error.runtimeType);
+  //     if (error.runtimeType == NoSuchMethodError) {
+  //       print(error);
+  //     } else {
+  //       print(error.code);
+  //       switch (error.code) {
+  //         case "network_error":
+  //           errorMessage = "Unable to connect. Please check your connection.";
+  //           break;
+  //         default:
+  //           errorMessage = "An undefined Error happened.";
+  //       }
+  //     }
+  //   }
+  // }
 
   Future sendRecoveryPassword(String email) async {
     return await _auth.sendPasswordResetEmail(email: email);

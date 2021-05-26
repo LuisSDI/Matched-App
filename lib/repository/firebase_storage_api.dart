@@ -22,7 +22,12 @@ class FirebaseStorageAPI{
     // );
     // File imageFile = File(imagepic.first.path);
     UploadTask uploadTask = await uploadProfilePic(imageId, imageFile);
-    return await (await uploadTask.snapshot).ref.getDownloadURL();
+    String downloadURL = await FirebaseStorage.instance
+        .ref('profile_pictures/$imageId')
+        .getDownloadURL();
+    print(downloadURL);
+    //return await (await uploadTask.snapshot).ref.getDownloadURL();
+    return downloadURL;
   }
 }
 

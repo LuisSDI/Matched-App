@@ -1,15 +1,44 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:matched_app/Onboarding/onboarding_main.dart';
+import 'package:get_storage/get_storage.dart';
+
+import 'package:matched_app/login/sign_page.dart';
+import 'package:matched_app/onboarding/onboarding_main.dart';
+import 'package:matched_app/resources/circular_progress_page.dart';
+
 import 'package:matched_app/ui_resources/custom_colors.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:matched_app/bloc/user_bloc.dart';
+import 'package:flutter/services.dart' ;
+import 'package:shared_preferences/shared_preferences.dart';
+import 'main_pages/home_page.dart';
+
+int initScreen = 1;
 
 void main() async {
+
   WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  initScreen = await prefs.getInt("initScreen");
+  await prefs.setInt("initScreen", 1);
+  print('initScreen $initScreen');
+  await GetStorage.init();
+  final datacount = GetStorage();
+  if(datacount.read('initScreen')!= null)
+  {
+    initScreen = datacount.read('initScreen');
+  }
+  datacount.writeIfNull("initScreen", 1);
+  print('initScreen $initScreen');
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
+
   await Firebase.initializeApp();
   runApp(MyApp());
 }
+
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -32,7 +61,28 @@ class MyApp extends StatelessWidget {
           // is not restarted.
           primarySwatch: Colors.teal,
         ),
-        home: OnboardingMain(),
+          initialRoute: initScreen == 0 || initScreen == null ? "first" : "/",
+          routes:{
+            '/': (context) {
+              UserBloc userBloc = BlocProvider.of(context);
+              return StreamBuilder<User>(
+                stream: userBloc.authStatus,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return HomePage();
+                  } else if (snapshot.hasError) {
+                    return Text("An error has occur, verify your connection and try later");
+                  } else if (snapshot.connectionState !=
+                      ConnectionState.waiting) {
+                    return SignPage();
+                  } else {
+                    return CircularProgressPage();
+                  }
+                },
+              );
+            },
+            "first": (context) => OnboardingMain(),
+          },
         debugShowCheckedModeBanner: false,
       ),
     );

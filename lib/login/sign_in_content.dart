@@ -128,34 +128,34 @@ class _SignInContentState extends State<SignInContent> {
               //FACEBOOK
               GestureDetector(
                 onTap: () async {
-                  userBloc = BlocProvider.of(context);
-                  AuthCredential credential =
-                      await userBloc.credentialFacebook();
-                  UserCredential authResult =
-                      await userBloc.signInCredential(credential);
-                  if (authResult.additionalUserInfo.isNewUser) {
-                    authResult.user.delete();
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => CreateProfilePage(
-                                  auth: FirebaseAuth.instance,
-                                  credential: credential,
-                                )));
-                  } else {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => HomePage(
-                                identifier: userBloc.currentUser.email)));
-                  }
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => CreateProfilePage(
-                                auth: FirebaseAuth.instance,
-                                credential: credential,
-                              )));
+                  // userBloc = BlocProvider.of(context);
+                  // AuthCredential credential =
+                  //     await userBloc.credentialFacebook();
+                  // UserCredential authResult =
+                  //     await userBloc.signInCredential(credential);
+                  // if (authResult.additionalUserInfo.isNewUser) {
+                  //   authResult.user.delete();
+                  //   Navigator.push(
+                  //       context,
+                  //       MaterialPageRoute(
+                  //           builder: (context) => CreateProfilePage(
+                  //                 auth: FirebaseAuth.instance,
+                  //                 credential: credential,
+                  //               )));
+                  // } else {
+                  //   Navigator.pushReplacement(
+                  //       context,
+                  //       MaterialPageRoute(
+                  //           builder: (context) => HomePage(
+                  //               identifier: userBloc.currentUser.email)));
+                  // }
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (context) => CreateProfilePage(
+                  //               auth: FirebaseAuth.instance,
+                  //               credential: credential,
+                  //             )));
                 },
                 child: Container(
                   margin: EdgeInsets.only(

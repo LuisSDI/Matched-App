@@ -35,7 +35,7 @@ class UserBloc implements Bloc {
   //Google
   Future<AuthCredential> credentialGoogle() => authRepository.credentialGoogle();
   //Facebook
-  Future<AuthCredential> credentialFacebook() => authRepository.credentialFacebook();
+  //Future<AuthCredential> credentialFacebook() => authRepository.credentialFacebook();
   //3.Sign Up
   Future<User> signUp(String email, String password) => authRepository.signUp(email, password);
 
