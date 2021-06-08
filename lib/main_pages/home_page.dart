@@ -63,9 +63,15 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: Container(
         decoration: BoxDecoration(gradient: turkish),
         child: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+            unselectedItemColor: white,
+            fixedColor: white,
+            unselectedLabelStyle: GoogleFonts.lato(
+                textStyle: TextStyle(fontSize: 12, color: Colors.white)),
             onTap: onTabTapped,
             currentIndex: _currentIndex,
             iconSize: 18,
+            showUnselectedLabels: true,
             backgroundColor: Colors.transparent,
             selectedLabelStyle: GoogleFonts.lato(
                 textStyle: TextStyle(fontSize: 12, color: Colors.white)),

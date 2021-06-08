@@ -1,40 +1,45 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:matched_app/Model/user.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:matched_app/bloc/user_bloc.dart';
+import 'package:matched_app/repository/cloud_firestore_api.dart';
 import 'package:matched_app/ui_resources/custom_colors.dart';
 
-class MessageList extends StatelessWidget {
+class GroupMessageList extends StatelessWidget {
 
   final String currentUserId;
-  final UserModel receiverUser;
+  final String groupId;
 
-  const MessageList({Key key, this.currentUserId, this.receiverUser}) : super(key: key);
+  const GroupMessageList({Key key, this.currentUserId, this.groupId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     ScreenScaler scaler = ScreenScaler()..init(context);
-    return StreamBuilder(
-      stream: FirebaseFirestore.instance.collection('messages').doc(currentUserId)
-          .collection(receiverUser.uid).orderBy('timeStamp',descending: true).snapshots()
-      ,
-      builder: (context, AsyncSnapshot<QuerySnapshot> snapshot){
-        if(snapshot.data == null){
-          return Center(
-            child: CircularProgressIndicator(),
+    UserBloc userBloc = BlocProvider.of(context);
+    return BlocProvider(
+      bloc: UserBloc(),
+      child: StreamBuilder(
+        stream: userBloc.getChats(groupId),
+        builder: (context, AsyncSnapshot<QuerySnapshot> snapshot){
+          if(snapshot.data == null){
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          return ListView.builder(
+            padding: EdgeInsets.all(scaler.getWidth(2)),
+            itemBuilder: (context, index) {
+              return chatMessageItem(context, snapshot.data.docs[index]);
+            },
+            itemCount: snapshot.data.docs.length,
+            reverse: true,
           );
-        }
-        return ListView.builder(
-          padding: EdgeInsets.all(scaler.getWidth(2)),
-          itemBuilder: (context, index) {
-            return chatMessageItem(context, snapshot.data.docs[index]);
-          },
-          itemCount: snapshot.data.docs.length,
-          reverse: true,
-        );
-      },
+        },
+      ),
     );
   }
 

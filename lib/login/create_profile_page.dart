@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:matched_app/Model/group.dart';
 import 'package:matched_app/main_pages/home_page.dart';
 import 'package:matched_app/resources/arrow_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -374,6 +375,10 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
             firebaseUser =
             await widget.userBloc.signUp(widget.email, widget.password);
           }
+          List<String> groups = [];
+          GroupModel group = await widget.userBloc.searchGroup('General');
+          print(group.groupId);
+          groups.add(group.groupId);
           UserModel user = UserModel(
               email: firebaseUser.email,
               name: name,
@@ -382,8 +387,11 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                   : firebaseUser.photoURL,
               uid: firebaseUser.uid,
               description: description,
+              groups: groups,
               type: dropdownCollege);
           widget.userBloc.setUserData(user);
+          widget.userBloc.addToGroup(firebaseUser.uid, group.groupId);
+          print("Funciona");
         } catch (e) {
           print(e.message);
           Navigator.of(context).pop();

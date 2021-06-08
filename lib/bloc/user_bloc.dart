@@ -2,8 +2,10 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:matched_app/Model/group.dart';
+import 'package:matched_app/Model/group_message.dart';
 import 'package:matched_app/repository/firebase_auth_api.dart';
 import 'package:matched_app/repository/cloud_firestore_api.dart';
 import 'package:matched_app/Model/user.dart';
@@ -58,7 +60,17 @@ class UserBloc implements Bloc {
     return cloudFirestoreRepository.listenUserData(userUid);
   }
   // Get a list of users
-  Future<List<UserModel>> getListUsers(String userUid) => cloudFirestoreRepository.getListUsers(userUid);
+  Future<List<UserModel>> getListUsers(String userUid) async => await cloudFirestoreRepository.getListUsers(userUid);
+
+  Future<List<GroupModel>> getListGroups(UserModel user)  {
+    return cloudFirestoreRepository.getListGroups(user);
+  }
+  
+  //Search a Group
+  Future<GroupModel> searchGroup(String groupName)  {
+    return cloudFirestoreRepository.searchGroup(groupName);
+  }
+
 
   // Chat Feature
   Future<void> addMessage(Message message, UserModel sender, UserModel receiver) => cloudFirestoreRepository.addMessage(message, sender, receiver);
@@ -68,6 +80,28 @@ class UserBloc implements Bloc {
 
   // Get roommate matching result
   Future<String> getRoommateMatchingResult(String userID) => cloudFirestoreRepository.getRoommateMatchingResult(userID);
+
+  //send a message to a group chat
+  Future<void> sendGroupMessage(String groupId, GroupMessage chatMessageData)  {
+    return cloudFirestoreRepository.sendGroupMessage(groupId, chatMessageData);
+  }
+
+  //add user to a group chat
+  Future addToGroup( String uid ,String groupId)  {
+    return cloudFirestoreRepository.addToGroup(uid, groupId);
+  }
+
+  // get chats of a particular group
+  Stream<QuerySnapshot<Object>> getChats(String groupId) {
+    return cloudFirestoreRepository.getChats(groupId);
+  }
+
+  // search groups
+  searchByName(String groupName) {
+
+    cloudFirestoreRepository.searchByName(groupName);
+  }
+
 
   signOut() {
     authRepository.signOut();

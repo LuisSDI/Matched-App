@@ -52,6 +52,8 @@ class ProfileTab extends StatelessWidget {
                             uid: data['uid'],
                             photoUrL: data['photoURL'],
                             email: data['email'],
+                            caseSearch: data['caseSearch'],
+
                           );
                           return profile(scaler,
                               user,
