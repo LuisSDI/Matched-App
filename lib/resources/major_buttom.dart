@@ -26,7 +26,6 @@ class _MajorButtomState extends State<MajorButtom> {
   @override
   Widget build(BuildContext context) {
     ScreenScaler scaler = ScreenScaler()..init(context);
-    widget.screen;
     widget.alignment ??= Alignment.center;
     return GestureDetector(
       onTap: () {

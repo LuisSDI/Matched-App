@@ -1,4 +1,5 @@
 import 'package:matched_app/Model/group.dart';
+import 'package:matched_app/main_pages/chatpage/show_group_chat.dart';
 import 'package:matched_app/main_pages/chatpage/show_profile_chat.dart';
 import 'package:matched_app/Model/user.dart';
 import 'package:flutter/material.dart';
@@ -11,8 +12,9 @@ class GroupAppBar extends StatelessWidget implements PreferredSizeWidget {
 
 
   final GroupModel group;
+  final String currentUserUid;
 
-  const GroupAppBar({Key key, this.group}) : super(key: key);
+  const GroupAppBar({Key key, this.group, this.currentUserUid, }) : super(key: key);
 
 
   @override
@@ -119,10 +121,11 @@ class GroupAppBar extends StatelessWidget implements PreferredSizeWidget {
                 child: Container(
                   child: IconButton(
                     onPressed: () {
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: (context) => ShowProfileScreen(user: user,)));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ShowGroupScreen(group: group,
+                                currentUserUid: currentUserUid,)));
                     },
                     icon: Icon(
                       MaterialCommunityIcons.account_circle,

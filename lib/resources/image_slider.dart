@@ -26,7 +26,7 @@ class _ImageSliderState extends State<ImageSlider> {
         child: CarouselSlider(
           items: widget.imgList
               .map((item) => Container(
-
+width: double.infinity,
                     child: Image(
                       image: AssetImage(item),
                       fit: BoxFit.cover,

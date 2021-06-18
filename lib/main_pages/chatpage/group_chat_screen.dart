@@ -140,7 +140,7 @@ class GroupChatScreen extends StatelessWidget {
               )
             ],
           ),
-          appBar: GroupAppBar(group: group,),
+          appBar: GroupAppBar(group: group,currentUserUid: currentUserUid,),
         ),
       ),
     );

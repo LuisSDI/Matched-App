@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:matched_app/MatchingQuizz/matchingScreen.dart';
 import 'package:matched_app/bloc/user_bloc.dart';
 import 'package:matched_app/main_pages/explore_pages/colleges_pages/college_template.dart';
+import 'package:matched_app/main_pages/test_pages/personality_test_intro.dart';
 import 'package:matched_app/resources/major_buttom.dart';
 import 'package:matched_app/resources/major_screen.dart';
 import 'package:matched_app/resources/placeholder_page.dart';
@@ -58,8 +59,7 @@ class TestTab extends StatelessWidget {
                 detail: '''Personality \nTest'''.trim(),
                 image: "assets/images/disc/Disc2.jpg",
                 alignment: Alignment(-.3, 0),
-                screen: PersonnalityQuizzPage(
-                    uid: currentUser.uid, identifier: currentUser.email),
+                screen: PersonalityTestIntro(),
               ),
             ),
             //Roommate Button

@@ -166,6 +166,30 @@ class CloudFireStoreAPI {
 
   }
 
+  Future<List<UserModel>> getListMemebers(GroupModel group) async {
+    List<UserModel> users = [];
+    UserModel user;
+    var value = await userInfo.where('uid',whereIn: group.members).get();
+    value.docs.forEach((value)
+    {
+      print(value.data());
+      user = UserModel(
+          name: value.get('full name'),
+          type: value.get('type'),
+          description: value.get('description'),
+          uid: value.get('uid'),
+          photoUrL: value.get('photoURL'),
+          email: value.get('email'),
+          groups: value.get('groups')
+      );
+      print(user.uid);
+      users.add(user);
+      print(users);
+    });
+
+    return users;
+  }
+
   Future<void> addMessage(
       Message message, UserModel sender, UserModel receiver) async {
     Map map = message.toMap();

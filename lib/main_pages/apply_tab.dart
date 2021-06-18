@@ -256,5 +256,3 @@ all the entry requirements
   }
 }
 
-class BlocProvider {
-}

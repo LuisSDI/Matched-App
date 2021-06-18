@@ -62,9 +62,16 @@ class UserBloc implements Bloc {
   // Get a list of users
   Future<List<UserModel>> getListUsers(String userUid) async => await cloudFirestoreRepository.getListUsers(userUid);
 
+  //Get a list of groups
   Future<List<GroupModel>> getListGroups(UserModel user)  {
     return cloudFirestoreRepository.getListGroups(user);
   }
+
+  //Get a list of members
+  Future<List<UserModel>> getListMemebers(GroupModel group) {
+    return cloudFirestoreRepository.getListMemebers(group);
+  }
+
   
   //Search a Group
   Future<GroupModel> searchGroup(String groupName)  {

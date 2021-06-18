@@ -33,6 +33,7 @@ class ExploreTab extends StatelessWidget {
               children: <Widget>[
                 ImageSlider(key: key, imgList: CollegesInfo().collegesList),
               Container(
+                width: double.infinity,
                 child: Image(
                   image: AssetImage('assets/images/image_1.png'),
                   fit: BoxFit.cover,
@@ -65,7 +66,14 @@ class ExploreTab extends StatelessWidget {
                   screen: FaqScreen(),
                   //WhyScreen(),
 
-                )],),
+                ),
+                ScreenButtom(
+                  detail: 'Services',
+                  iconData: Icons.local_mall,
+                  screen: ServiceScreen(),
+                  //WhyScreen(),
+                ),
+              ],),
 
               ],
             ),
