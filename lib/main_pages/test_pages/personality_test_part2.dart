@@ -3,6 +3,7 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:matched_app/main_pages/test_pages/personality_test_info.dart';
+import 'package:matched_app/main_pages/test_pages/personality_test_result.dart';
 import 'package:matched_app/resources/multi_choice_question.dart';
 import 'package:matched_app/resources/simple_buttom.dart';
 import 'package:matched_app/resources/slider_choice_question.dart';
@@ -149,7 +150,9 @@ to you more?"""
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => Scaffold()));
+                                        builder: (context) => PersonalityTestResult(
+                                          results: results,
+                                        )));
                               },
                               child: Text('Submit',
                                   style: GoogleFonts.lato(
