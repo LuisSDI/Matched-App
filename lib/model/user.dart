@@ -6,12 +6,14 @@ class UserModel {
   final String email;
   final String photoUrL;
   final String type;
+  final String personality;
   final String description;
   final List<dynamic> groups;
   final List<dynamic> caseSearch;
 
   UserModel({
     Key key,
+    @required this.personality,
     @required this.uid,
     @required this.groups,
     @required this.name,
