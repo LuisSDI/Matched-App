@@ -8,13 +8,15 @@ class UserModel {
   final String type;
   final String personality;
   final String description;
+  final String gender;
   final List<dynamic> groups;
   final List<dynamic> caseSearch;
 
-  UserModel({
+  UserModel( {
     Key key,
     @required this.personality,
     @required this.uid,
+    @required this.gender,
     @required this.groups,
     @required this.name,
     @required this.email,
