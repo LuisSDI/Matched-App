@@ -1,12 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:generic_bloc_provider/generic_bloc_provider.dart';
-import 'package:matched_app/Model/user.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:matched_app/bloc/user_bloc.dart';
-import 'package:matched_app/repository/cloud_firestore_api.dart';
 import 'package:matched_app/ui_resources/custom_colors.dart';
 
 class GroupMessageList extends StatelessWidget {

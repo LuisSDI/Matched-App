@@ -401,6 +401,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.11.1"
+  percent_indicator:
+    dependency: "direct main"
+    description:
+      name: percent_indicator
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "3.0.1"
   petitparser:
     dependency: transitive
     description:
@@ -545,7 +552,7 @@ packages:
       name: win32
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.1.5"
+    version: "2.2.3"
   xdg_directories:
     dependency: transitive
     description:

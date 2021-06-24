@@ -5,13 +5,12 @@ import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:matched_app/main_pages/chat_tab.dart';
 import 'package:matched_app/main_pages/discover_tab.dart';
+import 'package:matched_app/main_pages/explore_tab.dart';
 import 'package:matched_app/main_pages/profile_tab.dart';
 import 'package:matched_app/main_pages/test_tab.dart';
 import 'package:matched_app/ui_resources/custom_colors.dart';
 import 'package:matched_app/ui_resources/icons/dorm_icon_icons.dart';
 import 'package:matched_app/ui_resources/icons/fix_icons_icons.dart';
-import 'apply_tab.dart';
-import 'explore_tab.dart';
 
 class HomePage extends StatefulWidget {
   HomePage(

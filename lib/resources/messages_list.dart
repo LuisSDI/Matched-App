@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:matched_app/Model/user.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:matched_app/model/user.dart';
 import 'package:matched_app/ui_resources/custom_colors.dart';
 
 class MessageList extends StatelessWidget {

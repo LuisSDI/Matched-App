@@ -1,5 +1,5 @@
 import 'package:matched_app/main_pages/chatpage/show_profile_chat.dart';
-import 'package:matched_app/Model/user.dart';
+import 'package:matched_app/model/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';

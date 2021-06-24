@@ -1,10 +1,9 @@
 import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:matched_app/ui_resources/custom_colors.dart';
-import 'page_index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
+import 'package:matched_app/ui_resources/custom_colors.dart';
 
 class ImageSlider extends StatefulWidget {
   List<String> imgList;
@@ -26,13 +25,13 @@ class _ImageSliderState extends State<ImageSlider> {
         child: CarouselSlider(
           items: widget.imgList
               .map((item) => Container(
-width: double.infinity,
-                    child: Image(
-                      image: AssetImage(item),
-                      fit: BoxFit.cover,
-                      //width: scaler.getWidth(110),
-                    ),
-                  ))
+          width: double.infinity,
+          child: Image(
+            image: AssetImage(item),
+            fit: BoxFit.cover,
+            //width: scaler.getWidth(110),
+          ),
+        ))
               .toList(),
           options: CarouselOptions(
               height: scaler.getHeight(32),

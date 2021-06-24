@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:matched_app/Model/group_message.dart';
 
 class GroupModel {
   final String groupId;

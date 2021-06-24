@@ -1,17 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' ;
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:get_storage/get_storage.dart';
-
+import 'package:matched_app/bloc/user_bloc.dart';
 import 'package:matched_app/login/sign_page.dart';
 import 'package:matched_app/onboarding/onboarding_main.dart';
 import 'package:matched_app/resources/circular_progress_page.dart';
-
 import 'package:matched_app/ui_resources/custom_colors.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:generic_bloc_provider/generic_bloc_provider.dart';
-import 'package:matched_app/bloc/user_bloc.dart';
-import 'package:flutter/services.dart' ;
 import 'package:shared_preferences/shared_preferences.dart';
+
 import 'main_pages/home_page.dart';
 
 int initScreen = 1;

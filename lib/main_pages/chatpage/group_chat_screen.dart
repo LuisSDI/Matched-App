@@ -1,13 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:matched_app/Model/group.dart';
-import 'package:matched_app/Model/group_message.dart';
+import 'package:matched_app/model/group.dart';
+import 'package:matched_app/model/group_message.dart';
 import 'package:matched_app/bloc/user_bloc.dart';
-import 'package:matched_app/Model/messages.dart';
-import 'package:matched_app/Model/user.dart';
-import 'package:matched_app/resources/custom_app_bar.dart';
 import 'package:matched_app/resources/group_app_bar.dart';
 import 'package:matched_app/resources/group_messages_list.dart';
-import 'package:matched_app/resources/messages_list.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

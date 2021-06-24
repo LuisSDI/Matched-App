@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:matched_app/Model/group.dart';
+import 'package:matched_app/model/group.dart';
 import 'package:matched_app/resources/group_chat_button.dart';
 import 'package:matched_app/ui_resources/custom_colors.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:matched_app/bloc/user_bloc.dart';
-import 'package:matched_app/Model/user.dart';
+import 'package:matched_app/model/user.dart';
 import 'package:matched_app/resources/chat_button.dart';
 
 // import 'apply_tab.dart';
@@ -21,10 +21,6 @@ class _ChatTabState extends State<ChatTab> {
   @override
   Widget build(BuildContext context) {
     ScreenScaler scaler = ScreenScaler()..init(context);
-    final Future<String> _dummy = Future<String>.delayed(
-      const Duration(seconds: 2),
-      () => 'Data Loaded',
-    );
     UserBloc userBloc = BlocProvider.of(context);
     return BlocProvider(
       bloc: userBloc,

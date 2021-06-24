@@ -9,7 +9,7 @@ import 'package:matched_app/ui_resources/custom_colors.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:matched_app/bloc/user_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:matched_app/Model/user.dart';
+import 'package:matched_app/model/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:matched_app/login/sign_page.dart';
 
@@ -46,6 +46,7 @@ class ProfileTab extends StatelessWidget {
                           DocumentSnapshot value = snapshot.data;
                           Map<String, dynamic> data = value.data();
                           UserModel user = UserModel(
+                            personality: data['personality'],
                             name: data['full name'],
                             type: data['type'],
                             description: data['description'],

@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:matched_app/bloc/user_bloc.dart';
-import 'package:matched_app/Model/messages.dart';
-import 'package:matched_app/Model/user.dart';
+import 'package:matched_app/model/messages.dart';
+import 'package:matched_app/model/user.dart';
 import 'package:matched_app/resources/custom_app_bar.dart';
 import 'package:matched_app/resources/messages_list.dart';
 import 'package:firebase_auth/firebase_auth.dart';

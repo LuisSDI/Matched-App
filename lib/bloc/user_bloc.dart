@@ -2,14 +2,14 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
-import 'package:matched_app/Model/group.dart';
-import 'package:matched_app/Model/group_message.dart';
-import 'package:matched_app/repository/firebase_auth_api.dart';
+import 'package:matched_app/model/group.dart';
+import 'package:matched_app/model/group_message.dart';
+import 'package:matched_app/model/messages.dart';
+import 'package:matched_app/model/personality_result.dart';
+import 'package:matched_app/model/user.dart';
 import 'package:matched_app/repository/cloud_firestore_api.dart';
-import 'package:matched_app/Model/user.dart';
-import 'package:matched_app/Model/messages.dart';
+import 'package:matched_app/repository/firebase_auth_api.dart';
 import 'package:matched_app/repository/firebase_storage_api.dart';
 
 
@@ -103,12 +103,22 @@ class UserBloc implements Bloc {
     return cloudFirestoreRepository.getChats(groupId);
   }
 
+  Future createGroup( String groupName){
+    return cloudFirestoreRepository.createGroup(groupName);
+  }
+
   // search groups
   searchByName(String groupName) {
 
     cloudFirestoreRepository.searchByName(groupName);
   }
 
+  // PERSONALITY FUNCTIONS
+
+  Future<void> sendPersonalityResult(UserModel user, PersonalityResult personalityResult)
+  {
+    cloudFirestoreRepository.sendPersonalityResult(user, personalityResult);
+  }
 
   signOut() {
     authRepository.signOut();

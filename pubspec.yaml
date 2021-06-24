@@ -45,6 +45,7 @@ dependencies:
   flutter_launcher_icons: ^0.9.0
   get_storage: ^2.0.2
   grouped_buttons: ^1.0.4
+  percent_indicator: ^3.0.1
 
 dev_dependencies:
   flutter_test:
@@ -82,6 +83,7 @@ flutter:
      - assets/images/sall/
      - assets/images/health/
      - assets/images/disc/
+     - assets/images/personality_icons/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

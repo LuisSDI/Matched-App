@@ -1,12 +1,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
-import 'package:matched_app/Model/user.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
-import 'package:matched_app/bloc/user_bloc.dart';
-import 'package:matched_app/resources/async_loader.dart';
-
 import 'package:google_fonts/google_fonts.dart';
+import 'package:matched_app/bloc/user_bloc.dart';
+import 'package:matched_app/model/user.dart';
+import 'package:matched_app/resources/async_loader.dart';
 import 'package:matched_app/ui_resources/custom_colors.dart';
 
 //import 'apply_tab.dart';
@@ -494,8 +493,11 @@ class _EditProfileState extends State<EditProfile> {
           UserModel user = UserModel(
               email: widget.user.email,
               name: name,
+              gender: widget.user.gender,
               photoUrL: photoUrL,
+              personality: widget.user.personality,
               uid: widget.user.uid,
+              groups: widget.user.groups,
               description: description,
               type: dropdownValue);
           widget.userBloc.updateUserData(user);

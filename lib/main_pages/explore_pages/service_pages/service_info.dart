@@ -1,7 +1,6 @@
-class ServiceInfo
-{
-
-  String cscDesc = '''Career Planning and Development Office (CPDO) is committed to delivering superior service to our students on graduation study and employment, aiming to provide remarkable talents to well-known local and overseas enterprises whilst export outstanding students to the world's top universities.
+class ServiceInfo {
+  String cscDesc =
+      '''Career Planning and Development Office (CPDO) is committed to delivering superior service to our students on graduation study and employment, aiming to provide remarkable talents to well-known local and overseas enterprises whilst export outstanding students to the world's top universities.
 · Career Assessment
 CPDO provides students with various varieties of career assessments, including ability assessment and character assessment.
 · Career Planning
@@ -17,8 +16,12 @@ CPDO has developed cooperative relationship with well-known enterprises and thei
 · Grad Study Counselling
 CPDO has been cooperating with large education agencies to deliver high-quality workshops and seminars on graduation study, provide one-to-one counselling service, etc.''';
 
-  List<String> cscList = ['assets/images/csc/csc_1.jpg','assets/images/csc/csc_2.jpg'
-    ,'assets/images/csc/csc_3.jpg','assets/images/csc/csc_4.jpg'];
+  List<String> cscList = [
+    'assets/images/csc/csc_1.jpg',
+    'assets/images/csc/csc_2.jpg',
+    'assets/images/csc/csc_3.jpg',
+    'assets/images/csc/csc_4.jpg'
+  ];
 
   String sallDesc = '''What is SALL?
 SALL is an acronym which is formed by taking the first letter of each word of the full term “Self- Access Language Learning” to form a word of its own. In SALL, students can choose to use learning materials or participate in language activities according to their own needs and for their own purposes. Students are expected to decide for themselves when to study, the materials to use to suit their learning needs and at the pace of study they are comfortable with.
@@ -38,8 +41,12 @@ The objectives of the SALL Centre are as follows:
 
 4. To help students acquire the skills to work independently to improve their English language ability''';
 
-  List<String> sallList = ['assets/images/sall/sall_1.jpg','assets/images/sall/sall_2.jpg'
-    ,'assets/images/sall/sall_3.jpg','assets/images/sall/sall_4.jpg'];
+  List<String> sallList = [
+    'assets/images/sall/sall_1.jpg',
+    'assets/images/sall/sall_2.jpg',
+    'assets/images/sall/sall_3.jpg',
+    'assets/images/sall/sall_4.jpg'
+  ];
 
   String cideDesc = '''What is CIDE?
 CUHK Shenzhen Center for Innovation, Design & Entrepreneurship (CIDE) is a Designated Shenzhen Incubator working with various government, private and leading NGO entities, most notably the AAMA, Hult Prize, and Galaxy World, to provide training, mentorship and support for entrepreneurial project teams, and actively promotes technology transfer, exchange and cooperation with a focus on the development of sustainable solutions to social challenges.
@@ -50,8 +57,12 @@ We want to help people see beyond their current capabilities and do more than th
 What do we offer?
 The CIDE also provides support for docking activities between CUHK Shenzhen entrepreneurial teams and early-stage venture capital and provides open work, web, and social space for entrepreneurs.''';
 
-  List<String> cideList = ['assets/images/cide/cide_1.jpg','assets/images/cide/cide_2.jpg'
-    ,'assets/images/cide/cide_3.png','assets/images/cide/cide_4.png'];
+  List<String> cideList = [
+    'assets/images/cide/cide_1.jpg',
+    'assets/images/cide/cide_2.jpg',
+    'assets/images/cide/cide_3.png',
+    'assets/images/cide/cide_4.png'
+  ];
 
   String healthDesc = '''Psychological Counseling
 Office of Student Affairs provides free psychological counseling for all full-time students. You may benefit from counseling when you:
@@ -74,9 +85,17 @@ The University Clinic is collaboratively established by CUHK-Shenzhen and the Sh
 Led by Dr. Zhou Xiaoqing, the Clinic has a team of excellent medical workers, who are able to provide bilingual medical service (Chinese/English). Dr. Zhou Xiaoqing (Dean) graduated from Beijing University of Chinese Medicine. He is master supervisor, chief TCM doctor and academic leader of encephalopathy of BUCM Shenzhen Hospital. He has over 30 years of clinic experience and used to work as full-time health physician for Vice-President of Syria.
 ''';
 
-  List<String> healthList = ['assets/images/health/health_1.jpg','assets/images/health/health_2.jpg'
-    ,'assets/images/health/health_3.jpg','assets/images/health/health_4.jpg'];
+  List<String> healthList = [
+    'assets/images/health/health_1.jpg',
+    'assets/images/health/health_2.jpg',
+    'assets/images/health/health_3.jpg',
+    'assets/images/health/health_4.jpg'
+  ];
 
-  List<String> serviceList = ['assets/images/csc/csc_1.jpg','assets/images/cide/cide_3.png'
-  ,'assets/images/health/health_3.jpg','assets/images/sall/sall_4.jpg'];
+  List<String> serviceList = [
+    'assets/images/csc/csc_1.jpg',
+    'assets/images/cide/cide_3.png',
+    'assets/images/health/health_3.jpg',
+    'assets/images/sall/sall_4.jpg'
+  ];
 }

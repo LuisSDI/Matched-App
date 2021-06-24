@@ -1,13 +1,10 @@
 //import 'package:cuhkszapp/Login/sign_page.dart';
 import 'package:matched_app/login/sign_page.dart';
-import 'package:matched_app/main.dart';
-import 'package:matched_app/resources/size_config.dart';
 import 'package:matched_app/ui_resources/custom_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:matched_app/ui_resources/icons/dorm_icon_icons.dart';
 
 class OnboardingScreen extends StatelessWidget {
   String title, desc;

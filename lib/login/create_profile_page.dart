@@ -1,15 +1,15 @@
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:matched_app/Model/group.dart';
-import 'package:matched_app/main_pages/home_page.dart';
-import 'package:matched_app/resources/arrow_button.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:matched_app/bloc/user_bloc.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
-import 'package:matched_app/Model/user.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:matched_app/bloc/user_bloc.dart';
+import 'package:matched_app/main_pages/home_page.dart';
+import 'package:matched_app/model/group.dart';
+import 'package:matched_app/model/user.dart';
+import 'package:matched_app/resources/arrow_button.dart';
 import 'package:matched_app/ui_resources/custom_colors.dart';
 import 'package:matched_app/ui_resources/textfield_styles.dart';
 
@@ -35,6 +35,7 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String dropdownCollege = 'Shaw';
   String name, studentID, description;
+  String dropdownGender = 'Male';
 
   @override
   Widget build(BuildContext context) {
@@ -208,7 +209,80 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                             ),
                           ),
                         ),
-                        // I am ... Container
+                        Row(
+                          children: <Widget>[
+                            // College Container
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                // College Text
+                                Container(
+                                  height: scaler.getWidth(5),
+                                  margin: EdgeInsets.only(
+                                      top: scaler.getWidth(1),
+                                      bottom: scaler.getWidth(1)),
+                                  child: FittedBox(
+                                      fit: BoxFit.contain,
+                                      child: Text(
+                                        "Gender",
+                                        style: GoogleFonts.lato(
+                                            textStyle: TextStyle(
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold),
+                                            color: Colors.white),
+                                      )),
+                                ),
+                                Container(
+                                  width: scaler.getWidth(30),
+                                  //height: scaler.getWidth(10),
+                                  child: Theme(
+                                    data: Theme.of(context).copyWith(
+                                      canvasColor: dark,
+                                    ),
+                                    child: DropdownButtonFormField(
+                                      decoration: InputDecoration(
+                                        contentPadding: EdgeInsets.only(
+                                            left: scaler.getWidth(3)),
+                                        border: textfieldBorder,
+                                        focusColor: mainColor,
+                                        focusedBorder: textfieldBorder,
+                                        enabledBorder:textfieldBorder,
+                                      ),
+                                      value: dropdownGender,
+                                      icon: Icon(Icons.keyboard_arrow_down,color: mainColor,),
+                                      iconSize: 24,
+                                      elevation: 16,
+                                      onChanged: (String newValue) {
+                                        setState(() {
+                                          print(newValue);
+                                          dropdownGender = newValue;
+                                        });
+                                      },
+                                      items: <String>[
+                                        'Male',
+                                        'Female',
+                                      ].map<DropdownMenuItem<String>>(
+                                              (String value) {
+                                            return DropdownMenuItem<String>(
+                                                value: value,
+                                                child: Text(
+                                                  value,
+                                                  style: GoogleFonts.lato(
+                                                    textStyle: TextStyle(
+                                                        fontSize: 16,
+                                                        color: white),
+                                                  ),
+                                                ));
+                                          }).toList(),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            // Number Container
+                          ],
+                        ),
                         Row(
                           children: <Widget>[
                             // College Container
@@ -381,7 +455,9 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
           groups.add(group.groupId);
           UserModel user = UserModel(
               email: firebaseUser.email,
+              gender: dropdownGender,
               name: name,
+              personality: 'None',
               photoUrL: (firebaseUser.photoURL == null)
                   ? 'https://firebasestorage.googleapis.com/v0/b/matched-app-9cb6a.appspot.com/o/default_photo.png?alt=media&token=0fd6fc78-4558-4731-a707-d8068bae2069'
                   : firebaseUser.photoURL,

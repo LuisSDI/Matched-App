@@ -1,8 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:matched_app/MatchingQuizz/invitationTab.dart';
-import 'package:matched_app/MatchingQuizz/quizzPage.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:matched_app/bloc/user_bloc.dart';
 
 import 'listUsers.dart';

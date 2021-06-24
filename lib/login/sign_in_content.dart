@@ -1,14 +1,15 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:matched_app/login/sign_page.dart';
-import 'package:matched_app/ui_resources/custom_colors.dart';
-import 'create_profile_page.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:matched_app/bloc/user_bloc.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:matched_app/login/sign_page.dart';
 import 'package:matched_app/main_pages/home_page.dart';
+import 'package:matched_app/ui_resources/custom_colors.dart';
+
+import 'create_profile_page.dart';
 
 class SignInContent extends StatefulWidget {
   SignPageState parent;

@@ -1,11 +1,10 @@
-import 'package:google_fonts/google_fonts.dart';
-import 'package:matched_app/RoommateMatching/pages/testDone.dart';
-import 'package:matched_app/RoommateMatching/questionRoommate.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:matched_app/MatchingQuizz/result.dart';
 import 'package:matched_app/MatchingQuizz/router.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:matched_app/RoommateMatching/pages/testDone.dart';
+import 'package:matched_app/RoommateMatching/questionRoommate.dart';
 
 class RoommateQuizzPage extends StatefulWidget {
   RoommateQuizzPage(

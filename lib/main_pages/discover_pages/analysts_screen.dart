@@ -6,8 +6,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:matched_app/main_pages/explore_pages/colleges_pages/college_template.dart';
 import 'package:matched_app/main_pages/explore_pages/colleges_pages/colleges_info.dart';
 import 'package:matched_app/resources/major_buttom.dart';
-import 'package:matched_app/resources/major_screen.dart';
-import 'package:matched_app/resources/placeholder_page.dart';
 import 'package:matched_app/ui_resources/custom_colors.dart';
 
 class AnalystsScreen extends StatelessWidget {

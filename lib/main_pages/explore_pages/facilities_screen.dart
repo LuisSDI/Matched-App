@@ -5,7 +5,6 @@ import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:matched_app/main_pages/explore_pages/facilities_pages/facilities_info.dart';
 import 'package:matched_app/resources/image_slider.dart';
-import 'package:matched_app/resources/placeholder_page.dart';
 import 'package:matched_app/resources/screen_buttom.dart';
 import 'package:matched_app/ui_resources/custom_colors.dart';
 
