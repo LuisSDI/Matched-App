@@ -24,7 +24,6 @@ class _OnboardingMainState extends State<OnboardingMain> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     slides = getSlides();
     onRefresh(FirebaseAuth.instance.currentUser);

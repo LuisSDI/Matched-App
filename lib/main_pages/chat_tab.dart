@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:matched_app/model/group.dart';
 import 'package:matched_app/resources/group_chat_button.dart';
 import 'package:matched_app/ui_resources/custom_colors.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:matched_app/bloc/user_bloc.dart';
 import 'package:matched_app/model/user.dart';
@@ -22,12 +21,15 @@ class _ChatTabState extends State<ChatTab> {
   Widget build(BuildContext context) {
     ScreenScaler scaler = ScreenScaler()..init(context);
     UserBloc userBloc = BlocProvider.of(context);
+    print(userBloc.currentUser.uid);
     return BlocProvider(
       bloc: userBloc,
       child: FutureBuilder(
-        future: userBloc.getUserData(FirebaseAuth.instance.currentUser.uid),
+        future: userBloc.getUserData(userBloc.currentUser.uid),
         builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
+          print(snapshot.connectionState);
+          print(snapshot.data);
+          if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
             UserModel user = snapshot.data;
             return FutureBuilder(
               future:  userBloc.getListGroups(user),

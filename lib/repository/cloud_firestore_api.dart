@@ -6,7 +6,7 @@ import 'package:matched_app/model/messages.dart';
 import 'package:matched_app/model/personality_result.dart';
 import 'package:matched_app/model/user.dart';
 
-//TODO: Add pictures to the groups and start implementing the Roommate Test
+//TODO: Start implementing the Roommate Test
 
 class CloudFireStoreAPI {
   final CollectionReference userInfo =
@@ -42,17 +42,19 @@ class CloudFireStoreAPI {
         substring.add(user.name.substring(0, i + 1));
       }
       print(user.groups.first);
-      return userInfo.doc(user.uid).set({
+      userInfo.doc(user.uid).set({
         'uid': user.uid,
         'caseSearch': substring,
         'full name': user.name,
+        'personality': user.personality,
+        'gender': user.gender,
         'email': user.email,
         'photoURL': user.photoUrL,
         'type': user.type,
         'description': user.description,
         'lastSignIn': DateTime.now(),
         'groups': FieldValue.arrayUnion(user.groups)
-      }, SetOptions(merge: true));
+      }, SetOptions(merge: true)).then((value) => print('User Register'));
     } catch (error) {
       print(error.code);
       switch (error.code) {
@@ -87,8 +89,8 @@ class CloudFireStoreAPI {
 
   Future<UserModel> getUserData(String userUid) async {
     UserModel user;
-    Future<DocumentSnapshot> document = userInfo.doc(userUid).get();
-    await document.then<dynamic>((DocumentSnapshot value) async {
+    await userInfo.doc(userUid).get().then((value) {
+      print(value.data());
       user = UserModel(
           name: value.get('full name'),
           type: value.get('type'),
@@ -101,6 +103,7 @@ class CloudFireStoreAPI {
           caseSearch: value.get('caseSearch'),
           groups: value.get('groups'));
     });
+    print(user);
     return user;
   }
 
@@ -109,6 +112,7 @@ class CloudFireStoreAPI {
     var querySnapshot =
         await groupsCol.where('groupName', isEqualTo: groupName).get();
     DocumentSnapshot value = querySnapshot.docs.first;
+    print(value.data());
     group = GroupModel(
         groupId: value.get('groupID'),
         groupName: value.get('groupName'),
@@ -334,6 +338,24 @@ class CloudFireStoreAPI {
           errorMessage = "An undefined Error happened.";
       }
     }
+  }
+
+  Future<PersonalityResult> getPersonalityResult(String userUid) async {
+    PersonalityResult personalityResult;
+    await personality.where('uid', isEqualTo: userUid).get().then((result) {
+      DocumentSnapshot value = result.docs.first;
+      print(value.data());
+      personalityResult = PersonalityResult(eScore: value.get('eScore'),
+        iScore: value.get('iScore'),
+        sScore: value.get('sScore'),
+        nScore: value.get('nScore'),
+        tScore: value.get('tScore'),  fScore: value.get('fScore'),
+        jScore: value.get('jScore') ,
+        pScore: value.get('pScore'),
+        personality: value.get('personality'),);
+    }
+    );
+    return personalityResult;
   }
 
   Future<String> getPersonalityTestResult(String userID) async {

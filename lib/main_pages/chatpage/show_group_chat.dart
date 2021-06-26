@@ -38,7 +38,7 @@ class ShowGroupScreen extends StatelessWidget {
                   // Title Row
                   Padding(
                     padding: EdgeInsets.only(
-                      top: scaler.getHeight(7),
+                      top: scaler.getHeight(3),
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -81,11 +81,11 @@ class ShowGroupScreen extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(top: scaler.getHeight(1)),
                     child: Container(
-                      height: scaler.getWidth(40),
-                      width: scaler.getWidth(40),
+                      height: scaler.getWidth(50),
+                      width: scaler.getWidth(90),
                       child: ClipRRect(
                         borderRadius: BorderRadius.all(
-                            Radius.circular(scaler.getWidth(20))),
+                            Radius.circular(scaler.getWidth(0))),
                         child: FittedBox(
                           fit: BoxFit.cover,
                           child: Image(
@@ -121,10 +121,7 @@ class ShowGroupScreen extends StatelessWidget {
                         height: scaler.getHeight(5),
                         //width: scaler.getHeight(10),
                         decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                              colors: [Color(0xff1DD3B0), Color(0xff1D7CD3)]),
+                          color: cianGradient,
                           borderRadius: BorderRadius.only(
                             topRight: Radius.circular(10),
                             topLeft: Radius.circular(10)
@@ -149,7 +146,7 @@ class ShowGroupScreen extends StatelessWidget {
 
                   Container(
                     decoration: BoxDecoration(
-                      color: deepBlue,
+                      gradient: turkish,
                       borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(10),
                         bottomRight: Radius.circular(10)
@@ -193,13 +190,13 @@ class ShowGroupScreen extends StatelessWidget {
                               ),
                             );
                           } else {
-                            return Scaffold(
-                              backgroundColor: dark,
-                              body: Center(
-                                child: CircularProgressIndicator(
-                                  valueColor:
-                                      AlwaysStoppedAnimation<Color>(mainColor),
-                                ),
+                            return Container(
+                              height: scaler.getWidth(10),
+                              child: Center(
+                                  child: CircularProgressIndicator(
+                                    valueColor:
+                                        AlwaysStoppedAnimation<Color>(white),
+                                  ),
                               ),
                             );
                           }

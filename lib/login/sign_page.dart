@@ -47,9 +47,8 @@ class SignPageState extends State<SignPage> {
           child: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.min,
-              //TODO: implement key
+
               children: <Widget>[
-                //TODO: Implement fields
                 Container(
                     margin: EdgeInsets.only(
                         top: scaler.getHeight(5), bottom: scaler.getWidth(2)),
@@ -233,7 +232,6 @@ class SignPageState extends State<SignPage> {
       }
     }
 
-    //TODO login to firebase
   }
 
   Future<void> signUp() async {
@@ -249,7 +247,6 @@ class SignPageState extends State<SignPage> {
                     auth: FirebaseAuth.instance,
                   )));
 
-      //TODO login to firebase
     }
   }
 }

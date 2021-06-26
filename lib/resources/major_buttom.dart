@@ -9,12 +9,15 @@ class MajorButtom extends StatefulWidget {
   Alignment alignment;
   Widget screen = Scaffold();
 
+  final GestureTapCallback onTap;
+
   MajorButtom(
       {@required Key key,
       @required this.detail,
       @required this.image = "assets/images/image_2.png",
       @required this.screen,
-      @required this.alignment})
+      @required this.alignment,
+        this.onTap})
       : super(key: key);
 
   @override
@@ -27,10 +30,10 @@ class _MajorButtomState extends State<MajorButtom> {
     ScreenScaler scaler = ScreenScaler()..init(context);
     widget.alignment ??= Alignment.center;
     return GestureDetector(
-      onTap: () {
+      onTap: (widget.screen != null) ? () {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => widget.screen));
-      },
+      } : widget.onTap,
       child: Container(
         height: scaler.getHeight(16),
         decoration: BoxDecoration(

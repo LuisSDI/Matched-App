@@ -54,7 +54,9 @@ class UserBloc implements Bloc {
   // Update User Data
   void updateUserData(UserModel user) => cloudFirestoreRepository.updateUserData(user);
   // Get User Data
-  Future<UserModel> getUserData(String userUid) async => cloudFirestoreRepository.getUserData(userUid);
+  Future<UserModel> getUserData(String userUid) {
+    return cloudFirestoreRepository.getUserData(userUid);
+  }
   // Check if user exists
   Stream<DocumentSnapshot> listenUserData(String userUid) {
     return cloudFirestoreRepository.listenUserData(userUid);
@@ -118,6 +120,10 @@ class UserBloc implements Bloc {
   Future<void> sendPersonalityResult(UserModel user, PersonalityResult personalityResult)
   {
     cloudFirestoreRepository.sendPersonalityResult(user, personalityResult);
+  }
+
+  Future<PersonalityResult> getPersonalityResult(String userUid) {
+    return cloudFirestoreRepository.getPersonalityResult(userUid);
   }
 
   signOut() {

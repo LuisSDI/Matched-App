@@ -19,7 +19,6 @@ import 'package:matched_app/login/sign_page.dart';
 class ProfileTab extends StatelessWidget {
   UserBloc userBloc;
   FirebaseFirestore databaseReference = FirebaseFirestore.instance;
-  String personality;
 
   @override
   Widget build(BuildContext context) {
@@ -31,16 +30,9 @@ class ProfileTab extends StatelessWidget {
     })();
     userBloc = BlocProvider.of(context);
     return BlocProvider(
-      bloc: UserBloc(),
-      child: FutureBuilder(
-          future: userBloc.getPersonalityTestResult(userBloc.currentUser.uid),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.done) {
-              personality = snapshot.data;
-            }
-            User firebaseUser = FirebaseAuth.instance.currentUser;
-            return StreamBuilder(
-                stream: userBloc.listenUserData(firebaseUser.uid),
+      bloc: userBloc,
+      child: StreamBuilder(
+                stream: userBloc.listenUserData(userBloc.currentUser.uid),
                 builder: (context, snapshot) {
                         if (snapshot.connectionState == ConnectionState.active) {
                           DocumentSnapshot value = snapshot.data;
@@ -54,7 +46,6 @@ class ProfileTab extends StatelessWidget {
                             photoUrL: data['photoURL'],
                             email: data['email'],
                             caseSearch: data['caseSearch'],
-
                           );
                           return profile(scaler,
                               user,
@@ -67,28 +58,11 @@ class ProfileTab extends StatelessWidget {
                             ),
                           );
                         }
-                });
-          }),
-    );
+                }));
+
   }
 
   Widget profile(ScreenScaler scaler, UserModel users, BuildContext context) {
-    if (personality == null) {
-      personality = "Not yet set";
-    }
-    if (personality == "dominant"){
-      updateUser(users,'https://firebasestorage.googleapis.com/v0/b/matched-app-9cb6a.appspot.com/o/d_photo.png?alt=media&token=bbc6a6e7-14db-4532-8b8f-18172185054b');
-    }
-    else if (personality == "influencing"){
-      updateUser(users,'https://firebasestorage.googleapis.com/v0/b/matched-app-9cb6a.appspot.com/o/i_photo.png?alt=media&token=4de47b10-5c2a-4ec4-af35-9b84dd457073');
-    }
-    else if (personality == "steady"){
-      updateUser(users,'https://firebasestorage.googleapis.com/v0/b/matched-app-9cb6a.appspot.com/o/s_photo.png?alt=media&token=ce4fc924-953b-4f66-a421-28481b558c5c');
-    }
-    else if (personality == "conscientious"){
-      updateUser(users,'https://firebasestorage.googleapis.com/v0/b/matched-app-9cb6a.appspot.com/o/c_photo.png?alt=media&token=87cf199d-3218-4b3b-a62b-d83d86e6a88c');
-    }
-
     return SafeArea(
       top: false,
       child: Container(
@@ -248,7 +222,7 @@ class ProfileTab extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10)),
                       child: FittedBox(
                         fit: BoxFit.contain,
-                        child: Text(personality,
+                        child: Text(users.personality,
                           textAlign: TextAlign.right,
                           style: GoogleFonts.lato(
                               textStyle: TextStyle(

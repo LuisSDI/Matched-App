@@ -344,10 +344,10 @@ class PersonalityTestInfo {
   };
 
   List<List<String>> pairValues = [
-    ['Introvert', 'Extrovert'],
-    ['Observant', 'Intuitive'],
-    ['Thinking', 'Feeling'],
-    ['Judging', 'Perceiving']
+    ['Introvert (I)', 'Extrovert (E)'],
+    ['Observant (S)', 'Intuitive (N)'],
+    ['Thinking (T)', 'Feeling (F)'],
+    ['Judging (J)', 'Perceiving (P)']
   ];
 
   Map<String,String> personalityIconsPath = {

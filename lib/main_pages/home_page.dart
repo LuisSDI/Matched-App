@@ -36,7 +36,6 @@ class _HomePageState extends State<HomePage> {
   }
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 
@@ -51,98 +50,102 @@ class _HomePageState extends State<HomePage> {
       ExploreTab(),
       DiscoverTab(),
       ChatTab(),
-      TestTab(identifier: identifier2),
+      TestTab(),
       ProfileTab(),
     ];
     ScreenScaler scaler = ScreenScaler()..init(context);
     double paddingBottombar = scaler.getHeight(0.5);
     return Scaffold(
-      body: _children[_currentIndex],
+      body: _children[widget.currentIndex],
       backgroundColor: dark,
       bottomNavigationBar: Container(
-        decoration: BoxDecoration(gradient: turkish),
-        child: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-            unselectedItemColor: white,
-            fixedColor: white,
-            unselectedLabelStyle: GoogleFonts.lato(
-                textStyle: TextStyle(fontSize: 12, color: Colors.white)),
-            onTap: onTabTapped,
-            currentIndex: _currentIndex,
-            iconSize: 18,
-            showUnselectedLabels: true,
-            backgroundColor: Colors.transparent,
-            selectedLabelStyle: GoogleFonts.lato(
-                textStyle: TextStyle(fontSize: 12, color: Colors.white)),
-            items: [
-              //Explore
-              BottomNavigationBarItem(
-                  icon: Padding(
-                    padding: EdgeInsets.all(paddingBottombar),
-                    child: Icon(
-                      DormIcon.noun_dormitory_2125386_1,
-                      color: Colors.white,
-                      size: 35,
+        color: Colors.white,
+        child: Container(
+          decoration: BoxDecoration(gradient: turkish),
+          child: BottomNavigationBar(
+
+            type: BottomNavigationBarType.fixed,
+              unselectedItemColor: white,
+              fixedColor: white,
+              unselectedLabelStyle: GoogleFonts.lato(
+                  textStyle: TextStyle(fontSize: 12, color: Colors.white)),
+              onTap: onTabTapped,
+              currentIndex: widget.currentIndex,
+              iconSize: 18,
+              showUnselectedLabels: true,
+              backgroundColor: Colors.transparent,
+              selectedLabelStyle: GoogleFonts.lato(
+                  textStyle: TextStyle(fontSize: 12, color: Colors.white)),
+              items: [
+                //Explore
+                BottomNavigationBarItem(
+                    icon: Padding(
+                      padding: EdgeInsets.all(paddingBottombar),
+                      child: Icon(
+                        DormIcon.noun_dormitory_2125386_1,
+                        color: Colors.white,
+                        size: 35,
+                      ),
                     ),
-                  ),
-                  label: "Explore",
-                  backgroundColor: Colors.transparent),
-              //Majors
-              BottomNavigationBarItem(
-                  icon: Padding(
-                    padding: EdgeInsets.all(paddingBottombar),
-                    child: Icon(
-                      FixIcons.mind_fix,
-                      color: Colors.white,
-                      size: 40,
+                    label: "Explore",
+                    backgroundColor: Colors.transparent),
+                //Majors
+                BottomNavigationBarItem(
+                    icon: Padding(
+                      padding: EdgeInsets.all(paddingBottombar),
+                      child: Icon(
+                        FixIcons.mind_fix,
+                        color: Colors.white,
+                        size: 40,
+                      ),
                     ),
-                  ),
-                  label: "Personality",
-                  backgroundColor: Colors.transparent),
-              //Messages
-              BottomNavigationBarItem(
+                    label: "Personality",
+                    backgroundColor: Colors.transparent),
+                //Messages
+                BottomNavigationBarItem(
+                    icon: Padding(
+                      padding: EdgeInsets.all(paddingBottombar),
+                      child: Icon(
+                        Ionicons.ios_chatboxes,
+                        color: Colors.white,
+                        size: 30,
+                      ),
+                    ),
+                    label: "Clubs",
+                    backgroundColor: Colors.transparent),
+                //Apply
+                BottomNavigationBarItem(
+                    icon: Padding(
+                      padding: EdgeInsets.all(paddingBottombar),
+                      child: Icon(
+                        AntDesign.form,
+                        color: Colors.white,
+                        size: 30,
+                      ),
+                    ),
+                    label: "Matched!",
+                    backgroundColor: Colors.transparent),
+                //Profile
+                BottomNavigationBarItem(
                   icon: Padding(
                     padding: EdgeInsets.all(paddingBottombar),
                     child: Icon(
-                      Ionicons.ios_chatboxes,
+                      Icons.account_circle,
                       color: Colors.white,
                       size: 30,
                     ),
                   ),
-                  label: "Clubs",
-                  backgroundColor: Colors.transparent),
-              //Apply
-              BottomNavigationBarItem(
-                  icon: Padding(
-                    padding: EdgeInsets.all(paddingBottombar),
-                    child: Icon(
-                      AntDesign.form,
-                      color: Colors.white,
-                      size: 30,
-                    ),
-                  ),
-                  label: "Matched!",
-                  backgroundColor: Colors.transparent),
-              //Profile
-              BottomNavigationBarItem(
-                icon: Padding(
-                  padding: EdgeInsets.all(paddingBottombar),
-                  child: Icon(
-                    Icons.account_circle,
-                    color: Colors.white,
-                    size: 30,
-                  ),
-                ),
-                label: "Profile",
-              )
-            ]),
+                  label: "Profile",
+                )
+              ]),
+        ),
       ),
     );
   }
 
   void onTabTapped(int index) {
     setState(() {
-      _currentIndex = index;
+      widget.currentIndex = index;
     });
   }
 }

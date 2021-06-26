@@ -12,6 +12,7 @@ const dark = Color(0xff212C3D);
 const whiteish = Color.fromRGBO(255, 255, 255, 0.75);
 const greyish = Color(0xffE5E5E5);
 const black = Colors.black;
+const blackOp = Color.fromRGBO(0, 0, 0, 0.75);
 const purpleish = Color(0xff6747CD);
 
 //Gradients

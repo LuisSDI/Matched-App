@@ -152,63 +152,77 @@ or login with a social account"""
           ),
 
           // Facebook and Google Icons
-          Row(
-            children: <Widget>[
-              GestureDetector(
-                onTap: () async {
-                  // userBloc = BlocProvider.of(context);
-                  // AuthCredential credential =
-                  //     await userBloc.credentialFacebook();
-                  // UserCredential authResult =
-                  //     await userBloc.signInCredential(credential);
-                  // if (authResult.additionalUserInfo.isNewUser) {
-                  //   authResult.user.delete();
-                  //   Navigator.push(
-                  //       context,
-                  //       MaterialPageRoute(
-                  //           builder: (context) => CreateProfilePage(
-                  //                 auth: FirebaseAuth.instance,
-                  //                 credential: credential,
-                  //               )));
-                  // } else {
-                  //   Navigator.pushReplacement(
-                  //       context,
-                  //       MaterialPageRoute(
-                  //           builder: (context) => HomePage(
-                  //               identifier: userBloc.currentUser.email)));
-                  // }
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //         builder: (context) => CreateProfilePage(
-                  //               auth: FirebaseAuth.instance,
-                  //               credential: credential,
-                  //             )));
-                },
-                child: Container(
-                  margin: EdgeInsets.only(
-                    top: scaler.getWidth(3),
+          Expanded(
+            child: Row(
+              children: <Widget>[
+                GestureDetector(
+                  onTap: () async {
+                    // userBloc = BlocProvider.of(context);
+                    // AuthCredential credential =
+                    //     await userBloc.credentialFacebook();
+                    // UserCredential authResult =
+                    //     await userBloc.signInCredential(credential);
+                    // if (authResult.additionalUserInfo.isNewUser) {
+                    //   authResult.user.delete();
+                    //   Navigator.push(
+                    //       context,
+                    //       MaterialPageRoute(
+                    //           builder: (context) => CreateProfilePage(
+                    //                 auth: FirebaseAuth.instance,
+                    //                 credential: credential,
+                    //               )));
+                    // } else {
+                    //   Navigator.pushReplacement(
+                    //       context,
+                    //       MaterialPageRoute(
+                    //           builder: (context) => HomePage(
+                    //               identifier: userBloc.currentUser.email)));
+                    // }
+                    // Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //         builder: (context) => CreateProfilePage(
+                    //               auth: FirebaseAuth.instance,
+                    //               credential: credential,
+                    //             )));
+                  },
+                  child: Container(
+                    margin: EdgeInsets.only(
+                      top: scaler.getWidth(3),
+                    ),
+                    alignment: Alignment.center,
+                    child: FittedBox(
+                        fit: BoxFit.contain,
+                        child: Icon(
+                          FontAwesome.facebook,
+                          color: white,
+                          size: 35,
+                        )),
+                    width: scaler.getWidth(10),
+                    height: scaler.getWidth(10),
                   ),
-                  alignment: Alignment.center,
-                  child: FittedBox(
-                      fit: BoxFit.contain,
-                      child: Icon(
-                        FontAwesome.facebook,
-                        color: white,
-                        size: 35,
-                      )),
-                  width: scaler.getWidth(10),
-                  height: scaler.getWidth(10),
-                ),
-              ), // GOOGLE
-              GestureDetector(
-                onTap: () async {
-                  userBloc = BlocProvider.of(context);
-                  AuthCredential credential = await userBloc.credentialGoogle();
-                  UserCredential authResult =
-                      await userBloc.signInCredential(credential);
-                  if (authResult.additionalUserInfo.isNewUser) {
-                    authResult.user.delete();
+                ), // GOOGLE
+                GestureDetector(
+                  onTap: () async {
+                    userBloc = BlocProvider.of(context);
+                    AuthCredential credential = await userBloc.credentialGoogle();
+                    UserCredential authResult =
+                        await userBloc.signInCredential(credential);
+                    if (authResult.additionalUserInfo.isNewUser) {
+                      authResult.user.delete();
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => CreateProfilePage(
+                                    auth: FirebaseAuth.instance,
+                                    credential: credential,
+                                  )));
+                    } else {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => HomePage()));
+                    }
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -216,38 +230,25 @@ or login with a social account"""
                                   auth: FirebaseAuth.instance,
                                   credential: credential,
                                 )));
-                  } else {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => HomePage(
-                                identifier: userBloc.currentUser.email)));
-                  }
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => CreateProfilePage(
-                                auth: FirebaseAuth.instance,
-                                credential: credential,
-                              )));
-                },
-                child: Container(
-                  margin: EdgeInsets.only(
-                    top: scaler.getWidth(3),
+                  },
+                  child: Container(
+                    margin: EdgeInsets.only(
+                      top: scaler.getWidth(3),
+                    ),
+                    alignment: Alignment.center,
+                    child: FittedBox(
+                        fit: BoxFit.contain,
+                        child: Icon(
+                          FontAwesome.google,
+                          color: white,
+                          size: 35,
+                        )),
+                    width: scaler.getWidth(10),
+                    height: scaler.getWidth(10),
                   ),
-                  alignment: Alignment.center,
-                  child: FittedBox(
-                      fit: BoxFit.contain,
-                      child: Icon(
-                        FontAwesome.google,
-                        color: white,
-                        size: 35,
-                      )),
-                  width: scaler.getWidth(10),
-                  height: scaler.getWidth(10),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ],
       ),

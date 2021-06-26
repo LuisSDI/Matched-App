@@ -5,6 +5,7 @@ import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:matched_app/bloc/user_bloc.dart';
+import 'package:matched_app/main_pages/home_page.dart';
 import 'package:matched_app/main_pages/test_pages/personality_test/personality_test_info.dart';
 import 'package:matched_app/model/personality_result.dart';
 import 'package:matched_app/model/user.dart';
@@ -94,7 +95,11 @@ class PersonalityTestResult extends StatelessWidget {
                                           color: mainColor,
                                           size: 30,
                                         ),
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          Navigator.pushReplacement(
+                                              context, MaterialPageRoute(builder: (context) => HomePage(
+                                          currentIndex: 3,)));
+                                        },
                                       ),
                                     ),
                                   ],
@@ -286,7 +291,6 @@ class PersonalityTestResult extends StatelessWidget {
   }
 
   //TODO Find a smarter way to do it
-  //TODO Incorporate the User for the Gender
   PersonalityResult calculatePersonality(
       List<int> answers, UserModel userModel) {
     int eScore = 0;
@@ -824,8 +828,10 @@ class PersonalityTestResult extends StatelessWidget {
     } else {
       personality += 'N';
     }
-    //TODO Include Gender Tie Breaker
-    if (tScore == fScore) {
+    if (tScore > fScore) {
+      personality += 'T';
+    }
+    else if (tScore == fScore) {
       if (userModel.gender == 'Male') {
         personality += 'T';
       } else {
@@ -834,7 +840,7 @@ class PersonalityTestResult extends StatelessWidget {
     } else {
       personality += 'F';
     }
-    if (tScore > fScore) {
+    if (jScore > pScore) {
       personality += 'J';
     } else {
       personality += 'P';

@@ -68,7 +68,9 @@ class MyApp extends StatelessWidget {
                 stream: userBloc.authStatus,
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
-                    return HomePage();
+                    return HomePage(
+                      currentIndex: 0,
+                    );
                   } else if (snapshot.hasError) {
                     return Text("An error has occur, verify your connection and try later");
                   } else if (snapshot.connectionState !=

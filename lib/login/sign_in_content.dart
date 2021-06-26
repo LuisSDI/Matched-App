@@ -222,9 +222,7 @@ class _SignInContentState extends State<SignInContent> {
               ),
             ],
           ),
-          SizedBox(
-            height: scaler.getWidth(10),
-          ),
+Expanded(child: Container()),
           // Forgot password Text
           Container(
             alignment: Alignment.centerLeft,
