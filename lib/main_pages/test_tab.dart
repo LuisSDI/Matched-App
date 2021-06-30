@@ -8,11 +8,12 @@ import 'package:matched_app/MatchingQuizz/matchingScreen.dart';
 import 'package:matched_app/bloc/user_bloc.dart';
 import 'package:matched_app/main_pages/test_pages/personality_test/personality_test_intro.dart';
 import 'package:matched_app/main_pages/test_pages/personality_test/personality_test_result_fixed.dart';
-import 'package:matched_app/model/personality_result.dart';
+import 'package:matched_app/main_pages/test_pages/roommate_test/roommate_submit_fixed.dart';
+import 'package:matched_app/main_pages/test_pages/roommate_test/roommate_test_intro.dart';
+
 import 'package:matched_app/model/user.dart';
 import 'package:matched_app/resources/major_buttom.dart';
 import 'package:matched_app/ui_resources/custom_colors.dart';
-import 'package:matched_app/RoommateMatching/pages/roommateQuizzPage.dart';
 
 class TestTab extends StatelessWidget {
   TestTab({
@@ -29,7 +30,7 @@ class TestTab extends StatelessWidget {
       child: FutureBuilder(
         future: userBloc.getUserData(userBloc.currentUser.uid),
         builder: (context, snapshot) {
-          print(snapshot.data);
+          print(snapshot.connectionState);
           if (snapshot.connectionState == ConnectionState.done) {
             UserModel userModel = snapshot.data;
             print(userModel.personality);
@@ -84,7 +85,7 @@ class TestTab extends StatelessWidget {
                         MajorButtom(
                           detail: '''Roommate \nMatching'''.trim(),
                           image: "assets/images/disc/roommate.jpg",
-                          onTap: () {
+                          onTap: () async {
                             if (userModel.personality == 'None') {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
@@ -100,12 +101,31 @@ class TestTab extends StatelessWidget {
                                 ),
                               );
                             } else {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => RoommateQuizzPage(
-                                          uid: currentUser.uid,
-                                          identifier: currentUser.email)));
+                               userBloc.getRoommateSubmit(userBloc.currentUser.uid).then((value) {
+                                 if (value != null) {
+                                    userBloc.getReleaseTime().then((value2) {
+                                      if (value2 != null) {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) => (value != null ) ? RoommateSubmitFixed(
+                                                  releaseTime: value2,
+                                                ) :RoommateTestIntro()));
+                                      }
+                                      else{
+                                        print('Error: time could not be retrieve');
+                                      }
+                                    });
+                                 }
+                                 else
+                                   {
+                                   print('Error: uid could not be retrieve or does not exist');
+                                   Navigator.push(
+                                       context,
+                                       MaterialPageRoute(
+                                           builder: (context) => RoommateTestIntro()));
+                                 }
+                               });
                             }
                           },
                         ),

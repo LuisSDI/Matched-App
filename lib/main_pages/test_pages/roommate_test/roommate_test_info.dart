@@ -165,7 +165,7 @@ class RoommateTestInfo {
     '4. I am an optimistic person.',
     '5. I am a good listener.',
     '6. I control my temper.',
-    '7. When I鈥檓 stressed I choose to be alone.',
+    '7. When I\'m stressed I choose to be alone.',
     '8. I like to share my thoughts and feelings with other people.',
     '9. I am good starting conversations.'
   ];

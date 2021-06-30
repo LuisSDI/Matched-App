@@ -20,13 +20,8 @@ class MultiChoiceQuestion extends StatefulWidget {
 }
 
 class _MultiChoiceQuestionState extends State<MultiChoiceQuestion> {
-  List<List<String>> choices = [
-    ["ABC", "AAB", "ACD"], // 1st qns has 3 choices
-    ["AND", "CQA", "QWE", "QAL"], // 2nd qns has 4 choices
-    ["ASD", "JUS", "JSB"] // 3rd qns has 3 choices
-  ];
 
-  String currentval;
+  String currentVal;
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +47,8 @@ class _MultiChoiceQuestionState extends State<MultiChoiceQuestion> {
                 height: screenScaler.getWidth(11),
                 child: Text(
               widget.question,
-              style: GoogleFonts.lato(color: white, fontSize: 18),
+              style: GoogleFonts.lato(color: white, fontSize: 18,
+              fontWeight: FontWeight.bold),
             )),
           ),
           Container(
@@ -65,7 +61,7 @@ class _MultiChoiceQuestionState extends State<MultiChoiceQuestion> {
               children: widget.answers.map((item) {
                 //change index of choices array as you need
                 return RadioListTile(
-                  groupValue: currentval,
+                  groupValue: currentVal,
                   contentPadding: EdgeInsets.symmetric(
                       horizontal: screenScaler.getWidth(2)),
                   dense: false,
@@ -76,7 +72,7 @@ class _MultiChoiceQuestionState extends State<MultiChoiceQuestion> {
                   value: item,
                   activeColor: mainColor,
                   onChanged: (val) {
-                    currentval = val;
+                    currentVal = val;
                     widget.updateSelection(widget.index,widget.answers.indexOf(val));
                   },
                 );

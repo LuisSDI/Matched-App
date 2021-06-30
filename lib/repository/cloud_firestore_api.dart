@@ -22,7 +22,10 @@ class CloudFireStoreAPI {
       FirebaseFirestore.instance.collection('personalityResults');
 
   final CollectionReference roommate =
-      FirebaseFirestore.instance.collection('roommate');
+      FirebaseFirestore.instance.collection('roommateTest');
+
+  final CollectionReference generalInfo =
+  FirebaseFirestore.instance.collection('generalInfo');
 
   String errorMessage;
 
@@ -366,6 +369,58 @@ class CloudFireStoreAPI {
     });
     return pTestResult;
   }
+
+  // ROOMMATE TEST FUNCTIONS
+
+  Future<void> createRoommateTest(String uid, List<int> habitsAns,
+      List<int> socialAns,List<int> beliefAns,List<int> communAns, List<int> interestAns
+      ) async {
+    try {
+      roommate.doc(uid).set({
+        'uid': uid,
+        'habitsAns': habitsAns,
+        'socialAns': socialAns,
+        'beliefAns': beliefAns,
+        'communAns': communAns,
+        'interestAns':interestAns
+      }, SetOptions(merge: true)).then((value) => print('Roommate Results Created'));
+    } catch (error) {
+      print(error.code);
+      switch (error.code) {
+        case "ERROR_NETWORK_REQUEST_FAILED":
+          errorMessage = "You are unable to connect";
+          break;
+        default:
+          errorMessage = "An undefined Error happened.";
+      }
+    }
+  }
+
+  Future<String> getRoommateSubmit(String userUid) async {
+    String uid;
+    try{
+    await roommate.doc(userUid).get().then((result) {
+      uid = result.get('uid');
+    }
+    );}
+    catch(error)
+    {
+      print(error);
+      uid =null;
+    }
+    return uid;
+  }
+
+  Future<DateTime> getReleaseTime() async {
+    DateTime time;
+    await generalInfo.doc('generalInfo').get().then((result) {
+      time= DateTime.parse(result.get('releaseResult').toDate().toString());
+      print(time);
+    }
+    );
+    return time;
+  }
+
 
   Future<String> getSecondPersonality(String userID) async {
     String pTestResult;

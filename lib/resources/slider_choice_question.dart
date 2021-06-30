@@ -4,12 +4,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:matched_app/ui_resources/custom_colors.dart';
 
 class SliderChoiceQuestion extends StatefulWidget {
-  const SliderChoiceQuestion({Key key, this.question, this.answers, this.updateSelection, this.index})
+  const SliderChoiceQuestion({Key key, this.question, this.answers, this.updateSelection, this.index, this.initVal})
       : super(key: key);
   final String question;
   final List<String> answers;
   final updateSelection;
   final int index;
+  final int initVal;
+
   @override
   _SliderChoiceQuestionState createState() => _SliderChoiceQuestionState();
 }
@@ -19,12 +21,18 @@ class _SliderChoiceQuestionState extends State<SliderChoiceQuestion> {
   String _currentSliderValue;
   double _value = 0;
   Color thumbColor = white;
+  bool isSetup = true;
 
   @override
   Widget build(BuildContext context) {
     ScreenScaler screenScaler = ScreenScaler()..init(context);
-
-    _currentSliderValue ??=widget.answers[0];
+    if (widget.initVal != null && isSetup) {
+      setState(() {
+        _value = widget.initVal.toDouble();
+        isSetup = false;
+      });
+    }
+    _currentSliderValue ??=widget.answers[_value.toInt()];
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: screenScaler.getWidth(2)),
       child: Column(
