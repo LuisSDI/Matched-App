@@ -61,7 +61,7 @@ class _ListUsersState extends State<ListUsers> {
                     child: CircularProgressIndicator(),
                   );
                 }
-
+                else{
                 return ListView(
                   children: snapshot.data.docs.map((document) {
                     return Center(
@@ -99,6 +99,7 @@ class _ListUsersState extends State<ListUsers> {
                     );
                   }).toList(),
                 );
+                }
               }),
         ),
       ],

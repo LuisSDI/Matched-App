@@ -64,6 +64,11 @@ class UserBloc implements Bloc {
     return cloudFirestoreRepository.getUserData(userUid);
   }
 
+  //Search List of Users
+  Stream<QuerySnapshot> searchUser(searchValue) {
+    return cloudFirestoreRepository.searchUser(searchValue);
+  }
+
   // Check if user exists
   Stream<DocumentSnapshot> listenUserData(String userUid) {
     return cloudFirestoreRepository.listenUserData(userUid);
@@ -159,6 +164,12 @@ class UserBloc implements Bloc {
 
   signOut() {
     authRepository.signOut();
+  }
+
+  //PEOPLE MATCH FUNCTIONS
+  Future<void> createPeopleMatchTest(
+      String myUid, String yourUid, List<int> myAns) {
+    return cloudFirestoreRepository.createPeopleMatchTest(myUid, yourUid, myAns);
   }
 
   // Firebase Storage

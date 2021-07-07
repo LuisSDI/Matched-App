@@ -100,7 +100,7 @@ class RouterCustom {
           username: username,
           image: image,
           email: email,
-          identifier: identifier),
+          ),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         var begin = Offset(0.0, 0.1);
         var end = Offset.zero;

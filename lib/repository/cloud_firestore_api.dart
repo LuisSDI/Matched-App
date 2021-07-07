@@ -25,7 +25,10 @@ class CloudFireStoreAPI {
       FirebaseFirestore.instance.collection('roommateTest');
 
   final CollectionReference generalInfo =
-  FirebaseFirestore.instance.collection('generalInfo');
+      FirebaseFirestore.instance.collection('generalInfo');
+
+  final CollectionReference peopleMatch =
+      FirebaseFirestore.instance.collection('peopleMatch');
 
   String errorMessage;
 
@@ -108,6 +111,12 @@ class CloudFireStoreAPI {
     });
     print(user);
     return user;
+  }
+
+  Stream<QuerySnapshot> searchUser(searchValue) {
+    return userInfo
+        .where("caseSearch", arrayContains: searchValue)
+        .snapshots(includeMetadataChanges: false);
   }
 
   Future<GroupModel> searchGroup(String groupName) async {
@@ -348,16 +357,18 @@ class CloudFireStoreAPI {
     await personality.where('uid', isEqualTo: userUid).get().then((result) {
       DocumentSnapshot value = result.docs.first;
       print(value.data());
-      personalityResult = PersonalityResult(eScore: value.get('eScore'),
+      personalityResult = PersonalityResult(
+        eScore: value.get('eScore'),
         iScore: value.get('iScore'),
         sScore: value.get('sScore'),
         nScore: value.get('nScore'),
-        tScore: value.get('tScore'),  fScore: value.get('fScore'),
-        jScore: value.get('jScore') ,
+        tScore: value.get('tScore'),
+        fScore: value.get('fScore'),
+        jScore: value.get('jScore'),
         pScore: value.get('pScore'),
-        personality: value.get('personality'),);
-    }
-    );
+        personality: value.get('personality'),
+      );
+    });
     return personalityResult;
   }
 
@@ -372,9 +383,13 @@ class CloudFireStoreAPI {
 
   // ROOMMATE TEST FUNCTIONS
 
-  Future<void> createRoommateTest(String uid, List<int> habitsAns,
-      List<int> socialAns,List<int> beliefAns,List<int> communAns, List<int> interestAns
-      ) async {
+  Future<void> createRoommateTest(
+      String uid,
+      List<int> habitsAns,
+      List<int> socialAns,
+      List<int> beliefAns,
+      List<int> communAns,
+      List<int> interestAns) async {
     try {
       roommate.doc(uid).set({
         'uid': uid,
@@ -382,8 +397,9 @@ class CloudFireStoreAPI {
         'socialAns': socialAns,
         'beliefAns': beliefAns,
         'communAns': communAns,
-        'interestAns':interestAns
-      }, SetOptions(merge: true)).then((value) => print('Roommate Results Created'));
+        'interestAns': interestAns
+      }, SetOptions(merge: true)).then(
+          (value) => print('Roommate Results Created'));
     } catch (error) {
       print(error.code);
       switch (error.code) {
@@ -398,15 +414,13 @@ class CloudFireStoreAPI {
 
   Future<String> getRoommateSubmit(String userUid) async {
     String uid;
-    try{
-    await roommate.doc(userUid).get().then((result) {
-      uid = result.get('uid');
-    }
-    );}
-    catch(error)
-    {
+    try {
+      await roommate.doc(userUid).get().then((result) {
+        uid = result.get('uid');
+      });
+    } catch (error) {
       print(error);
-      uid =null;
+      uid = null;
     }
     return uid;
   }
@@ -414,13 +428,11 @@ class CloudFireStoreAPI {
   Future<DateTime> getReleaseTime() async {
     DateTime time;
     await generalInfo.doc('generalInfo').get().then((result) {
-      time= DateTime.parse(result.get('releaseResult').toDate().toString());
+      time = DateTime.parse(result.get('releaseResult').toDate().toString());
       print(time);
-    }
-    );
+    });
     return time;
   }
-
 
   Future<String> getSecondPersonality(String userID) async {
     String pTestResult;
@@ -438,5 +450,28 @@ class CloudFireStoreAPI {
       roommateMatchingResult = value.get("result");
     });
     return roommateMatchingResult;
+  }
+
+  //PEOPLE MATCH FUNCTIONS
+
+  Future<void> createPeopleMatchTest(
+      String myUid, String yourUid, List<int> myAns) async {
+    try {
+      DocumentReference match = await peopleMatch
+          .add({'user1Uid': myUid, 'user2Uid': yourUid, 'user1Ans': myAns});
+      DocumentReference yourDoc = userInfo.doc(yourUid);
+      await yourDoc.update({
+        'requests': FieldValue.arrayUnion([match.id])
+      }).then((value) => print('Match Created'));
+    } catch (error) {
+      print(error.code);
+      switch (error.code) {
+        case "ERROR_NETWORK_REQUEST_FAILED":
+          errorMessage = "You are unable to connect";
+          break;
+        default:
+          errorMessage = "An undefined Error happened.";
+      }
+    }
   }
 }

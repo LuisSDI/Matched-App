@@ -6,6 +6,7 @@ import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:matched_app/MatchingQuizz/matchingScreen.dart';
 import 'package:matched_app/bloc/user_bloc.dart';
+import 'package:matched_app/main_pages/test_pages/people_match_test/home_match_screen.dart';
 import 'package:matched_app/main_pages/test_pages/personality_test/personality_test_intro.dart';
 import 'package:matched_app/main_pages/test_pages/personality_test/personality_test_result_fixed.dart';
 import 'package:matched_app/main_pages/test_pages/roommate_test/roommate_submit_fixed.dart';
@@ -206,7 +207,7 @@ class TestTab extends StatelessWidget {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => MatchingScreen(
+                                      builder: (context) => HomeMatchScreen(
                                             identifier: currentUser.email,
                                             title: "Do we match?",
                                           )));

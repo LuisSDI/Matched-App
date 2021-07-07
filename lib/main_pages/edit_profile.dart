@@ -170,7 +170,7 @@ class _EditProfileState extends State<EditProfile> {
                               child: IconButton(
                                 onPressed: () async {
                                   widget.userBloc = BlocProvider.of(context);
-                                  Async_Loader.showLoadingDialog(context,keyLoader);
+                                  Async_Loader.showLoadingDialog(context);
                                   String photo = await widget.userBloc
                                       .getImageUrl(widget.user.uid);
                                   Navigator.of(context).pop();

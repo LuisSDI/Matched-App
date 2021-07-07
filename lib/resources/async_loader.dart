@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:matched_app/ui_resources/custom_colors.dart';
 
 class Async_Loader {
   static Future<void> showLoadingDialog(
-      BuildContext context, GlobalKey key) async {
+      BuildContext context) async {
     return showDialog<void>(
         context: context,
         barrierDismissible: false,
@@ -10,7 +11,9 @@ class Async_Loader {
           return WillPopScope(
               onWillPop: () async => false,
               child: Center(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator(
+                  color: mainColor,
+                ),
               ));
         });
   }
