@@ -490,7 +490,6 @@ class CloudFireStoreAPI {
         result += 1 - temp.abs();
       }
       result = (result / requesterAns.length) * 100;
-      //TODO: FINISH
       await match.update({'user2Ans': myAns, 'finalScore': result});
       DocumentReference yourDoc = userInfo.doc(yourUid);
       DocumentReference myDoc = userInfo.doc(myUid);
