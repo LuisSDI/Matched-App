@@ -6,12 +6,14 @@ class CompatibilityResult {
   final PersonalityResult yourPersonalityResult;
   final String myUid;
   final String yourUid;
+  final double finalScore;
 
-  CompatibilityResult({
+  CompatibilityResult( {
     Key key,
     this.myPersonalityResult,
     this.yourPersonalityResult,
     this.myUid,
     this.yourUid,
+    this.finalScore,
   });
 }

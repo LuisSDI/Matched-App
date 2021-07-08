@@ -11,8 +11,10 @@ class UserModel {
   final String gender;
   final List<dynamic> groups;
   final List<dynamic> caseSearch;
+  final List<dynamic> request;
+  final List<dynamic> results;
 
-  UserModel( {
+  UserModel({
     Key key,
     @required this.personality,
     @required this.uid,
@@ -23,6 +25,8 @@ class UserModel {
     @required this.photoUrL,
     @required this.type,
     @required this.description,
-    @required this.caseSearch
+    @required this.caseSearch,
+    this.request,
+    this.results,
   });
 }

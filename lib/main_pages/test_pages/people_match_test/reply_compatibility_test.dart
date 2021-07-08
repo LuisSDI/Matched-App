@@ -13,17 +13,18 @@ import 'package:matched_app/resources/simple_buttom.dart';
 import 'package:matched_app/resources/slider_choice_question.dart';
 import 'package:matched_app/ui_resources/custom_colors.dart';
 
-class CompatibilityTest extends StatefulWidget {
-  const CompatibilityTest({Key key, this.myUid, this.yourUid, }) : super(key: key);
+class ReplyCompatibilityTest extends StatefulWidget {
+  const ReplyCompatibilityTest({Key key, this.myUid, this.yourUid, this.testUid, }) : super(key: key);
 
   final String myUid;
   final String yourUid;
+  final String testUid;
 
   @override
-  _CompatibilityTestState createState() => _CompatibilityTestState();
+  _ReplyCompatibilityTestState createState() => _ReplyCompatibilityTestState();
 }
 
-class _CompatibilityTestState extends State<CompatibilityTest> {
+class _ReplyCompatibilityTestState extends State<ReplyCompatibilityTest> {
   String test;
 
   List<int> results = List<int>.filled(36, 2);
@@ -146,7 +147,8 @@ class _CompatibilityTestState extends State<CompatibilityTest> {
                               ),
                               TextButton(
                                 onPressed: () async {
-                                  await userBloc.createPeopleMatchTest(widget.myUid, widget.yourUid, results);
+                                  //await userBloc.createPeopleMatchTest(widget.myUid, widget.yourUid, results);
+                                  await userBloc.replyPeopleMatchTest(widget.myUid, widget.yourUid, widget.testUid, results);
                                   userBloc.dispose();
                                   Navigator.pop(context, 'Submit');
                                   Navigator.pop(context);

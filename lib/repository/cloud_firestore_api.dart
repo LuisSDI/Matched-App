@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:matched_app/main_pages/test_pages/personality_test/personality_test_info.dart';
+import 'package:matched_app/model/compatibility_result.dart';
 import 'package:matched_app/model/group.dart';
 import 'package:matched_app/model/group_message.dart';
 import 'package:matched_app/model/messages.dart';
@@ -460,6 +461,7 @@ class CloudFireStoreAPI {
       DocumentReference match = await peopleMatch
           .add({'user1Uid': myUid, 'user2Uid': yourUid, 'user1Ans': myAns});
       DocumentReference yourDoc = userInfo.doc(yourUid);
+      await match.update({'peopleMatchId': match.id});
       await yourDoc.update({
         'requests': FieldValue.arrayUnion([match.id])
       }).then((value) => print('Match Created'));
@@ -473,5 +475,95 @@ class CloudFireStoreAPI {
           errorMessage = "An undefined Error happened.";
       }
     }
+  }
+
+  Future<CompatibilityResult> replyPeopleMatchTest(
+      String myUid, String yourUid, String testUid, List<int> myAns) async {
+    try {
+      DocumentReference match = peopleMatch.doc(testUid);
+      DocumentSnapshot matchInfo = await match.get();
+      List<dynamic> requesterAns = matchInfo.get('user1Ans');
+      double result = 0;
+      //Calculating Result
+      for (int i = 0; i < requesterAns.length; i++) {
+        double temp = (myAns[i] - requesterAns[i]) / (4);
+        result += 1 - temp.abs();
+      }
+      result = (result / requesterAns.length) * 100;
+      //TODO: FINISH
+      await match.update({'user2Ans': myAns, 'finalScore': result});
+      DocumentReference yourDoc = userInfo.doc(yourUid);
+      DocumentReference myDoc = userInfo.doc(myUid);
+      await match.update({'peopleMatchId': match.id});
+      CompatibilityResult compatibilityResult = CompatibilityResult(
+        finalScore: result,
+        myUid: myUid,
+        yourUid: yourUid,
+        myPersonalityResult: await getPersonalityResult(myUid),
+        yourPersonalityResult: await getPersonalityResult(yourUid),
+      );
+      await myDoc.update({
+        'matchResults': FieldValue.arrayUnion([match.id])
+      });
+      await yourDoc.update({
+        'request': FieldValue.arrayRemove([match.id]),
+        'matchResults': FieldValue.arrayUnion([match.id])
+      }).then((value) => print('Match Replied'));
+      return compatibilityResult;
+    } catch (error) {
+      print(error.code);
+      switch (error.code) {
+        case "ERROR_NETWORK_REQUEST_FAILED":
+          errorMessage = "You are unable to connect";
+          break;
+        default:
+          errorMessage = "An undefined Error happened.";
+      }
+      return null;
+    }
+  }
+
+  Future<List<UserModel>> getRequest(String userID) async {
+    List<dynamic> requests = [];
+    List<UserModel> requestersUser = [];
+    await userInfo.doc(userID).get().then((value) {
+      requests = value.get('requests');
+    });
+    QuerySnapshot querySnapshot =
+        await peopleMatch.where('peopleMatchId', whereIn: requests).get();
+    for (var result in querySnapshot.docs) {
+      String requesterUid = result.get('user1Uid');
+      String testUid = result.get('peopleMatchId');
+      print(requesterUid);
+      await getUserData(requesterUid).then((user) {
+        user.request.add(testUid);
+        requestersUser.add(user);
+      });
+    }
+    print('Requests');
+    print(requestersUser.first.name);
+    return requestersUser;
+  }
+
+  Future<List<UserModel>> getResults(String userID) async {
+    List<dynamic> requests = [];
+    List<UserModel> requestersUser = [];
+    await userInfo.doc(userID).get().then((value) {
+      requests = value.get('matchResults');
+    });
+    QuerySnapshot querySnapshot =
+        await peopleMatch.where('peopleMatchId', whereIn: requests).get();
+    for (var result in querySnapshot.docs) {
+      String requesterUid = result.get('user1Uid');
+      String testUid = result.get('peopleMatchId');
+      print(requesterUid);
+      await getUserData(requesterUid).then((user) {
+        user.request.add(testUid);
+        requestersUser.add(user);
+      });
+    }
+    print('Requests');
+    print(requestersUser.first.name);
+    return requestersUser;
   }
 }

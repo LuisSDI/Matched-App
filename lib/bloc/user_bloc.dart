@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:matched_app/model/compatibility_result.dart';
 import 'package:matched_app/model/group.dart';
 import 'package:matched_app/model/group_message.dart';
 import 'package:matched_app/model/messages.dart';
@@ -172,11 +173,27 @@ class UserBloc implements Bloc {
     return cloudFirestoreRepository.createPeopleMatchTest(myUid, yourUid, myAns);
   }
 
+  Future<CompatibilityResult> replyPeopleMatchTest(
+      String myUid, String yourUid, String testUid, List<int> myAns){
+    return cloudFirestoreRepository.replyPeopleMatchTest(myUid, yourUid, testUid, myAns);
+  }
+
+  Future<List<UserModel>> getRequest(String userID) {
+    return cloudFirestoreRepository.getRequest(userID);
+  }
+
+  Future<List<UserModel>> getResults(String userID)
+  {
+    return cloudFirestoreRepository.getResults(userID);
+  }
+
   // Firebase Storage
   final _firebaseStorageRepository = FirebaseStorageAPI();
 
   Future<String> getImageUrl(String imageId) =>
       _firebaseStorageRepository.getImageUrl(imageId);
+
+
 
   @override
   void dispose() {}

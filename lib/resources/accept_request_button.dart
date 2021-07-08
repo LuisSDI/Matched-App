@@ -6,15 +6,17 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:matched_app/main_pages/chatpage/chat_screen.dart';
 import 'package:matched_app/main_pages/chatpage/show_profile_chat.dart';
 import 'package:matched_app/main_pages/test_pages/people_match_test/compatibility_test.dart';
+import 'package:matched_app/main_pages/test_pages/people_match_test/reply_compatibility_test.dart';
 import 'package:matched_app/model/user.dart';
 import 'package:matched_app/ui_resources/custom_colors.dart';
 
-class RequestButton extends StatelessWidget {
+class AcceptRequestButton extends StatelessWidget {
   final UserModel user;
   final String currentUserUid;
+  final String testUid;
 
 
-  const RequestButton({Key key, @required this.user, this.currentUserUid})
+  const AcceptRequestButton({Key key, @required this.user, this.currentUserUid, this.testUid})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -105,7 +107,7 @@ class RequestButton extends StatelessWidget {
                 ),
               ),
               child: Text(
-                "Send\nRequest",
+                "Accept\nRequest",
                 textAlign: TextAlign.center,
                 style: GoogleFonts.lato(fontWeight: FontWeight.bold),
               ),
@@ -117,9 +119,10 @@ class RequestButton extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => CompatibilityTest(
+                          builder: (context) => ReplyCompatibilityTest(
                             yourUid: user.uid,
                             myUid: currentUserUid,
+                            testUid: testUid,
                           )));
                 }
               },

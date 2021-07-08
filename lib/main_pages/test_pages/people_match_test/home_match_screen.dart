@@ -1,11 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:matched_app/MatchingQuizz/invitationTab.dart';
 import 'package:matched_app/MatchingQuizz/listUsers.dart';
 import 'package:matched_app/bloc/user_bloc.dart';
+import 'package:matched_app/main_pages/test_pages/people_match_test/requests_tab.dart';
 import 'package:matched_app/main_pages/test_pages/people_match_test/search_user_tab.dart';
 import 'package:matched_app/ui_resources/custom_colors.dart';
 
@@ -55,13 +57,13 @@ class _HomeMatchScreenState extends State<HomeMatchScreen> {
                     vertical:scaler.getWidth(.5)
                   ),
                 ),
-                Tab(text: "Invitations",
-                  icon: Icon(Icons.send,size: 36,),
+                Tab(text: "Requests",
+                  icon: Icon(Icons.insert_invitation,size: 36,),
                   iconMargin: EdgeInsets.symmetric(
                       vertical:scaler.getWidth(.5)
                   ),),
-                Tab(text: "Requests",
-                  icon: Icon(Icons.insert_invitation,size: 36,),
+                Tab(text: "Results",
+                  icon: Icon(Foundation.results,size: 36,),
                   iconMargin: EdgeInsets.symmetric(
                       vertical:scaler.getWidth(.5)
                   ),),
@@ -79,11 +81,9 @@ class _HomeMatchScreenState extends State<HomeMatchScreen> {
           body: TabBarView(
             children: [
               SearchUserTab(identifier: widget.identifier,),
-              // Center(
-              //   child: QuizzPage(),
-              // ),
+              RequestsTab(),
               InvitationTab(gotInvitation: 1, identifier: widget.identifier),
-              InvitationTab(identifier: widget.identifier),
+
             ],
           ),
           // body: Center(
