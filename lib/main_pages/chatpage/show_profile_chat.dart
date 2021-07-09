@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:matched_app/main_pages/test_pages/personality_test/personality_test_info.dart';
 import 'package:matched_app/model/user.dart';
 import 'package:matched_app/ui_resources/custom_colors.dart';
 
@@ -165,11 +166,23 @@ class ShowProfileScreen extends StatelessWidget {
                         alignment: Alignment.centerRight,
                         height: scaler.getHeight(5),
                         decoration: BoxDecoration(
-                            color: white,
                             border: Border.all(
                               color: Color.fromRGBO(29, 211, 176, 0.8053),
                             ),
-                            borderRadius: BorderRadius.circular(10)),
+                            borderRadius: BorderRadius.circular(10),
+                            color: white),
+                        child: FittedBox(
+                          fit: BoxFit.contain,
+                          child: Text(
+                            '${user.personality} - ${PersonalityTestInfo().personalityName[user.personality]}',
+                            textAlign: TextAlign.right,
+                            style: GoogleFonts.lato(
+                                textStyle: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold)),
+                          ),
+                        ),
                       ),
                       Container(
                         height: scaler.getHeight(5),

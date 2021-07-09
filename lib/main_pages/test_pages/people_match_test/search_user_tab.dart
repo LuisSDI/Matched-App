@@ -10,8 +10,7 @@ import 'package:matched_app/resources/request_button.dart';
 import 'package:matched_app/ui_resources/custom_colors.dart';
 
 class SearchUserTab extends StatefulWidget {
-  SearchUserTab({Key key, @required this.identifier}) : super(key: key);
-  String identifier;
+  SearchUserTab({Key key,}) : super(key: key);
   @override
   _SearchUserTabState createState() => _SearchUserTabState();
 }
@@ -96,10 +95,65 @@ class _SearchUserTabState extends State<SearchUserTab> {
                   stream: userBloc.searchUser(searchValue),
                   builder: (BuildContext context,
                       AsyncSnapshot<QuerySnapshot> snapshot) {
+                    print(snapshot.connectionState);
+                    print(snapshot.data.docs.isEmpty);
                     if (!snapshot.hasData) {
                       return Center(
                         child: CircularProgressIndicator(),
                       );
+                    }
+                    else if(snapshot.data.docs.isEmpty && searchValue != '')
+                    {
+                      return Padding(
+                        padding:  EdgeInsets.all(scaler.getWidth(1)),
+                        child: Center(
+                          child: Text("There is no user named '$searchValue'",
+                            style: GoogleFonts.lato(
+                                fontSize: 22,
+                                color: white,
+                                fontWeight: FontWeight.bold
+                            ),
+                            textAlign: TextAlign.center,),
+                        ),
+                      );
+                    }
+                    else if(snapshot.data.docs.isEmpty){
+                      return FutureBuilder(
+                          future: userBloc.getListUsers(userBloc.currentUser.uid),
+                          builder: (context, snapshot2) {
+                            print(snapshot2.data);
+                            if (snapshot2.connectionState == ConnectionState.done) {
+                              List<UserModel> users = snapshot2.data;
+                              return SingleChildScrollView(
+                                child: Column(
+                                  children: [
+                                    ListView.builder(
+                                      itemBuilder: (context, index) {
+                                        return Padding(
+                                          padding: EdgeInsets.symmetric(
+                                            horizontal: scaler.getHeight(2),
+                                            vertical: scaler.getHeight(.5),
+                                          ),
+                                          child: RequestButton(user: users[index],currentUserUid: userBloc.currentUser.uid,)
+                                        );
+                                      },
+                                      itemCount: users.length,
+                                      shrinkWrap: true,
+                                      physics: NeverScrollableScrollPhysics(),
+                                      padding: EdgeInsets.zero,
+                                    ),
+                                  ],
+                                ),
+                              );
+                            } else {
+                              return  Center(
+                                  child: CircularProgressIndicator(
+                                    valueColor:
+                                    AlwaysStoppedAnimation<Color>(mainColor),
+                                  ),
+                              );
+                            }
+                          });
                     }
                     else{
                     return ListView(

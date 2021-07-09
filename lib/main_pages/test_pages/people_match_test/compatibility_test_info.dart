@@ -1,3 +1,6 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
 class CompatibilityTestInfo {
   List<String> questions = [
     '1. I get angry easily.',
@@ -38,6 +41,36 @@ class CompatibilityTestInfo {
     '36. I feel nature is more powerful than humans.'
   ];
 
-  List<String> options = ['Disagree', 'Slightly Disagree', 'Neutral', 'Slightly Agree', 'Agree'];
+  List<String> options = [
+    'Disagree',
+    'Slightly Disagree',
+    'Neutral',
+    'Slightly Agree',
+    'Agree'
+  ];
 
+  List<Color> compatibilityColors = [
+    Color(0xffcc3232),
+    Color(0xffdb7b2b),
+    Color(0xffe7b416),
+    Colors.green,
+    //Color(0xff99c140),
+    Color(0xff2dc937)
+  ];
+
+  List<String> compatibilityCategory = [
+    'Total Opposites',
+    'Opposites',
+    'Somewhat Compatible',
+    'Compatible',
+    'Very Compatible'
+  ];
+
+  List<String> compatibilityDesc = [
+    'You will probably argue all the time',
+    'You have very few things in common, I wonder what they are',
+    'You are somewhere in between, you may agree a lot but you may also disagree a lot',
+    "You should probably be friends if you aren't already, lots of things in common between you two",
+    'You are almost one of the same, you see the world with the same eyes and rarely disagree'
+  ];
 }

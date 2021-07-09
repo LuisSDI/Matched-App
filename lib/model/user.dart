@@ -11,8 +11,8 @@ class UserModel {
   final String gender;
   final List<dynamic> groups;
   final List<dynamic> caseSearch;
-  final List<dynamic> request;
-  final List<dynamic> results;
+  List<dynamic> request;
+  List<dynamic> results;
 
   UserModel({
     Key key,
@@ -29,4 +29,5 @@ class UserModel {
     this.request,
     this.results,
   });
+
 }

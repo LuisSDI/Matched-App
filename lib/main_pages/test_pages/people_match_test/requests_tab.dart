@@ -47,15 +47,25 @@ class _RequestsTabState extends State<RequestsTab> {
                   builder: (BuildContext context, AsyncSnapshot<List<UserModel>> snapshot) {
                     print(snapshot.connectionState);
                     print(snapshot.data);
-                    if (!snapshot.hasData) {
+                    if (snapshot.connectionState != ConnectionState.done) {
                       return Center(
-                        child: Text("You currently don't have any requests from other users",
-                          style: GoogleFonts.lato(
-                              fontSize: 22,
-                              color: white,
-                              fontWeight: FontWeight.bold
-                          ),
+                        child: CircularProgressIndicator(
+                          color: mainColor,
+                        ),
+                      );
+                    }
+                    else if (snapshot.data == null){
+                      return Padding(
+                        padding:  EdgeInsets.all(scaler.getWidth(1)),
+                        child: Center(
+                          child: Text("You currently don't have any results from your requests",
+                            style: GoogleFonts.lato(
+                                fontSize: 22,
+                                color: white,
+                                fontWeight: FontWeight.bold
+                            ),
                             textAlign: TextAlign.center,),
+                        ),
                       );
                     }
                     else{

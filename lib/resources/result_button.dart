@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:matched_app/main_pages/chatpage/chat_screen.dart';
 import 'package:matched_app/main_pages/chatpage/show_profile_chat.dart';
 import 'package:matched_app/main_pages/test_pages/people_match_test/compatibility_test.dart';
+import 'package:matched_app/main_pages/test_pages/people_match_test/compatibility_test_result.dart';
 import 'package:matched_app/main_pages/test_pages/people_match_test/reply_compatibility_test.dart';
 import 'package:matched_app/model/user.dart';
 import 'package:matched_app/ui_resources/custom_colors.dart';
@@ -107,20 +108,18 @@ class ResultButton extends StatelessWidget {
                 ),
               ),
               child: Text(
-                "Accept\nRequest",
+                "View\nResult",
                 textAlign: TextAlign.center,
                 style: GoogleFonts.lato(fontWeight: FontWeight.bold),
               ),
-              onPressed: () async {
-                if (user.uid == currentUserUid) {
-                  _showDialog(context);
-                }
-                else {
+              onPressed: ()  {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) =>Scaffold()));
-                }
+                          builder: (context) =>CompatibilityTestResult(
+                            testUid: testUid,
+                          )));
+
               },
             ),
           )

@@ -7,6 +7,7 @@ import 'package:matched_app/bloc/user_bloc.dart';
 import 'package:matched_app/model/user.dart';
 import 'package:matched_app/resources/accept_request_button.dart';
 import 'package:matched_app/resources/request_button.dart';
+import 'package:matched_app/resources/result_button.dart';
 import 'package:matched_app/ui_resources/custom_colors.dart';
 
 class ResultsTab extends StatefulWidget {
@@ -47,15 +48,25 @@ class _ResultsTabState extends State<ResultsTab> {
                   builder: (BuildContext context, AsyncSnapshot<List<UserModel>> snapshot) {
                     print(snapshot.connectionState);
                     print(snapshot.data);
-                    if (!snapshot.hasData) {
+                    if (snapshot.connectionState != ConnectionState.done) {
                       return Center(
-                        child: Text("You currently don't have any results from your requests",
-                          style: GoogleFonts.lato(
-                              fontSize: 22,
-                              color: white,
-                              fontWeight: FontWeight.bold
-                          ),
+                        child: CircularProgressIndicator(
+                          color: mainColor,
+                        ),
+                      );
+                    }
+                    else if (snapshot.data == null){
+                      return Padding(
+                        padding:  EdgeInsets.all(scaler.getWidth(1)),
+                        child: Center(
+                          child: Text("You currently don't have any results from your requests",
+                            style: GoogleFonts.lato(
+                                fontSize: 22,
+                                color: white,
+                                fontWeight: FontWeight.bold
+                            ),
                             textAlign: TextAlign.center,),
+                        ),
                       );
                     }
                     else{
@@ -68,10 +79,10 @@ class _ResultsTabState extends State<ResultsTab> {
                                 horizontal: scaler.getHeight(2),
                                 vertical: scaler.getHeight(.5),
                               ),
-                              child: AcceptRequestButton(
+                              child: ResultButton(
                                 user: snapshot.data[index],
                                 currentUserUid: userBloc.currentUser.uid,
-                                testUid: snapshot.data[index].request.first,
+                                testUid: snapshot.data[index].results.first,
                               ),
                             );
                           },

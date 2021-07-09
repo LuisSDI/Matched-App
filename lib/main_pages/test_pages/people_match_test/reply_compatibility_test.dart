@@ -4,10 +4,13 @@ import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:matched_app/bloc/user_bloc.dart';
+import 'package:matched_app/main_pages/test_pages/people_match_test/compatibility_test.dart';
 import 'package:matched_app/main_pages/test_pages/people_match_test/compatibility_test_info.dart';
+import 'package:matched_app/main_pages/test_pages/people_match_test/compatibility_test_result.dart';
 import 'package:matched_app/main_pages/test_pages/personality_test/personality_test_info.dart';
 import 'package:matched_app/main_pages/test_pages/personality_test/personality_test_result.dart';
 import 'package:matched_app/main_pages/test_pages/roommate_test/roommate_test_info.dart';
+import 'package:matched_app/model/compatibility_result.dart';
 import 'package:matched_app/resources/async_loader.dart';
 import 'package:matched_app/resources/simple_buttom.dart';
 import 'package:matched_app/resources/slider_choice_question.dart';
@@ -152,6 +155,12 @@ class _ReplyCompatibilityTestState extends State<ReplyCompatibilityTest> {
                                   userBloc.dispose();
                                   Navigator.pop(context, 'Submit');
                                   Navigator.pop(context);
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>CompatibilityTestResult(
+                                            testUid: widget.testUid,
+                                          )));
                                 },
                                 child: Text('Submit',
                                     style: GoogleFonts.lato(

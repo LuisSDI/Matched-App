@@ -5,10 +5,11 @@ import 'package:matched_app/ui_resources/custom_colors.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class VersusPercentBar extends StatelessWidget {
-  const VersusPercentBar({Key key, this.names, this.scores}) : super(key: key);
+  VersusPercentBar({Key key, this.names, this.scores, this.width}) : super(key: key);
 
   final List<String> names;
   final List<int> scores;
+  double width;
 
 
   @override
@@ -16,11 +17,12 @@ class VersusPercentBar extends StatelessWidget {
     ScreenScaler scaler = ScreenScaler()..init(context);
     int totalPoints = scores[0] + scores[1];
     double percent= scores[0]/totalPoints;
+    width ??= 80;
     return Column(
       children: [
         Container(
           child: LinearPercentIndicator(
-            width: scaler.getWidth(80),
+            width: scaler.getWidth(width),
             lineHeight: scaler.getWidth(1),
             percent: percent,
             linearStrokeCap: LinearStrokeCap.roundAll,
@@ -29,7 +31,7 @@ class VersusPercentBar extends StatelessWidget {
           ),
         ),
         Container(
-          width: scaler.getWidth(88),
+          width: scaler.getWidth(width*1.1),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

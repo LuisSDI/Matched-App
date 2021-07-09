@@ -187,6 +187,11 @@ class UserBloc implements Bloc {
     return cloudFirestoreRepository.getResults(userID);
   }
 
+  Future<CompatibilityResult> getCompatibilityResult (String userUid,String testUid)
+  {
+    return cloudFirestoreRepository.getCompatibilityResult(userUid, testUid);
+  }
+
   // Firebase Storage
   final _firebaseStorageRepository = FirebaseStorageAPI();
 

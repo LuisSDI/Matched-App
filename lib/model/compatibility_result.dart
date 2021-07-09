@@ -7,13 +7,17 @@ class CompatibilityResult {
   final String myUid;
   final String yourUid;
   final double finalScore;
+  final String myName;
+  final String yourName;
 
-  CompatibilityResult( {
+  CompatibilityResult(  {
     Key key,
     this.myPersonalityResult,
     this.yourPersonalityResult,
     this.myUid,
     this.yourUid,
     this.finalScore,
+    this.myName,
+    this.yourName,
   });
 }

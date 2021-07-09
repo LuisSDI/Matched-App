@@ -94,10 +94,10 @@ class CloudFireStoreAPI {
     });
   }
 
-  Future<UserModel> getUserData(String userUid) async {
+  Future<UserModel> getUserData(String userUid,) async {
     UserModel user;
-    await userInfo.doc(userUid).get().then((value) {
-      print(value.data());
+    DocumentSnapshot value = await userInfo.doc(userUid).get();
+      //print(value.data());
       user = UserModel(
           name: value.get('full name'),
           type: value.get('type'),
@@ -108,9 +108,9 @@ class CloudFireStoreAPI {
           photoUrL: value.get('photoURL'),
           email: value.get('email'),
           caseSearch: value.get('caseSearch'),
-          groups: value.get('groups'));
-    });
-    print(user);
+          groups: value.get('groups'),
+      );
+    //print(user);
     return user;
   }
 
@@ -493,6 +493,8 @@ class CloudFireStoreAPI {
       await match.update({'user2Ans': myAns, 'finalScore': result});
       DocumentReference yourDoc = userInfo.doc(yourUid);
       DocumentReference myDoc = userInfo.doc(myUid);
+      DocumentSnapshot myDocInfo =  await myDoc.get();
+      DocumentSnapshot yourDocInfo =  await yourDoc.get();
       await match.update({'peopleMatchId': match.id});
       CompatibilityResult compatibilityResult = CompatibilityResult(
         finalScore: result,
@@ -500,8 +502,11 @@ class CloudFireStoreAPI {
         yourUid: yourUid,
         myPersonalityResult: await getPersonalityResult(myUid),
         yourPersonalityResult: await getPersonalityResult(yourUid),
+        myName: myDocInfo.get('full name'),
+        yourName: yourDocInfo.get('full name')
       );
       await myDoc.update({
+        'request': FieldValue.arrayRemove([match.id]),
         'matchResults': FieldValue.arrayUnion([match.id])
       });
       await yourDoc.update({
@@ -528,41 +533,68 @@ class CloudFireStoreAPI {
     await userInfo.doc(userID).get().then((value) {
       requests = value.get('requests');
     });
+    print(requests);
     QuerySnapshot querySnapshot =
         await peopleMatch.where('peopleMatchId', whereIn: requests).get();
     for (var result in querySnapshot.docs) {
       String requesterUid = result.get('user1Uid');
-      String testUid = result.get('peopleMatchId');
-      print(requesterUid);
-      await getUserData(requesterUid).then((user) {
-        user.request.add(testUid);
-        requestersUser.add(user);
-      });
+      var testUid = result.get('peopleMatchId');
+      UserModel userModel = await getUserData(requesterUid);
+      userModel.request = [testUid];
+      requestersUser.add(userModel);
+      print(requestersUser);
+
     }
-    print('Requests');
     print(requestersUser.first.name);
     return requestersUser;
   }
 
   Future<List<UserModel>> getResults(String userID) async {
-    List<dynamic> requests = [];
+    List<dynamic> results = [];
     List<UserModel> requestersUser = [];
     await userInfo.doc(userID).get().then((value) {
-      requests = value.get('matchResults');
+      results = value.get('matchResults');
     });
     QuerySnapshot querySnapshot =
-        await peopleMatch.where('peopleMatchId', whereIn: requests).get();
+        await peopleMatch.where('peopleMatchId', whereIn: results).get();
     for (var result in querySnapshot.docs) {
       String requesterUid = result.get('user1Uid');
       String testUid = result.get('peopleMatchId');
-      print(requesterUid);
       await getUserData(requesterUid).then((user) {
-        user.request.add(testUid);
+        user.results = [testUid];
         requestersUser.add(user);
       });
     }
-    print('Requests');
     print(requestersUser.first.name);
     return requestersUser;
+  }
+  
+  Future<CompatibilityResult> getCompatibilityResult (String userUid,String testUid) async
+  {
+    String myUid = userUid;
+    String yourUid;
+    DocumentReference match = peopleMatch.doc(testUid);
+    DocumentSnapshot matchInfo = await match.get();
+    if(userUid == matchInfo.get('user1Uid'))
+    {
+      yourUid = matchInfo.get('user2Uid');
+    }
+    else{
+      yourUid = matchInfo.get('user1Uid');
+    }
+    DocumentReference yourDoc = userInfo.doc(yourUid);
+    DocumentReference myDoc = userInfo.doc(myUid);
+    DocumentSnapshot myDocInfo =  await myDoc.get();
+    DocumentSnapshot yourDocInfo =  await yourDoc.get();
+    CompatibilityResult compatibilityResult = CompatibilityResult(
+      finalScore: matchInfo.get('finalScore'),
+      myName: myDocInfo.get('full name'),
+      yourName: yourDocInfo.get('full name'),
+      yourUid: yourUid,
+      myUid: myUid,
+      myPersonalityResult: await getPersonalityResult(myUid),
+      yourPersonalityResult: await getPersonalityResult(yourUid),
+    );
+    return compatibilityResult;
   }
 }
