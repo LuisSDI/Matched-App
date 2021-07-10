@@ -57,7 +57,10 @@ class PersonalityTestIntro extends StatelessWidget {
               ),
               //Image Carousel
               ImageSlider(
-                imgList: CollegesInfo().defaultList,
+                imgList: ['assets/images/personalities/test/personality_test_1.jpg',
+                  'assets/images/personalities/test/personality_test_2.jpg',
+                  'assets/images/personalities/test/personality_test_3.png',
+                  'assets/images/personalities/test/personality_test_4.jpg'],
               ),
               //Intro Text
               Padding(
