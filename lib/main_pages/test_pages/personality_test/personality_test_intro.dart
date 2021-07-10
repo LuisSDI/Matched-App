@@ -43,7 +43,7 @@ class PersonalityTestIntro extends StatelessWidget {
                       child: FittedBox(
                         fit: BoxFit.contain,
                         child: Text(
-                          "Let's begin !!!",
+                          "Personality Test",
                           style: GoogleFonts.lato(
                               textStyle: TextStyle(
                                   fontSize: 34,
@@ -61,13 +61,15 @@ class PersonalityTestIntro extends StatelessWidget {
               ),
               //Intro Text
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: scaler.getWidth(2),
-                vertical: scaler.getWidth(1)),
+                padding: EdgeInsets.symmetric(
+                    horizontal: scaler.getWidth(2),
+                    vertical: scaler.getWidth(1)),
                 child: Padding(
                   padding: EdgeInsets.only(
                       top: scaler.getHeight(1), bottom: scaler.getHeight(1)),
                   child: Text(
-                    """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec gravida at urna eget lacinia. Aliquam suscipit eu dui et bibendum. Maecenas mollis vehicula urna ac vestibulum. Sed vel tincidunt turpis. Nullam auctor magna sit amet nisl congue venenatis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec vestibulum nulla ac molestie tempus. Nunc quam turpis, sodales eget turpis dapibus, finibus tincidunt justo. Nulla condimentum eros nec tempus mollis. Nunc sed tristique ante. Nulla eget feugiat nisi.""",
+                    """There are no “right“ or “wrong” answers to the questions on this personality test. Your answers will help to show how you like to look at things and how you like to go about deciding things. Knowing your own preferences and learning about other people’s can help you understand whether your special strenghts are, what kind of work you might enjoy and be successful doing, and how people with different preferences can relate to each other and be valuable to society.
+Read each question carefully and select one of the two choices given, which applies to you,""",
                     textAlign: TextAlign.left,
                     style: GoogleFonts.lato(
                         textStyle: TextStyle(
@@ -80,7 +82,8 @@ class PersonalityTestIntro extends StatelessWidget {
               ),
               SimpleButton(
                 screen: PersonalityTestPart1(),
-              text: "Start",)
+                text: "Start",
+              )
             ],
           ),
         ),

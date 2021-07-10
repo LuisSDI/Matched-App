@@ -174,7 +174,7 @@ class ShowProfileScreen extends StatelessWidget {
                         child: FittedBox(
                           fit: BoxFit.contain,
                           child: Text(
-                            '${user.personality} - ${PersonalityTestInfo().personalityName[user.personality]}',
+                            (user.personality != 'None') ? '${user.personality} - ${PersonalityTestInfo().personalityName[user.personality]}' : user.personality,
                             textAlign: TextAlign.right,
                             style: GoogleFonts.lato(
                                 textStyle: TextStyle(

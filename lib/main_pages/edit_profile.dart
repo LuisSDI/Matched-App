@@ -4,6 +4,7 @@ import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:matched_app/bloc/user_bloc.dart';
+import 'package:matched_app/main_pages/test_pages/personality_test/personality_test_info.dart';
 import 'package:matched_app/model/user.dart';
 import 'package:matched_app/resources/async_loader.dart';
 import 'package:matched_app/ui_resources/custom_colors.dart';
@@ -293,7 +294,7 @@ class _EditProfileState extends State<EditProfile> {
                               borderRadius: BorderRadius.circular(10)),
                           child: FittedBox(
                             fit: BoxFit.contain,
-                            child: Text(widget.user.type,
+                            child: Text((widget.user.personality != 'None') ? '${widget.user.personality} - ${PersonalityTestInfo().personalityName[widget.user.personality]}' : widget.user.personality,
                               textAlign: TextAlign.right,
                               style: GoogleFonts.lato(
                                   textStyle: TextStyle(

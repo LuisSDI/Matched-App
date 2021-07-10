@@ -85,7 +85,7 @@ class TestTab extends StatelessWidget {
                       children: [
                         MajorButtom(
                           detail: '''Roommate \nMatching'''.trim(),
-                          image: "assets/images/disc/roommate.jpg",
+                          image: "assets/images/roommates.jpg",
                           onTap: () async {
                             if (userModel.personality == 'None') {
                               ScaffoldMessenger.of(context).showSnackBar(

@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:matched_app/main_pages/discover_pages/analysts_screen.dart';
+import 'package:matched_app/main_pages/discover_pages/diplomats_screen.dart';
+import 'package:matched_app/main_pages/discover_pages/explorers_screen.dart';
+import 'package:matched_app/main_pages/discover_pages/sentinels_screen.dart';
+import 'package:matched_app/main_pages/discover_pages/test_explanation.dart';
 import 'package:matched_app/main_pages/explore_pages/colleges_pages/college_template.dart';
 import 'package:matched_app/resources/main_page_buttom.dart';
 import 'package:matched_app/ui_resources/custom_colors.dart';
@@ -46,7 +50,7 @@ class DiscoverTab extends StatelessWidget {
                   child: FittedBox(
                     fit: BoxFit.contain,
                     child: Text(
-                      "According to DiSC, who you are?",
+                      "Who you are?",
                       style: GoogleFonts.lato(
                           textStyle: TextStyle(
                         fontSize: 23,
@@ -66,10 +70,8 @@ class DiscoverTab extends StatelessWidget {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => CollegeTemplate(
+                                  builder: (context) => TestExplanation(
                                         title: 'How does it work?',
-                                        desc:
-                                            "DiSC is a personal assessment tool used by more than one million people every year to help improve teamwork, communication, and productivity in the workplace.\n \n D stands for Dominance, i stands for Influence, S stands for Steadiness, and C stands for Conscientiousness. \n \n There are 24 questions, each question has 4 options. Choose one that describe yourself as you generally are now, not as you wish to be in the future. Describe yourself, as you honestly see yourself. Your spontaneous answer is usually the most accurate. \n \n We are all combination of each other! \n No DiSC style is better than any other, and we all use each of the four styles as we go about our daily lives. DiSC simply helps us find out which style we tend to gravitate toward most — our comfort zone. With that knowledge, we can understand our underlying tendencies and preferences and adapt our behaviors to interact with others more effectively.  ",
                                         imagesList: [
                                           'assets/images/disc/d.png',
                                           'assets/images/disc/i.png',
@@ -125,7 +127,7 @@ class DiscoverTab extends StatelessWidget {
                               fit: BoxFit.contain,
                               child: MainPageButton(
                                 iconData: FixIcons.analyst,
-                                text: "Dominance",
+                                text: "Analysts",
                                 // screen: CollegeTemplate(
                                 //   desc:
                                 //       "-General Characteristics- \n Direct, Decisive, High Ego Strength, Problem Solver, Risk Taker, Self Starter. \n \n -Possible Weaknesses- \n Oversteps authority, Argumentative attitude, Dislikes routine, Attempts too much at once. \n \n -Greatest Fear- \n Being taken advantage of. \n \n -Motivated By- \n New challenges, Power and authority to take risks and make decisions, Freedom from routine and mundane tasks, Changing environments in which to work and play. \n \n -Strength- \n Dominant personality types are task-oriented, decisive and competitive. They care more about task and result rather than their personal relationship with others. They are a great business partner or project team. Dominant personality types also tend to be impatient and controlling. They love to be fast, move fast, think fast, so they can make a decision and move on. Other behaviours that they usually have are direct, innovative, persistent, adventurous, problem-solver, and result-oriented. \n \n -What to Improve- \n But dominant personality types are relatively lacking in empathy for others. Others can think that dominant people are arrogant and bossy. The hardest part for people with dominant personality type is for them to care and understand how others’ feel. Others might think they are arrogant, but they cannot understand why others think so. They can improve with start to think about other’s feelings, how to be empathy to others, and how to slow down. ",
@@ -142,7 +144,7 @@ class DiscoverTab extends StatelessWidget {
                             child: FittedBox(
                               fit: BoxFit.contain,
                               child: MainPageButton(
-                                text: "Influence",
+                                text: "Diplomats",
                                 iconData: FixIcons.diplomats,
                                 // screen: CollegeTemplate(
                                 //   desc:
@@ -150,7 +152,7 @@ class DiscoverTab extends StatelessWidget {
                                 //   imagesList: ['assets/images/disc/i.png'],
                                 //   title: """Influence""",
                                 // ),
-                                screen: AnalystsScreen(),
+                                screen: DiplomatsScreen(),
                               ),
                             ),
                           )
@@ -173,15 +175,15 @@ class DiscoverTab extends StatelessWidget {
                             child: FittedBox(
                               fit: BoxFit.contain,
                               child: MainPageButton(
-                                iconData: Icons.how_to_reg,
-                                text: "Steadiness",
+                                iconData: FixIcons.sentinel,
+                                text: "Sentinels",
                                 // screen: CollegeTemplate(
                                 //   desc:
                                 //       "-General Characteristics- \n Good listener. Team player. Possessive. Steady. Predictable. Understanding. Friendly. \n\n -Possible Weaknesses- \n Resists change. Takes a long time to adjust to change. Holds a grudge. Sensitive to criticism. Difficulty establishing priorities. \n\n -Greatest Fear- \n Loss of security. \n\n -Motivated By- \n Recognition for loyalty and dependability. Safety and security. No sudden changes in procedure or lifestyle. Activities that can be started and finished. \n \n -Strength- \n The main strength of steady personality types are patient, calm, and willingness to help others. We may see them as peace loving and very diplomatic. They are calm and warm-heartedly. They are good listeners, people enjoy talking to them. They are people-oriented, they can understand the feelings of people talking to them. The motto fits with the steady personality type is “One best friend is better than thousands of friends”. \n \n -What to Improve- \n Steady personality types are usually passive, pessimistic, shy, possessive, procrastinator, and sluggish. They feel shy easily especially when they are surrounded by new people, the level of shyness decrease as their closeness to the people around them. They can improve themselves by starting to think positive, be grateful of small good things. They can also start their job as soon as they remember, and finish it sooner.",
                                 //   imagesList: ['assets/images/disc/s.png'],
                                 //   title: """Steadiness""",
                                 // ),
-                                screen: AnalystsScreen(),
+                                screen: SentinelsScreen(),
                               ),
                             ),
                           ),
@@ -192,14 +194,14 @@ class DiscoverTab extends StatelessWidget {
                               fit: BoxFit.contain,
                               child: MainPageButton(
                                 iconData: FixIcons.explorer,
-                                text: 'Conscientious',
+                                text: 'Explorers',
                                 // screen: CollegeTemplate(
                                 //   desc:
                                 //       "-General Characteristics- \n Accurate; analytical. Conscientious; careful. Fact-finder; precise. High standards; systematic. \n\n -Possible Weaknesses- \n Needs clear-cut boundaries for actions/relationships. Bound by procedures and methods. Gets bogged down in details. Prefers not to verbalize feelings. Will give in rather that argue. \n\n -Greatest Fear- \n Criticism. \n\n -Motivated By- \n Standards of high quality. Limited social interaction. Detailed tasks. Logical organization of information. \n\n -Strength- \n \n Just as the personality type “conscientious”, they are precise or accurate. They are also detail, systematic, critical, facts-oriented, orderly, and disciplined. They love following procedures in both personal life and work life. They are not easily agreed with people, they will think things through by collecting the facts they had and they tend to do their job perfectly. They are the definition of neat and structured people. \n \n -What to Improve- \n \n Perfectionism is a good thing, but when it reaches the spot where it is “over”, it will affect both themselves and their workmates. They are usually pessimistic, rigid, subjective, hard to believe in people, like to judge others, over-worried, and over-thinking. They can improve themselves by putting their trust in others and be objective. They should also take a short break and relax. ",
                                 //   imagesList: ['assets/images/disc/c.png'],
                                 //   title: """Conscientious""",
                                 // ),
-                                screen: AnalystsScreen(),
+                                screen: ExplorersScreen(),
                               ),
                             ),
                           ),

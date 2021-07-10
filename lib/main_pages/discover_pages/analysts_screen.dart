@@ -3,18 +3,17 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:matched_app/main_pages/discover_pages/personality_template.dart';
-import 'package:matched_app/main_pages/explore_pages/colleges_pages/college_template.dart';
 import 'package:matched_app/main_pages/explore_pages/colleges_pages/colleges_info.dart';
+import 'package:matched_app/main_pages/test_pages/personality_test/personality_test_info.dart';
 import 'package:matched_app/resources/major_buttom.dart';
 import 'package:matched_app/ui_resources/custom_colors.dart';
 
 class AnalystsScreen extends StatelessWidget {
-  const AnalystsScreen({Key key, @required this.trigger}) : super(key: key);
-  final int trigger;
+  const AnalystsScreen({Key key,}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     ScreenScaler scaler = ScreenScaler()..init(context);
-    if (trigger == 0) {
       return Scaffold(
         backgroundColor: dark,
         body: SingleChildScrollView(
@@ -37,7 +36,7 @@ class AnalystsScreen extends StatelessWidget {
                     ),
                     //Title Text
                     Container(
-                      height: scaler.getHeight(11),
+                      //height: scaler.getHeight(11),
                       alignment: Alignment.centerLeft,
                       child: FittedBox(
                         fit: BoxFit.contain,
@@ -45,7 +44,7 @@ class AnalystsScreen extends StatelessWidget {
                           '''Analysts''',
                           style: GoogleFonts.lato(
                               textStyle: TextStyle(
-                                  fontSize: 30,
+                                  fontSize: 36,
                                   color: white,
                                   fontWeight: FontWeight.bold)),
                         ),
@@ -63,15 +62,15 @@ class AnalystsScreen extends StatelessWidget {
                     right: scaler.getHeight(1.5)),
                 child: MajorButtom(
                   detail: """Architect
-(INTJ-A / 
-INTJ-T)"""
+(INTJ)"""
                       .trim(),
-                  image: "assets/images_sse_majors/CSE.png",
+                  image: PersonalityTestInfo().personalityIconsPath['INTJ'],
                   alignment: Alignment(-.3, 0),
+                  color: Color(0xffF5D7E3),
                   screen: PersonalityTemplate(
                     desc: CollegesInfo().shawDesc,
                     imagesList: CollegesInfo().defaultList,
-                    title: """Architect (INTJ-A / INTJ-T)""",
+                    title: """Architect (INTJ)""",
                   ),
                 ),
               ),
@@ -84,15 +83,15 @@ INTJ-T)"""
                     right: scaler.getHeight(1.5)),
                 child: MajorButtom(
                   detail: """Logician
-(INTP-A / 
-INTP-T)"""
+(INTP)"""
                       .trim(),
-                  image: "assets/images_sse_majors/CSE.png",
+                  image: PersonalityTestInfo().personalityIconsPath['INTP'],
+                  color: Color(0xffF5D7E3),
                   alignment: Alignment(-.3, 0),
                   screen: PersonalityTemplate(
                     desc: CollegesInfo().shawDesc,
                     imagesList: CollegesInfo().defaultList,
-                    title: """Logician (INTP-A / INTP-T)""",
+                    title: """Logician (INTP)""",
                   ),
                 ),
               ),
@@ -105,15 +104,15 @@ INTP-T)"""
                     right: scaler.getHeight(1.5)),
                 child: MajorButtom(
                   detail: """Commander
-(ENTJ-A / 
-ENTJ-T)"""
+(ENTJ)"""
                       .trim(),
-                  image: "assets/images_sse_majors/CSE.png",
+                  color: Color(0xffF5D7E3),
+                  image: PersonalityTestInfo().personalityIconsPath['ENTJ'],
                   alignment: Alignment(-.3, 0),
                   screen: PersonalityTemplate(
                     desc: CollegesInfo().shawDesc,
                     imagesList: CollegesInfo().defaultList,
-                    title: """Commander (ENTJ-A / ENTJ-T)""",
+                    title: """Commander (ENTJ)""",
                   ),
                 ),
               ),
@@ -126,147 +125,15 @@ ENTJ-T)"""
                     right: scaler.getHeight(1.5)),
                 child: MajorButtom(
                   detail: """Debater
-(ENTP-A / 
-ENTP-T)"""
+(ENTP)"""
                       .trim(),
-                  image: "assets/images_sse_majors/CSE.png",
+                  color: Color(0xffF5D7E3),
+                  image: PersonalityTestInfo().personalityIconsPath['ENTP'],
                   alignment: Alignment(-.3, 0),
                   screen: PersonalityTemplate(
                     desc: CollegesInfo().shawDesc,
                     imagesList: CollegesInfo().defaultList,
-                    title: """Debater (ENTP-A / ENTP-T)""",
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        bottomNavigationBar: Container(
-          height: scaler.getHeight(10),
-          decoration: BoxDecoration(gradient: turkish),
-        ),
-      );
-    } else {
-      return Scaffold(
-        backgroundColor: dark,
-        body: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.only(top: scaler.getHeight(3)),
-                child: Row(
-                  children: <Widget>[
-                    //Buttom for back
-                    Container(
-                      child: IconButton(
-                        icon: Icon(
-                          Ionicons.ios_arrow_back,
-                          color: mainColor,
-                          size: 30,
-                        ),
-                        onPressed: () => Navigator.of(context).pop(),
-                      ),
-                    ),
-                    //Title Text
-                    Container(
-                      height: scaler.getHeight(11),
-                      alignment: Alignment.centerLeft,
-                      child: FittedBox(
-                        fit: BoxFit.contain,
-                        child: Text(
-                          '''Analysts''',
-                          style: GoogleFonts.lato(
-                              textStyle: TextStyle(
-                                  fontSize: 30,
-                                  color: white,
-                                  fontWeight: FontWeight.bold)),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              //CSE Button
-              Padding(
-                padding: EdgeInsets.only(
-                    top: scaler.getHeight(1),
-                    bottom: scaler.getHeight(1),
-                    left: scaler.getHeight(1.5),
-                    right: scaler.getHeight(1.5)),
-                child: MajorButtom(
-                  detail: """Architect
-(INTJ-A / 
-INTJ-T)"""
-                      .trim(),
-                  image: "assets/images_sse_majors/CSE.png",
-                  alignment: Alignment(-.3, 0),
-                  screen: PersonalityTemplate(
-                    desc: CollegesInfo().shawDesc,
-                    imagesList: CollegesInfo().defaultList,
-                    title: """Architect (INTJ-A / INTJ-T)""",
-                  ),
-                ),
-              ),
-              //EIE Button
-              Padding(
-                padding: EdgeInsets.only(
-                    top: scaler.getHeight(1),
-                    bottom: scaler.getHeight(1),
-                    left: scaler.getHeight(1.5),
-                    right: scaler.getHeight(1.5)),
-                child: MajorButtom(
-                  detail: """Logician
-(INTP-A / 
-INTP-T)"""
-                      .trim(),
-                  image: "assets/images_sse_majors/CSE.png",
-                  alignment: Alignment(-.3, 0),
-                  screen: PersonalityTemplate(
-                    desc: CollegesInfo().shawDesc,
-                    imagesList: CollegesInfo().defaultList,
-                    title: """Logician (INTP-A / INTP-T)""",
-                  ),
-                ),
-              ),
-              //NES Button
-              Padding(
-                padding: EdgeInsets.only(
-                    top: scaler.getHeight(1),
-                    bottom: scaler.getHeight(1),
-                    left: scaler.getHeight(1.5),
-                    right: scaler.getHeight(1.5)),
-                child: MajorButtom(
-                  detail: """Commander
-(ENTJ-A / 
-ENTJ-T)"""
-                      .trim(),
-                  image: "assets/images_sse_majors/CSE.png",
-                  alignment: Alignment(-.3, 0),
-                  screen: PersonalityTemplate(
-                    desc: CollegesInfo().shawDesc,
-                    imagesList: CollegesInfo().defaultList,
-                    title: """Commander (ENTJ-A / ENTJ-T)""",
-                  ),
-                ),
-              ),
-              //Math Button
-              Padding(
-                padding: EdgeInsets.only(
-                    top: scaler.getHeight(1),
-                    bottom: scaler.getHeight(1),
-                    left: scaler.getHeight(1.5),
-                    right: scaler.getHeight(1.5)),
-                child: MajorButtom(
-                  detail: """Debater
-(ENTP-A / 
-ENTP-T)"""
-                      .trim(),
-                  image: "assets/images_sse_majors/CSE.png",
-                  alignment: Alignment(-.3, 0),
-                  screen: PersonalityTemplate(
-                    desc: CollegesInfo().shawDesc,
-                    imagesList: CollegesInfo().defaultList,
-                    title: """Debater (ENTP-A / ENTP-T)""",
+                    title: """Debater (ENTP)""",
                   ),
                 ),
               ),
@@ -279,5 +146,5 @@ ENTP-T)"""
         ),
       );
     }
-  }
+
 }

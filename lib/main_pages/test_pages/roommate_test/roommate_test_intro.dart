@@ -43,7 +43,7 @@ class RoommateTestIntro extends StatelessWidget {
                       child: FittedBox(
                         fit: BoxFit.contain,
                         child: Text(
-                          "Let's begin !!!",
+                          "Roommate Test",
                           style: GoogleFonts.lato(
                               textStyle: TextStyle(
                                   fontSize: 34,
@@ -57,7 +57,10 @@ class RoommateTestIntro extends StatelessWidget {
               ),
               //Image Carousel
               ImageSlider(
-                imgList: CollegesInfo().defaultList,
+                imgList: ['assets/images/roommates_test/roommate_1.jpg',
+                'assets/images/roommates_test/roommate_2.jpg',
+                'assets/images/roommates_test/roommate_3.jpg',
+                'assets/images/roommates_test/roommate_4.jpg'],
               ),
               //Intro Text
               Padding(
@@ -67,7 +70,7 @@ class RoommateTestIntro extends StatelessWidget {
                   padding: EdgeInsets.only(
                       top: scaler.getHeight(1), bottom: scaler.getHeight(1)),
                   child: Text(
-                    """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec gravida at urna eget lacinia. Aliquam suscipit eu dui et bibendum. Maecenas mollis vehicula urna ac vestibulum. Sed vel tincidunt turpis. Nullam auctor magna sit amet nisl congue venenatis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec vestibulum nulla ac molestie tempus. Nunc quam turpis, sodales eget turpis dapibus, finibus tincidunt justo. Nulla condimentum eros nec tempus mollis. Nunc sed tristique ante. Nulla eget feugiat nisi.""",
+                    """Roommate selection at CUHK SZ is a deliberate and holistic process. It is important to us that your campus experience is as smooth as possible. The answers you provide in this questionnaire will help us find the ideal roommate for your personality and lifestyle using our matching algorithm. Please note that while the university does its absolute best to pair compatible roommates, completing this form does NOT guarantee a perfect roommate pairing.""",
                     textAlign: TextAlign.left,
                     style: GoogleFonts.lato(
                         textStyle: TextStyle(

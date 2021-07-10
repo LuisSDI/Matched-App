@@ -7,6 +7,7 @@ class MajorButtom extends StatefulWidget {
   String detail = 'Test';
   String image = "";
   Alignment alignment;
+  Color color;
   Widget screen = Scaffold();
 
   final GestureTapCallback onTap;
@@ -14,10 +15,10 @@ class MajorButtom extends StatefulWidget {
   MajorButtom(
       {@required Key key,
       @required this.detail,
-      @required this.image = "assets/images/image_2.png",
+      @required this.image,
       @required this.screen,
       @required this.alignment,
-        this.onTap})
+        this.onTap, this.color})
       : super(key: key);
 
   @override
@@ -29,6 +30,7 @@ class _MajorButtomState extends State<MajorButtom> {
   Widget build(BuildContext context) {
     ScreenScaler scaler = ScreenScaler()..init(context);
     widget.alignment ??= Alignment.center;
+    widget.color ??= Colors.red;
     return GestureDetector(
       onTap: (widget.screen != null) ? () {
         Navigator.push(
@@ -53,13 +55,13 @@ class _MajorButtomState extends State<MajorButtom> {
         child: Row(
           children: <Widget>[
             Expanded(
-              flex: 4,
-              child: Container(
-                alignment: Alignment.centerLeft,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(10),
-                      bottomLeft: Radius.circular(10)),
+              flex: 3,
+              child: ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+                child: Container(
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.all(scaler.getWidth(1)),
+                  color: widget.color,
                   child: Image(
                     image: AssetImage(widget.image
                         // 'assets/images/image_2.png',
@@ -72,7 +74,7 @@ class _MajorButtomState extends State<MajorButtom> {
               ),
             ),
             Flexible(
-              flex: 4,
+              flex: 5,
               child: Container(
                 alignment: Alignment.center,
                 child: FittedBox(

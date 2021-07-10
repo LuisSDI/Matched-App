@@ -223,7 +223,7 @@ class ProfileTab extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10)),
                       child: FittedBox(
                         fit: BoxFit.contain,
-                        child: Text('${users.personality} - ${PersonalityTestInfo().personalityName[users.personality]}',
+                        child: Text((users.personality != 'None') ? '${users.personality} - ${PersonalityTestInfo().personalityName[users.personality]}' : users.personality,
                           textAlign: TextAlign.right,
                           style: GoogleFonts.lato(
                               textStyle: TextStyle(
