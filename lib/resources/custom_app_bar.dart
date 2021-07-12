@@ -1,4 +1,4 @@
-import 'package:matched_app/main_pages/chatpage/show_profile_chat.dart';
+import 'package:matched_app/main_pages/chat_pages/show_profile_chat.dart';
 import 'package:matched_app/model/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';

@@ -1,5 +1,5 @@
 import 'package:matched_app/model/group.dart';
-import 'package:matched_app/main_pages/chatpage/group_chat_screen.dart';
+import 'package:matched_app/main_pages/chat_pages/group_chat_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';

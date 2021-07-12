@@ -41,7 +41,7 @@ class GroupChatScreen extends StatelessWidget {
             children: <Widget>[
               Flexible(
                 child: GroupMessageList(currentUserId: currentUserUid,
-                  groupId: group.groupId,),
+                  groupId: group.groupId,groupModel: group,),
               ),
               //Chat Text Field
               Container(

@@ -14,6 +14,7 @@ import 'package:matched_app/main_pages/test_pages/roommate_test/roommate_test_in
 
 import 'package:matched_app/model/user.dart';
 import 'package:matched_app/resources/major_buttom.dart';
+import 'package:matched_app/resources/test_buttom.dart';
 import 'package:matched_app/ui_resources/custom_colors.dart';
 
 class TestTab extends StatelessWidget {
@@ -65,9 +66,9 @@ class TestTab extends StatelessWidget {
                         bottom: scaler.getHeight(1),
                         left: scaler.getHeight(1.5),
                         right: scaler.getHeight(1.5)),
-                    child: MajorButtom(
+                    child: TestButtom(
                       detail: '''Personality \nTest'''.trim(),
-                      image: "assets/images/disc/Disc2.jpg",
+                      image: "assets/images/personalities/test/personality_test_4.jpg",
                       alignment: Alignment(-.3, 0),
                       screen: (userModel.personality == 'None')
                           ? PersonalityTestIntro()
@@ -83,7 +84,7 @@ class TestTab extends StatelessWidget {
                         right: scaler.getHeight(1.5)),
                     child: Stack(
                       children: [
-                        MajorButtom(
+                        TestButtom(
                           detail: '''Roommate \nMatching'''.trim(),
                           image: "assets/images/roommates.jpg",
                           onTap: () async {
@@ -155,8 +156,7 @@ class TestTab extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(10),
                                 color: blackOp,
                               ),
-                              height: scaler.getHeight(16),
-                              width: double.infinity,
+                              height: scaler.getHeight(18),
                               child: Center(
                                 child: Container(
                                   width: scaler.getHeight(8),
@@ -184,9 +184,9 @@ class TestTab extends StatelessWidget {
                         right: scaler.getHeight(1.5)),
                     child: Stack(
                       children: [
-                        MajorButtom(
+                        TestButtom(
                           detail: '''"Do we \nMatch?"'''.trim(),
-                          image: "assets/images/disc/doWeMatch.jpg",
+                          image: "assets/images/friendship.jpg",
                           alignment: Alignment(.8, 0),
                           onTap: () {
                             if (userModel.personality == 'None') {
@@ -239,8 +239,7 @@ class TestTab extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(10),
                                 color: blackOp,
                               ),
-                              height: scaler.getHeight(16),
-                              width: double.infinity,
+                              height: scaler.getHeight(19),
                               child: Center(
                                 child: Container(
                                   width: scaler.getHeight(8),

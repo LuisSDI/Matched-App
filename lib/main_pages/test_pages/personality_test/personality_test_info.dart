@@ -85,7 +85,7 @@ class PersonalityTestInfo {
       'Stand back and listen first?',
     ],
     13: [
-      'A person of realfeeling, or',
+      'A person of real feeling, or',
       'A consistently reasonable person?',
     ],
     14: [

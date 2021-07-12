@@ -11,7 +11,7 @@ class ExpansionItem extends StatelessWidget {
   final Container special;
 
   ExpansionItem(
-      {@required Key key, @required this.title, @required this.data, @required this.richText, @required this.special});
+      {@required Key key, @required this.title, @required this.data,  this.richText,  this.special});
 
   @override
   Widget build(BuildContext context) {

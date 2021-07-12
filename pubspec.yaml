@@ -87,6 +87,9 @@ flutter:
      - assets/images/disc/
      - assets/images/personality_icons/
      - assets/images/roommates.jpg
+     - assets/images/friendship.jpg
+     - assets/images/personalities/test/
+     - assets/images/roommates_test/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
