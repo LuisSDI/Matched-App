@@ -97,10 +97,11 @@ class RouterCustom {
       String username, String image, String email, String identifier) {
     return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) => ProfilePage(
-          username: username,
-          image: image,
-          email: email,
-          ),
+        identifier: identifier,
+        username: username,
+        image: image,
+        email: email,
+      ),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         var begin = Offset(0.0, 0.1);
         var end = Offset.zero;

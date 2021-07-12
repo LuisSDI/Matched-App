@@ -10,7 +10,9 @@ import 'package:matched_app/resources/request_button.dart';
 import 'package:matched_app/ui_resources/custom_colors.dart';
 
 class RequestsTab extends StatefulWidget {
-  RequestsTab({Key key,}) : super(key: key);
+  RequestsTab({
+    Key key,
+  }) : super(key: key);
 
   @override
   _RequestsTabState createState() => _RequestsTabState();
@@ -44,33 +46,34 @@ class _RequestsTabState extends State<RequestsTab> {
               //height: MediaQuery.of(context).size.height / 2.8,
               child: FutureBuilder(
                   future: userBloc.getRequest(userBloc.currentUser.uid),
-                  builder: (BuildContext context, AsyncSnapshot<List<UserModel>> snapshot) {
+                  builder: (BuildContext context,
+                      AsyncSnapshot<List<UserModel>> snapshot) {
                     print(snapshot.connectionState);
                     print(snapshot.data);
                     if (snapshot.connectionState != ConnectionState.done) {
                       return Center(
                         child: CircularProgressIndicator(
-                          color: mainColor,
+                          backgroundColor: mainColor,
                         ),
                       );
-                    }
-                    else if (snapshot.data == null){
+                    } else if (snapshot.data == null) {
                       return Padding(
-                        padding:  EdgeInsets.all(scaler.getWidth(1)),
+                        padding: EdgeInsets.all(scaler.getWidth(1)),
                         child: Center(
-                          child: Text("You currently don't have any results from your requests",
+                          child: Text(
+                            "You currently don't have any results from your requests",
                             style: GoogleFonts.lato(
                                 fontSize: 22,
                                 color: white,
-                                fontWeight: FontWeight.bold
-                            ),
-                            textAlign: TextAlign.center,),
+                                fontWeight: FontWeight.bold),
+                            textAlign: TextAlign.center,
+                          ),
                         ),
                       );
-                    }
-                    else{
+                    } else {
                       return Padding(
-                        padding:  EdgeInsets.symmetric(vertical: scaler.getWidth(1)),
+                        padding:
+                            EdgeInsets.symmetric(vertical: scaler.getWidth(1)),
                         child: ListView.builder(
                           itemBuilder: (context, index) {
                             return Padding(

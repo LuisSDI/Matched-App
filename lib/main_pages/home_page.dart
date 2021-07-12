@@ -14,10 +14,7 @@ import 'package:matched_app/ui_resources/icons/fix_icons_icons.dart';
 
 class HomePage extends StatefulWidget {
   HomePage(
-      {Key key,
-      @required this.identifier,
-      this.currentIndex = 0,
-      this.hasIndex = false})
+      {Key key, this.identifier, this.currentIndex = 0, this.hasIndex = false})
       : super(key: key);
   final String identifier;
   int currentIndex;
@@ -63,8 +60,7 @@ class _HomePageState extends State<HomePage> {
         child: Container(
           decoration: BoxDecoration(gradient: turkish),
           child: BottomNavigationBar(
-
-            type: BottomNavigationBarType.fixed,
+              type: BottomNavigationBarType.fixed,
               unselectedItemColor: white,
               fixedColor: white,
               unselectedLabelStyle: GoogleFonts.lato(
