@@ -44,7 +44,7 @@ class _MultiChoiceQuestionState extends State<MultiChoiceQuestion> {
                 left: screenScaler.getWidth(.5)
               ),
                 width: double.infinity,
-                height: screenScaler.getWidth(11),
+                height: screenScaler.getWidth(15),
                 child: Text(
               widget.question,
               style: GoogleFonts.lato(color: white, fontSize: 18,

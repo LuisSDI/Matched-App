@@ -86,6 +86,7 @@ flutter:
      - assets/images/disc/
      - assets/images/personality_icons/
      - assets/images/roommates.jpg
+     - assets/images/friendship.jpg
      - assets/images/personalities/test/
      - assets/images/roommates_test/
 

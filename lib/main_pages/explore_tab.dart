@@ -9,10 +9,8 @@ import 'package:matched_app/main_pages/explore_pages/colleges_screen.dart';
 import 'package:matched_app/main_pages/explore_pages/facilities_screen.dart';
 import 'package:matched_app/main_pages/explore_pages/faq_screen.dart';
 import 'package:matched_app/main_pages/explore_pages/services_screen.dart';
-import 'package:matched_app/main_pages/test_pages/personality_test/personality_test_info.dart';
 import 'package:matched_app/resources/image_slider.dart';
 import 'package:matched_app/resources/screen_buttom.dart';
-import 'package:matched_app/resources/simple_buttom.dart';
 
 class ExploreTab extends StatelessWidget {
   @override

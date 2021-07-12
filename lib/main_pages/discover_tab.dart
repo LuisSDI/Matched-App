@@ -6,7 +6,6 @@ import 'package:matched_app/main_pages/discover_pages/diplomats_screen.dart';
 import 'package:matched_app/main_pages/discover_pages/explorers_screen.dart';
 import 'package:matched_app/main_pages/discover_pages/sentinels_screen.dart';
 import 'package:matched_app/main_pages/discover_pages/test_explanation.dart';
-import 'package:matched_app/main_pages/explore_pages/colleges_pages/college_template.dart';
 import 'package:matched_app/resources/main_page_buttom.dart';
 import 'package:matched_app/ui_resources/custom_colors.dart';
 import 'package:matched_app/ui_resources/icons/fix_icons_icons.dart';
