@@ -10,11 +10,12 @@ class UserModel {
   final String description;
   final String gender;
   final List<dynamic> groups;
+  final List<dynamic> friends;
   final List<dynamic> caseSearch;
   List<dynamic> request;
   List<dynamic> results;
 
-  UserModel({
+  UserModel( {
     Key key,
     @required this.personality,
     @required this.uid,
@@ -26,6 +27,7 @@ class UserModel {
     @required this.type,
     @required this.description,
     @required this.caseSearch,
+    this.friends,
     this.request,
     this.results,
   });

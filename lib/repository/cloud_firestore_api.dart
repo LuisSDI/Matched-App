@@ -109,6 +109,7 @@ class CloudFireStoreAPI {
           email: value.get('email'),
           caseSearch: value.get('caseSearch'),
           groups: value.get('groups'),
+          friends: value.get('friends')
       );
     //print(user);
     return user;
@@ -153,7 +154,34 @@ class CloudFireStoreAPI {
           uid: value.get('uid'),
           photoUrL: value.get('photoURL'),
           email: value.get('email'),
-          groups: value.get('groups'));
+          groups: value.get('groups'),
+          friends: value.get('friends')
+      );
+      print(user.uid);
+      users.add(user);
+      print(users);
+    });
+
+    return users;
+  }
+
+  Future<List<UserModel>> getListFriends(UserModel user) async {
+    List<UserModel> users = [];
+    var value = await userInfo.where('uid',whereIn: user.friends).get();
+    value.docs.forEach((value) {
+      print(value.data());
+      user = UserModel(
+          name: value.get('full name'),
+          type: value.get('type'),
+          personality: value.get('personality'),
+          gender: value.get('gender'),
+          description: value.get('description'),
+          uid: value.get('uid'),
+          photoUrL: value.get('photoURL'),
+          email: value.get('email'),
+          groups: value.get('groups'),
+          friends: value.get('friends')
+      );
       print(user.uid);
       users.add(user);
       print(users);
@@ -183,7 +211,7 @@ class CloudFireStoreAPI {
     return groups;
   }
 
-  Future<List<UserModel>> getListMemebers(GroupModel group) async {
+  Future<List<UserModel>> getListMembers(GroupModel group) async {
     List<UserModel> users = [];
     UserModel user;
     var value = await userInfo.where('uid', whereIn: group.members).get();
@@ -210,7 +238,14 @@ class CloudFireStoreAPI {
   Future<void> addMessage(
       Message message, UserModel sender, UserModel receiver) async {
     Map map = message.toMap();
-
+    DocumentReference senderDocRef = userInfo.doc(sender.uid);
+    DocumentReference recieverDocRef = userInfo.doc(receiver.uid);
+    await senderDocRef.update({
+      'friends': FieldValue.arrayUnion([receiver.uid])
+    });
+    await recieverDocRef.update({
+      'friends': FieldValue.arrayUnion([sender.uid])
+    });
     await messages
         .doc(message.senderId)
         .collection(message.receiverId)

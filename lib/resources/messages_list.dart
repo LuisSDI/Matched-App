@@ -117,11 +117,11 @@ class MessageList extends StatelessWidget {
                   // child: Image.network(user.photoUrL,
                   // fit: BoxFit.cover,),
                 ),
-                Text(user.name.split(' ').first,
-                  style: GoogleFonts.lato(
-                      fontSize: 10,
-                      color: white
-                  ),)
+                // Text(user.name.split(' ').first,
+                //   style: GoogleFonts.lato(
+                //       fontSize: 10,
+                //       color: white
+                //   ),)
               ],
             ),
           ),
@@ -154,11 +154,11 @@ class MessageList extends StatelessWidget {
                   // child: Image.network(user.photoUrL,
                   // fit: BoxFit.cover,),
                 ),
-                Text(user.name.split(' ').first,
-                  style: GoogleFonts.lato(
-                      fontSize: 10,
-                      color: white
-                  ),)
+                // Text(user.name.split(' ').first,
+                //   style: GoogleFonts.lato(
+                //       fontSize: 10,
+                //       color: white
+                //   ),)
               ],
             ),
           ),

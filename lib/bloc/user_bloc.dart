@@ -79,6 +79,11 @@ class UserBloc implements Bloc {
   Future<List<UserModel>> getListUsers(String userUid) async =>
       await cloudFirestoreRepository.getListUsers(userUid);
 
+  // Get a list of user's individual chats
+  Future<List<UserModel>> getListFriends(UserModel user) {
+    return cloudFirestoreRepository.getListFriends(user);
+  }
+
   //Get a list of groups
   Future<List<GroupModel>> getListGroups(UserModel user) {
     return cloudFirestoreRepository.getListGroups(user);
@@ -86,7 +91,7 @@ class UserBloc implements Bloc {
 
   //Get a list of members
   Future<List<UserModel>> getListMemebers(GroupModel group) {
-    return cloudFirestoreRepository.getListMemebers(group);
+    return cloudFirestoreRepository.getListMembers(group);
   }
 
   //Search a Group
