@@ -158,57 +158,57 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                           ),
                         ),
                         // Student ID Text
-                        Container(
-                          height: scaler.getWidth(5),
-                          margin: EdgeInsets.only(
-                              top: scaler.getWidth(1),
-                              bottom: scaler.getWidth(1)),
-                          child: FittedBox(
-                              fit: BoxFit.contain,
-                              child: Text(
-                                "Student ID",
-                                style: GoogleFonts.lato(
-                                    textStyle: TextStyle(
-                                        fontSize: 20,
-                                        color: white,
-                                        fontWeight: FontWeight.bold)),
-                              )),
-                        ),
+                        // Container(
+                        //   height: scaler.getWidth(5),
+                        //   margin: EdgeInsets.only(
+                        //       top: scaler.getWidth(1),
+                        //       bottom: scaler.getWidth(1)),
+                        //   child: FittedBox(
+                        //       fit: BoxFit.contain,
+                        //       child: Text(
+                        //         "Student ID",
+                        //         style: GoogleFonts.lato(
+                        //             textStyle: TextStyle(
+                        //                 fontSize: 20,
+                        //                 color: white,
+                        //                 fontWeight: FontWeight.bold)),
+                        //       )),
+                        // ),
                         // Full Name TextField
-                        Container(
-                          width: scaler.getWidth(80),
-                          height: scaler.getWidth(12),
-                          child: TextFormField(
-                            validator: (input) {
-                              if (input.isEmpty) {
-                                return 'Please type a name';
-                              }
-                            },
-                            onSaved: (input) {
-                              studentID = input;
-                            },
-                            style: GoogleFonts.lato(
-                                textStyle: TextStyle(fontSize: 18,
-                                    color: white)),
-                            decoration: InputDecoration(
-                              contentPadding:
-                              EdgeInsets.only(left: scaler.getWidth(0.8)),
-                              hintText: 'Aa',
-                              hintStyle: GoogleFonts.lato(
-                                  textStyle: TextStyle(
-                                      fontSize: 18,
-                                      color: white
-                                  )),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide:
-                                  BorderSide(color:mainColor)),
-                              focusColor: mainColor,
-                              focusedBorder: textfieldBorder,
-                              enabledBorder: textfieldBorder,
-                            ),
-                          ),
-                        ),
+                        // Container(
+                        //   width: scaler.getWidth(80),
+                        //   height: scaler.getWidth(12),
+                        //   child: TextFormField(
+                        //     validator: (input) {
+                        //       if (input.isEmpty) {
+                        //         return 'Please type a name';
+                        //       }
+                        //     },
+                        //     onSaved: (input) {
+                        //       studentID = input;
+                        //     },
+                        //     style: GoogleFonts.lato(
+                        //         textStyle: TextStyle(fontSize: 18,
+                        //             color: white)),
+                        //     decoration: InputDecoration(
+                        //       contentPadding:
+                        //       EdgeInsets.only(left: scaler.getWidth(0.8)),
+                        //       hintText: 'Aa',
+                        //       hintStyle: GoogleFonts.lato(
+                        //           textStyle: TextStyle(
+                        //               fontSize: 18,
+                        //               color: white
+                        //           )),
+                        //       border: OutlineInputBorder(
+                        //           borderRadius: BorderRadius.circular(10),
+                        //           borderSide:
+                        //           BorderSide(color:mainColor)),
+                        //       focusColor: mainColor,
+                        //       focusedBorder: textfieldBorder,
+                        //       enabledBorder: textfieldBorder,
+                        //     ),
+                        //   ),
+                        // ),
                         Row(
                           children: <Widget>[
                             // College Container
@@ -384,7 +384,7 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                           child: TextFormField(
                             validator: (input) {
                               if (input.isEmpty) {
-                                return 'Please type a name';
+                                return 'Please do not leave the field empty';
                               }
                             },
                             onSaved: (input) {
