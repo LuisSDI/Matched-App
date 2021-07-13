@@ -90,6 +90,10 @@ flutter:
      - assets/images/friendship.jpg
      - assets/images/personalities/test/
      - assets/images/roommates_test/
+     - assets/images/personalities/test/analysts
+     - assets/images/personalities/test/diplomats
+     - assets/images/personalities/test/sentinels
+     - assets/images/personalities/test/explorers
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
