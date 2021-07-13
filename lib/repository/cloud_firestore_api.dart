@@ -144,7 +144,7 @@ class CloudFireStoreAPI {
     UserModel user;
     var value = await userInfo.get();
     value.docs.forEach((value) {
-      print(value.data());
+      //print(value.data());
       user = UserModel(
           name: value.get('full name'),
           type: value.get('type'),
@@ -155,13 +155,12 @@ class CloudFireStoreAPI {
           photoUrL: value.get('photoURL'),
           email: value.get('email'),
           groups: value.get('groups'),
-          friends: value.get('friends')
+          //friends: value.get('friends')
       );
       print(user.uid);
       users.add(user);
-      print(users);
     });
-
+    print('Here');
     return users;
   }
 

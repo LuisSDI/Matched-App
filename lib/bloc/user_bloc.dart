@@ -76,8 +76,8 @@ class UserBloc implements Bloc {
   }
 
   // Get a list of users
-  Future<List<UserModel>> getListUsers(String userUid) async =>
-      await cloudFirestoreRepository.getListUsers(userUid);
+  Future<List<UserModel>> getListUsers(String userUid) =>
+      cloudFirestoreRepository.getListUsers(userUid);
 
   // Get a list of user's individual chats
   Future<List<UserModel>> getListFriends(UserModel user) {

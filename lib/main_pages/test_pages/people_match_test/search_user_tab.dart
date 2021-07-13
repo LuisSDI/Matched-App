@@ -96,7 +96,6 @@ class _SearchUserTabState extends State<SearchUserTab> {
                   builder: (BuildContext context,
                       AsyncSnapshot<QuerySnapshot> snapshot) {
                     print(snapshot.connectionState);
-                    print(snapshot.data.docs.isEmpty);
                     if (!snapshot.hasData) {
                       return Center(
                         child: CircularProgressIndicator(),
@@ -121,7 +120,7 @@ class _SearchUserTabState extends State<SearchUserTab> {
                       return FutureBuilder(
                           future: userBloc.getListUsers(userBloc.currentUser.uid),
                           builder: (context, snapshot2) {
-                            print(snapshot2.data);
+                            //print(snapshot2.data.length);
                             if (snapshot2.connectionState == ConnectionState.done) {
                               List<UserModel> users = snapshot2.data;
                               return SingleChildScrollView(
