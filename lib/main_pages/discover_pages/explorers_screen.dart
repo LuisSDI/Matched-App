@@ -71,7 +71,11 @@ class ExplorersScreen extends StatelessWidget {
                 color: color,
                 screen: PersonalityTemplate(
                   desc: CollegesInfo().shawDesc,
-                  imagesList: CollegesInfo().defaultList,
+                  imagesList: [
+                    'assets/images/personalities/test/explorers/virtuoso1.jpg',
+                    'assets/images/personalities/test/explorers/virtuoso2.jpg',
+                    'assets/images/personalities/test/explorers/virtuoso3.jpg'
+                  ],
                   title: """Virtuoso (ISTP)""",
                   link: "https://www.16personalities.com/istp-personality",
                   subtitles: [
@@ -107,7 +111,11 @@ class ExplorersScreen extends StatelessWidget {
                 alignment: Alignment(-.3, 0),
                 screen: PersonalityTemplate(
                   desc: CollegesInfo().shawDesc,
-                  imagesList: CollegesInfo().defaultList,
+                  imagesList: [
+                    'assets/images/personalities/test/explorers/adventurer1.jpg',
+                    'assets/images/personalities/test/explorers/adventurer2.jpg',
+                    'assets/images/personalities/test/explorers/adventurer3.jpg'
+                  ],
                   title: """Adventurer (ISFP)""",
                   link: "https://www.16personalities.com/isfp-personality",
                   subtitles: [
@@ -143,7 +151,11 @@ class ExplorersScreen extends StatelessWidget {
                 alignment: Alignment(-.3, 0),
                 screen: PersonalityTemplate(
                   desc: CollegesInfo().shawDesc,
-                  imagesList: CollegesInfo().defaultList,
+                  imagesList: [
+                    'assets/images/personalities/test/explorers/entrepreneur1.jpg',
+                    'assets/images/personalities/test/explorers/entrepreneur2.jpg',
+                    'assets/images/personalities/test/explorers/entrepreneur3.jpg'
+                  ],
                   title: """Entrepreneur (ESTP)""",
                   link: "https://www.16personalities.com/estp-personality",
                   subtitles: [
@@ -177,7 +189,11 @@ class ExplorersScreen extends StatelessWidget {
                 alignment: Alignment(-.3, 0),
                 screen: PersonalityTemplate(
                   desc: CollegesInfo().shawDesc,
-                  imagesList: CollegesInfo().defaultList,
+                  imagesList: [
+                    'assets/images/personalities/test/explorers/entertainer1.jpg',
+                    'assets/images/personalities/test/explorers/entertainer2.jpg',
+                    'assets/images/personalities/test/explorers/entertainer3.jpg'
+                  ],
                   title: """Entertainer (ESFP)""",
                   link: "https://www.16personalities.com/esfp-personality",
                   subtitles: [

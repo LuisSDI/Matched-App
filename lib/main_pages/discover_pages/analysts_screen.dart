@@ -71,7 +71,11 @@ class AnalystsScreen extends StatelessWidget {
                 color: Color(0xffF5D7E3),
                 screen: PersonalityTemplate(
                   desc: CollegesInfo().shawDesc,
-                  imagesList: CollegesInfo().defaultList,
+                  imagesList: [
+                    'assets/images/personalities/test/analysts/architect1.jpg',
+                    'assets/images/personalities/test/analysts/architect2.jpg',
+                    'assets/images/personalities/test/analysts/architect3.jpg',
+                  ],
                   title: """Architect (INTJ)""",
                   link:
                       "https://www.16personalities.com/intj-strengths-and-weaknesses",
@@ -116,7 +120,11 @@ class AnalystsScreen extends StatelessWidget {
                 alignment: Alignment(-.3, 0),
                 screen: PersonalityTemplate(
                   desc: CollegesInfo().shawDesc,
-                  imagesList: CollegesInfo().defaultList,
+                  imagesList: [
+                    'assets/images/personalities/test/analysts/logician1.png',
+                    'assets/images/personalities/test/analysts/logician2.jpg',
+                    'assets/images/personalities/test/analysts/logician3.jpg'
+                  ],
                   title: """Logician (INTP)""",
                   link:
                       "https://www.16personalities.com/intp-strengths-and-weaknesses",
@@ -157,7 +165,11 @@ class AnalystsScreen extends StatelessWidget {
                 alignment: Alignment(-.3, 0),
                 screen: PersonalityTemplate(
                   desc: CollegesInfo().shawDesc,
-                  imagesList: CollegesInfo().defaultList,
+                  imagesList: [
+                    'assets/images/personalities/test/analysts/commander1.png',
+                    'assets/images/personalities/test/analysts/commander2.jpg',
+                    'assets/images/personalities/test/analysts/commander3.jpg'
+                  ],
                   title: """Commander (ENTJ)""",
                   link:
                       "https://www.16personalities.com/entj-strengths-and-weaknesses",
@@ -194,7 +206,11 @@ class AnalystsScreen extends StatelessWidget {
                 alignment: Alignment(-.3, 0),
                 screen: PersonalityTemplate(
                   desc: CollegesInfo().shawDesc,
-                  imagesList: CollegesInfo().defaultList,
+                  imagesList: [
+                    'assets/images/personalities/test/analysts/debater1.jpg',
+                    'assets/images/personalities/test/analysts/debater2.jpg',
+                    'assets/images/personalities/test/analysts/debater3.jpg'
+                  ],
                   title: """Debater (ENTP)""",
                   link:
                       "https://www.16personalities.com/entp-strengths-and-weaknesses",

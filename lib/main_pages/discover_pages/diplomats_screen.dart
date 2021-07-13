@@ -71,7 +71,11 @@ class DiplomatsScreen extends StatelessWidget {
                 color: color,
                 screen: PersonalityTemplate(
                   desc: CollegesInfo().shawDesc,
-                  imagesList: CollegesInfo().defaultList,
+                  imagesList: [
+                    'assets/images/personalities/test/diplomats/advocate1.jpg',
+                    'assets/images/personalities/test/diplomats/advocate2.jpg',
+                    'assets/images/personalities/test/diplomats/advocate3.jpg'
+                  ],
                   title: """Advocate (INFJ)""",
                   link: "https://www.16personalities.com/infj-personality",
                   subtitles: [
@@ -115,7 +119,11 @@ class DiplomatsScreen extends StatelessWidget {
                 alignment: Alignment(-.3, 0),
                 screen: PersonalityTemplate(
                   desc: CollegesInfo().shawDesc,
-                  imagesList: CollegesInfo().defaultList,
+                  imagesList: [
+                    'assets/images/personalities/test/diplomats/mediator1.png',
+                    'assets/images/personalities/test/diplomats/mediator2.jpg',
+                    'assets/images/personalities/test/diplomats/mediator3.jpg'
+                  ],
                   title: """Mediator (INFP)""",
                   link: "https://www.16personalities.com/infp-personality",
                   subtitles: [
@@ -155,7 +163,11 @@ class DiplomatsScreen extends StatelessWidget {
                 alignment: Alignment(-.3, 0),
                 screen: PersonalityTemplate(
                   desc: CollegesInfo().shawDesc,
-                  imagesList: CollegesInfo().defaultList,
+                  imagesList: [
+                    'assets/images/personalities/test/diplomats/protagonist1.jpg',
+                    'assets/images/personalities/test/diplomats/protagonist2.jpg',
+                    'assets/images/personalities/test/diplomats/protagonist3.jpg'
+                  ],
                   title: """Protagonist (ENFJ)""",
                   link: "https://www.16personalities.com/enfj-personality",
                   subtitles: [
@@ -193,7 +205,11 @@ class DiplomatsScreen extends StatelessWidget {
                 alignment: Alignment(-.3, 0),
                 screen: PersonalityTemplate(
                   desc: CollegesInfo().shawDesc,
-                  imagesList: CollegesInfo().defaultList,
+                  imagesList: [
+                    'assets/images/personalities/test/diplomats/campaigner1.png',
+                    'assets/images/personalities/test/diplomats/campaigner2.jpg',
+                    'assets/images/personalities/test/diplomats/campaigner3.jpg'
+                  ],
                   title: """Campaigner (ENFP)""",
                   link: "https://www.16personalities.com/enfp-personality",
                   subtitles: [

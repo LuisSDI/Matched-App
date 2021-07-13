@@ -70,7 +70,11 @@ class SentinelsScreen extends StatelessWidget {
                 color: Color(0xffdbeee6),
                 screen: PersonalityTemplate(
                   desc: CollegesInfo().shawDesc,
-                  imagesList: CollegesInfo().defaultList,
+                  imagesList: [
+                    'assets/images/personalities/test/sentinels/logistician1.png',
+                    'assets/images/personalities/test/sentinels/logistician2.jpg',
+                    'assets/images/personalities/test/sentinels/logistician3.jpg'
+                  ],
                   title: """Logistician (ISTJ)""",
                   link: "https://www.16personalities.com/istj-personality",
                   subtitles: [
@@ -106,7 +110,11 @@ class SentinelsScreen extends StatelessWidget {
                 alignment: Alignment(-.3, 0),
                 screen: PersonalityTemplate(
                     desc: CollegesInfo().shawDesc,
-                    imagesList: CollegesInfo().defaultList,
+                    imagesList: [
+                      'assets/images/personalities/test/sentinels/defender1.jpg',
+                      'assets/images/personalities/test/sentinels/defender2.jpg',
+                      'assets/images/personalities/test/sentinels/defender3.jpg'
+                    ],
                     title: """Defender (ISFJ)""",
                     link: "https://www.16personalities.com/isfj-personality",
                     subtitles: [
@@ -139,7 +147,11 @@ class SentinelsScreen extends StatelessWidget {
                 alignment: Alignment(-.3, 0),
                 screen: PersonalityTemplate(
                   desc: CollegesInfo().shawDesc,
-                  imagesList: CollegesInfo().defaultList,
+                  imagesList: [
+                    'assets/images/personalities/test/sentinels/executive1.jpg',
+                    'assets/images/personalities/test/sentinels/executive2.jpg',
+                    'assets/images/personalities/test/sentinels/executive3.jpg'
+                  ],
                   title: """Executive (ESTJ)""",
                   link: "https://www.16personalities.com/estj-personality",
                   subtitles: [
@@ -173,7 +185,11 @@ class SentinelsScreen extends StatelessWidget {
                 alignment: Alignment(-.3, 0),
                 screen: PersonalityTemplate(
                   desc: CollegesInfo().shawDesc,
-                  imagesList: CollegesInfo().defaultList,
+                  imagesList: [
+                    'assets/images/personalities/test/sentinels/consul1.jpg',
+                    'assets/images/personalities/test/sentinels/consul2.jpg',
+                    'assets/images/personalities/test/sentinels/consul3.jpg'
+                  ],
                   title: """Consul (ESFJ)""",
                   link: "https://www.16personalities.com/esfj-personality",
                   subtitles: [

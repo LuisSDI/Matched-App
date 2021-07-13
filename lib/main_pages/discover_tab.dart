@@ -72,10 +72,10 @@ class DiscoverTab extends StatelessWidget {
                                   builder: (context) => TestExplanation(
                                         title: 'How does it work?',
                                         imagesList: [
-                                          'assets/images/disc/d.png',
-                                          'assets/images/disc/i.png',
-                                          'assets/images/disc/s.png',
-                                          'assets/images/disc/c.png'
+                                          'assets/images/personalities/test/personality_test_1.jpg',
+                                          'assets/images/personalities/test/personality_test_2.jpg',
+                                          'assets/images/personalities/test/personality_test_3.jpg',
+                                          'assets/images/personalities/test/personality_test_4.jpg',
                                         ],
                                       )));
                         },
