@@ -74,55 +74,47 @@ class PersonalityTemplate extends StatelessWidget {
             ImageSlider(
               imgList: imagesList,
             ),
-            Container(
-              height: MediaQuery.of(context).size.height * 2 / 5,
-              child: ListView.builder(
-                itemCount: subtitles.length,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: scaler.getWidth(2)),
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                          top: scaler.getHeight(1),
-                          bottom: scaler.getHeight(1)),
-                      child: Container(
-                        //height: scaler.getHeight(43),
-                        alignment: Alignment.topLeft,
+            SizedBox(height: scaler.getWidth(1),),
+            for (var i = 0; i < subtitles.length; i++)
+              Padding(
+                padding: EdgeInsets.only(
+                    //top: scaler.getHeight(1),
+                    bottom: scaler.getHeight(1),
+                right: scaler.getWidth(2),
+                left: scaler.getWidth(2)),
+                child: Container(
+                  //height: scaler.getHeight(43),
+                  alignment: Alignment.topLeft,
 
-                        child: Paragraph(
-                            title: subtitles[index][0],
-                            text: subtitles[index][1]),
-                      ),
-                    ),
-                  );
-                },
+                  child:
+                      Paragraph(title: subtitles[i][0], text: subtitles[i][1]),
+                ),
               ),
-            ),
+            
             Container(
-                //height: MediaQuery.of(context).size.height / 8,
-                margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                padding: EdgeInsets.only(bottom: scaler.getWidth(2)),
+                //height: scaler.getHeight(5),
+                //margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
                 child: RichText(
                   text: TextSpan(
                     children: [
                       TextSpan(
                           style: GoogleFonts.lato(
                               textStyle: TextStyle(
-                                  fontSize: 14,
+                                  fontSize: 16,
                                   color: white,
                                   fontWeight: FontWeight.bold)),
                           text: "To learn more "),
                       TextSpan(
                           style: GoogleFonts.lato(
                               textStyle: TextStyle(
-                                  fontSize: 14,
+                                  fontSize: 16,
                                   color: blueGradient,
                                   fontWeight: FontWeight.bold)),
                           text: "Click here",
                           recognizer: TapGestureRecognizer()
                             ..onTap = () async {
-                              var url =
-                                  link;
+                              var url = link;
                               if (await canLaunch(url)) {
                                 await launch(url);
                               } else {
@@ -138,7 +130,7 @@ class PersonalityTemplate extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: Container(
-        height: scaler.getHeight(5),
+        height: scaler.getHeight(10),
         decoration: BoxDecoration(gradient: turkish),
       ),
     );

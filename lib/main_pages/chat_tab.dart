@@ -39,7 +39,7 @@ class _ChatTabState extends State<ChatTab> {
                   print(snapshot.data);
                   List<GroupModel> groups = snapshot.data;
                   return FutureBuilder(
-                      future: userBloc.getListUsers(user.uid),
+                      future: userBloc.getListFriends(user),
                       builder: (context, snapshot2) {
                         print(snapshot2.data);
                         if (snapshot2.connectionState == ConnectionState.done) {
