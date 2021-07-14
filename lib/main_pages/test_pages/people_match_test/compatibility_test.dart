@@ -118,7 +118,6 @@ class _CompatibilityTestState extends State<CompatibilityTest> {
               ),
               SimpleButtonAdvanced(
                 onTap: () {
-                  print(results);
                   showDialog<String>(
                       context: context,
                       builder: (BuildContext context) => AlertDialog(

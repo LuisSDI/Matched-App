@@ -24,16 +24,11 @@ class PersonalityTestResultFixed extends StatelessWidget {
         future: userBloc.getUserData(FirebaseAuth.instance.currentUser.uid),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            print('Here 1');
             UserModel user = snapshot.data;
             return FutureBuilder(
               future: userBloc.getPersonalityResult(user.uid),
               builder: (context, snapshot) {
-                print('Here 2');
-                print(snapshot.connectionState);
-                print(snapshot.data);
                 if (snapshot.connectionState == ConnectionState.done) {
-                  print('Here 3');
                   PersonalityResult personalityResult = snapshot.data;
                   Map<String, String> personalityIntro =
                       PersonalityTestInfo().personalityIntro;

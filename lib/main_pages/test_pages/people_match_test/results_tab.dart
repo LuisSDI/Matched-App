@@ -49,8 +49,6 @@ class _ResultsTabState extends State<ResultsTab> {
                   future: userBloc.getResults(userBloc.currentUser.uid),
                   builder: (BuildContext context,
                       AsyncSnapshot<List<UserModel>> snapshot) {
-                    print(snapshot.connectionState);
-                    print(snapshot.data);
                     if (snapshot.connectionState != ConnectionState.done) {
                       return Center(
                         child: CircularProgressIndicator(

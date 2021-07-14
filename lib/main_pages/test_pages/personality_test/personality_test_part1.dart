@@ -95,7 +95,6 @@ or act?"""
             ),
             SimpleButtonAdvanced(
               onTap: () {
-                print(results);
                 bool isfinished = true;
                 for (var i=0; i<results.length; i++) {
                   if(results[i] == null){
@@ -104,7 +103,6 @@ or act?"""
                   }
                 }
                 if (isfinished) {
-                  print(results);
                   Navigator.push(
                       context, MaterialPageRoute(builder: (context) => PersonalityTestPart2(
                     previousResults: results,

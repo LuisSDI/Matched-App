@@ -33,7 +33,6 @@ class CompatibilityTestResult extends StatelessWidget {
             userBloc.getCompatibilityResult(userBloc.currentUser.uid, testUid),
         builder: (context, AsyncSnapshot<CompatibilityResult> snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            print('Here 3');
             PersonalityResult myPersonalityResult =
                 snapshot.data.myPersonalityResult;
             int range = snapshot.data.finalScore~/ 20;

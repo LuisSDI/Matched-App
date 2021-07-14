@@ -21,7 +21,6 @@ void main() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   initScreen = await prefs.getInt("initScreen");
   await prefs.setInt("initScreen", 1);
-  print('initScreen $initScreen');
   await GetStorage.init();
   final datacount = GetStorage();
   if(datacount.read('initScreen')!= null)
@@ -29,7 +28,6 @@ void main() async {
     initScreen = datacount.read('initScreen');
   }
   datacount.writeIfNull("initScreen", 1);
-  print('initScreen $initScreen');
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);

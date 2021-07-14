@@ -117,7 +117,6 @@ to you more?"""
             ),
             SimpleButtonAdvanced(
               onTap: () {
-                print(results);
                 showDialog<String>(
                     context: context,
                     builder: (BuildContext context) => AlertDialog(

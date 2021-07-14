@@ -255,7 +255,6 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                                       elevation: 16,
                                       onChanged: (String newValue) {
                                         setState(() {
-                                          print(newValue);
                                           dropdownGender = newValue;
                                         });
                                       },
@@ -330,7 +329,7 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                                       elevation: 16,
                                       onChanged: (String newValue) {
                                         setState(() {
-                                          print(newValue);
+
                                           dropdownCollege = newValue;
                                         });
                                       },
@@ -389,7 +388,6 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                             },
                             onSaved: (input) {
                               description = input;
-                              print(description);
                             },
                             maxLines: 5,
                             keyboardType: TextInputType.multiline,
@@ -440,7 +438,6 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
       if (formState.validate()) {
         formState.save();
         try {
-          print(widget.credential);
           if (widget.credential != null) {
             authResult =
             await widget.userBloc.signInCredential(widget.credential);
@@ -451,7 +448,6 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
           }
           List<String> groups = [];
           GroupModel group = await widget.userBloc.searchGroup('General');
-          print(group.groupId);
           groups.add(group.groupId);
           UserModel user = UserModel(
               email: firebaseUser.email,
@@ -467,7 +463,6 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
               type: dropdownCollege);
           widget.userBloc.setUserData(user);
           widget.userBloc.addToGroup(firebaseUser.uid, group.groupId);
-          print("Funciona");
         } catch (e) {
           print(e.message);
           Navigator.of(context).pop();

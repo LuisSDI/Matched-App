@@ -155,12 +155,9 @@ class ShowGroupScreen extends StatelessWidget {
                     child: FutureBuilder(
                         future: userBloc.getListMemebers(group),
                         builder: (context, snapshot2) {
-                          print(snapshot2.data);
                           if (snapshot2.connectionState ==
                               ConnectionState.done) {
                             List<UserModel> users = snapshot2.data;
-                            print("Here is the result 2");
-                            print(snapshot2.data);
                             return SingleChildScrollView(
                               child: Column(
                                 children: [

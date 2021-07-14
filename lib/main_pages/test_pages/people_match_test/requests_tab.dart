@@ -48,8 +48,6 @@ class _RequestsTabState extends State<RequestsTab> {
                   future: userBloc.getRequest(userBloc.currentUser.uid),
                   builder: (BuildContext context,
                       AsyncSnapshot<List<UserModel>> snapshot) {
-                    print(snapshot.connectionState);
-                    print(snapshot.data);
                     if (snapshot.connectionState != ConnectionState.done) {
                       return Center(
                         child: CircularProgressIndicator(

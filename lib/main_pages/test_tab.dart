@@ -32,11 +32,8 @@ class TestTab extends StatelessWidget {
       child: FutureBuilder(
         future: userBloc.getUserData(userBloc.currentUser.uid),
         builder: (context, snapshot) {
-          print(snapshot.connectionState);
           if (snapshot.connectionState == ConnectionState.done) {
             UserModel userModel = snapshot.data;
-            print(userModel.personality);
-            print(userModel.personality == 'None');
             return SingleChildScrollView(
               child: Column(
                 children: <Widget>[

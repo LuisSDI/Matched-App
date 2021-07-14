@@ -21,31 +21,23 @@ class _ChatTabState extends State<ChatTab> {
   Widget build(BuildContext context) {
     ScreenScaler scaler = ScreenScaler()..init(context);
     UserBloc userBloc = BlocProvider.of(context);
-    print(userBloc.currentUser.uid);
     return BlocProvider(
       bloc: userBloc,
       child: FutureBuilder(
         future: userBloc.getUserData(userBloc.currentUser.uid),
         builder: (context, snapshot) {
-          print(snapshot.connectionState);
-          print(snapshot.data);
           if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
             UserModel user = snapshot.data;
             return FutureBuilder(
               future:  userBloc.getListGroups(user),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
-                  print("Here is the result");
-                  print(snapshot.data);
                   List<GroupModel> groups = snapshot.data;
                   return FutureBuilder(
                       future: userBloc.getListFriends(user),
                       builder: (context, snapshot2) {
-                        print(snapshot2.data);
                         if (snapshot2.connectionState == ConnectionState.done) {
                           List<UserModel> users = snapshot2.data;
-                          print("Here is the result 2");
-                          print(snapshot2.data);
                           return SingleChildScrollView(
                             child: Column(
                               children: [

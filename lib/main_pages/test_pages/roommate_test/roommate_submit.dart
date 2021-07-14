@@ -43,12 +43,10 @@ class RoommateSubmit extends StatelessWidget {
         future: userBloc.createRoommateTest(userBloc.currentUser.uid, habitsAns,
             socialAns, beliefAns, communAns, activitiesAns),
         builder: (context, snapshot) {
-          print(snapshot.connectionState);
           if (snapshot.connectionState == ConnectionState.done) {
             return FutureBuilder(
                 future: userBloc.getReleaseTime(),
                 builder: (context, snapshot) {
-                  print(snapshot.connectionState);
                   if (snapshot.connectionState == ConnectionState.done) {
                     DateTime time = snapshot.data;
                     return Scaffold(

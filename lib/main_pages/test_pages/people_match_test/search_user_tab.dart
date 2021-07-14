@@ -95,7 +95,6 @@ class _SearchUserTabState extends State<SearchUserTab> {
                   stream: userBloc.searchUser(searchValue),
                   builder: (BuildContext context,
                       AsyncSnapshot<QuerySnapshot> snapshot) {
-                    print(snapshot.connectionState);
                     if (!snapshot.hasData) {
                       return Center(
                         child: CircularProgressIndicator(),

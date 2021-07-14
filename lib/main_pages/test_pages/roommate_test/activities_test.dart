@@ -112,11 +112,6 @@ class _ActivitiesTestState extends State<ActivitiesTest> {
             SimpleButtonAdvanced(
               onTap: () {
 
-                print(widget.habitsAns);
-                print(widget.socialAns);
-                print(widget.beliefAns);
-                print(widget.communAns);
-                print(activitiesAns);
                 showDialog<String>(
                     context: context,
                     builder: (BuildContext context) => AlertDialog(

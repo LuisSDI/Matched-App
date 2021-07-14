@@ -107,8 +107,6 @@ class _SocialTestState extends State<SocialTest> {
             ),
             SimpleButtonAdvanced(
               onTap: () {
-                print(widget.habitsAns);
-                print(socialAns);
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => BeliefTest(
                         habitsAns: widget.habitsAns,
