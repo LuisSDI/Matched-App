@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
@@ -9,7 +8,6 @@ import 'package:matched_app/main_pages/test_pages/people_match_test/compatibilit
 import 'package:matched_app/main_pages/test_pages/personality_test/personality_test_info.dart';
 import 'package:matched_app/model/compatibility_result.dart';
 import 'package:matched_app/model/personality_result.dart';
-import 'package:matched_app/model/user.dart';
 import 'package:matched_app/resources/versus_percent_bar.dart';
 import 'package:matched_app/ui_resources/custom_colors.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -220,14 +218,7 @@ class CompatibilityTestResult extends StatelessWidget {
               ),
             );
           }
-          return Scaffold(
-            backgroundColor: dark,
-            body: Center(
-              child: CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(mainColor),
-              ),
-            ),
-          );
+
         },
       ),
     );

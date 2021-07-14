@@ -79,8 +79,6 @@ class ExploreTab extends StatelessWidget {
                 //           .values
                 //           .toSet()
                 //           .toList();
-                //       print(personalityRoles);
-                //       print(personalityTypes);
                 //       List<String> allGroups = [
                 //         personalityTypes,
                 //         personalityRoles

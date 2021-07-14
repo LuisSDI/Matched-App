@@ -1,12 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:matched_app/bloc/user_bloc.dart';
 import 'package:matched_app/model/user.dart';
-import 'package:matched_app/resources/accept_request_button.dart';
-import 'package:matched_app/resources/request_button.dart';
 import 'package:matched_app/resources/result_button.dart';
 import 'package:matched_app/ui_resources/custom_colors.dart';
 

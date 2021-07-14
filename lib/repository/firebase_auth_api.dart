@@ -19,7 +19,7 @@ class FirebaseAuthAPI {
 
   void deleteUser() async {
     try {
-      User firebaseUser = await _auth.currentUser;
+      User firebaseUser =  _auth.currentUser;
       firebaseUser.delete();
     } catch (error) {
       switch (error.code) {
@@ -111,11 +111,10 @@ class FirebaseAuthAPI {
       assert(!user.isAnonymous);
       assert(await user.getIdToken() != null);
 
-      final User currentUser = await _auth.currentUser;
+      final User currentUser =  _auth.currentUser;
       assert(user.uid == currentUser.uid);
       return authResult;
     } catch (error) {
-      print('Mmm...');
       print(error.runtimeType);
     }
   }

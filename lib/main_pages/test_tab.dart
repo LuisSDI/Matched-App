@@ -4,7 +4,6 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:matched_app/MatchingQuizz/matchingScreen.dart';
 import 'package:matched_app/bloc/user_bloc.dart';
 import 'package:matched_app/main_pages/test_pages/people_match_test/home_match_screen.dart';
 import 'package:matched_app/main_pages/test_pages/personality_test/personality_test_intro.dart';
@@ -13,7 +12,6 @@ import 'package:matched_app/main_pages/test_pages/roommate_test/roommate_submit_
 import 'package:matched_app/main_pages/test_pages/roommate_test/roommate_test_intro.dart';
 
 import 'package:matched_app/model/user.dart';
-import 'package:matched_app/resources/major_buttom.dart';
 import 'package:matched_app/resources/test_buttom.dart';
 import 'package:matched_app/ui_resources/custom_colors.dart';
 

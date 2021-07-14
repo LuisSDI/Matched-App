@@ -1,13 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:matched_app/main_pages/chat_pages/chat_screen.dart';
 import 'package:matched_app/main_pages/chat_pages/show_profile_chat.dart';
-import 'package:matched_app/main_pages/test_pages/people_match_test/compatibility_test.dart';
 import 'package:matched_app/main_pages/test_pages/people_match_test/compatibility_test_result.dart';
-import 'package:matched_app/main_pages/test_pages/people_match_test/reply_compatibility_test.dart';
 import 'package:matched_app/model/user.dart';
 import 'package:matched_app/ui_resources/custom_colors.dart';
 

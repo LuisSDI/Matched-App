@@ -24,11 +24,6 @@ class ProfileTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ScreenScaler scaler = ScreenScaler()..init(context);
-    final Stream<int> _dummy = (() async* {
-      await Future<void>.delayed(const Duration(seconds: 1));
-      yield 1;
-      await Future<void>.delayed(const Duration(seconds: 120));
-    })();
     userBloc = BlocProvider.of(context);
     return BlocProvider(
       bloc: userBloc,
@@ -397,7 +392,7 @@ class ProfileTab extends StatelessWidget {
   }
 
   updateUser(UserModel users, String photoURL){
-    List<String> substring = List<String>();
+    List<String> substring = [];
     substring.add(" ");
     for(int i=0; i<users.name.length; i++){
       substring.add(users.name.substring(0,i+1));

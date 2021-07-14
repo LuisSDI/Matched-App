@@ -199,7 +199,7 @@ class SignPageState extends State<SignPage> {
     if (formState.validate()) {
       formState.save();
       try {
-        Async_Loader.showLoadingDialog(context);
+        AsyncLoader.showLoadingDialog(context);
         userBloc = BlocProvider.of(context);
         Navigator.pop(context);
         userBloc.signIn(email, password).then((value) {

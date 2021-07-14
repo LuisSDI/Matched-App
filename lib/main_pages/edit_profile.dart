@@ -6,7 +6,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:matched_app/bloc/user_bloc.dart';
 import 'package:matched_app/main_pages/test_pages/personality_test/personality_test_info.dart';
 import 'package:matched_app/model/user.dart';
-import 'package:matched_app/resources/async_loader.dart';
 import 'package:matched_app/ui_resources/custom_colors.dart';
 
 //import 'apply_tab.dart';
@@ -209,7 +208,7 @@ class _EditProfileState extends State<EditProfile> {
                               textAlign: TextAlign.right,
                               validator: (input) {
                                 if (input.isEmpty) {
-                                  _scaffkey.currentState.showSnackBar(SnackBar(
+                                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                     content: Container(
                                       alignment: Alignment.center,
                                       height: scaler.getHeight(2),
@@ -401,8 +400,7 @@ class _EditProfileState extends State<EditProfile> {
                               child: TextFormField(
                                 validator: (input) {
                                   if (input.isEmpty || input.trim().length == 0) {
-                                    _scaffkey.currentState
-                                        .showSnackBar(SnackBar(
+                                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                       content: Container(
                                         alignment: Alignment.center,
                                         height: scaler.getHeight(2),

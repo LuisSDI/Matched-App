@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:matched_app/MatchingQuizz/router.dart';
 import 'package:matched_app/bloc/user_bloc.dart';
 import 'package:matched_app/model/user.dart';
 import 'package:matched_app/resources/request_button.dart';
@@ -119,7 +118,6 @@ class _SearchUserTabState extends State<SearchUserTab> {
                       return FutureBuilder(
                           future: userBloc.getListUsers(userBloc.currentUser.uid),
                           builder: (context, snapshot2) {
-                            //print(snapshot2.data.length);
                             if (snapshot2.connectionState == ConnectionState.done) {
                               List<UserModel> users = snapshot2.data;
                               return SingleChildScrollView(

@@ -25,7 +25,6 @@ class FirebaseStorageAPI{
     String downloadURL = await FirebaseStorage.instance
         .ref('profile_pictures/$imageId')
         .getDownloadURL();
-    print(downloadURL);
     //return await (await uploadTask.snapshot).ref.getDownloadURL();
     return downloadURL;
   }

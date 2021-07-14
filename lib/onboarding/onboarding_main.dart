@@ -5,7 +5,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:matched_app/login/sign_page.dart';
 import 'package:matched_app/main_pages/home_page.dart';
 import 'package:matched_app/resources/page_index.dart';
-import 'package:matched_app/resources/size_config.dart';
 import 'package:matched_app/ui_resources/custom_colors.dart';
 
 import 'data_onbording.dart';
@@ -39,9 +38,8 @@ class _OnboardingMainState extends State<OnboardingMain> {
   Widget build(BuildContext context) {
     //init Size Config
     if (loggedInUser == null) {
-      SizeConfig screen = SizeConfig();
-      double block_horizontal = MediaQuery.of(context).size.width / 15;
-      double block_vertical = MediaQuery.of(context).size.height / 32.5;
+      double blockHorizontal = MediaQuery.of(context).size.width / 15;
+      double blockVertical = MediaQuery.of(context).size.height / 32.5;
       return Container(
           child: Scaffold(
         backgroundColor: dark,
@@ -82,10 +80,10 @@ class _OnboardingMainState extends State<OnboardingMain> {
                       }
                     },
                     child: Container(
-                      margin: EdgeInsets.only(top: block_vertical * 1.5),
+                      margin: EdgeInsets.only(top: blockVertical * 1.5),
                       alignment: Alignment.center,
                       child: Padding(
-                        padding: EdgeInsets.all(block_horizontal * .6),
+                        padding: EdgeInsets.all(blockHorizontal * .6),
                         child: FittedBox(
                           fit: BoxFit.contain,
                           child: Text(
@@ -100,8 +98,8 @@ class _OnboardingMainState extends State<OnboardingMain> {
                           ),
                         ),
                       ),
-                      width: block_horizontal * 10,
-                      height: block_vertical * 2.5,
+                      width: blockHorizontal * 10,
+                      height: blockVertical * 2.5,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
                         color: mainColor,

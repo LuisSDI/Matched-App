@@ -1,4 +1,3 @@
-import 'package:matched_app/MatchingQuizz/listUsers.dart';
 
 class PersonalityTestInfo {
   List<String> questions = [

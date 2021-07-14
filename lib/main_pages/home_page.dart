@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   @override
-  int _currentIndex = 0;
+  //int _currentIndex = 0;
 
   Widget build(BuildContext context) {
     // if (widget.hasIndex) {

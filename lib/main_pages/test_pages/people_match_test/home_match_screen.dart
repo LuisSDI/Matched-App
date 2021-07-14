@@ -1,12 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
-import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:matched_app/MatchingQuizz/invitationTab.dart';
-import 'package:matched_app/MatchingQuizz/listUsers.dart';
-import 'package:matched_app/bloc/user_bloc.dart';
 import 'package:matched_app/main_pages/test_pages/people_match_test/requests_tab.dart';
 import 'package:matched_app/main_pages/test_pages/people_match_test/results_tab.dart';
 import 'package:matched_app/main_pages/test_pages/people_match_test/search_user_tab.dart';
@@ -17,7 +12,7 @@ class HomeMatchScreen extends StatefulWidget {
   HomeMatchScreen(
       {Key key,
       @required this.title,
-      @required this.identifier = "need to be initialized"})
+      @required this.identifier})
       : super(key: key);
   final String title, identifier;
 

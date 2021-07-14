@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/current_remaining_time.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
@@ -8,10 +7,6 @@ import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:matched_app/bloc/user_bloc.dart';
 import 'package:matched_app/main_pages/home_page.dart';
-import 'package:matched_app/main_pages/test_pages/personality_test/personality_test_info.dart';
-import 'package:matched_app/model/personality_result.dart';
-import 'package:matched_app/model/user.dart';
-import 'package:matched_app/resources/versus_percent_bar.dart';
 import 'package:matched_app/ui_resources/custom_colors.dart';
 
 class RoommateSubmit extends StatelessWidget {

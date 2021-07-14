@@ -43,12 +43,11 @@ class CloudFireStoreAPI {
 
   Future<void> setUserData(UserModel user) async {
     try {
-      List<String> substring = List<String>();
+      List<String> substring = [];
       substring.add(" ");
       for (int i = 0; i < user.name.length; i++) {
         substring.add(user.name.substring(0, i + 1));
       }
-      print(user.groups.first);
       userInfo.doc(user.uid).set({
         'uid': user.uid,
         'caseSearch': substring,
@@ -75,7 +74,7 @@ class CloudFireStoreAPI {
   }
 
   void updateUserData(UserModel user) async {
-    List<String> substring = List<String>();
+    List<String> substring = [];
     substring.add(" ");
     for (int i = 0; i < user.name.length; i++) {
       substring.add(user.name.substring(0, i + 1));
@@ -97,7 +96,6 @@ class CloudFireStoreAPI {
   Future<UserModel> getUserData(String userUid,) async {
     UserModel user;
     DocumentSnapshot value = await userInfo.doc(userUid).get();
-      //print(value.data());
       user = UserModel(
           name: value.get('full name'),
           type: value.get('type'),
@@ -111,7 +109,6 @@ class CloudFireStoreAPI {
           groups: value.get('groups'),
           friends: value.get('friends')
       );
-    //print(user);
     return user;
   }
 
@@ -126,7 +123,6 @@ class CloudFireStoreAPI {
     var querySnapshot =
         await groupsCol.where('groupName', isEqualTo: groupName).get();
     DocumentSnapshot value = querySnapshot.docs.first;
-    print(value.data());
     group = GroupModel(
         groupId: value.get('groupID'),
         groupName: value.get('groupName'),
@@ -144,7 +140,6 @@ class CloudFireStoreAPI {
     UserModel user;
     var value = await userInfo.get();
     value.docs.forEach((value) {
-      //print(value.data());
       user = UserModel(
           name: value.get('full name'),
           type: value.get('type'),
@@ -157,10 +152,8 @@ class CloudFireStoreAPI {
           groups: value.get('groups'),
           //friends: value.get('friends')
       );
-      print(user.uid);
       users.add(user);
     });
-    print('Here');
     return users;
   }
 
@@ -168,7 +161,6 @@ class CloudFireStoreAPI {
     List<UserModel> users = [];
     var value = await userInfo.where('uid',whereIn: user.friends).get();
     value.docs.forEach((value) {
-      print(value.data());
       user = UserModel(
           name: value.get('full name'),
           type: value.get('type'),
@@ -181,9 +173,7 @@ class CloudFireStoreAPI {
           groups: value.get('groups'),
           friends: value.get('friends')
       );
-      print(user.uid);
       users.add(user);
-      print(users);
     });
 
     return users;
@@ -195,18 +185,14 @@ class CloudFireStoreAPI {
     var querySnapshot =
         await groupsCol.where('groupID', whereIn: user.groups).get();
     querySnapshot.docs.forEach((result) {
-      //print(result.data());
       group = GroupModel(
           groupId: result.get('groupID'),
           groupName: result.get('groupName'),
           members: result.get('members'),
           groupImage: result.get('groupImage'));
-      print(group.members);
       groups.add(group);
     });
 
-    print('Groups');
-    print(groups.first.groupName);
     return groups;
   }
 
@@ -215,7 +201,6 @@ class CloudFireStoreAPI {
     UserModel user;
     var value = await userInfo.where('uid', whereIn: group.members).get();
     value.docs.forEach((value) {
-      print(value.data());
       user = UserModel(
           name: value.get('full name'),
           type: value.get('type'),
@@ -226,9 +211,7 @@ class CloudFireStoreAPI {
           photoUrL: value.get('photoURL'),
           email: value.get('email'),
           groups: value.get('groups'));
-      print(user.uid);
       users.add(user);
-      print(users);
     });
 
     return users;
@@ -277,13 +260,12 @@ class CloudFireStoreAPI {
 
   Future addToGroup(String uid, String groupId) async {
     DocumentReference userDocRef = userInfo.doc(uid);
-    DocumentSnapshot userDocSnapshot = await userDocRef.get();
+    //DocumentSnapshot userDocSnapshot = await userDocRef.get();
 
     DocumentReference groupDocRef = groupsCol.doc(groupId);
 
-    Map<String, dynamic> data = userDocSnapshot.data();
-    List<dynamic> groups = data['groups'];
-    //print('nay');
+    //Map<String, dynamic> data = userDocSnapshot.data();
+    //List<dynamic> groups = data['groups'];
     await userDocRef.update({
       'groups': FieldValue.arrayUnion([groupId])
     });
@@ -464,7 +446,6 @@ class CloudFireStoreAPI {
     DateTime time;
     await generalInfo.doc('generalInfo').get().then((result) {
       time = DateTime.parse(result.get('releaseResult').toDate().toString());
-      print(time);
     });
     return time;
   }
@@ -567,7 +548,6 @@ class CloudFireStoreAPI {
     await userInfo.doc(userID).get().then((value) {
       requests = value.get('requests');
     });
-    print(requests);
     QuerySnapshot querySnapshot =
         await peopleMatch.where('peopleMatchId', whereIn: requests).get();
     for (var result in querySnapshot.docs) {
@@ -576,10 +556,8 @@ class CloudFireStoreAPI {
       UserModel userModel = await getUserData(requesterUid);
       userModel.request = [testUid];
       requestersUser.add(userModel);
-      print(requestersUser);
 
     }
-    print(requestersUser.first.name);
     return requestersUser;
   }
 
@@ -599,7 +577,6 @@ class CloudFireStoreAPI {
         requestersUser.add(user);
       });
     }
-    print(requestersUser.first.name);
     return requestersUser;
   }
   
