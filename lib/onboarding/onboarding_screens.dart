@@ -64,7 +64,7 @@ class OnboardingScreen extends StatelessWidget {
                       title,
                       style:
                           GoogleFonts.lato(textStyle: TextStyle(
-                              fontSize: 31,
+                              fontSize: 30,
                               color: white
                           )),
                     )),
@@ -95,8 +95,8 @@ class OnboardingScreen extends StatelessWidget {
           Container(
             padding: EdgeInsets.only(top: scaler.getHeight(5),
             left: title == "Dreammate" ? scaler.getHeight(2): scaler.getHeight(0)),
-            height: scaler.getWidth(60),
-            width: scaler.getWidth(60),
+            height: scaler.getWidth(50),
+            width: scaler.getWidth(50),
             margin: EdgeInsets.only(bottom: scaler.getWidth(5)),
             child: FittedBox(
                 fit: title == "Who you are?" ? BoxFit.none : BoxFit.cover,
