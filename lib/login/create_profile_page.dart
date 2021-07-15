@@ -417,11 +417,11 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                   ArrowButtom(
                     key: Key('1234'),
                     onTap: () async {
-                      registerUser();
-                             Navigator.pushReplacement(
-                          context,
-             MaterialPageRoute(
-                 builder: (context) => HomePage()));
+                      registerUser(scaler);
+             //                 Navigator.pushReplacement(
+             //              context,
+             // MaterialPageRoute(
+             //     builder: (context) => HomePage()));
                     },
                   )
                 ],
@@ -429,7 +429,7 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
     );
   }
 
-  Future<void> registerUser() async {
+  Future<void> registerUser(ScreenScaler scaler) async {
     {
       final formState = _formKey.currentState;
       widget.userBloc = BlocProvider.of<UserBloc>(context);
@@ -460,12 +460,50 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
               uid: firebaseUser.uid,
               description: description,
               groups: groups,
+              friends: [],
               type: dropdownCollege);
+
           widget.userBloc.setUserData(user);
           widget.userBloc.addToGroup(firebaseUser.uid, group.groupId);
+          bool exist = await widget.userBloc.checkUserData(firebaseUser.uid);
+          if(exist)
+          {
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => HomePage()));
+          }
+          else{
+            await firebaseUser.delete();
+            ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  backgroundColor: mainColor,
+                  duration: Duration(seconds: 3),
+                  content: Container(
+                      height: scaler.getHeight(5),
+                      child: Center(child: Text('Unable to sign up, please verify your internet connection and try  later.',
+                        style:
+                        GoogleFonts.lato(
+                            fontSize: 18
+                        ),))),
+                ),);
+          }
+
         } catch (e) {
-          print(e.message);
-          Navigator.of(context).pop();
+          print(e);
+          print('There is an error');
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              backgroundColor: deepBlue,
+              duration: Duration(seconds: 3),
+              content: Container(
+                  height: scaler.getHeight(5),
+                  child: Center(child: Text('Unable to sign up, please verify your internet connection and try  later.',
+                    style:
+                    GoogleFonts.lato(
+                        fontSize: 18
+                    ),))),
+            ),);
         }
       }
     }

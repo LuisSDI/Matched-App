@@ -31,11 +31,16 @@ class _ChatTabState extends State<ChatTab> {
             return FutureBuilder(
               future:  userBloc.getListGroups(user),
               builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.done) {
+                print(snapshot.data);
+                print(snapshot.connectionState);
+
+                if (snapshot.connectionState == ConnectionState.done && snapshot.data != null) {
                   List<GroupModel> groups = snapshot.data;
                   return FutureBuilder(
                       future: userBloc.getListFriends(user),
                       builder: (context, snapshot2) {
+                        print(snapshot2.data);
+                        print(snapshot2.connectionState);
                         if (snapshot2.connectionState == ConnectionState.done) {
                           List<UserModel> users = snapshot2.data;
                           return SingleChildScrollView(
@@ -108,7 +113,10 @@ class _ChatTabState extends State<ChatTab> {
                               ],
                             ),
                           );
-                        } else {
+                        }
+
+
+                        else {
                           return Scaffold(
                             backgroundColor: dark,
                             body: Center(

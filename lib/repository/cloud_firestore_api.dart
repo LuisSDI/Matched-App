@@ -73,6 +73,11 @@ class CloudFireStoreAPI {
     }
   }
 
+  Future<bool> checkUserData(String userID) async {
+    DocumentSnapshot document = await userInfo.doc(userID).get();
+    return document.exists;
+  }
+
   void updateUserData(UserModel user) async {
     List<String> substring = [];
     substring.add(" ");
@@ -107,7 +112,7 @@ class CloudFireStoreAPI {
           email: value.get('email'),
           caseSearch: value.get('caseSearch'),
           groups: value.get('groups'),
-          //friends: value.get('friends')
+          friends: value.get('friends')
       );
     return user;
   }
@@ -150,7 +155,7 @@ class CloudFireStoreAPI {
           photoUrL: value.get('photoURL'),
           email: value.get('email'),
           groups: value.get('groups'),
-          //friends: value.get('friends')
+          friends: value.get('friends')
       );
       users.add(user);
     });

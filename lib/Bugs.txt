@@ -1,4 +1,4 @@
--Fix Gender being Null
--Fix Access without successfully signing in.
--Fix Friends Bug in the Test
--Do we match UI Button
+-Fix Gender being Null - Done
+-Fix Access without successfully signing in. - Done
+-Fix Friends Bug in the Test - Done
+-Do we match UI Button - Done

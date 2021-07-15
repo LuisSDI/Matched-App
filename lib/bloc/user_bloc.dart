@@ -57,6 +57,11 @@ class UserBloc implements Bloc {
   // Register New User
   Future<void> setUserData(UserModel user) =>
       cloudFirestoreRepository.setUserData(user);
+
+  //Check if Document Exist
+  Future<bool> checkUserData(String userID) {
+    return cloudFirestoreRepository.checkUserData(userID);
+  }
   // Update User Data
   void updateUserData(UserModel user) =>
       cloudFirestoreRepository.updateUserData(user);

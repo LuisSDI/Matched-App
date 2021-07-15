@@ -30,8 +30,9 @@ class TestTab extends StatelessWidget {
       child: FutureBuilder(
         future: userBloc.getUserData(userBloc.currentUser.uid),
         builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
+          if (snapshot.connectionState == ConnectionState.done && snapshot.data != null) {
             UserModel userModel = snapshot.data;
+            print(userModel.name);
             return SingleChildScrollView(
               child: Column(
                 children: <Widget>[
@@ -234,7 +235,7 @@ class TestTab extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(10),
                                 color: blackOp,
                               ),
-                              height: scaler.getHeight(19),
+                              height: scaler.getHeight(18),
                               child: Center(
                                 child: Container(
                                   width: scaler.getHeight(8),

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 //import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -19,7 +21,7 @@ class FirebaseAuthAPI {
 
   void deleteUser() async {
     try {
-      User firebaseUser =  _auth.currentUser;
+      User firebaseUser = _auth.currentUser;
       firebaseUser.delete();
     } catch (error) {
       switch (error.code) {
@@ -69,11 +71,26 @@ class FirebaseAuthAPI {
 
   Future<User> signUp(String email, String password) async {
     try {
-      UserCredential authResult = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(email: email, password: password);
+      UserCredential authResult;
+      print('Hello');
+      final result = await InternetAddress.lookup('google.com').timeout(Duration(seconds:8));
+      final result2 = await InternetAddress.lookup('wikipedia.com').timeout(Duration(seconds:8));
+      print('Hello 3');
+      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty && result2.isNotEmpty && result2[0].rawAddress.isNotEmpty ) {
+        print('Connected');
+        await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(email: email, password: password)
+            .then((value) {
+          authResult = value;
+        });
+      }
+      else{
+        print('Not Connected');
+      }
       User user = authResult.user;
       return user;
-    } catch (error) {
+    } on FirebaseAuthException catch (error) {
+      print(error);
       print(error.code);
       switch (error.code) {
         case "ERROR_NETWORK_REQUEST_FAILED":
@@ -99,11 +116,14 @@ class FirebaseAuthAPI {
           break;
         default:
           errorMessage = "An undefined Error happened.";
+
+          print(errorMessage);
       }
     }
   }
 
-  Future<UserCredential> signInUsingCredential(AuthCredential credential) async {
+  Future<UserCredential> signInUsingCredential(
+      AuthCredential credential) async {
     UserCredential authResult;
     try {
       authResult = await _auth.signInWithCredential(credential);
@@ -111,7 +131,7 @@ class FirebaseAuthAPI {
       assert(!user.isAnonymous);
       assert(await user.getIdToken() != null);
 
-      final User currentUser =  _auth.currentUser;
+      final User currentUser = _auth.currentUser;
       assert(user.uid == currentUser.uid);
       return authResult;
     } catch (error) {
@@ -123,9 +143,9 @@ class FirebaseAuthAPI {
     AuthCredential credential;
     try {
       final GoogleSignInAccount googleSignInAccount =
-      await googleSignIn.signIn();
+          await googleSignIn.signIn();
       final GoogleSignInAuthentication googleSignInAuthentication =
-      await googleSignInAccount.authentication;
+          await googleSignInAccount.authentication;
       credential = GoogleAuthProvider.credential(
         accessToken: googleSignInAuthentication.accessToken,
         idToken: googleSignInAuthentication.idToken,
