@@ -107,7 +107,7 @@ class CloudFireStoreAPI {
           email: value.get('email'),
           caseSearch: value.get('caseSearch'),
           groups: value.get('groups'),
-          friends: value.get('friends')
+          //friends: value.get('friends')
       );
     return user;
   }
