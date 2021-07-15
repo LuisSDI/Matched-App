@@ -74,7 +74,7 @@ class FirebaseAuthAPI {
       UserCredential authResult;
       print('Hello');
       final result = await InternetAddress.lookup('google.com').timeout(Duration(seconds:8));
-      final result2 = await InternetAddress.lookup('wikipedia.com').timeout(Duration(seconds:8));
+      final result2 = await InternetAddress.lookup('facebook.com').timeout(Duration(seconds:8));
       print('Hello 3');
       if (result.isNotEmpty && result[0].rawAddress.isNotEmpty && result2.isNotEmpty && result2[0].rawAddress.isNotEmpty ) {
         print('Connected');

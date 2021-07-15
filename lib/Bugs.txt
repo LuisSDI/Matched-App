@@ -2,3 +2,6 @@
 -Fix Access without successfully signing in. - Done
 -Fix Friends Bug in the Test - Done
 -Do we match UI Button - Done
+
+-Fix Launch Screen
+-Check Firebase Storage

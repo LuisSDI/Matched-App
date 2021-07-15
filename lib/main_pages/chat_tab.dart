@@ -26,6 +26,8 @@ class _ChatTabState extends State<ChatTab> {
       child: FutureBuilder(
         future: userBloc.getUserData(userBloc.currentUser.uid),
         builder: (context, snapshot) {
+          print(snapshot.data);
+          print(snapshot.connectionState);
           if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
             UserModel user = snapshot.data;
             return FutureBuilder(
@@ -43,6 +45,7 @@ class _ChatTabState extends State<ChatTab> {
                         print(snapshot2.connectionState);
                         if (snapshot2.connectionState == ConnectionState.done) {
                           List<UserModel> users = snapshot2.data;
+                          users ??= [];
                           return SingleChildScrollView(
                             child: Column(
                               children: [
