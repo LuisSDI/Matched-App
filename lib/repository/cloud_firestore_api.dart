@@ -59,7 +59,8 @@ class CloudFireStoreAPI {
         'type': user.type,
         'description': user.description,
         'lastSignIn': DateTime.now(),
-        'groups': FieldValue.arrayUnion(user.groups)
+        'groups': FieldValue.arrayUnion(user.groups),
+        'friends': FieldValue.arrayUnion(user.friends)
       }, SetOptions(merge: true)).then((value) => print('User Register'));
     } catch (error) {
       print(error.code);
