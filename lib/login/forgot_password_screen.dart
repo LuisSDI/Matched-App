@@ -17,6 +17,7 @@ class ForgotPasswordScreen extends StatelessWidget {
     return BlocProvider(
       bloc: userBloc,
       child: Scaffold(
+        backgroundColor: dark,
         key: _scaffkey,
         body: Form(
           key: _formKey,
@@ -67,7 +68,8 @@ class ForgotPasswordScreen extends StatelessWidget {
                           fit: BoxFit.contain,
                           child: Text(
                             'Forgot your password?',
-                            style: GoogleFonts.lato(textStyle: TextStyle(fontSize: 23)),
+                            style: GoogleFonts.lato(textStyle: TextStyle(fontSize: 23),
+                            color: white),
                           )),
                     ),
                   ),
@@ -81,7 +83,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                         textAlign: TextAlign.center,
                         style: GoogleFonts.lato(
                             textStyle:
-                            TextStyle(fontSize: 16, color: Color(0xff62626C))),
+                            TextStyle(fontSize: 16, color:whiteish)),
                       ),
                     ),
                   ),
@@ -101,13 +103,18 @@ class ForgotPasswordScreen extends StatelessWidget {
                           email = input;
 
                         },
-                        style: TextStyle(fontSize: 18, color: Color(0xff62626C)),
+
+                        style: TextStyle(fontSize: 18, color: whiteish),
                         decoration: InputDecoration(
                             hintText: 'Email address',
+                            border: UnderlineInputBorder(borderSide: BorderSide(color: white)),
+                            focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: white)),
+                            enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: white)),
                             hintStyle: GoogleFonts.lato(
                                 textStyle: TextStyle(
                                   fontSize: 18,
-                                ))),
+                                ),
+                            color: white)),
                       ),
                     ),
                   ),
@@ -141,13 +148,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                       child: Container(
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(30),
-                            gradient: LinearGradient(
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
-                                colors: [
-                                  Color(0xff6747CD),
-                                  Color(0x8C3300D6)
-                                ]),
+                            gradient: turkish,
                             boxShadow: [
                               BoxShadow(
                                 color: Color(0x80000000),
@@ -182,7 +183,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                   ),
                   //Back to login Text
                   Padding(
-                    padding: EdgeInsets.only(top: scaler.getHeight(1)),
+                    padding: EdgeInsets.symmetric(vertical: scaler.getHeight(1)),
                     child: GestureDetector(
                       onTap: (){
                         Navigator.of(context).pop();

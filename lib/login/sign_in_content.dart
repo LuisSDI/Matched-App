@@ -5,6 +5,7 @@ import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:matched_app/bloc/user_bloc.dart';
+import 'package:matched_app/login/forgot_password_screen.dart';
 import 'package:matched_app/login/sign_page.dart';
 import 'package:matched_app/main_pages/home_page.dart';
 import 'package:matched_app/ui_resources/custom_colors.dart';
@@ -224,17 +225,25 @@ class _SignInContentState extends State<SignInContent> {
           ),
 Expanded(child: Container()),
           // Forgot password Text
-          Container(
-            alignment: Alignment.centerLeft,
-            height: scaler.getWidth(4),
-            margin: EdgeInsets.only(bottom: scaler.getWidth(3.5)),
-            child: FittedBox(
-                fit: BoxFit.contain,
-                child: Text(
-                  'Forgot password?',
-                  style: GoogleFonts.lato(
-                      textStyle: TextStyle(fontSize: 16, color: whiteish)),
-                )),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ForgotPasswordScreen()));
+            },
+            child: Container(
+              alignment: Alignment.centerLeft,
+              height: scaler.getWidth(4),
+              margin: EdgeInsets.only(bottom: scaler.getWidth(3.5)),
+              child: FittedBox(
+                  fit: BoxFit.contain,
+                  child: Text(
+                    'Forgot password?',
+                    style: GoogleFonts.lato(
+                        textStyle: TextStyle(fontSize: 16, color: whiteish)),
+                  )),
+            ),
           ),
         ],
       ),
