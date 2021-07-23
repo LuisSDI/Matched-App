@@ -95,7 +95,7 @@ class UserBloc implements Bloc {
   }
 
   //Get a list of members
-  Future<List<UserModel>> getListMemebers(GroupModel group) {
+  Future<List<UserModel>> getListMembers(GroupModel group) {
     return cloudFirestoreRepository.getListMembers(group);
   }
 

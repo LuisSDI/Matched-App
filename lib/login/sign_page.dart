@@ -170,7 +170,7 @@ class SignPageState extends State<SignPage> {
                 //Column of Sign In Content
                 Container(
                   width: scaler.getWidth(100),
-                  height: scaler.getHeight(46),
+                  height: scaler.getHeight(60),
                   child: AnimatedSwitcher(
                     child: _myAnimatedWidget,
                     duration: Duration(milliseconds: 1600),

@@ -34,7 +34,7 @@ class GroupMessageList extends StatelessWidget {
           }
 
           return FutureBuilder(
-              future: userBloc.getListMemebers(groupModel),
+              future: userBloc.getListMembers(groupModel),
               builder: (context, AsyncSnapshot<List<UserModel>> snapshot2) {
                 if (snapshot2.data == null) {
                   return Center(

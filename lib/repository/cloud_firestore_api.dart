@@ -206,20 +206,26 @@ class CloudFireStoreAPI {
     List<UserModel> users = [];
     UserModel user;
     var value = await userInfo.where('uid', whereIn: group.members).get();
-    value.docs.forEach((value) {
-      user = UserModel(
-          name: value.get('full name'),
-          type: value.get('type'),
-          description: value.get('description'),
-          personality: value.get('personality'),
-          gender: value.get('gender'),
-          uid: value.get('uid'),
-          photoUrL: value.get('photoURL'),
-          email: value.get('email'),
-          groups: value.get('groups'));
-      users.add(user);
-    });
-
+    print("Here 6");
+    // value.docs.forEach((value) {
+    //   print('User');
+    //   print(value.data());
+    //   user = UserModel(
+    //       name: value.get('full name'),
+    //       type: value.get('type'),
+    //       description: value.get('description'),
+    //       personality: value.get('personality'),
+    //       gender: value.get('gender'),
+    //       uid: value.get('uid'),
+    //       photoUrL: value.get('photoURL'),
+    //       email: value.get('email'),
+    //       groups: value.get('groups'));
+    //   users.add(user);
+    // });
+    for (var mem in group.members)
+    {
+     users.add(await getUserData(mem));
+    }
     return users;
   }
 
