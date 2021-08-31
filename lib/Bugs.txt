@@ -5,3 +5,5 @@
 
 -Fix Launch Screen
 -Check Firebase Storage
+-Fix Registration of Users
+-Fix Chat , probably make a newer function
